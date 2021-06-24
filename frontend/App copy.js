@@ -1,7 +1,4 @@
 import React, { useState, useEffect } from "react"
-import Invitation from "./components/Invitation/Invitation"
-import Profile from "./components/Profile/Profile"
-import Timeline from "./components/Timeline/Timeline"
 
 const App = () => {
   const [couple, setCouple] = useState(true)
@@ -9,24 +6,46 @@ const App = () => {
   const [photographer, setPhotographer] = useState(false)
   const [guest, setGuest] = useState(false)
 
-  /*const [data, setData] = useState(null);
+  const [data, setData] = useState(null);
 
   useEffect(() => {
     fetch("/api")
       .then(res => res.json())
       .then(data => setData(data.message))
-  }, [])*/
+  }, [])
 
   return (
     <div className="app">
       {/*<p>{!data ? "Loading..." : data}</p>*/}
 
-      <Invitation />
+      {/*Főoldal*/}
+      <div>
+        <h2>Meghívó</h2>
+      </div>
+
       {
         (couple || weddingP || guest) &&
         <>
-          <Profile />
-          <Timeline />
+          {/*Listázza a személyes dolgokat*/}
+          {/*KÜLSŐ API - GOOGLE NAPTÁRBA ADÁS*/}
+          <div>
+            <h2>Profil</h2>
+            <p>Név</p>
+            <p>+1 főt hoz-e</p>
+            <p>Ha igen, kit.</p>
+            <p>Ki mellett szeretne ülni.</p>
+            <p>Add calendar</p>
+          </div>
+
+          {/*Esküvő menetrend*/}
+          <div>
+            <h2>Menetrend/Programok</h2>
+          </div>
+
+          {/*Szállás lehetőségek*/}
+          <div>
+            <h2>Szállás</h2>
+          </div>
 
           {/*Hol ül az ember; ki mellett szeretne ülni funkció / + couple||weddingP -> ülés rend szerkesztése*/}
           <div>

@@ -11,6 +11,7 @@ const Profile = () => {
       <p>Ha igen, kit.</p>
       <p>Ki mellett szeretne ülni.</p>
       <p>Add calendar</p>
+      <p>Étel érzékenység</p>
     </div>
   )
 }

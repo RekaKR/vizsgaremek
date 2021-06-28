@@ -15,3 +15,5 @@ npm init -y \
 npm i express \
 npm install cors \
 npm install mongoose \
+npm install node-fetch \
+npm install dotenv \

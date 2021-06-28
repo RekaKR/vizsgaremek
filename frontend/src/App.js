@@ -1,51 +1,61 @@
-import React, { useState, useEffect } from "react"
+import React from "react"
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+
+import Header from './components/Header/Header'
 import Invitation from "./components/Invitation/Invitation"
+import LogInOut from "./components/LogInOut/LogInOut"
 import Profile from "./components/Profile/Profile"
-import Timeline from "./components/Timeline/Timeline"
+import Timeline from './components/Timeline/Timeline'
 import Accommodation from "./components/Accommodation/Accommodation"
 import Pictures from "./components/Feature/Pictures/Pictures"
 import ToDoList from "./components/Feature/ToDoList/ToDoList"
 import Admin from "./components/Admin/Admin"
 
 const App = () => {
-  const [couple, setCouple] = useState(true)
-  const [weddingP, setWeddingP] = useState(false)
-  const [photographer, setPhotographer] = useState(false)
-  const [guest, setGuest] = useState(false)
-
-  /*const [data, setData] = useState(null);
-
-  useEffect(() => {
-    fetch("/api")
-      .then(res => res.json())
-      .then(data => setData(data.message))
-  }, [])*/
-
   return (
-    <div className="app">
-      {/*<p>{!data ? "Loading..." : data}</p>*/}
+    <Router>
+      <div className='app'>
+        <Header />
 
-      <Invitation />
+        <Switch>
+          <Route path='/invitation'>
+            <Invitation />
+          </Route>
 
-      {
-        (couple || weddingP || guest) &&
-        <>
-          <Profile />
-          <Timeline />
-          <Accommodation />
-        </>
-      }
+          <Route path='/login'>
+            <LogInOut />
+          </Route>
 
-      {(couple || weddingP || photographer || guest) && <Pictures />}
+          <Route path='/profile'>
+            <Profile />
+          </Route>
 
-      {
-        (couple || weddingP) &&
-        <>
-          <ToDoList />
-          <Admin />
-        </>
-      }
-    </div>
+          <Route path='/timeline'>
+            <Timeline />
+          </Route>
+
+          <Route path='/accommodation'>
+            <Accommodation />
+          </Route>
+
+          <Route path='/pictures'>
+            <Pictures />
+          </Route>
+
+          <Route path='/to-do-list'>
+            <ToDoList />
+          </Route>
+
+          <Route path='/edit'>
+            <Admin />
+          </Route>
+
+          <Route path='/'>
+            <Invitation />
+          </Route>
+        </Switch>
+      </div>
+    </Router >
   );
 }
 

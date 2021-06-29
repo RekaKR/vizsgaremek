@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+//import '../../style/css/style.css'
 
 const Header = () => {
   const [couple, setCouple] = useState(true)
@@ -7,23 +8,25 @@ const Header = () => {
   const [guest, setGuest] = useState(false)
 
   return (
-    <div>
+    <div className="header">
+      <a href="/">Invitation</a>
+
       {
         (couple || weddingP || guest) &&
         <>
-          <h2>Profile</h2>
-          <h2>Timeline</h2>
-          <h2>Accommodation</h2>
+          <a href="/profile">Profile</a>
+          <a href="/timeline">Timeline</a>
+          <a href="/accommodation">Accommodation</a>
         </>
       }
 
-      {(couple || weddingP || photographer || guest) && <h2>Pictures</h2>}
+      {(couple || weddingP || photographer || guest) && <a href="/galery">Galery</a>}
 
       {
         (couple || weddingP) &&
         <>
-          <h2>ToDoList</h2>
-          <h2>Admin</h2>
+          <a href="/to-do-list">ToDoList</a>
+          <a href="/admin">Admin</a>
         </>
       }
     </div>

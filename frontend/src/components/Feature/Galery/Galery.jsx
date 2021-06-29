@@ -3,12 +3,12 @@ import React from 'react'
 //KÜLSŐ API - AI AZONOSÍTÁS/ARC FELISMERÉS
 //KÜLSŐ API - GOOGLE DRIVE-RA MENTÉS
 
-const Pictures = () => {
+const Galery = () => {
   return (
-    <div className="pictures">
+    <div className="galery">
       <h2>Képek</h2>
     </div>
   )
 }
 
-export default Pictures
+export default Galery

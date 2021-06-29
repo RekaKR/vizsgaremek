@@ -11,7 +11,7 @@ const MONGO_LINK = process.env.MONGO_LINK
 
 
 const mongoose = require('mongoose')
-//const Data = require('./schema')
+const Data = require('./schema')
 
 //Mongo connect
 mongoose.connect(`${MONGO_LINK}`, {

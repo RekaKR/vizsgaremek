@@ -14,6 +14,6 @@ Router: npm install react-router-dom \
 npm init -y \
 npm i express \
 npm install cors \
+npm install dotenv \
 npm install mongoose \
 npm install node-fetch \
-npm install dotenv \

@@ -17,7 +17,7 @@ import Admin from "./components/adminCollection/Admin/Admin"
 
 const App = () => {
   const [accommodations, setAccommodations] = useState(null)
-  const [timeline, setTimeline] = useState(null)
+  const [events, setEvents] = useState(null)
 
   useEffect(() => {
     fetch('http://localhost:3001/admin-accommodation')
@@ -27,8 +27,8 @@ const App = () => {
 
     fetch('http://localhost:3001/timeline')
       .then(response => response.json())
-      .then(data => setTimeline(data))
-      .catch(error => setTimeline(null))
+      .then(data => setEvents(data))
+      .catch(error => setEvents(null))
   }, [])
 
   return (
@@ -63,7 +63,7 @@ const App = () => {
           </Route>
 
           <Route path='/timeline'>
-            <Timeline timeline={timeline} />
+            <Timeline events={events} />
           </Route>
 
           <Route path='/accommodation'>
@@ -79,7 +79,7 @@ const App = () => {
           </Route>
 
           <Route path='/admin'>
-            <Admin accommodations={accommodations} />
+            <Admin events={events} accommodations={accommodations} />
           </Route>
 
           <Route path='/'>

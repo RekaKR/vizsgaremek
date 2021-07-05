@@ -28,6 +28,7 @@ app.get('/', (req, res) => {
 
 const apiRoute = require('./routes/apiRoute')
 const accommodationRoute = require('./routes/accommodationRoute')
+const timelineRoute = require('./routes/timelineRoute')
 
 
 //ROUTES MIDDLEWARES
@@ -35,9 +36,10 @@ app.use('/api', (req, res, next) => {
   console.log('This is a middleware running')
   next()
 })
-
 app.use('/api', apiRoute)
+
 app.use('/admin-accommodation', accommodationRoute)
+app.use('/timeline', timelineRoute)
 
 
 //DATABASE CONNECTION

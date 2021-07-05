@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 const Accommodation = require('../models/accommodationModel')
 
-router.get('/', async (req, res, next) => {
+router.get('/', async (req, res) => {
   try {
     const accommodation = await Accommodation.find()
     res.json(accommodation)

@@ -1,7 +1,9 @@
 import React from 'react'
 //Esküvő menetrend
 
-const Timeline = () => {
+const Timeline = ({ timeline }) => {
+  console.log(timeline)
+
   return (
     <div className="timeline">
       <h2>Menetrend</h2>

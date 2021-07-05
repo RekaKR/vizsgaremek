@@ -2,6 +2,7 @@ import React from 'react'
 import { v4 as uuidv4 } from 'uuid'
 //Menetrend/Programok, Szállás, Ülésrend, vendég lista/felhasználó hozzáadása - szerkesztés
 import AdminAccommodation from '../AdminAccommodation/AdminAccommodation'
+import AdminTimeline from '../AdminTimeline/AdminTimeline'
 
 const Admin = ({ accommodations }) => {
   return (
@@ -26,6 +27,7 @@ const Admin = ({ accommodations }) => {
       <h3>Menetrend</h3>
       <h4>Menetrend lista</h4>
       <h4>Menetrend szerkesztése</h4>
+      <AdminTimeline />
 
       <h3>Ülésrend</h3>
       <h4>Ülésrend</h4>

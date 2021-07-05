@@ -10,19 +10,25 @@ import Timeline from './components/Timeline/Timeline'
 import Accommodations from "./components/Accommodations/Accommodations"
 import Galery from "./components/Feature/Galery/Galery"
 import ToDoList from "./components/Feature/ToDoList/ToDoList"
-import Admin from "./components/Admin/Admin"
+import Admin from "./components/adminCollection/Admin/Admin"
 
 //import Api from "./components/Api/Api"
 //import AdminAccommodation from "./components/AdminAccommodation/AdminAccommodation"
 
 const App = () => {
   const [accommodations, setAccommodations] = useState(null)
+  const [timeline, setTimeline] = useState(null)
 
   useEffect(() => {
     fetch('http://localhost:3001/admin-accommodation')
       .then(response => response.json())
       .then(data => setAccommodations(data))
       .catch(error => setAccommodations(null))
+
+    fetch('http://localhost:3001/timeline')
+      .then(response => response.json())
+      .then(data => setTimeline(data))
+      .catch(error => setTimeline(null))
   }, [])
 
   return (
@@ -57,7 +63,7 @@ const App = () => {
           </Route>
 
           <Route path='/timeline'>
-            <Timeline />
+            <Timeline timeline={timeline} />
           </Route>
 
           <Route path='/accommodation'>

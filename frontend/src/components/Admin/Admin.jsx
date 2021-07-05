@@ -3,7 +3,7 @@ import React from 'react'
 
 const Admin = () => {
   return (
-    <div>
+    <div className="admin">
       <h2>Adatok feltöltése</h2>
 
       <h3>Vendég lista</h3>

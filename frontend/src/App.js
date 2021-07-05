@@ -12,13 +12,22 @@ import Galery from "./components/Feature/Galery/Galery"
 import ToDoList from "./components/Feature/ToDoList/ToDoList"
 import Admin from "./components/Admin/Admin"
 
+import Api from "./components/Api/Api"
+
 const App = () => {
   return (
     <Router>
       <div className='app'>
-        <Header />
+
+        <Route path='/' >
+          <Header />
+        </Route>
 
         <Switch>
+          <Route path='/api'>
+            <Api />
+          </Route>
+
           <Route path='/invitation'>
             <Invitation />
           </Route>

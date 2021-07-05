@@ -1,26 +1,19 @@
 const express = require("express")
-const cors = require('cors')
 const app = express()
-//const fetch = require('node-fetch')
-require('dotenv').config()
 
-//.env-ben másik portot megadni!
-const PORT = process.env.PORT || 3001
-const MONGO_LINK = process.env.MONGO_LINK
+const cors = require('cors')
+
+//const fetch = require('node-fetch')
+
+require('dotenv').config()
+const PORT = process.env.PORT || 3001 //.env-ben másik portot megadni!
+const MONGO_CONNECTION = process.env.MONGO_CONNECTION
 //const apiKey = process.env.API_KEY
 
-
 const mongoose = require('mongoose')
-const Data = require('./schema')
-
-//Mongo connect
-mongoose.connect(`${MONGO_LINK}`, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-})
 
 
-//Middlewares
+//MIDDLEWARES
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
 app.use(cors({
@@ -28,11 +21,35 @@ app.use(cors({
   credentials: true
 }))
 
-
-app.get("/api", (req, res) => {
-  res.json({ message: "Hello from server!" })
+//ROUTES
+app.get('/', (req, res) => {
+  res.send('We are on home')
 })
 
+const apiRoute = require('./routes/apiRoute')
+
+
+//ROUTES MIDDLEWARES
+app.use('/api', (req, res, next) => {
+  console.log('This is a middleware running')
+  next()
+})
+
+app.use('/api', apiRoute)
+
+
+//DATABASE CONNECTION
+mongoose.connect(`${MONGO_CONNECTION}`, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+},
+  () => {
+    console.log('Mongo db is connected')
+  }
+)
+
+
+//LISTEN
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`)
 })

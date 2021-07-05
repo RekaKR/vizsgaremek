@@ -11,6 +11,8 @@ const Header = () => {
     <div className="header">
       <a href="/">Invitation</a>
 
+      {(!couple && !weddingP && !photographer && !guest) && <a href="/login">LogInOut</a>}
+
       {
         (couple || weddingP || guest) &&
         <>

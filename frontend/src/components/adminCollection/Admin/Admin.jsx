@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { v4 as uuidv4 } from 'uuid'
-import AdminAccommodation from '../AdminAccommodation/AdminAccommodation'
+import AccommodationAdmin from '../AccommodationAdmin/AccommodationAdmin'
 import Event from '../../Event/Event'
-import AdminTimeline from '../AdminTimeline/AdminTimeline'
+import TimelineAdmin from '../TimelineAdmin/TimelineAdmin'
 
 //Menetrend/Programok, Szállás, Ülésrend, vendég lista/felhasználó hozzáadása - szerkesztés
 const Admin = ({ accommodations, events }) => {
@@ -30,7 +30,7 @@ const Admin = ({ accommodations, events }) => {
               </div>)
           }
           <h4>Új szállás lehetőség hozzáadása</h4>
-          <AdminAccommodation />
+          <AccommodationAdmin />
         </>
       }
 
@@ -46,7 +46,7 @@ const Admin = ({ accommodations, events }) => {
                 <p>Menetrend szerkesztése</p>
               </div>)
           }
-          <AdminTimeline />
+          <TimelineAdmin />
         </>
       }
 

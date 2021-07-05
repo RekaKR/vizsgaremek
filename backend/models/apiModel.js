@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 
-const dataSchema = mongoose.Schema({
+const apiSchema = mongoose.Schema({
   name: String,
   article: String,
 });
 
-module.exports = mongoose.model('Data', dataSchema);
+module.exports = mongoose.model('Api', apiSchema);

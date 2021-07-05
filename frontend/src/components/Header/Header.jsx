@@ -9,25 +9,25 @@ const Header = () => {
 
   return (
     <div className="header">
-      <a href="/">Invitation</a>
+      <a href="/">Meghívó</a>
 
       {(!couple && !weddingP && !photographer && !guest) && <a href="/login">LogInOut</a>}
 
       {
         (couple || weddingP || guest) &&
         <>
-          <a href="/profile">Profile</a>
-          <a href="/timeline">Timeline</a>
-          <a href="/accommodation">Accommodation</a>
+          <a href="/profile">Profil</a>
+          <a href="/timeline">Menetrend</a>
+          <a href="/accommodation">Szállás</a>
         </>
       }
 
-      {(couple || weddingP || photographer || guest) && <a href="/galery">Galery</a>}
+      {(couple || weddingP || photographer || guest) && <a href="/galery">Galéria</a>}
 
       {
         (couple || weddingP) &&
         <>
-          <a href="/to-do-list">ToDoList</a>
+          <a href="/to-do-list">Teendők</a>
           <a href="/admin">Admin</a>
         </>
       }
@@ -37,3 +37,30 @@ const Header = () => {
 
 export default Header
 
+
+/*//Eng version
+<div className="header">
+  <a href="/">Invitation</a>
+
+  {(!couple && !weddingP && !photographer && !guest) && <a href="/login">LogInOut</a>}
+
+  {
+    (couple || weddingP || guest) &&
+    <>
+      <a href="/profile">Profile</a>
+      <a href="/timeline">Timeline</a>
+      <a href="/accommodation">Accommodation</a>
+    </>
+  }
+
+  {(couple || weddingP || photographer || guest) && <a href="/galery">Galery</a>}
+
+  {
+    (couple || weddingP) &&
+    <>
+      <a href="/to-do-list">ToDoList</a>
+      <a href="/admin">Admin</a>
+    </>
+  }
+</div>
+*/

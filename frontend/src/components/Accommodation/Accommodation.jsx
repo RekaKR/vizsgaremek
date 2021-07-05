@@ -15,7 +15,7 @@ const Accommodation = ({ accommodation }) => {
 
       <h4>Elérhetőség</h4>
       <p>Telefonszám: {accommodation.phoneNumber}</p>
-      <p>Weboldal: {accommodation.website}</p>
+      <div>Weboldal: <a href={accommodation.website}>{accommodation.website}</a></div>
     </div>
   )
 }

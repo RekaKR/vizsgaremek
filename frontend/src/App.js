@@ -73,7 +73,7 @@ const App = () => {
           </Route>
 
           <Route path='/admin'>
-            <Admin />
+            <Admin accommodations={accommodations} />
           </Route>
 
           <Route path='/'>

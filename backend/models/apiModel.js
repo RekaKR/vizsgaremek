@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 
-const data = mongoose.Schema({
+const dataSchema = mongoose.Schema({
   name: String,
   article: String,
 });
 
-module.exports = mongoose.model('Data', data);
+module.exports = mongoose.model('Data', dataSchema);

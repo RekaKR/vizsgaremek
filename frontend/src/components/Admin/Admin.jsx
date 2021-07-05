@@ -1,5 +1,6 @@
 import React from 'react'
 //Menetrend/Programok, Szállás, Ülésrend, vendég lista/felhasználó hozzáadása - szerkesztés
+import AdminAccommodation from '../AdminAccommodation/AdminAccommodation'
 
 const Admin = () => {
   return (
@@ -13,6 +14,7 @@ const Admin = () => {
       <h3>Szállás</h3>
       <p>Szállás lista</p>
       <p>Szállás szerkesztése</p>
+      <AdminAccommodation />
 
       <h3>Menetrend/Programok</h3>
       <p>Menetrend/Programok lista</p>

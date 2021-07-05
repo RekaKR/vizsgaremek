@@ -27,6 +27,7 @@ app.get('/', (req, res) => {
 })
 
 const apiRoute = require('./routes/apiRoute')
+const accommodationRoute = require('./routes/accommodationRoute')
 
 
 //ROUTES MIDDLEWARES
@@ -36,6 +37,7 @@ app.use('/api', (req, res, next) => {
 })
 
 app.use('/api', apiRoute)
+app.use('/admin-accommodation', accommodationRoute)
 
 
 //DATABASE CONNECTION

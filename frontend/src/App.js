@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState, useEffect } from "react"
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import './style/css/style.css'
 
@@ -7,14 +7,24 @@ import Invitation from "./components/Invitation/Invitation"
 import LogInOut from "./components/LogInOut/LogInOut"
 import Profile from "./components/Profile/Profile"
 import Timeline from './components/Timeline/Timeline'
-import Accommodation from "./components/Accommodation/Accommodation"
+import Accommodations from "./components/Accommodations/Accommodations"
 import Galery from "./components/Feature/Galery/Galery"
 import ToDoList from "./components/Feature/ToDoList/ToDoList"
 import Admin from "./components/Admin/Admin"
 
-import Api from "./components/Api/Api"
+//import Api from "./components/Api/Api"
+//import AdminAccommodation from "./components/AdminAccommodation/AdminAccommodation"
 
 const App = () => {
+  const [accommodations, setAccommodations] = useState(null)
+
+  useEffect(() => {
+    fetch('http://localhost:3001/admin-accommodation')
+      .then(response => response.json())
+      .then(data => setAccommodations(data))
+      .catch(error => setAccommodations(null))
+  }, [])
+
   return (
     <Router>
       <div className='app'>
@@ -24,9 +34,15 @@ const App = () => {
         </Route>
 
         <Switch>
+          {/*
           <Route path='/api'>
             <Api />
           </Route>
+
+          <Route path='/admin-accommodation'>
+            <AdminAccommodation />
+          </Route>
+          */}
 
           <Route path='/invitation'>
             <Invitation />
@@ -45,7 +61,7 @@ const App = () => {
           </Route>
 
           <Route path='/accommodation'>
-            <Accommodation />
+            <Accommodations accommodations={accommodations} />
           </Route>
 
           <Route path='/galery'>

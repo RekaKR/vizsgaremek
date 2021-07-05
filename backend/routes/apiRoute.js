@@ -2,12 +2,12 @@ const express = require('express')
 const router = express.Router()
 const Data = require('../models/apiModel')
 
-router.get('/', (req, res) => {
+router.get('/', (req, res, next) => {
   res.send('We are on api')
+  next()
 })
 
 router.post('/', (req, res) => {
-  //console.log(req.body)
   const post = new Data({
     name: req.body.name,
     article: req.body.article
@@ -18,7 +18,6 @@ router.post('/', (req, res) => {
     .catch(err => res.json({ message: err }))
 })
 
-//Can have multiple here
 router.get('/specific', (req, res) => {
   res.send('specific api')
 })

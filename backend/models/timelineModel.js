@@ -1,9 +1,18 @@
 const mongoose = require('mongoose');
 
 const timelineSchema = mongoose.Schema({
-  time: String,
-  happening: String,
-  place: String
+  time: {
+    type: String,
+    required: true
+  },
+  happening: {
+    type: String,
+    required: true,
+  },
+  place: {
+    type: String,
+    required: true,
+  }
 });
 
 module.exports = mongoose.model('Timeline', timelineSchema);

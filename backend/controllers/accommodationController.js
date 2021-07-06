@@ -3,26 +3,13 @@ const Accommodation = require('../models/accommodationModel')
 //accommodation_details       get a single blog
 //accommodation_delete        delete a blog
 
-const accommodation_create_get = async (req, res) => {
-  try {
-    const accommodation = await Accommodation.find()
-    res.json(accommodation)
-  } catch (err) {
-    res.json({ message: err })
-  }
+const accommodation_create_get = (req, res) => {
+  Accommodation.find()
+    .then(accommodation => res.json(accommodation))
+    .catch(err => res.json({ message: err }))
 }
 
 //itt nem kell a catch
-
-/*
-Accommodation.find()
-.then(accommodation => {
-  res.json(accommodation)
-})
-.catch(err => res.json({
-  message: err
-}))
-*/
 
 const accommodation_create_post = (req, res) => {
   const accommodation = new Accommodation({

@@ -1,12 +1,9 @@
 const Timeline = require('../models/timelineModel')
 
-const timeline_create_get = async (req, res) => {
-  try {
-    const timelines = await Timeline.find()
-    res.json(timelines)
-  } catch (err) {
-    res.json({ message: err })
-  }
+const timeline_create_get = (req, res) => {
+  Timeline.find()
+    .then(timelines => res.json(timelines))
+    .catch(err => res.json({ message: err }))
 }
 
 const timeline_create_post = (req, res) => {

@@ -3,9 +3,6 @@ const Accommodation = require('../models/accommodationModel')
 //accommodation_details       get a single blog
 //accommodation_delete        delete a blog
 
-//router.get('/', accommodationController.accommodation_index)
-
-
 const accommodation_create_get = async (req, res) => {
   try {
     const accommodation = await Accommodation.find()

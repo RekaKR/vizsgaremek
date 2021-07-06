@@ -38,7 +38,7 @@ app.use('/api', (req, res, next) => {
 })
 app.use('/api', apiRoute)
 
-app.use('/admin/accommodation', accommodationRoute)
+app.use('/accommodation', accommodationRoute)
 app.use('/timeline', timelineRoute)
 
 

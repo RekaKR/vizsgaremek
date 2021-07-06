@@ -20,7 +20,7 @@ const App = () => {
   const [events, setEvents] = useState(null)
 
   useEffect(() => {
-    fetch('http://localhost:3001/admin/accommodation')
+    fetch('http://localhost:3001/accommodation')
       .then(response => response.json())
       .then(data => setAccommodations(data))
       .catch(error => setAccommodations(null))

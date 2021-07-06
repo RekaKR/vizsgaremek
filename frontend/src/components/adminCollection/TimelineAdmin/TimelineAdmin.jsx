@@ -4,7 +4,6 @@ import Event from '../../timelineCollection/Event/Event'
 import TimelineInput from '../TimelineInput/TimelineInput'
 
 function AdminAccommodation({ events }) {
-
   return (
     <div className="admin-timeline">
       <h3>Menetrend</h3>

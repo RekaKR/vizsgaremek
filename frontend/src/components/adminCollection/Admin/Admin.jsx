@@ -27,12 +27,12 @@ const Admin = ({ accommodations, events }) => {
             <h4>Vendég hozzáadása (profil létrehozása)</h4>
           </Route>
 
-          <Route path={`${path}/accommodations`}>
-            <AccommodationAdmin accommodations={accommodations} />
-          </Route>
-
           <Route path={`${path}/timeline`}>
             <TimelineAdmin events={events} />
+          </Route>
+
+          <Route path={`${path}/accommodations`}>
+            <AccommodationAdmin accommodations={accommodations} />
           </Route>
 
           <Route path={`${path}/seats`}>

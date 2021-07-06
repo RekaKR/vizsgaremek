@@ -10,7 +10,7 @@ function AccommodationInput() {
   const [website, setWebsite] = useState('')
   const [res, setRes] = useState(false)
 
-  const submit = /*async*/ () => {
+  const submit = () => {
     fetch('http://localhost:3001/accommodation', {
       method: 'POST',
       headers: {
@@ -32,29 +32,6 @@ function AccommodationInput() {
         console.log(data)
       })
       .catch(err => setRes(false))
-
-    /*
-    const res = await fetch('http://localhost:3001/accommodation', {
-    method: 'POST',
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      name: name,
-      zip: zip,
-      city: city,
-      street: street,
-      houseNumber: houseNumber,
-      phoneNumber: phoneNumber,
-      website: website
-    })
-  })
-    
-      const data = await res.json()
-      setRes(true)
-      console.log(data)
-    */
   }
 
   return (

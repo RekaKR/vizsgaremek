@@ -18,22 +18,16 @@ const App = () => {
   const [accommodations, setAccommodations] = useState(null)
   const [events, setEvents] = useState(null)
 
-  useEffect( /*async*/() => {
+  useEffect(() => {
     fetch('http://localhost:3001/accommodation')
-      .then(response => response.json())
+      .then(res => res.json())
       .then(data => setAccommodations(data))
-      .catch(error => setAccommodations(null))
+      .catch(err => setAccommodations(null))
 
     fetch('http://localhost:3001/timeline')
-      .then(response => response.json())
+      .then(res => res.json())
       .then(data => setEvents(data))
-      .catch(error => setEvents(null))
-
-    /*
-    const response = await fetch('http://localhost:3001/accommodation')
-    const data = await response.json()
-    setAccommodations(data)
-    */
+      .catch(err => setEvents(null))
   }, [])
 
   return (

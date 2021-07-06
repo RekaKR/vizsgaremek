@@ -10,12 +10,12 @@ const AdminHeader = ({ url }) => {
         Vendég lista
       </Link>
 
-      <Link to={`${url}/accommodations`}>
-        Szállás
-      </Link>
-
       <Link to={`${url}/timeline`}>
         Menetrend
+      </Link>
+
+      <Link to={`${url}/accommodations`}>
+        Szállás
       </Link>
 
       <Link to={`${url}/seats`}>

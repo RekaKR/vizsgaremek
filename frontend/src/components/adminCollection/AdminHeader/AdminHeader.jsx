@@ -7,7 +7,7 @@ const AdminHeader = ({ url }) => {
   return (
     <div className="admin-header header">
       <Link to={`${url}/guest-list`}>
-        Vendég lista
+        Vendéglista
       </Link>
 
       <Link to={`${url}/timeline`}>

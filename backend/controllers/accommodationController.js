@@ -12,6 +12,18 @@ const accommodation_create_get = async (req, res) => {
   }
 }
 
+//itt nem kell a catch
+
+/*
+Accommodation.find()
+.then(accommodation => {
+  res.json(accommodation)
+})
+.catch(err => res.json({
+  message: err
+}))
+*/
+
 const accommodation_create_post = (req, res) => {
   const accommodation = new Accommodation({
     name: req.body.name,

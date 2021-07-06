@@ -12,14 +12,13 @@ import Galery from "./components/Feature/Galery/Galery"
 import ToDoList from "./components/Feature/ToDoList/ToDoList"
 import Admin from "./components/adminCollection/Admin/Admin"
 
-//import Api from "./components/Api/Api"
-//import AdminAccommodation from "./components/AdminAccommodation/AdminAccommodation"
+import Api from "./components/Api/Api"
 
 const App = () => {
   const [accommodations, setAccommodations] = useState(null)
   const [events, setEvents] = useState(null)
 
-  useEffect(() => {
+  useEffect( /*async*/() => {
     fetch('http://localhost:3001/accommodation')
       .then(response => response.json())
       .then(data => setAccommodations(data))
@@ -29,26 +28,26 @@ const App = () => {
       .then(response => response.json())
       .then(data => setEvents(data))
       .catch(error => setEvents(null))
+
+    /*
+    const response = await fetch('http://localhost:3001/accommodation')
+    const data = await response.json()
+    setAccommodations(data)
+    */
   }, [])
 
   return (
     <Router>
       <div className='app'>
-
         <Route path='/' >
           <Header />
         </Route>
 
         <Switch>
-          {/*
           <Route path='/api'>
             <Api />
           </Route>
 
-          <Route path='/admin-accommodation'>
-            <AdminAccommodation />
-          </Route>
-          */}
 
           <Route path='/invitation'>
             <Invitation />

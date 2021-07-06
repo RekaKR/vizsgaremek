@@ -3,6 +3,9 @@ import React from 'react'
 //KÜLSŐ API - AI AZONOSÍTÁS/ARC FELISMERÉS
 //KÜLSŐ API - GOOGLE DRIVE-RA MENTÉS
 
+
+//feltölteni a backendre és elmenteni egy filerendszerbe
+//adatbázisba -> adatbázisból
 const Galery = () => {
   return (
     <div className="galery">

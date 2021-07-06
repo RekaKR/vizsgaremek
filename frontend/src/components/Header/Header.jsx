@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 //import '../../style/css/style.css'
 
 const Header = () => {
@@ -9,28 +10,57 @@ const Header = () => {
 
   return (
     <div className="header">
-      <a href="/">Meghívó</a>
+      <Link to="/">
+        Meghívó
+      </Link>
 
-      {(!couple && !weddingP && !photographer && !guest) && <a href="/login">LogInOut</a>}
+      {
+        (!couple && !weddingP && !photographer && !guest) &&
+        <Link to="/login">
+          LogInOut
+        </Link>
+      }
 
       {
         (couple || weddingP || guest) &&
         <>
-          <a href="/profile">Profil</a>
-          <a href="/timeline">Menetrend</a>
-          <a href="/accommodation">Szállás</a>
+          <Link to="/profile">
+            Profil
+          </Link>
+
+          <Link to="/timeline">
+            Menetrend
+          </Link>
+
+          <Link to="/accommodation">
+            Szállás
+          </Link>
         </>
       }
 
-      {(couple || weddingP || photographer || guest) && <a href="/galery">Galéria</a>}
+      {
+        (couple || weddingP || photographer || guest) &&
+        <Link to="/galery">
+          Galéria
+        </Link>
+      }
 
       {
         (couple || weddingP) &&
         <>
-          <a href="/to-do-list">Teendők</a>
-          <a href="/admin">Admin</a>
+          <Link to="/to-do-list">
+            Teendők
+          </Link>
+
+          <Link to="/admin">
+            Admin
+          </Link>
         </>
       }
+
+      <Link to="/login">
+        Loginout
+      </Link>
     </div>
   )
 }
@@ -40,26 +70,43 @@ export default Header
 
 /*//Eng version
 <div className="header">
-  <a href="/">Invitation</a>
 
-  {(!couple && !weddingP && !photographer && !guest) && <a href="/login">LogInOut</a>}
+  <Link to="/">
+  Invitation
+  </Link>
+
+  {(!couple && !weddingP && !photographer && !guest) && <Link to="/login">
+  LogInOut
+  </Link>}
 
   {
     (couple || weddingP || guest) &&
     <>
-      <a href="/profile">Profile</a>
-      <a href="/timeline">Timeline</a>
-      <a href="/accommodation">Accommodation</a>
+      <Link to="/profile">
+      Profile
+      </Link>
+      <Link to="/timeline">
+      Timeline
+      </Link>
+      <Link to="/accommodation">
+      Accommodation
+      </Link>
     </>
   }
 
-  {(couple || weddingP || photographer || guest) && <a href="/galery">Galery</a>}
+  {(couple || weddingP || photographer || guest) && <Link to="/galery">
+  Galery
+  </Link>}
 
   {
     (couple || weddingP) &&
     <>
-      <a href="/to-do-list">ToDoList</a>
-      <a href="/admin">Admin</a>
+      <Link to="/to-do-list">
+      ToDoList
+      </Link>
+      <Link to="/admin">
+      Admin
+      </Link>
     </>
   }
 </div>

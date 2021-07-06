@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { v4 as uuidv4 } from 'uuid'
 
 function AccommodationInput() {
   const [name, setName] = useState('')
@@ -9,6 +10,44 @@ function AccommodationInput() {
   const [phoneNumber, setPhoneNumber] = useState('')
   const [website, setWebsite] = useState('')
   const [res, setRes] = useState(false)
+
+  const inputs = [
+    {
+      set: setName,
+      type: 'text',
+      placeholder: "Név"
+    },
+    {
+      set: setZip,
+      type: 'number',
+      placeholder: "Irányítószám"
+    },
+    {
+      set: setCity,
+      type: 'text',
+      placeholder: "Város"
+    },
+    {
+      set: setStreet,
+      type: 'text',
+      placeholder: "Utca"
+    },
+    {
+      set: setHouseNumber,
+      type: 'number',
+      placeholder: "Házszám"
+    },
+    {
+      set: setPhoneNumber,
+      type: 'text',
+      placeholder: "Telefonszám"
+    },
+    {
+      set: setWebsite,
+      type: 'text',
+      placeholder: "Weboldal"
+    }
+  ]
 
   const submit = () => {
     fetch('http://localhost:3001/accommodation', {
@@ -36,6 +75,23 @@ function AccommodationInput() {
 
   return (
     <div className="accommodation-input">
+      <h4>Új szállás lehetőség hozzáadása</h4>
+      <p>Add meg az új szállás adatait!</p>
+
+      {inputs.map(input =>
+        <div key={uuidv4()}>
+          <input type={input.type} onChange={e => input.set(e.target.value)} placeholder={input.placeholder} />
+        </div>)
+      }
+
+      <button disabled={!(name && zip && city && street && houseNumber && phoneNumber && website)} onClick={() => submit()}>Submit</button>
+    </div>
+  );
+}
+
+export default AccommodationInput
+
+/*<div className="accommodation-input">
       <div>
         <p>name</p>
         <input type="text" onChange={e => setName(e.target.value)} />
@@ -73,7 +129,4 @@ function AccommodationInput() {
 
       <button disabled={!(name && zip && city && street && houseNumber && phoneNumber && website)} onClick={() => submit()}>Submit</button>
     </div>
-  );
-}
-
-export default AccommodationInput
+  */

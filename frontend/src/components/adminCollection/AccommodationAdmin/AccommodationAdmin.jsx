@@ -15,7 +15,7 @@ function AdminAccommodation({ accommodations }) {
             <h4>Szállás szerkesztése</h4>
           </div>)
       }
-      <h4>Új szállás lehetőség hozzáadása</h4>
+
       <AccommodationInput />
     </div>
   );

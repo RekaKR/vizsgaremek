@@ -11,7 +11,7 @@ function AdminAccommodation() {
   const [res, setRes] = useState(false)
 
   const submit = () => {
-    fetch('http://localhost:3001/admin-accommodation', {
+    fetch('http://localhost:3001/admin/accommodation', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',

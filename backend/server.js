@@ -26,9 +26,9 @@ app.get('/', (req, res) => {
   res.send('We are on home')
 })
 
-const apiRoute = require('./routes/apiRoute')
-const accommodationRoute = require('./routes/accommodationRoute')
-const timelineRoute = require('./routes/timelineRoute')
+const apiRoute = require('./routes/apiRoutes')
+const accommodationRoute = require('./routes/accommodationRoutes')
+const timelineRoute = require('./routes/timelineRoutes')
 
 
 //ROUTES MIDDLEWARES
@@ -38,7 +38,7 @@ app.use('/api', (req, res, next) => {
 })
 app.use('/api', apiRoute)
 
-app.use('/admin-accommodation', accommodationRoute)
+app.use('/admin/accommodation', accommodationRoute)
 app.use('/timeline', timelineRoute)
 
 
@@ -46,11 +46,7 @@ app.use('/timeline', timelineRoute)
 mongoose.connect(`${MONGO_CONNECTION}`, {
   useNewUrlParser: true,
   useUnifiedTopology: true
-},
-  () => {
-    console.log('Mongo db is connected')
-  }
-)
+})
 
 
 //LISTEN

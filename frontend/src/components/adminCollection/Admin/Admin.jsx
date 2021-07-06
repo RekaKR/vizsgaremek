@@ -1,6 +1,7 @@
 import React from 'react'
 import { BrowserRouter as Router, Switch, Route, useRouteMatch } from 'react-router-dom'
 import AccommodationAdmin from '../AccommodationAdmin/AccommodationAdmin'
+import GuestListAdmin from '../GuestListAdmin/GuestListAdmin'
 import TimelineAdmin from '../TimelineAdmin/TimelineAdmin'
 import AdminHeader from '../AdminHeader/AdminHeader'
 
@@ -21,10 +22,7 @@ const Admin = ({ accommodations, events }) => {
           </Route>
 
           <Route path={`${path}/guest-list`}>
-            <h3>Vendég lista</h3>
-
-            <h4>Vendég lista (részletezve)</h4>
-            <h4>Vendég hozzáadása (profil létrehozása)</h4>
+            <GuestListAdmin />
           </Route>
 
           <Route path={`${path}/timeline`}>
@@ -37,6 +35,7 @@ const Admin = ({ accommodations, events }) => {
 
           <Route path={`${path}/seats`}>
             <h3>Ülésrend</h3>
+
             <h4>Ülésrend</h4>
             <h4>Ülésrend szerkesztése</h4>
             <button>Közzététel</button>

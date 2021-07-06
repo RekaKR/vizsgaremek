@@ -7,6 +7,7 @@ function AdminAccommodation({ events }) {
   return (
     <div className="admin-timeline">
       <h3>Menetrend</h3>
+
       <h4>Menetrend lista</h4>
       {
         events && events.map(event =>
@@ -15,6 +16,7 @@ function AdminAccommodation({ events }) {
             <h4>Menetrend szerkesztése</h4>
           </div>)
       }
+
       <TimelineInput />
     </div>
   );

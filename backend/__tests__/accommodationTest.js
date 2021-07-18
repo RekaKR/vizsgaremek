@@ -5,10 +5,10 @@ const supertest = require("supertest")
 const request = supertest(app)
 
 const Accommodation = require('../models/accommodationModel')
-const accommodationController = require('../controllers/accommodationController')
+//const accommodationController = require('../controllers/accommodationController')
 
 
-//Setup a Test Database
+//Setup a test Database
 serverSetup("accommodation-testing")
 
 
@@ -49,9 +49,12 @@ describe("Test /accommodation endpoint", () => {
     expect(accommodations).toHaveLength(2)
 
     //tests if every element of accommodations is present in the database
+    const properties = ['_id', 'name', 'address', 'address.zip', 'address.city', 'address.street', 'address.houseNumber', 'phoneNumber', 'website']
+
     accommodations.forEach((accommodation) => {
       expect(accommodation.name && accommodation.address && accommodation.phoneNumber && accommodation.website).toBeTruthy()
 
+      /*
       expect(accommodation).toHaveProperty('_id')
       expect(accommodation).toHaveProperty('name')
       expect(accommodation).toHaveProperty('address')
@@ -61,6 +64,10 @@ describe("Test /accommodation endpoint", () => {
       expect(accommodation).toHaveProperty('address.houseNumber')
       expect(accommodation).toHaveProperty('phoneNumber')
       expect(accommodation).toHaveProperty('website')
+      */
+      properties.map(property => {
+        expect(accommodation).toHaveProperty(property)
+      })
     })
 
     //tests if database gives back the correct elements of random accommodation
@@ -75,35 +82,35 @@ describe("Test /accommodation endpoint", () => {
   })
 
   it("Get from /accommodation", async () => {
-    const response = await request.get("/accommodation")
+    const response = await request.get('/accommodation')
 
     expect(response.status).toBe(200)
-    expect(response.body.message).toBe("Found all accommodations")
+    expect(response.body.message).toBe('Found all accommodations')
   })
 
   it("Post to /accommodation", async () => {
     const res = await request.post('/accommodation').send({
-      name: "Hotel name",
+      name: "Hotel name3",
       address: {
         zip: 1067,
-        city: "City city",
-        street: "Street street",
+        city: "City city3",
+        street: "Street street3",
         houseNumber: 9
       },
-      phoneNumber: "+36701111111",
+      phoneNumber: "+367011111113",
       website: "website.com"
     })
 
     const response = await request.post('/accommodation').send({
-      name: "Hotel name2",
+      name: "Hotel name4",
       address: {
         zip: 1068,
-        city: "City city2",
-        street: "Street street2",
+        city: "City city4",
+        street: "Street street4",
         houseNumber: 10
       },
-      phoneNumber: "+36701111112",
-      website: "website2.com"
+      phoneNumber: "+36701111114",
+      website: "website4.com"
     })
 
     //post response
@@ -115,6 +122,13 @@ describe("Test /accommodation endpoint", () => {
         expect(res.body).toContain('_id')
         expect(new Set(res.body)).toContain('_id')
     */
+
+    const properties = ['_id', 'name', 'address', 'address.zip', 'address.city', 'address.street', 'address.houseNumber', 'phoneNumber', 'website']
+
+    properties.map(property => {
+      expect(res.body).toHaveProperty(property)
+    })
+    /*
     expect(res.body).toHaveProperty('_id')
     expect(res.body).toHaveProperty('name')
     expect(res.body).toHaveProperty('address')
@@ -124,8 +138,25 @@ describe("Test /accommodation endpoint", () => {
     expect(res.body).toHaveProperty('address.houseNumber')
     expect(res.body).toHaveProperty('phoneNumber')
     expect(res.body).toHaveProperty('website')
+    */
 
     //tests if database gives back the correct elements of response
+    const __v = response.body.__v
+    const _id = response.body._id
+
+    expect(response.body).toEqual({
+      __v: __v,
+      _id: _id,
+      name: "Hotel name4",
+      address: {
+        zip: 1068,
+        city: "City city4",
+        street: "Street street4",
+        houseNumber: 10
+      },
+      phoneNumber: "+36701111114",
+      website: "website4.com"
+    })
     /*
         expect(response.body.name).toBe("Hotel name2")
         expect(typeof response.body.address).toBe('object')
@@ -136,21 +167,6 @@ describe("Test /accommodation endpoint", () => {
         expect(response.body.phoneNumber).toBe("+36701111112")
         expect(response.body.website).toBe("website2.com")
     */
-    const __v = response.body.__v
-    const _id = response.body._id
-    expect(response.body).toEqual({
-      __v: __v,
-      _id: _id,
-      name: "Hotel name2",
-      address: {
-        zip: 1068,
-        city: "City city2",
-        street: "Street street2",
-        houseNumber: 10
-      },
-      phoneNumber: "+36701111112",
-      website: "website2.com"
-    })
 
     /*
     //MEGNÉZNI!!!!
@@ -172,7 +188,7 @@ describe("Test /accommodation endpoint", () => {
     */
 
     //get information from databas
-    const accommodations = await Accommodation.findOne({ name: "Hotel name2" })
+    const accommodations = await Accommodation.findOne({ name: "Hotel name3" })
     expect(accommodations.name && accommodations.address && accommodations.phoneNumber && accommodations.website).toBeTruthy()
   })
 })

@@ -5,7 +5,7 @@ const Accommodation = require('../models/accommodationModel')
 
 const accommodation_create_get = (req, res) => {
   Accommodation.find()
-    .then(accommodation => res.json({ accommodation: accommodation, message: "Found all accommodations" }))
+    .then(accommodation => res.json({ accommodation: accommodation, message: 'Found all accommodations' }))
     .catch(err => res.status(400).json({ message: `Couldn't find accommodation ${err}` }))
 }
 

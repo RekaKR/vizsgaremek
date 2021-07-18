@@ -50,10 +50,11 @@ function AdminAccommodation() {
       <h4>Új programpont hozzáadása</h4>
       <p>Add meg az új programpont adatait!</p>
 
-      {inputs.map(input =>
-        <div key={uuidv4()}>
-          <input type={input.type} onChange={e => input.set(e.target.value)} placeholder={input.placeholder} />
-        </div>)
+      {
+        inputs.map(input =>
+          <div key={uuidv4()}>
+            <input type={input.type} onChange={e => input.set(e.target.value)} placeholder={input.placeholder} />
+          </div>)
       }
 
       <button disabled={!(time && happening && place)} onClick={() => submit()}>Submit</button>

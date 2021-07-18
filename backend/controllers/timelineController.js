@@ -2,8 +2,8 @@ const Timeline = require('../models/timelineModel')
 
 const timeline_create_get = (req, res) => {
   Timeline.find()
-    .then(timelines => res.json(timelines))
-    .catch(err => res.json({ message: err }))
+    .then(timelines => res.json({ timelines: timelines, message: 'Found all timelines' }))
+    .catch(err => res.status(400).json({ message: `Couldn't find accommodation ${err}` }))
 }
 
 const timeline_create_post = (req, res) => {

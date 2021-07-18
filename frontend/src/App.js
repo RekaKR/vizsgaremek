@@ -26,7 +26,7 @@ const App = () => {
 
     fetch('http://localhost:3001/timeline')
       .then(res => res.json())
-      .then(data => setEvents(data))
+      .then(data => setEvents(data.timelines))
       .catch(err => setEvents(null))
   }, [])
 

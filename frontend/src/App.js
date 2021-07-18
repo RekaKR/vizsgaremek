@@ -21,7 +21,7 @@ const App = () => {
   useEffect(() => {
     fetch('http://localhost:3001/accommodation')
       .then(res => res.json())
-      .then(data => setAccommodations(data))
+      .then(data => setAccommodations(data.accommodation))
       .catch(err => setAccommodations(null))
 
     fetch('http://localhost:3001/timeline')

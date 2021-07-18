@@ -11,44 +11,6 @@ function AccommodationInput() {
   const [website, setWebsite] = useState('')
   const [res, setRes] = useState(false)
 
-  const inputs = [
-    {
-      set: setName,
-      type: 'text',
-      placeholder: "Név"
-    },
-    {
-      set: setZip,
-      type: 'number',
-      placeholder: "Irányítószám"
-    },
-    {
-      set: setCity,
-      type: 'text',
-      placeholder: "Város"
-    },
-    {
-      set: setStreet,
-      type: 'text',
-      placeholder: "Utca"
-    },
-    {
-      set: setHouseNumber,
-      type: 'number',
-      placeholder: "Házszám"
-    },
-    {
-      set: setPhoneNumber,
-      type: 'text',
-      placeholder: "Telefonszám"
-    },
-    {
-      set: setWebsite,
-      type: 'text',
-      placeholder: "Weboldal"
-    }
-  ]
-
   const submit = () => {
     fetch('http://localhost:3001/accommodation', {
       method: 'POST',
@@ -58,10 +20,12 @@ function AccommodationInput() {
       },
       body: JSON.stringify({
         name: name,
-        zip: zip,
-        city: city,
-        street: street,
-        houseNumber: houseNumber,
+        address: {
+          zip: zip,
+          city: city,
+          street: street,
+          houseNumber: houseNumber
+        },
         phoneNumber: phoneNumber,
         website: website
       })
@@ -78,55 +42,94 @@ function AccommodationInput() {
       <h4>Új szállás lehetőség hozzáadása</h4>
       <p>Add meg az új szállás adatait!</p>
 
-      {inputs.map(input =>
-        <div key={uuidv4()}>
-          <input type={input.type} onChange={e => input.set(e.target.value)} placeholder={input.placeholder} />
-        </div>)
-      }
+      <div>
+        <input type="text" onChange={e => setName(e.target.value)} placeholder="Név" />
+      </div>
+
+      <div>
+        <input type="number" onChange={e => setZip(e.target.value)} placeholder="Irányítószám" />
+      </div>
+
+      <div>
+        <input type="text" onChange={e => setCity(e.target.value)} placeholder="Város" />
+      </div>
+
+      <div>
+        <input type="text" onChange={e => setStreet(e.target.value)} placeholder="Utca" />
+      </div>
+
+      <div>
+        <input type="number" onChange={e => setHouseNumber(e.target.value)} placeholder="Házszám" />
+      </div>
+
+      <div>
+        <input type="text" onChange={e => setPhoneNumber(e.target.value)} placeholder="Telefonszám" />
+      </div>
+
+      <div>
+        <input type="text" onChange={e => setWebsite(e.target.value)} placeholder="Weboldal" />
+      </div>
+
 
       <button disabled={!(name && zip && city && street && houseNumber && phoneNumber && website)} onClick={() => submit()}>Submit</button>
-    </div>
-  );
+    </div >
+  )
 }
 
 export default AccommodationInput
 
-/*<div className="accommodation-input">
-      <div>
-        <p>name</p>
-        <input type="text" onChange={e => setName(e.target.value)} />
-      </div>
 
-      <div>
-        <p>zip</p>
-        <input type="number" onChange={e => setZip(e.target.value)} />
-      </div>
 
-      <div>
-        <p>city</p>
-        <input type="text" onChange={e => setCity(e.target.value)} />
-      </div>
+/*
 
-      <div>
-        <p>street</p>
-        <input type="text" onChange={e => setStreet(e.target.value)} />
-      </div>
+const inputs = [
+    {
+      var: name,
+      set: setName,
+      type: 'text',
+      placeholder: "Név"
+    },
+    {
+      var: zip,
+      set: setZip,
+      type: 'number',
+      placeholder: "Irányítószám"
+    },
+    {
+      var: city,
+      set: setCity,
+      type: 'text',
+      placeholder: "Város"
+    },
+    {
+      var: street,
+      set: setStreet,
+      type: 'text',
+      placeholder: "Utca"
+    },
+    {
+      var: houseNumber,
+      set: setHouseNumber,
+      type: 'number',
+      placeholder: "Házszám"
+    },
+    {
+      var: phoneNumber,
+      set: setPhoneNumber,
+      type: 'text',
+      placeholder: "Telefonszám"
+    },
+    {
+      var: website,
+      set: setWebsite,
+      type: 'text',
+      placeholder: "Weboldal"
+    }
+  ]
 
-      <div>
-        <p>houseNumber</p>
-        <input type="number" onChange={e => setHouseNumber(e.target.value)} />
-      </div>
-
-      <div>
-        <p>phoneNumber</p>
-        <input type="text" onChange={e => setPhoneNumber(e.target.value)} />
-      </div>
-
-      <div>
-        <p>website</p>
-        <input type="text" onChange={e => setWebsite(e.target.value)} />
-      </div>
-
-      <button disabled={!(name && zip && city && street && houseNumber && phoneNumber && website)} onClick={() => submit()}>Submit</button>
-    </div>
-  */
+inputs.map(input =>
+  <div key={uuidv4()}>
+    <p>{input.placeholder}</p>
+    <input type={input.type} onChange={e => input.set(e.target.value)} />
+  </div>)
+*/

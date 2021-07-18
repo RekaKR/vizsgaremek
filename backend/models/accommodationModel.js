@@ -1,11 +1,10 @@
-const mongoose = require('mongoose');
+const mongoose = require('mongoose')
 
 const accommodationSchema = mongoose.Schema({
   name: {
     type: String,
     required: true,
   },
-
   address: {
     zip: {
       type: Number,
@@ -24,16 +23,14 @@ const accommodationSchema = mongoose.Schema({
       required: true,
     }
   },
-
   phoneNumber: {
     type: String,
     required: true,
   },
-
   website: {
     type: String,
     required: true,
   }
-});
+})
 
-module.exports = mongoose.model('Accommodation', accommodationSchema);
+module.exports = mongoose.model('Accommodation', accommodationSchema)

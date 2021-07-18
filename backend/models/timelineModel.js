@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require('mongoose')
 
 const timelineSchema = mongoose.Schema({
   time: {
@@ -13,6 +13,6 @@ const timelineSchema = mongoose.Schema({
     type: String,
     required: true,
   }
-});
+})
 
-module.exports = mongoose.model('Timeline', timelineSchema);
+module.exports = mongoose.model('Timeline', timelineSchema)

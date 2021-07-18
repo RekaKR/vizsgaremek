@@ -5,6 +5,8 @@ const supertest = require("supertest")
 const request = supertest(app)
 
 const Accommodation = require('../models/accommodationModel')
+const accommodationController = require('../controllers/accommodationController')
+
 
 //Setup a Test Database
 serverSetup("accommodation-testing")
@@ -48,6 +50,8 @@ describe("Test /accommodation endpoint", () => {
 
     //tests if every element of accommodations is present in the database
     accommodations.forEach((accommodation) => {
+      expect(accommodation.name && accommodation.address && accommodation.phoneNumber && accommodation.website).toBeTruthy()
+
       expect(accommodation).toHaveProperty('_id')
       expect(accommodation).toHaveProperty('name')
       expect(accommodation).toHaveProperty('address')
@@ -132,7 +136,6 @@ describe("Test /accommodation endpoint", () => {
         expect(response.body.phoneNumber).toBe("+36701111112")
         expect(response.body.website).toBe("website2.com")
     */
-
     const __v = response.body.__v
     const _id = response.body._id
     expect(response.body).toEqual({
@@ -148,5 +151,28 @@ describe("Test /accommodation endpoint", () => {
       phoneNumber: "+36701111112",
       website: "website2.com"
     })
+
+    /*
+    //MEGNÉZNI!!!!
+    expect(async () => {
+      await accommodationController.accommodation_create_post({
+        name: 1,
+        address: {
+          zip: 1068,
+          city: "City city2",
+          street: "Street street2",
+          houseNumber: 10
+        },
+        phoneNumber: "+36701111112",
+        website: "website2.com"
+      }).toThrow()
+    })
+
+    expect(accommodationController.accommodation_create_post).toThrowError('Couldn\'t save accommodation')
+    */
+
+    //get information from databas
+    const accommodations = await Accommodation.findOne({ name: "Hotel name2" })
+    expect(accommodations.name && accommodations.address && accommodations.phoneNumber && accommodations.website).toBeTruthy()
   })
 })

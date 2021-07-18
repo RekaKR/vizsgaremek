@@ -26,7 +26,7 @@ const accommodation_create_post = (req, res) => {
 
   accommodation.save()
     .then(data => res.json(data))
-    .catch(err => res.json({ message: `Couldn't save accommodation ${err}` }))
+    .catch(err => res.json({ message: 'Couldn\'t save accommodation', err: err }))
 }
 
 module.exports = {

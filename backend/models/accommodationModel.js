@@ -3,33 +3,35 @@ const mongoose = require('mongoose')
 const accommodationSchema = mongoose.Schema({
   name: {
     type: String,
-    required: true,
+    required: true
   },
+
   address: {
     zip: {
       type: Number,
-      required: true,
+      required: true
     },
     city: {
       type: String,
-      required: true,
+      required: true
     },
     street: {
       type: String,
-      required: true,
+      required: true
     },
     houseNumber: {
       type: Number,
-      required: true,
+      required: true
     }
   },
+
   phoneNumber: {
     type: String,
-    required: true,
+    required: true
   },
   website: {
     type: String,
-    required: true,
+    required: true
   }
 })
 

@@ -7,11 +7,11 @@ const timelineSchema = mongoose.Schema({
   },
   happening: {
     type: String,
-    required: true,
+    required: true
   },
   place: {
     type: String,
-    required: true,
+    required: true
   }
 })
 

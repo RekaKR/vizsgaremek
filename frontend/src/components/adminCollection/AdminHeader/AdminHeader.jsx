@@ -18,6 +18,10 @@ const AdminHeader = ({ url }) => {
         Szállás
       </Link>
 
+      <Link to={`${url}/to-do-list`}>
+        Teendők
+      </Link>
+
       <Link to={`${url}/seats`}>
         Ülésrend
       </Link>

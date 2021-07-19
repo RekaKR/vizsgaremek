@@ -9,7 +9,7 @@ import Profile from "./components/Profile/Profile"
 import Timeline from './components/timelineCollection/Timeline/Timeline'
 import Accommodations from "./components/accommodationCollection/Accommodations/Accommodations"
 import Galery from "./components/Feature/Galery/Galery"
-import ToDos from "./components/Feature/toDoCollection/ToDos/ToDos"
+import ToDos from "./components/toDoCollection/ToDos/ToDos"
 import Admin from "./components/adminCollection/Admin/Admin"
 
 import Api from "./components/Api/Api"
@@ -33,7 +33,6 @@ const App = () => {
     fetch('http://localhost:3001/to-do-list')
       .then(res => res.json())
       .then(data => setToDos(data.toDos))
-      //.then(data => console.log(data.toDos))
       .catch(err => setToDos(null))
   }, [])
 
@@ -79,7 +78,7 @@ const App = () => {
           </Route>
 
           <Route path='/admin'>
-            <Admin events={events} accommodations={accommodations} />
+            <Admin events={events} accommodations={accommodations} toDos={toDos} />
           </Route>
 
           <Route path='/'>

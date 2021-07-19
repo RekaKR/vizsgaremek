@@ -8,7 +8,7 @@ const ToDoInput = () => {
   const [res, setRes] = useState(false)
 
   const submit = () => {
-    fetch('http://localhost:3001/timeline', {
+    fetch('http://localhost:3001/to-do-list', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -23,7 +23,6 @@ const ToDoInput = () => {
       .then(res => setRes(true))
       .catch(err => setRes(false))
   }
-
 
   return (
     <div className="to-do-input">

@@ -4,10 +4,11 @@ import AdminHeader from '../AdminHeader/AdminHeader'
 import GuestListAdmin from '../GuestListAdmin/GuestListAdmin'
 import TimelineAdmin from '../TimelineAdmin/TimelineAdmin'
 import AccommodationAdmin from '../AccommodationAdmin/AccommodationAdmin'
+import ToDoAdmin from '../ToDoAdmin/ToDoAdmin'
 import SeatsAdmin from '../SeatsAdmin/SeatsAdmin'
 
 //Menetrend, Szállás, Ülésrend, Vendég lista/felhasználó hozzáadása - szerkesztés
-const Admin = ({ accommodations, events }) => {
+const Admin = ({ accommodations, events, toDos }) => {
   const { url, path } = useRouteMatch()
 
   return (
@@ -32,6 +33,10 @@ const Admin = ({ accommodations, events }) => {
 
           <Route path={`${path}/accommodations`}>
             <AccommodationAdmin accommodations={accommodations} />
+          </Route>
+
+          <Route path={`${path}/to-do-list`}>
+            <ToDoAdmin toDos={toDos} />
           </Route>
 
           <Route path={`${path}/seats`}>

@@ -91,31 +91,29 @@ describe("Test /accommodation endpoint", () => {
   it("Post to /accommodation", async () => {
     const res = await request.post('/accommodation').send({
       name: "Hotel name3",
-      address: {
-        zip: 1067,
-        city: "City city3",
-        street: "Street street3",
-        houseNumber: 9
-      },
+      zip: 1067,
+      city: "City city3",
+      street: "Street street3",
+      houseNumber: 9,
       phoneNumber: "+367011111113",
       website: "website.com"
     })
 
     const response = await request.post('/accommodation').send({
       name: "Hotel name4",
-      address: {
-        zip: 1068,
-        city: "City city4",
-        street: "Street street4",
-        houseNumber: 10
-      },
+      zip: 1068,
+      city: "City city4",
+      street: "Street street4",
+      houseNumber: 10,
       phoneNumber: "+36701111114",
       website: "website4.com"
     })
 
     //post response
-    expect(res.status && response.status).toBe(200)
-    expect(typeof res.body && typeof response.body).toBe('object')
+    expect(res.status).toBe(200)
+    expect(response.status).toBe(200)
+    expect(typeof res.body).toBe('object')
+    expect(typeof response.body).toBe('object')
 
     //tests if every element of res is present in the database
     /*
@@ -188,7 +186,11 @@ describe("Test /accommodation endpoint", () => {
     */
 
     //get information from databas
-    const accommodations = await Accommodation.findOne({ name: "Hotel name3" })
-    expect(accommodations.name && accommodations.address && accommodations.phoneNumber && accommodations.website).toBeTruthy()
+    const accommodation = await Accommodation.findOne({ name: "Hotel name3" })
+    expect(accommodation.name && accommodation.address && accommodation.phoneNumber && accommodation.website).toBeTruthy()
+
+    //expect(accommodation.name).toBe("Hotel name3")
+    expect(accommodation.phoneNumber).toBe("+367011111113")
+    expect(accommodation.website).toBe("website.com")
   })
 })

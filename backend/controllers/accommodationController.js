@@ -15,10 +15,10 @@ const accommodation_create_post = (req, res) => {
   const accommodation = new Accommodation({
     name: req.body.name,
     address: {
-      zip: req.body.address.zip,
-      city: req.body.address.city,
-      street: req.body.address.street,
-      houseNumber: req.body.address.houseNumber,
+      zip: req.body.zip,
+      city: req.body.city,
+      street: req.body.street,
+      houseNumber: req.body.houseNumber,
     },
     phoneNumber: req.body.phoneNumber,
     website: req.body.website

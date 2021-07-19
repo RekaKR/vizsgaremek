@@ -20,12 +20,10 @@ function AccommodationInput() {
       },
       body: JSON.stringify({
         name: name,
-        address: {
-          zip: zip,
-          city: city,
-          street: street,
-          houseNumber: houseNumber
-        },
+        zip: zip,
+        city: city,
+        street: street,
+        houseNumber: houseNumber,
         phoneNumber: phoneNumber,
         website: website
       })

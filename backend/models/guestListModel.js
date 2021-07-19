@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 const guestListSchema = mongoose.Schema({
-  name: {
+  username: {
     type: String,
     required: true,
   },
@@ -9,7 +9,7 @@ const guestListSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-  password: {
+  code: {
     type: String,
     required: true,
   }

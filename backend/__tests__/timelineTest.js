@@ -73,8 +73,10 @@ describe("Test /timeline endpoint", () => {
     })
 
     //post response
-    expect(res.status && response.status).toBe(200)
-    expect(typeof res.body && typeof response.body).toBe('object')
+    expect(res.status).toBe(200)
+    expect(response.status).toBe(200)
+    expect(typeof res.body).toBe('object')
+    expect(typeof response.body).toBe('object')
 
     //tests if every element of res is present in the database
     const properties = ['_id', 'time', 'happening', 'place']
@@ -96,7 +98,11 @@ describe("Test /timeline endpoint", () => {
     })
 
     //get information from databas
-    const timelines = await Timeline.findOne({ happening: "Happening test3" })
-    expect(timelines.time && timelines.happening && timelines.place).toBeTruthy()
+    const timeline = await Timeline.findOne({ happening: "Happening test3" })
+    expect(timeline.time && timeline.happening && timeline.place).toBeTruthy()
+
+    expect(timeline.time).toBe("Time test3")
+    //expect(timeline.happening).toBe("Happening test3")
+    expect(timeline.place).toBe("Place test3")
   })
 })

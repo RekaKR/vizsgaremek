@@ -9,7 +9,7 @@ import Profile from "./components/Profile/Profile"
 import Timeline from './components/timelineCollection/Timeline/Timeline'
 import Accommodations from "./components/accommodationCollection/Accommodations/Accommodations"
 import Galery from "./components/Feature/Galery/Galery"
-import ToDoList from "./components/Feature/ToDoList/ToDoList"
+import ToDos from "./components/Feature/toDoCollection/ToDos/ToDos"
 import Admin from "./components/adminCollection/Admin/Admin"
 
 import Api from "./components/Api/Api"
@@ -17,6 +17,7 @@ import Api from "./components/Api/Api"
 const App = () => {
   const [accommodations, setAccommodations] = useState(null)
   const [events, setEvents] = useState(null)
+  const [toDos, setToDos] = useState(null)
 
   useEffect(() => {
     fetch('http://localhost:3001/accommodation')
@@ -28,6 +29,12 @@ const App = () => {
       .then(res => res.json())
       .then(data => setEvents(data.timelines))
       .catch(err => setEvents(null))
+
+    fetch('http://localhost:3001/to-do-list')
+      .then(res => res.json())
+      .then(data => setToDos(data.toDos))
+      //.then(data => console.log(data.toDos))
+      .catch(err => setToDos(null))
   }, [])
 
   return (
@@ -68,7 +75,7 @@ const App = () => {
           </Route>
 
           <Route path='/to-do-list'>
-            <ToDoList />
+            <ToDos toDos={toDos} />
           </Route>
 
           <Route path='/admin'>

@@ -15,7 +15,7 @@ const userSchema = mongoose.Schema({
     required: true,
     unique: true
   },
-  code: {
+  googleId: {
     type: String,
     required: true
   },

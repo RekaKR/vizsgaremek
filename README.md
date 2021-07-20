@@ -9,6 +9,7 @@ Material-ui styled: npm install @material-ui/styles \
 Material-ui icon: npm install @material-ui/icons \
 uuid: npm install uuid \
 Router: npm install react-router-dom \
+npm i jwt-decode \
 
 ### backend
 npm init -y \

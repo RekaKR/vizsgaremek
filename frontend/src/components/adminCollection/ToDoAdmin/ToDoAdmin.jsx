@@ -5,7 +5,7 @@ import ToDoInput from '../ToDoInput/ToDoInput';
 
 function toDoAdmin({ toDos }) {
   return (
-    <div className="admin-accommodation">
+    <div className="admin-to-dos">
       <ToDos toDos={toDos} />
 
       <ToDoInput />

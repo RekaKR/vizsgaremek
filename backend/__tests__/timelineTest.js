@@ -97,12 +97,11 @@ describe("Test /timeline endpoint", () => {
       place: "Place test4"
     })
 
-    //get information from databas
+    //tests if database gives back the correct records by searching an element
     const timeline = await Timeline.findOne({ happening: "Happening test3" })
-    expect(timeline.time && timeline.happening && timeline.place).toBeTruthy()
 
+    expect(timeline.time && timeline.happening && timeline.place).toBeTruthy()
     expect(timeline.time).toBe("Time test3")
-    //expect(timeline.happening).toBe("Happening test3")
     expect(timeline.place).toBe("Place test3")
   })
 })

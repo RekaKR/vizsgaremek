@@ -4,7 +4,7 @@ import React, { useState } from 'react'
 const ToDoInput = () => {
   const [type, setType] = useState('')
   const [task, setTask] = useState('')
-  //const [done, setDone] = useState(false)
+  const [done, setDone] = useState(false)
   const [res, setRes] = useState(false)
 
   const submit = () => {
@@ -17,7 +17,7 @@ const ToDoInput = () => {
       body: JSON.stringify({
         type: type,
         task: task,
-        done: false
+        done: done
       })
     }).then(res => res.json())
       .then(res => setRes(true))

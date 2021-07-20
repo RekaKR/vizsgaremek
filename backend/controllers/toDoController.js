@@ -10,7 +10,7 @@ const toDo_create_post = (req, res) => {
   const toDo = new ToDo({
     type: req.body.type,
     task: req.body.task,
-    //done: req.body.done
+    done: req.body.done
   })
 
   toDo.save()

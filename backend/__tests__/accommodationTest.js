@@ -185,11 +185,10 @@ describe("Test /accommodation endpoint", () => {
     expect(accommodationController.accommodation_create_post).toThrowError('Couldn\'t save accommodation')
     */
 
-    //get information from databas
+    //tests if database gives back the correct records by searching an element
     const accommodation = await Accommodation.findOne({ name: "Hotel name3" })
-    expect(accommodation.name && accommodation.address && accommodation.phoneNumber && accommodation.website).toBeTruthy()
 
-    //expect(accommodation.name).toBe("Hotel name3")
+    expect(accommodation.name && accommodation.address && accommodation.phoneNumber && accommodation.website).toBeTruthy()
     expect(accommodation.phoneNumber).toBe("+367011111113")
     expect(accommodation.website).toBe("website.com")
   })

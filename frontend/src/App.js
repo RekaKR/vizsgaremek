@@ -12,8 +12,6 @@ import Galery from "./components/Feature/Galery/Galery"
 import ToDos from "./components/toDoCollection/ToDos/ToDos"
 import Admin from "./components/adminCollection/Admin/Admin"
 
-import Api from "./components/Api/Api"
-
 const App = () => {
   const [accommodations, setAccommodations] = useState(null)
   const [events, setEvents] = useState(null)
@@ -44,11 +42,6 @@ const App = () => {
         </Route>
 
         <Switch>
-          <Route path='/api'>
-            <Api />
-          </Route>
-
-
           <Route path='/invitation'>
             <Invitation />
           </Route>

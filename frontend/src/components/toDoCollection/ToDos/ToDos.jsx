@@ -7,6 +7,9 @@ const ToDos = ({ toDos }) => {
     <div className="to-do">
       <h2>Teendők</h2>
 
+
+      {/*Először 4 db rövid listát csinálni a toDos-ból, és ezután a 4 listán megyek végig.*/}
+
       <h3>Ruha</h3>
       {
         toDos && toDos.map(toDo =>

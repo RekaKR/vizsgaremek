@@ -53,55 +53,64 @@ describe("Test /timeline endpoint", () => {
   })
 
   it("Get from /timeline", async () => {
+    //given
+    //app has started
+
+    //when
     const response = await request.get('/timeline')
 
+    //then
     expect(response.status).toBe(200)
-    expect(response.body.message).toBe('Found all timelines')
+    expect(response.body.timelines).toEqual([])
   })
 
-  it("Post to /timeline", async () => {
-    const res = await request.post('/timeline').send({
+  it("Should not create /timeline /wout jwt", async () => {
+    console.log('ok')
+  })
+
+  it("Should not create /timeline /w wrong jwt", async () => {
+    console.log('ok')
+  })
+
+  it("Should not create /timeline when not admin", async () => {
+    console.log('ok')
+  })
+
+  it("Should create /timeline when admin", async () => {
+    //given
+    const timelineByUser = {
       time: "Time test3",
       happening: "Happening test3",
       place: "Place test3"
-    })
+    }
 
-    const response = await request.post('/timeline').send({
-      time: "Time test4",
-      happening: "Happening test4",
-      place: "Place test4"
-    })
+    //when
+    const res = await request.post('/timeline').send(timelineByUser)
+
+    //then
+    //tests if database gives back the correct records by searching an element
+    const result = await Timeline.findOne()
+    const timelineInDB = result.toJSON()
+
+    expect(timelineInDB).not.toBeNull()
+
+    expect(timelineInDB.__v).toBeDefined()
+    expect(timelineInDB._id).toBeDefined()
+    const __v = timelineInDB.__v
+    const _id = timelineInDB._id
+
+    expect(timelineInDB).toEqual({ ...timelineByUser, __v, _id })
 
     //post response
     expect(res.status).toBe(200)
-    expect(response.status).toBe(200)
-    expect(typeof res.body).toBe('object')
-    expect(typeof response.body).toBe('object')
-
-    //tests if every element of res is present in the database
-    const properties = ['_id', 'time', 'happening', 'place']
-
-    properties.map(property => {
-      expect(res.body).toHaveProperty(property)
-    })
 
     //tests if database gives back the correct elements of response
-    const __v = response.body.__v
-    const _id = response.body._id
-
-    expect(response.body).toEqual({
-      __v: __v,
-      _id: _id,
-      time: "Time test4",
-      happening: "Happening test4",
-      place: "Place test4"
-    })
-
-    //tests if database gives back the correct records by searching an element
-    const timeline = await Timeline.findOne({ happening: "Happening test3" })
-
-    expect(timeline.time && timeline.happening && timeline.place).toBeTruthy()
-    expect(timeline.time).toBe("Time test3")
-    expect(timeline.place).toBe("Place test3")
+    expect(res.body).toEqual({ ...timelineByUser, __v, _id: _id.toString() })
   })
+
+
+  //ha egy időben nem lehet kettő, akkor megnézni kettőt egy időbpontra. Ha van kettő, akkor hogy nem jó-e.
+
+  //A kódba megírni. megvizsgálni, h. a headerben van-e megfelelő token. Ha nincs, akkor hiba, ha van, akkor patika.
+  //
 })

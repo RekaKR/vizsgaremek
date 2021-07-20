@@ -1,5 +1,4 @@
 const mongoose = require('mongoose')
-//mongoose.set("useCreateIndex", true)
 //mongoose.promise = global.Promise
 const { MongoMemoryServer } = require('mongodb-memory-server')
 
@@ -7,23 +6,28 @@ const { MongoMemoryServer } = require('mongodb-memory-server')
 async function removeAllCollections() {
   const collections = Object.keys(mongoose.connection.collections)
 
-  for (const collectionName of collections) {
+  const promisList = collections.map(collectionName => {
     const collection = mongoose.connection.collections[collectionName]
-    await collection.deleteMany()
-  }
+    return collection.deleteMany()
+  })
+
+  await Promise.all(promisList)
 }
 
 async function dropAllCollections() {
   const collections = Object.keys(mongoose.connection.collections)
 
-  for (const collectionName of collections) {
+  const promisList = collections.map(collectionName => {
     const collection = mongoose.connection.collections[collectionName]
-    try {
-      await collection.drop()
-    } catch (error) {
-      if (error.message === "ns not found") return
-      if (error.message.includes("a background operation is currently running")) return console.log(error.message)
-    }
+    return collection.drop()
+  })
+
+  //promise.all-t megnézni!!!!
+  try {
+    await Promise.all(promisList)
+  } catch (error) {
+    if (error.message === "ns not found") return
+    if (error.message.includes("a background operation is currently running")) return console.log(error.message)
   }
 }
 
@@ -50,6 +54,8 @@ serverSetup = (serverName) => {
   // Disconnect Mongoose
   afterAll(async () => {
     await dropAllCollections()
+
+    //átnézni !!!!!!!!!
     await mongoose.connection.close()
     await mongoose.disconnect()
     await mongoServer.stop()

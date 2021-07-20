@@ -4,7 +4,7 @@ import './style/css/style.css'
 
 import Header from './components/Header/Header'
 import Invitation from "./components/Invitation/Invitation"
-import LogInOut from "./components/LogInOut/LogInOut"
+import Login from "./components/Login/Login"
 import Profile from "./components/Profile/Profile"
 import Timeline from './components/timelineCollection/Timeline/Timeline'
 import Accommodations from "./components/accommodationCollection/Accommodations/Accommodations"
@@ -34,11 +34,17 @@ const App = () => {
       .catch(err => setToDos(null))
   }, [])
 
+
+  const googleSignIn = () => {
+    window.location.href =
+      "https://accounts.google.com/o/oauth2/v2/auth?response_type=code&prompt=select_account&client_id=716515278040-8devcsi8fm1uh0mledpu00oknp3i3kpv.apps.googleusercontent.com&scope=openid%20profile email&&redirect_uri=http://localhost:3000/login"
+  }
+
   return (
     <Router>
       <div className='app'>
         <Route path='/' >
-          <Header />
+          <Header googleSignIn={googleSignIn} />
         </Route>
 
         <Switch>
@@ -47,7 +53,7 @@ const App = () => {
           </Route>
 
           <Route path='/login'>
-            <LogInOut />
+            <Login />
           </Route>
 
           <Route path='/profile'>

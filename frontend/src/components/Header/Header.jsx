@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 //import '../../style/css/style.css'
 
-const Header = () => {
+const Header = ({ googleSignIn }) => {
   const [couple, setCouple] = useState(true)
   const [weddingP, setWeddingP] = useState(false)
   const [photographer, setPhotographer] = useState(false)
@@ -59,7 +59,7 @@ const Header = () => {
       }
 
       <Link to="/login">
-        Loginout
+        <button onClick={googleSignIn}>Login</button>
       </Link>
     </div>
   )

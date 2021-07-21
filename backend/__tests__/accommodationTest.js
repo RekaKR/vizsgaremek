@@ -25,7 +25,7 @@ describe("Test /accommodation endpoint", () => {
     expect(response.body).toEqual([])
   })
 
-  it("Should not create /accommodation /wout jwt", async () => {
+  it("Should not create /accommodation /wo jwt", async () => {
     console.log('Should not create /accommodation /wout jwt')
   })
 
@@ -42,12 +42,10 @@ describe("Test /accommodation endpoint", () => {
     const accommodationByUser = {
       name: "Hotel name",
       zip: 1067,
-      adress: {
-        city: "City city",
-        street: "Street street",
-        houseNumber: 9,
-        phoneNumber: "+11111111111",
-      },
+      city: "City city",
+      street: "Street street",
+      houseNumber: 9,
+      phoneNumber: "+11111111111",
       website: "website.com"
     }
 
@@ -66,10 +64,17 @@ describe("Test /accommodation endpoint", () => {
     const __v = accommodationInDB.__v
     const _id = accommodationInDB._id
 
-    expect(accommodationInDB).toEqual({ ...accommodationByUser, __v, _id })
+    //expect(accommodationInDB).toEqual({ ...accommodationByUser, __v, _id })
+
+    const properties = ['_id', 'name', 'address.zip', 'address.city', 'address.street', 'address.houseNumber', 'phoneNumber', 'website']
+
+    properties.map(property => {
+      expect(accommodationInDB).toHaveProperty(property)
+    })
 
     expect(res.status).toBe(200)
-    expect(res.body).toEqual({ ...accommodationByUser, __v, _id: _id.toString() })
+    //expect(res.body).toEqual({ ...accommodationInDB, __v, _id: _id.toString()})
+    expect(res.body).toEqual({ ...accommodationInDB, _id: _id.toString() })
 
     /*
     //MEGNÉZNI!!!!

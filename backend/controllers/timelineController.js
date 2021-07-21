@@ -1,8 +1,18 @@
+//const jwt = require('jsonwebtoken')
+
+//require('dotenv').config()
+//const JWT_SECRET = process.env.JWT_SECRET
+
 const Timeline = require('../models/timelineModel')
 
 const timeline_create_get = (req, res) => {
   Timeline.find()
-    .then(timelines => res.json(timelines))
+    .then(timelines => {
+      res.json(timelines)
+      /*if (jwt.verify(req.headers.authorization, "JWT_SECRET")) {
+         console.log(jwt.verify(req.headers.authorization, JWT_SECRET))
+       }*/
+    })
     .catch(err => res.status(400).json({ message: `Couldn't find accommodation ${err}` }))
 }
 

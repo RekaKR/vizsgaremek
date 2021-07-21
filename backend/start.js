@@ -10,6 +10,8 @@ const MONGO_CONNECTION = process.env.MONGO_CONNECTION
 mongoose.connect(`${MONGO_CONNECTION}`, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
+  useCreateIndex: true
+  //mongoose.set('useFindAndModify', false);
   //useFindAndModify: false -check if it is needed or not
 }).then(() => console.log('MongoDB Connected'))
   .catch(err => console.log(err))

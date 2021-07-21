@@ -24,7 +24,7 @@ describe("Test /to-do-list endpoint", () => {
     expect(response.body).toEqual([])
   })
 
-  it("Should not create /to-do-list /wout jwt", async () => {
+  it("Should not create /to-do-list /wo jwt", async () => {
     console.log('hould not create /to-do-list /wout jwt')
   })
 
@@ -62,5 +62,6 @@ describe("Test /to-do-list endpoint", () => {
 
     expect(res.status).toBe(200)
     expect(res.body).toEqual({ ...toDoByUser, __v, _id: _id.toString() })
+    expect(res.body).toEqual({ ...toDoInDB, _id: _id.toString() })
   })
 })

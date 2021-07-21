@@ -18,10 +18,12 @@ app.use(cors({
 const accommodationRoutes = require('./routes/accommodationRoutes')
 const timelineRoutes = require('./routes/timelineRoutes')
 const toDoRoutes = require('./routes/toDoRoutes')
+const loginRoutes = require('./routes/loginRoutes')
 
 app.use('/accommodation', accommodationRoutes)
 app.use('/timeline', timelineRoutes)
 app.use('/to-do-list', toDoRoutes)
+app.use('/login', loginRoutes)
 
 
 module.exports = app

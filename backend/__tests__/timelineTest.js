@@ -24,7 +24,7 @@ describe("Test /timeline endpoint", () => {
     expect(response.body).toEqual([])
   })
 
-  it("Should not create /timeline /wout jwt", async () => {
+  it("Should not create /timeline /wo jwt", async () => {
     console.log('Should not create /timeline /wout jwt')
   })
 
@@ -52,7 +52,7 @@ describe("Test /timeline endpoint", () => {
     const timelineInDB = result.toJSON()
 
     expect(timelineInDB).not.toBeNull()
-    
+
     expect(timelineInDB.__v).toBeDefined()
     expect(timelineInDB._id).toBeDefined()
     const __v = timelineInDB.__v
@@ -62,11 +62,11 @@ describe("Test /timeline endpoint", () => {
 
     expect(res.status).toBe(200)
     expect(res.body).toEqual({ ...timelineByUser, __v, _id: _id.toString() })
+    expect(res.body).toEqual({ ...timelineInDB, __v, _id: _id.toString() })
   })
 
 
   //ha egy időben nem lehet kettő, akkor megnézni kettőt egy időbpontra. Ha van kettő, akkor hogy nem jó-e.
 
   //A kódba megírni. megvizsgálni, h. a headerben van-e megfelelő token. Ha nincs, akkor hiba, ha van, akkor patika.
-  //
 })

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import jwt_decode from 'jwt-decode'
 import './style/css/style.css'
 
 import Header from './components/Header/Header'
@@ -16,6 +17,7 @@ const App = () => {
   const [accommodations, setAccommodations] = useState(null)
   const [events, setEvents] = useState(null)
   const [toDos, setToDos] = useState(null)
+  const [user, setUser] = useState(null)
 
   useEffect(() => {
     fetch('http://localhost:3001/accommodation')
@@ -37,14 +39,31 @@ const App = () => {
 
   const googleSignIn = () => {
     window.location.href =
-      "https://accounts.google.com/o/oauth2/v2/auth?response_type=code&prompt=select_account&client_id=716515278040-8devcsi8fm1uh0mledpu00oknp3i3kpv.apps.googleusercontent.com&scope=openid%20profile email&&redirect_uri=http://localhost:3000/login"
+      "https://accounts.google.com/o/oauth2/v2/auth?response_type=code&prompt=select_account&client_id=716515278040-8devcsi8fm1uh0mledpu00oknp3i3kpv.apps.googleusercontent.com&scope=openid%20profile email&redirect_uri=http://localhost:3000/login"
+  }
+
+  /*
+  const checkToken = () => {
+    const token = localStorage.getItem('token')
+    if (token) {
+      setUser(jwt_decode(token))
+    }
+  }
+
+  useEffect(() => {
+    checkToken()
+  }, [])*/
+
+  const logOut = () => {
+    localStorage.removeItem('token')
+    setUser("")
   }
 
   return (
     <Router>
       <div className='app'>
         <Route path='/' >
-          <Header googleSignIn={googleSignIn} />
+          <Header googleSignIn={googleSignIn} user={user} />
         </Route>
 
         <Switch>
@@ -53,7 +72,7 @@ const App = () => {
           </Route>
 
           <Route path='/login'>
-            <Login />
+            <Login /*checkToken={checkToken}*/ />
           </Route>
 
           <Route path='/profile'>

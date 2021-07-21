@@ -1,3 +1,8 @@
+//const jwt = require('jsonwebtoken')
+
+//require('dotenv').config()
+//const JWT_SECRET = process.env.JWT_SECRET
+
 const Accommodation = require('../models/accommodationModel')
 //accommodation_index         get all the box and inject that index view
 //accommodation_details       get a single blog
@@ -5,13 +10,18 @@ const Accommodation = require('../models/accommodationModel')
 
 const accommodation_create_get = (req, res) => {
   Accommodation.find()
-    .then(accommodation => res.json(accommodation))
+    .then(accommodation => {
+      res.json(accommodation)
+    })
     .catch(err => res.status(400).json({ message: `Couldn't find accommodation ${err}` }))
 }
 
 //itt nem kell a catch
 
 const accommodation_create_post = (req, res) => {
+  /*if (jwt.verify(req.headers.authorization, "JWT_SECRET")) {
+        console.log(jwt.verify(req.headers.authorization, JWT_SECRET))
+      }*/
   const accommodation = new Accommodation({
     name: req.body.name,
     address: {

@@ -10,7 +10,7 @@ const userSchema = mongoose.Schema({
     type: String,
     required: true
   },
-  emailAddress: {
+  email: {
     type: String,
     required: true,
     unique: true
@@ -19,6 +19,7 @@ const userSchema = mongoose.Schema({
     type: String,
     required: true
   },
+  picture: String,
   plusOne: {
     isComing: Boolean,
     name: String,

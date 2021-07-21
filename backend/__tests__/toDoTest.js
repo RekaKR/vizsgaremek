@@ -12,98 +12,55 @@ serverSetup("to-do-testing")
 
 
 describe("Test /to-do-list endpoint", () => {
-  it('Successfully insert & get information from the database', async () => {
-    //insert information to database
-    await ToDo.insertMany([
-      {
-        type: "clothes",
-        task: "Ruha teszt",
-        done: false
-      },
-      {
-        type: "design",
-        task: "Ruha teszt2",
-        done: true
-      }
-    ])
-
-    //get information from database
-    const toDos = await ToDo.find()
-
-    //tests if database is correct
-    expect(typeof toDos).toBe('object')
-    expect(toDos.length).toBeGreaterThanOrEqual(1)
-    expect(toDos).toHaveLength(2)
-
-    //tests if every element of toDos is present in the database
-    const properties = ['_id', 'type', 'task', 'done']
-
-    toDos.forEach((toDo) => {
-      expect(toDo.type && toDo.task).toBeTruthy()
-
-      properties.map(property => {
-        expect(toDo).toHaveProperty(property)
-      })
-    })
-
-    //tests if database gives back the correct elements of random toDo
-    expect(toDos[0].type).toBe("clothes")
-    expect(toDos[1].task).toBe("Ruha teszt2",)
-    expect(toDos[0].done).toBe(false)
-  })
-
   it("Get from /to-do-list", async () => {
+    //given
+    //app has started
+
+    //when
     const response = await request.get('/to-do-list')
 
+    //then
     expect(response.status).toBe(200)
-    expect(response.body.message).toBe('Found all to-dos')
+    expect(response.body).toEqual([])
   })
 
-  it("Post to /to-do-list", async () => {
-    const res = await request.post('/to-do-list').send({
-      type: "other",
-      task: "Ruha teszt3",
-      done: false
-    })
+  it("Should not create /to-do-list /wout jwt", async () => {
+    console.log('hould not create /to-do-list /wout jwt')
+  })
 
-    const response = await request.post('/to-do-list').send({
-      type: "design",
-      task: "Ruha teszt4",
+  it("Should not create /to-do-list /w wrong jwt", async () => {
+    console.log('Should not create /to-do-list /w wrong jwt')
+  })
+
+  it("Should not create /to-do-list when not admin", async () => {
+    console.log('Should not create /to-do-list when not admin')
+  })
+
+  it("Should create /to-do-list when admin", async () => {
+    //given
+    const toDoByUser = {
+      type: "dress",
+      task: "Ruha teszt",
       done: true
-    })
+    }
 
-    //post response
+    //when
+    const res = await request.post('/to-do-list').send(toDoByUser)
+
+    //then
+    const result = await ToDo.findOne()
+    const toDoInDB = result.toJSON()
+
+    expect(toDoInDB).not.toBeNull()
+
+    expect(toDoInDB.__v).toBeDefined()
+    expect(toDoInDB._id).toBeDefined()
+    const __v = toDoInDB.__v
+    const _id = toDoInDB._id
+
+    expect(toDoInDB).toEqual({ ...toDoByUser, __v, _id })
+
     expect(res.status).toBe(200)
-    expect(response.status).toBe(200)
-
-    //tests if database is correct
-    expect(typeof res.body).toBe('object')
-    expect(typeof response.body).toBe('object')
-
-    //tests if every element of res is present in the database
-    const properties = ['_id', 'type', 'task', 'done']
-
-    properties.map(property => {
-      expect(res.body).toHaveProperty(property)
-    })
-
-    //tests if database gives back the correct elements of response
-    const __v = response.body.__v
-    const _id = response.body._id
-
-    expect(response.body).toEqual({
-      __v: __v,
-      _id: _id,
-      type: "design",
-      task: "Ruha teszt4",
-      done: true
-    })
-
-    //tests if database gives back the correct records by searching an element
-    const toDo = await ToDo.findOne({ task: "Ruha teszt4" })
-
-    expect(toDo.type && toDo.task && toDo.done).toBeTruthy()
-    expect(toDo.type).toBe("design")
-    expect(toDo.done).toBe(true)
+    expect(res.body).toEqual({ ...toDoByUser, __v, _id: _id.toString() })
   })
 })

@@ -20,17 +20,17 @@ const App = () => {
   useEffect(() => {
     fetch('http://localhost:3001/accommodation')
       .then(res => res.json())
-      .then(data => setAccommodations(data.accommodation))
+      .then(data => setAccommodations(data))
       .catch(err => setAccommodations(null))
 
     fetch('http://localhost:3001/timeline')
       .then(res => res.json())
-      .then(data => setEvents(data.timelines))
+      .then(data => setEvents(data))
       .catch(err => setEvents(null))
 
     fetch('http://localhost:3001/to-do-list')
       .then(res => res.json())
-      .then(data => setToDos(data.toDos))
+      .then(data => setToDos(data))
       .catch(err => setToDos(null))
   }, [])
 

@@ -2,7 +2,7 @@ const ToDo = require('../models/toDoModel')
 
 const toDo_create_get = (req, res) => {
   ToDo.find()
-    .then(toDos => res.json({ toDos: toDos, message: 'Found all to-dos' }))
+    .then(toDos => res.json(toDos))
     .catch(err => res.status(400).json({ message: `Couldn't find to-dos ${err}` }))
 }
 

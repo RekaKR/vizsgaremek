@@ -42,7 +42,6 @@ const App = () => {
       "https://accounts.google.com/o/oauth2/v2/auth?response_type=code&prompt=select_account&client_id=716515278040-8devcsi8fm1uh0mledpu00oknp3i3kpv.apps.googleusercontent.com&scope=openid%20profile email&redirect_uri=http://localhost:3000/login"
   }
 
-  /*
   const checkToken = () => {
     const token = localStorage.getItem('token')
     if (token) {
@@ -52,9 +51,9 @@ const App = () => {
 
   useEffect(() => {
     checkToken()
-  }, [])*/
+  }, [])
 
-  const logOut = () => {
+  const logout = () => {
     localStorage.removeItem('token')
     setUser("")
   }
@@ -63,7 +62,7 @@ const App = () => {
     <Router>
       <div className='app'>
         <Route path='/' >
-          <Header googleSignIn={googleSignIn} user={user} />
+          <Header googleSignIn={googleSignIn} user={user} logout={logout} />
         </Route>
 
         <Switch>
@@ -72,7 +71,7 @@ const App = () => {
           </Route>
 
           <Route path='/login'>
-            <Login /*checkToken={checkToken}*/ />
+            <Login checkToken={checkToken} />
           </Route>
 
           <Route path='/profile'>

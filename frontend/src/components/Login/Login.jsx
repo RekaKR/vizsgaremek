@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 
-const Login = () => {
+const Login = ({ checkToken }) => {
   let history = useHistory()
 
   useEffect(() => {
@@ -15,13 +15,14 @@ const Login = () => {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        code: params.code
+        code: params.code,
       })
     }).then(res => res.json())
       .then(data => {
         localStorage.setItem('token', data.token)
+        console.log(localStorage.getItem("token"))
         history.push("/invitation")
-        // checkToken()
+        checkToken()
       })
       .catch(err => console.log({ message: err }))
   }, [])

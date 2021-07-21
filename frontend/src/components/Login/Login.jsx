@@ -19,10 +19,11 @@ const Login = ({ checkToken }) => {
       })
     }).then(res => res.json())
       .then(data => {
-        localStorage.setItem('token', data.token)
-        console.log(localStorage.getItem("token"))
-        history.push("/invitation")
-        checkToken()
+        if (data.token !== undefined) {
+          localStorage.setItem('token', data.token)
+          history.push("/invitation")
+          checkToken()
+        }
       })
       .catch(err => console.log({ message: err }))
   }, [])

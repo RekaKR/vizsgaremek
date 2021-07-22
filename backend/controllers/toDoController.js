@@ -5,6 +5,7 @@ const JWT_SECRET = process.env.JWT_SECRET
 
 const ToDo = require('../models/toDoModel')
 
+//GET BACK ALL THE TODOS
 const toDo_create_get = (req, res) => {
   ToDo.find()
     .then(toDos => res.json(toDos))
@@ -12,6 +13,7 @@ const toDo_create_get = (req, res) => {
   //403-as, a visszajövő kód nem megfelelő annak, amit vizsgálok; ha nincs ilyen header, akkor 401; van jwt-t, de nem mi írtuk alá: 401
 }
 
+//POST TO SERVER A TODO
 const toDo_create_post = (req, res) => {
   try {
     jwt.verify(req.headers.authorization, JWT_SECRET)
@@ -29,30 +31,40 @@ const toDo_create_post = (req, res) => {
     return res.status(401).json({ message: 'Token invalid' });
   }
 }
-
-//GET BACK A SPECIFIC POST BY URL
+/*
+//GET BACK A TODO BY ID
 const toDo_details_one = (req, red) => {
-  ToDo.findById(req.params.postId)
+  ToDo.findById(req.params.id)
     .then(post => res.json(post))
     .catch(err => res.status(404).json({ message: "Ajjaj!" }))
 }
+*/
 
-//UPDATE A SPECIFIC POST BY URL
+//UPDATE A TODO BY ID
 const toDo_update_one = (req, res) => {
 
-  //HA NEM JÖN BE ADAT, AKKOR FALSE. HANDLING
-  //console.log(req.params.postId)
+  //HA NEM JÖN BE ADAT, AKKOR FALSE. HANDLING KELL!!!!
   ToDo.updateOne(
-    { _id: req.params.postId },
+    { _id: req.params.id },
     { $set: { done: req.body.done } }
   )
     .then(updatedToDo => res.json(updatedToDo))
     .catch(err => res.json({ message: err }))
 }
 
-//DELETE A SPECIFIC POST BY URL
+//DELETE A TODO BY ID
+
+//HA NEM JÖN BE ADAT, AKKOR FALSE. HANDLING KELL!!!!
 const toDo_delete_one = (req, res) => {
-  ToDo.deleteOne({ _id: req.params.postid })
+  console.log('YOLO')
+  console.log(req.params.id)
+  ToDo.deleteOne({ _id: req.params.id }, function (err) {
+    if (err) {
+      console.log(err)
+    } else {
+      console.log("Successful deletion")
+    }
+  })
     .then(deletedToDo => res.json(deletedToDo))
     .catch(err => res.json({ message: err }))
 }
@@ -61,7 +73,7 @@ const toDo_delete_one = (req, res) => {
 module.exports = {
   toDo_create_get,
   toDo_create_post,
-  toDo_details_one,
+  //  toDo_details_one,
   toDo_update_one,
   toDo_delete_one
 }

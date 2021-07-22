@@ -6,11 +6,11 @@ router.get('/', toDoController.toDo_create_get)
 
 router.post('/', toDoController.toDo_create_post)
 
-//router.get('/:postId', toDoController.toDo_details)
+router.patch('/:id', toDoController.toDo_update_one)
 
-//router.delete('/:postId', toDoController.toDo_delete)
+router.delete('/:id', toDoController.toDo_delete_one)
 
-router.patch('/:postId', toDoController.toDo_update_one)
+//router.get('/:id', toDoController.toDo_details)
 
 
 module.exports = router

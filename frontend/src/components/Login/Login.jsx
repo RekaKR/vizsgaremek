@@ -19,11 +19,9 @@ const Login = ({ checkToken }) => {
       })
     }).then(res => res.json())
       .then(data => {
-        if (data.token !== undefined) {
-          localStorage.setItem('token', data.token)
-          history.push("/invitation")
-          checkToken()
-        }
+        localStorage.setItem('token', data.token)
+        history.push("/invitation")
+        checkToken()
       })
       .catch(err => console.log({ message: err }))
   }, [])

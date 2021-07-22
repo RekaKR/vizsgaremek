@@ -4,9 +4,11 @@ const app = require("../server")
 const supertest = require("supertest")
 const request = supertest(app)
 
-const Accommodation = require('../models/accommodationModel')
-//const accommodationController = require('../controllers/accommodationController')
+//require('dotenv').config()
+//const JWT_SECRET = process.env.JWT_SECRET
+//https://stackoverflow.com/questions/25657190/how-to-get-dummy-google-access-token-to-test-oauth-google-api
 
+const Accommodation = require('../models/accommodationModel')
 
 //Setup a test Database
 serverSetup("accommodation-testing")
@@ -38,6 +40,7 @@ describe("Test /accommodation endpoint", () => {
   })
 
   it("Should create /accommodation when admin", async () => {
+
     //given
     const accommodationByUser = {
       name: "Hotel name",
@@ -48,6 +51,8 @@ describe("Test /accommodation endpoint", () => {
       phoneNumber: "+11111111111",
       website: "website.com"
     }
+
+    const authorization = "bla"
 
     //when
     const res = await request.post('/accommodation').send(accommodationByUser)
@@ -91,8 +96,8 @@ describe("Test /accommodation endpoint", () => {
         website: "website2.com"
       }).toThrow()
     })
-
-    expect(accommodationController.accommodation_create_post).toThrowError('Couldn\'t save accommodation')
     */
+    expect(accommodationController.accommodation_create_post).toThrowError('Couldn\'t save accommodation')
+
   })
 })

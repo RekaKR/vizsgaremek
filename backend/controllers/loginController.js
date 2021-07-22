@@ -28,14 +28,13 @@ const login_create_post = (req, res) => {
     .catch(() => res.status(404).json({ msg: 'Authentication failed!' }))
 
   const getDataFromGoogle = (data, res) => {
-    console.log("id token:", data)
     const { sub, email, name, picture, given_name, family_name } = jwt.decode(data)
 
     const user = User.findOne({ googleId: sub })
       .then(user => {
         if (!user) {
           const user = new User({
-            username: name,
+            username: `${family_name} ${given_name}`,
             name: name,
             email: email,
             googleId: sub,

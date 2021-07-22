@@ -1,7 +1,7 @@
-//const jwt = require('jsonwebtoken')
+const jwt = require('jsonwebtoken')
 
-//require('dotenv').config()
-//const JWT_SECRET = process.env.JWT_SECRET
+require('dotenv').config()
+const JWT_SECRET = process.env.JWT_SECRET
 
 const ToDo = require('../models/toDoModel')
 
@@ -18,15 +18,21 @@ const toDo_create_get = (req, res) => {
 }
 
 const toDo_create_post = (req, res) => {
-  const toDo = new ToDo({
-    type: req.body.type,
-    task: req.body.task,
-    done: req.body.done
-  })
+  try {
+    jwt.verify(req.headers.authorization, JWT_SECRET)
 
-  toDo.save()
-    .then(data => res.json(data))
-    .catch(err => res.json({ message: err }))
+    const toDo = new ToDo({
+      type: req.body.type,
+      task: req.body.task,
+      done: req.body.done
+    })
+
+    toDo.save()
+      .then(data => res.json(data))
+      .catch(err => res.json({ message: err }))
+  } catch (err) {
+    return res.status(401).json({ message: 'Token invalid' });
+  }
 }
 
 module.exports = {

@@ -12,7 +12,8 @@ const ToDoInput = () => {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'authorization': localStorage.getItem('token')
       },
       body: JSON.stringify({
         type: type,

@@ -1,7 +1,7 @@
-//const jwt = require('jsonwebtoken')
+const jwt = require('jsonwebtoken')
 
-//require('dotenv').config()
-//const JWT_SECRET = process.env.JWT_SECRET
+require('dotenv').config()
+const JWT_SECRET = process.env.JWT_SECRET
 
 const Timeline = require('../models/timelineModel')
 
@@ -17,15 +17,21 @@ const timeline_create_get = (req, res) => {
 }
 
 const timeline_create_post = (req, res) => {
-  const timeline = new Timeline({
-    time: req.body.time,
-    happening: req.body.happening,
-    place: req.body.place
-  })
+  try {
+    jwt.verify(req.headers.authorization, JWT_SECRET)
 
-  timeline.save()
-    .then(data => res.json(data))
-    .catch(err => res.json({ message: err }))
+    const timeline = new Timeline({
+      time: req.body.time,
+      happening: req.body.happening,
+      place: req.body.place
+    })
+
+    timeline.save()
+      .then(data => res.json(data))
+      .catch(err => res.json({ message: err }))
+  } catch (err) {
+    return res.status(401).json({ message: 'Token invalid' });
+  }
 }
 
 module.exports = {

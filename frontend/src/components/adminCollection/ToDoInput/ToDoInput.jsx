@@ -4,7 +4,6 @@ import React, { useState } from 'react'
 const ToDoInput = () => {
   const [type, setType] = useState('')
   const [task, setTask] = useState('')
-  const [done, setDone] = useState(false)
   const [res, setRes] = useState(false)
 
   const submit = () => {
@@ -17,8 +16,7 @@ const ToDoInput = () => {
       },
       body: JSON.stringify({
         type: type,
-        task: task,
-        done: done
+        task: task
       })
     }).then(res => res.json())
       .then(res => setRes(true))
@@ -28,7 +26,7 @@ const ToDoInput = () => {
   return (
     <div className="to-do-input">
       <div>
-        <input type="text" onChange={e => setType(e.target.value)} placeholder="típus" />
+        <input type="text" onChange={e => setType(e.target.value)} placeholder="Típus" />
       </div>
 
       <div>
@@ -41,20 +39,3 @@ const ToDoInput = () => {
 }
 
 export default ToDoInput
-/*
-<p>Öltöny</p>
-      <p>Menasszonyi ruha</p>
-      <p>Csokor</p>
-      <p>Gyűrű</p>
-
-      <p>Díszítés</p>
-      <p>Virágok</p>
-      <p>Teríték</p>
-
-      <p>Előétel</p>
-      <p>Főétel</p>
-      <p>Desszert</p>
-      <p>Torta</p>
-      <p>Hajnali kaja</p>
-      <p>Másnapi brunch</p>
-*/

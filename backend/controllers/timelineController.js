@@ -7,12 +7,7 @@ const Timeline = require('../models/timelineModel')
 
 const timeline_create_get = (req, res) => {
   Timeline.find()
-    .then(timelines => {
-      res.json(timelines)
-      /*if (jwt.verify(req.headers.authorization, "JWT_SECRET")) {
-         console.log(jwt.verify(req.headers.authorization, JWT_SECRET))
-       }*/
-    })
+    .then(timelines => res.json(timelines))
     .catch(err => res.status(400).json({ message: `Couldn't find accommodation ${err}` }))
 }
 

@@ -16,7 +16,7 @@ import Admin from "./components/adminCollection/Admin/Admin"
 const App = () => {
   const [accommodations, setAccommodations] = useState(null)
   const [events, setEvents] = useState(null)
-  const [toDos, setToDos] = useState(null)
+  const [toDos, setToDos] = useState('')
   const [user, setUser] = useState(null)
 
   useEffect(() => {
@@ -57,6 +57,12 @@ const App = () => {
     setUser("")
   }
 
+  const bla = toDos && toDos.map((toDo, i) =>
+    <div key={i}>
+      <p>{toDo.task}</p>
+    </div>
+  )
+
   return (
     <Router>
       <div className='app'>
@@ -90,7 +96,7 @@ const App = () => {
           </Route>
 
           <Route path='/to-do-list'>
-            <ToDos toDos={toDos} />
+            <ToDos toDos={toDos} bla={bla} />
           </Route>
 
           <Route path='/admin'>

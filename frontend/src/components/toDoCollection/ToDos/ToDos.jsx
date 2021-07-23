@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from 'uuid'
 const ToDos = ({ toDos }) => {
   const [done, setDone] = useState(false)
   const [updateById, setUpdateById] = useState(false)
-  const [deleteById, setDeleteById] = useState(false)
+  const [deleteById, setDeleteById] = useState('')
   const [checkboxValue, setCheckboxValue] = useState(false)
   const [resUpdate, setResDelete] = useState(false)
   const [resDelete, setResUpdate] = useState(false)
@@ -37,12 +37,14 @@ const ToDos = ({ toDos }) => {
       .catch(err => setResUpdate(false))
   }, [updateById])
 
-
   const deleteRecord = (toDo) => {
     //console.log(postId)
     setDeleteById(toDos.filter(item => item.key === toDo.key) && toDo._id)
   }
 
+  console.log(updateById)
+  console.log(deleteById)
+  /*
   useEffect(() => {
     fetch(`http://localhost:3001/to-do-list/${deleteById}`, {
       method: 'DELETE',
@@ -55,11 +57,7 @@ const ToDos = ({ toDos }) => {
       .then(res => setResDelete(true))
       .catch(err => setResDelete(false))
   }, [deleteById])
-
-  console.log(deleteById)
-
-
-  //console.log(done)
+*/
 
   return (
     <div className="to-do">
@@ -67,44 +65,44 @@ const ToDos = ({ toDos }) => {
 
       <h3>Ruha</h3>
       {
-        toDos && clothesList.map(cloth =>
+        toDos && clothesList.map(toDo =>
           <div key={uuidv4()}>
-            <span>{cloth.task}</span>
-            <input type="checkbox" checked={checkboxValue} onClick={() => updateRecord(cloth)} onChange={() => setDone(!done)} />
-            <button onClick={() => deleteRecord(cloth)}>xxx</button>
+            <span>{toDo.task}</span>
+            <input type="checkbox" checked={toDo.done ? true : false} onClick={() => updateRecord(toDo)} onChange={() => setDone(!toDo.done)} />
+            <button onClick={() => deleteRecord(toDo)}>xxx</button>
           </div>
         )
       }
 
       <h3>Díszlet</h3>
       {
-        toDos && designList.map(design =>
+        toDos && designList.map(toDo =>
           <div key={uuidv4()}>
-            <span>{design.task}</span>
-            <input type="checkbox" checked={checkboxValue} onClick={() => updateRecord(design)} onChange={() => setDone(!done)} />
-            <button>x</button>
+            <span>{toDo.task}</span>
+            <input type="checkbox" checked={checkboxValue} onClick={() => updateRecord(toDo)} onChange={() => setDone(!done)} />
+            <button onClick={() => deleteRecord(toDo)}>xxx</button>
           </div>
         )
       }
 
       <h3>Étel</h3>
       {
-        toDos && foodList.map(food =>
+        toDos && foodList.map(toDo =>
           <div key={uuidv4()}>
-            <span>{food.task}</span>
-            <input type="checkbox" checked={checkboxValue} onClick={() => updateRecord(food)} onChange={() => setDone(!done)} />
-            <button>x</button>
+            <span>{toDo.task}</span>
+            <input type="checkbox" checked={checkboxValue} onClick={() => updateRecord(toDo)} onChange={() => setDone(!done)} />
+            <button onClick={() => deleteRecord(toDo)}>xxx</button>
           </div>
         )
       }
 
       <h3>Egyéb</h3>
       {
-        toDos && otherList.map(other =>
+        toDos && otherList.map(toDo =>
           <div key={uuidv4()}>
-            <span>{other.task}</span>
-            <input type="checkbox" checked={checkboxValue} onClick={() => updateRecord(other)} onChange={() => setDone(!done)} />
-            <button>x</button>
+            <span>{toDo.task}</span>
+            <input type="checkbox" checked={checkboxValue} onClick={() => updateRecord(toDo)} onChange={() => setDone(!done)} />
+            <button onClick={() => deleteRecord(toDo)}>xxx</button>
           </div>
         )
       }

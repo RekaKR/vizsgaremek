@@ -4,11 +4,11 @@ const app = require("../server")
 const supertest = require("supertest")
 const request = supertest(app)
 
-//require('dotenv').config()
-//const JWT_SECRET = process.env.JWT_SECRET
-//https://stackoverflow.com/questions/25657190/how-to-get-dummy-google-access-token-to-test-oauth-google-api
+const jwt = require('jsonwebtoken')
+const verify = jest.spyOn(jwt, 'verify')
 
 const Accommodation = require('../models/accommodationModel')
+const User = require('../models/userModel')
 
 //Setup a test Database
 serverSetup("accommodation-testing")
@@ -28,18 +28,31 @@ describe("Test /accommodation endpoint", () => {
   })
 
   it("Should not create /accommodation /wo jwt", async () => {
-    console.log('Should not create /accommodation /wout jwt')
+    //given
+    const accommodationByUser = {
+      name: "Hotel name",
+      zip: 1067,
+      city: "City city",
+      street: "Street street",
+      houseNumber: 9,
+      phoneNumber: "+11111111111",
+      website: "website.com"
+    }
+
+    //when
+    const res = await request.post('/accommodation').send(accommodationByUser)
+
+    //then
+    const result = await Accommodation.findOne()
+
+    expect(result).toBeNull()
+
+    expect(res.status).toBe(401)
+    expect(res.body.message).toBe('Token missing')
   })
 
   it("Should not create /accommodation /w wrong jwt", async () => {
-    console.log('Should not create /accommodation /w wrong jwt')
-  })
-
-  it("Should not create /accommodation when not admin", async () => {
-    console.log('Should not create /accommodation when not admin')
-  })
-
-  it("Should create /accommodation when admin", async () => {
+    verify.mockImplementation(() => { throw new Error })
 
     //given
     const accommodationByUser = {
@@ -52,10 +65,74 @@ describe("Test /accommodation endpoint", () => {
       website: "website.com"
     }
 
-    const authorization = "bla"
+    //when
+    const res = await request.post('/accommodation').set('authorization', 'hasToken').send(accommodationByUser)
+
+    //then
+    const result = await Accommodation.findOne()
+
+    expect(result).toBeNull()
+
+    expect(res.status).toBe(401)
+    expect(res.body.message).toBe('Token invalid')
+  })
+
+  it("Should not create /accommodation when not admin", async () => {
+    const newUser = new User({
+      googleId: 123,
+      role: 'guest'
+    })
+
+    await newUser.save()
+
+    verify.mockImplementation(() => { return { google: 123 } })
+
+    //given
+    const accommodationByUser = {
+      name: "Hotel name",
+      zip: 1067,
+      city: "City city",
+      street: "Street street",
+      houseNumber: 9,
+      phoneNumber: "+11111111111",
+      website: "website.com"
+    }
 
     //when
-    const res = await request.post('/accommodation').send(accommodationByUser)
+    const res = await request.post('/accommodation').set('authorization', 'hasToken').send(accommodationByUser)
+
+    //then
+    const result = await Accommodation.findOne()
+
+    expect(result).toBeNull()
+
+    expect(res.status).toBe(401)
+    expect(res.body.message).toBe('User is not correct')
+  })
+
+  it("Should create /accommodation when admin", async () => {
+    const newUser = new User({
+      googleId: 123,
+      role: 'admin'
+    })
+
+    await newUser.save()
+
+    verify.mockImplementation(() => { return { google: 123 } })
+
+    //given
+    const accommodationByUser = {
+      name: "Hotel name",
+      zip: 1067,
+      city: "City city",
+      street: "Street street",
+      houseNumber: 9,
+      phoneNumber: "+11111111111",
+      website: "website.com"
+    }
+
+    //when
+    const res = await request.post('/accommodation').set('authorization', 'hasToken').send(accommodationByUser)
 
     //then
     const result = await Accommodation.findOne()
@@ -81,23 +158,6 @@ describe("Test /accommodation endpoint", () => {
     //expect(res.body).toEqual({ ...accommodationInDB, __v, _id: _id.toString()})
     expect(res.body).toEqual({ ...accommodationInDB, _id: _id.toString() })
 
-    /*
-    //MEGNÉZNI!!!!
-    expect(async () => {
-      await accommodationController.accommodation_create_post({
-        name: 1,
-        address: {
-          zip: 1068,
-          city: "City city2",
-          street: "Street street2",
-          houseNumber: 10
-        },
-        phoneNumber: "+36701111112",
-        website: "website2.com"
-      }).toThrow()
-    })
-    */
-    expect(accommodationController.accommodation_create_post).toThrowError('Couldn\'t save accommodation')
-
+    //    expect(accommodationController.accommodation_create_post).toThrowError('Couldn\'t save accommodation')
   })
 })

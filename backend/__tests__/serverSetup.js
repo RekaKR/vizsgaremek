@@ -31,7 +31,7 @@ async function dropAllCollections() {
   }
 }
 
-serverSetup = (serverName) => {
+const serverSetup = (serverName) => {
   //Server connection
   let mongoServer
 

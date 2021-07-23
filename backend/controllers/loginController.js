@@ -23,45 +23,45 @@ const login_create_post = (req, res) => {
       grant_type: "authorization_code"
     }),
   })
-    .then((res) => res.json())
+    .then(res => res.json())
     .then(data => getDataFromGoogle(data.id_token, res))
     .catch(() => res.status(404).json({ msg: 'Authentication failed!' }))
+}
 
-  const getDataFromGoogle = (data, res) => {
-    const { sub, email, name, picture, given_name, family_name } = jwt.decode(data)
+const getDataFromGoogle = (data, res) => {
+  const { sub, email, name, picture, given_name, family_name } = jwt.decode(data)
 
-    const user = User.findOne({ googleId: sub })
-      .then(user => {
-        if (!user) {
-          const user = new User({
-            username: `${family_name} ${given_name}`,
-            name: name,
-            email: email,
-            googleId: sub,
-            picture: picture,
-            plusOne: {
-              isComing: false,
-              name: "",
-              foodSensitivity: ""
-            },
+  const user = User.findOne({ googleId: sub })
+    .then(user => {
+      if (!user) {
+        const user = new User({
+          username: `${family_name} ${given_name}`,
+          name: name,
+          email: email,
+          googleId: sub,
+          picture: picture,
+          role: "admin",
+          plusOne: {
+            isComing: false,
+            name: "",
             foodSensitivity: ""
-          })
+          },
+          foodSensitivity: ""
+        })
 
-          user.save()
-            .then(data => res.json(data))
-            .catch(err => console.log(`somethingWentWrong ${err}`))
-        }
+        user.save()
+          .then(res => console.log("Done saving new user"))
+          .catch(err => console.log(`somethingWentWrong ${err}`))
+      }
 
-        jwt.sign({
-          "google": sub,
-          "email": email,
-          "name": name
-        }, JWT_SECRET, { expiresIn: '1h' },
-          (err, token) => res.json({ token: token }))
-      })
-      .catch(err => res.status(400).json({ message: `Couldn't find user ${err}` }))
-  }
-
+      jwt.sign({
+        "google": sub,
+        "email": email,
+        "name": name
+      }, JWT_SECRET, { expiresIn: '1h' },
+        (err, token) => res.json({ token: token }))
+    })
+    .catch(err => res.status(400).json({ message: `Couldn't find user ${err}` }))
 }
 
 module.exports = {

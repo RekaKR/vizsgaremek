@@ -27,44 +27,47 @@ const login_create_post = (req, res) => {
   })
     .then(res => res.json())
     .then(data => getDataFromGoogle(data.id_token, res))
-    .catch(() => res.status(404).json({ msg: 'Authentication failed!' }))
+    .catch(() => res.status(404).json({ message: 'Authentication failed!' }))
 }
 
 const getDataFromGoogle = (data, res) => {
   const { sub, email, name, picture, given_name, family_name } = jwt.decode(data)
 
-  const user = EmailList.findOne({ email: email })
-    .then(user => {
-      if (user) {
-        const newUser = new User({
-          username: `${family_name} ${given_name}`,
-          name: name,
-          email: email,
-          googleId: sub,
-          picture: picture,
-          role: user.role,
-          plusOne: {
-            isComing: false,
-            name: "",
-            foodSensitivity: ""
-          },
-          foodSensitivity: ""
-        })
+  EmailList.findOne({ email: email })
+    .then(foundEmail => {
+      if (!foundEmail) return res.status(400).json({ message: 'Couldn\'t find email' })
 
-        newUser.save()
-          .then(res => console.log("Done saving new user"))
-          .catch(err => console.log(`somethingWentWrong ${err}`))
-      }
+      User.findOne({ googleId: sub })
+        .then(user => {
+          if (!user) {
+            user = new User({
+              username: given_name,
+              name: name,
+              email: foundEmail.email,
+              googleId: sub,
+              picture: picture,
+              role: foundEmail.role,
+              plusOne: {
+                isComing: false,
+                name: "",
+                foodSensitivity: ""
+              },
+              foodSensitivity: ""
+            })
+
+            user.save()
+              .then(res => console.log("Done saving new user"))
+          }
+        })
 
       jwt.sign({
         "google": sub,
-        "email": email,
+        "email": foundEmail.email,
         "name": name,
-        "role": user.role
+        "role": foundEmail.role
       }, JWT_SECRET, { expiresIn: '1h' },
         (err, token) => res.json({ token: token }))
     })
-    .catch(err => res.status(400).json({ message: `Couldn't find user ${err}` }))
 }
 
 

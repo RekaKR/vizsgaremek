@@ -19,11 +19,15 @@ const Login = ({ checkToken }) => {
       })
     }).then(res => res.json())
       .then(data => {
-        localStorage.setItem('token', data.token)
-        history.push("/invitation")
-        checkToken()
+        if (data.message) {
+          console.log(data.message)
+        } else {
+          localStorage.setItem('token', data.token)
+          history.push("/invitation")
+          checkToken()
+        }
       })
-      .catch(err => console.log({ message: err }))
+    //.catch(err => console.log({ message: "Couldn't find user" }))
   }, [])
 
   return (

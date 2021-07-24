@@ -42,11 +42,13 @@ const Header = ({ googleSignIn, user, logout }) => {
         </Link>
       }
 
-      {
-        (role === 'couple' || role === 'weddingP' || role === 'photographer' || role === 'guest')
+      <button onClick={() => googleSignIn()}>Login</button>
+      <button onClick={() => logout()}>Logout</button>
+      {/*
+        role === 'couple' || role === 'weddingP' || role === 'photographer' || role === 'guest' || role === 'admin'
           ? <button onClick={() => googleSignIn()}>Login</button>
           : <button onClick={() => logout()}>Logout</button>
-      }
+      */}
     </div>
   )
 }

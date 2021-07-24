@@ -7,7 +7,7 @@ const GuestListAdmin = () => {
   const [deleteById, setDeleteById] = useState('')
   const [changeDelete, setChangeDelete] = useState(false)
   const [resDelete, setResDelete] = useState(0)
-  const [resPost, setResPost] = useState('')
+  const [resPost, setResPost] = useState(0)
   /*
     const resetRes = () => {
       if (resDelete === 10) setResDelete(0)

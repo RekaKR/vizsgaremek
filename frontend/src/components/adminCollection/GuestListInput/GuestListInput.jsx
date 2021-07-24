@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-const GuestListInput = ({ setResPost }) => {
+const GuestListInput = ({ resPost, setResPost }) => {
   const [email, setEmail] = useState('')
   const [role, setRole] = useState('')
 
@@ -17,7 +17,7 @@ const GuestListInput = ({ setResPost }) => {
         role: role,
       })
     }).then(res => res.json())
-      .then(res => setResPost(true))
+      .then(res => setResPost(resPost + 1))
       .catch(err => setResPost(false))
   }
 

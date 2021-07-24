@@ -17,6 +17,7 @@ const accommodation_create_get = (req, res) => {
 }
 
 //POST TO SERVER AN ACCOMMODATION
+//!!!!!!!!!!! EZ JÓ !!!!!!!!!!!!!
 const accommodation_create_post = (req, res) => {
   let payload
 
@@ -28,28 +29,23 @@ const accommodation_create_post = (req, res) => {
     return res.status(401).json({ message: 'Token invalid' })
   }
 
-  User.findOne({ googleId: payload.google })
-    .then(user => {
-      if (user && user.role === "admin") {
-        const accommodation = new Accommodation({
-          name: req.body.name,
-          address: {
-            zip: req.body.zip,
-            city: req.body.city,
-            street: req.body.street,
-            houseNumber: req.body.houseNumber,
-          },
-          phoneNumber: req.body.phoneNumber,
-          website: req.body.website
-        })
+  if (payload.role !== 'admin') return res.status(401).json({ message: 'User is not correct' })
 
-        accommodation.save()
-          .then(data => res.json(data))
-          .catch(err => res.json({ message: 'Couldn\'t save accommodation', err: err }))
-      } else {
-        res.status(401).json({ message: 'User is not correct' })
-      }
-    })
+  const accommodation = new Accommodation({
+    name: req.body.name,
+    address: {
+      zip: req.body.zip,
+      city: req.body.city,
+      street: req.body.street,
+      houseNumber: req.body.houseNumber,
+    },
+    phoneNumber: req.body.phoneNumber,
+    website: req.body.website
+  })
+
+  accommodation.save()
+    .then(data => res.json(data))
+    .catch(err => res.json({ message: 'Couldn\'t save accommodation', err: err }))
 }
 
 

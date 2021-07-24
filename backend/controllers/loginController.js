@@ -8,6 +8,7 @@ const GOOGLE_REDIRECT_URI = process.env.GOOGLE_REDIRECT_URI
 const JWT_SECRET = process.env.JWT_SECRET
 
 const User = require('../models/userModel')
+const EmailList = require('../models/EmailListModel')
 
 //CREATE A USER
 const login_create_post = (req, res) => {
@@ -32,16 +33,16 @@ const login_create_post = (req, res) => {
 const getDataFromGoogle = (data, res) => {
   const { sub, email, name, picture, given_name, family_name } = jwt.decode(data)
 
-  const user = User.findOne({ googleId: sub })
+  const user = EmailList.findOne({ email: email })
     .then(user => {
-      if (!user) {
-        const user = new User({
+      if (user) {
+        const newUser = new User({
           username: `${family_name} ${given_name}`,
           name: name,
           email: email,
           googleId: sub,
           picture: picture,
-          role: "admin",
+          role: user.role,
           plusOne: {
             isComing: false,
             name: "",
@@ -50,7 +51,7 @@ const getDataFromGoogle = (data, res) => {
           foodSensitivity: ""
         })
 
-        user.save()
+        newUser.save()
           .then(res => console.log("Done saving new user"))
           .catch(err => console.log(`somethingWentWrong ${err}`))
       }
@@ -58,7 +59,8 @@ const getDataFromGoogle = (data, res) => {
       jwt.sign({
         "google": sub,
         "email": email,
-        "name": name
+        "name": name,
+        "role": user.role
       }, JWT_SECRET, { expiresIn: '1h' },
         (err, token) => res.json({ token: token }))
     })

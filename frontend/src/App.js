@@ -15,7 +15,7 @@ import Admin from "./components/adminCollection/Admin/Admin"
 const App = () => {
   const [accommodations, setAccommodations] = useState(null)
   const [events, setEvents] = useState(null)
-  const [user, setUser] = useState(null)
+  const [user, setUser] = useState('')
 
   useEffect(() => {
     fetch('http://localhost:3001/accommodation')

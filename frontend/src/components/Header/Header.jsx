@@ -3,10 +3,7 @@ import { Link } from 'react-router-dom'
 //import '../../style/css/style.css'
 
 const Header = ({ googleSignIn, user, logout }) => {
-  const [couple, setCouple] = useState(true)
-  const [weddingP, setWeddingP] = useState(false)
-  const [photographer, setPhotographer] = useState(false)
-  const [guest, setGuest] = useState(false)
+  const role = user.role
 
   return (
     <div className="header">
@@ -15,14 +12,7 @@ const Header = ({ googleSignIn, user, logout }) => {
       </Link>
 
       {
-        (!couple && !weddingP && !photographer && !guest) &&
-        <Link to="/login">
-          LogInOut
-        </Link>
-      }
-
-      {
-        (couple || weddingP || guest) &&
+        (role === 'couple' || role === 'weddingP' || role === 'guest' || role === 'admin') &&
         <>
           <Link to="/profile">
             Profil
@@ -39,29 +29,24 @@ const Header = ({ googleSignIn, user, logout }) => {
       }
 
       {
-        (couple || weddingP || photographer || guest) &&
+        (role === 'couple' || role === 'weddingP' || role === 'photographer' || role === 'guest') &&
         <Link to="/galery">
           Galéria
         </Link>
       }
 
       {
-        (couple || weddingP) &&
+        (role === 'couple' || role === 'weddingP') &&
         <Link to="/admin">
           Admin
         </Link>
       }
 
-      {/*
-        (couple || weddingP || photographer || guest)
-
-          ? <button onClick={() => logout()}>Logout</button>
-          : <button onClick={() => googleSignIn()}>Login</button>
-        */}
-
-      <button onClick={() => logout()}>Logout</button>
-      <button onClick={() => googleSignIn()}>Login</button>
-
+      {
+        (role === 'couple' || role === 'weddingP' || role === 'photographer' || role === 'guest')
+          ? <button onClick={() => googleSignIn()}>Login</button>
+          : <button onClick={() => logout()}>Logout</button>
+      }
     </div>
   )
 }

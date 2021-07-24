@@ -17,33 +17,17 @@ const toDo_create_get = (req, res) => {
 
 //POST TO SERVER A TODO
 const toDo_create_post = (req, res) => {
-  let payload
+  const toDo = new ToDo({
+    type: req.body.type,
+    task: req.body.task,
+    done: req.body.done
+  })
 
-  if (!req.headers.authorization) return res.status(401).json({ message: 'Token missing' })
-
-  try {
-    payload = jwt.verify(req.headers.authorization, JWT_SECRET)
-  } catch (err) {
-    return res.status(401).json({ message: 'Token invalid' })
-  }
-
-  User.findOne({ googleId: payload.google })
-    .then(user => {
-      if (user && user.role === "admin") {
-        const toDo = new ToDo({
-          type: req.body.type,
-          task: req.body.task,
-          done: req.body.done
-        })
-
-        toDo.save()
-          .then(data => res.json(data))
-          .catch(err => res.json({ message: err }))
-      } else {
-        res.status(401).json({ message: 'User is not correct' })
-      }
-    })
+  toDo.save()
+    .then(data => res.json(data))
+    .catch(err => res.json({ message: err }))
 }
+
 /*
 //GET BACK A TODO BY ID
 const toDo_details_one = (req, red) => {

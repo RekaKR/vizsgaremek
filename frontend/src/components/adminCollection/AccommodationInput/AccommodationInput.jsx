@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { v4 as uuidv4 } from 'uuid'
 
 function AccommodationInput() {
   const [name, setName] = useState('')

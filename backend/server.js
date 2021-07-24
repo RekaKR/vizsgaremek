@@ -2,7 +2,6 @@ const express = require("express")
 const app = express()
 
 const cors = require('cors')
-//require('dotenv').config()
 
 
 //MIDDLEWARES
@@ -12,7 +11,6 @@ app.use(cors({
   origin: 'http://localhost:3000',
   credentials: true
 }))
-
 
 //ROUTES
 const accommodationRoutes = require('./routes/accommodationRoutes')

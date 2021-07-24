@@ -9,6 +9,7 @@ const JWT_SECRET = process.env.JWT_SECRET
 
 const User = require('../models/userModel')
 
+//CREATE A USER
 const login_create_post = (req, res) => {
   fetch("https://oauth2.googleapis.com/token", {
     method: "POST",
@@ -63,6 +64,7 @@ const getDataFromGoogle = (data, res) => {
     })
     .catch(err => res.status(400).json({ message: `Couldn't find user ${err}` }))
 }
+
 
 module.exports = {
   login_create_post

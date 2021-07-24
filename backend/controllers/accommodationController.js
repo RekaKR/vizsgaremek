@@ -7,14 +7,16 @@ const Accommodation = require('../models/accommodationModel')
 const User = require('../models/userModel')
 //accommodation_index         get all the box and inject that index view
 //accommodation_details       get a single blog
-//accommodation_delete        delete a blog
 
+
+//GET BACK ALL THE ACCOMMODATIONS
 const accommodation_create_get = (req, res) => {
   Accommodation.find()
     .then(accommodation => res.json(accommodation))
     .catch(err => res.status(400).json({ message: `Couldn't find accommodation ${err}` }))
 }
 
+//POST TO SERVER AN ACCOMMODATION
 const accommodation_create_post = (req, res) => {
   let payload
 
@@ -49,6 +51,7 @@ const accommodation_create_post = (req, res) => {
       }
     })
 }
+
 
 module.exports = {
   accommodation_create_get,

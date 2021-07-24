@@ -6,7 +6,7 @@ const GuestListAdmin = () => {
       <h3>Vendéglista</h3>
 
       <h4>Vendéglista (részletezve)</h4>
-      <h4>Vendég hozzáadása (profil létrehozása)</h4>
+      <h4>Vendég hozzáadása</h4>
     </div>
   )
 }

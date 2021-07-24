@@ -47,71 +47,23 @@ const Header = ({ googleSignIn, user, logout }) => {
 
       {
         (couple || weddingP) &&
-        <>
-          <Link to="/to-do-list">
-            Teendők
-          </Link>
-
-          <Link to="/admin">
-            Admin
-          </Link>
-        </>
+        <Link to="/admin">
+          Admin
+        </Link>
       }
 
+      {/*
+        (couple || weddingP || photographer || guest)
 
-      <button onClick={() => googleSignIn()}>Login</button>
-
+          ? <button onClick={() => logout()}>Logout</button>
+          : <button onClick={() => googleSignIn()}>Login</button>
+        */}
 
       <button onClick={() => logout()}>Logout</button>
-
+      <button onClick={() => googleSignIn()}>Login</button>
 
     </div>
   )
 }
 
 export default Header
-
-
-/*//Eng version
-<div className="header">
-
-  <Link to="/">
-  Invitation
-  </Link>
-
-  {(!couple && !weddingP && !photographer && !guest) && <Link to="/login">
-  LogInOut
-  </Link>}
-
-  {
-    (couple || weddingP || guest) &&
-    <>
-      <Link to="/profile">
-      Profile
-      </Link>
-      <Link to="/timeline">
-      Timeline
-      </Link>
-      <Link to="/accommodation">
-      Accommodation
-      </Link>
-    </>
-  }
-
-  {(couple || weddingP || photographer || guest) && <Link to="/galery">
-  Galery
-  </Link>}
-
-  {
-    (couple || weddingP) &&
-    <>
-      <Link to="/to-do-list">
-      ToDoList
-      </Link>
-      <Link to="/admin">
-      Admin
-      </Link>
-    </>
-  }
-</div>
-*/

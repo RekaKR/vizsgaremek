@@ -1,10 +1,8 @@
 import React, { useState } from 'react'
 
-//Listák, mik vannak kész
-const ToDoInput = () => {
+const ToDoInput = ({ resPost, setResPost }) => {
   const [type, setType] = useState('')
   const [task, setTask] = useState('')
-  const [res, setRes] = useState(false)
 
   const submit = () => {
     fetch('http://localhost:3001/to-do-list', {
@@ -19,8 +17,8 @@ const ToDoInput = () => {
         task: task
       })
     }).then(res => res.json())
-      .then(res => setRes(true))
-      .catch(err => setRes(false))
+      .then(res => setResPost(`${resPost}1`))
+      .catch(err => setResPost(false))
   }
 
   return (

@@ -10,13 +10,11 @@ import Profile from "./components/Profile/Profile"
 import Timeline from './components/timelineCollection/Timeline/Timeline'
 import Accommodations from "./components/accommodationCollection/Accommodations/Accommodations"
 import Galery from "./components/Feature/Galery/Galery"
-import ToDos from "./components/toDoCollection/ToDos/ToDos"
 import Admin from "./components/adminCollection/Admin/Admin"
 
 const App = () => {
   const [accommodations, setAccommodations] = useState(null)
   const [events, setEvents] = useState(null)
-  const [toDos, setToDos] = useState('')
   const [user, setUser] = useState(null)
 
   useEffect(() => {
@@ -29,11 +27,6 @@ const App = () => {
       .then(res => res.json())
       .then(data => setEvents(data))
       .catch(err => setEvents(null))
-
-    fetch('http://localhost:3001/to-do-list')
-      .then(res => res.json())
-      .then(data => setToDos(data))
-      .catch(err => setToDos(null))
   }, [])
 
   const checkToken = () => {
@@ -56,12 +49,6 @@ const App = () => {
     localStorage.removeItem('token')
     setUser("")
   }
-
-  const bla = toDos && toDos.map((toDo, i) =>
-    <div key={i}>
-      <p>{toDo.task}</p>
-    </div>
-  )
 
   return (
     <Router>
@@ -95,12 +82,8 @@ const App = () => {
             <Galery />
           </Route>
 
-          <Route path='/to-do-list'>
-            <ToDos toDos={toDos} bla={bla} />
-          </Route>
-
           <Route path='/admin'>
-            <Admin events={events} accommodations={accommodations} toDos={toDos} />
+            <Admin events={events} accommodations={accommodations} />
           </Route>
 
           <Route path='/'>

@@ -113,7 +113,7 @@ describe("Test /accommodation endpoint", () => {
   it("Should create /accommodation when admin", async () => {
     const newUser = new User({
       googleId: 123,
-      role: 'admin'
+      role: 'couple'
     })
 
     await newUser.save()

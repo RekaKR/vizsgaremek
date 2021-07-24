@@ -7,13 +7,13 @@ const Header = ({ googleSignIn, user, logout }) => {
 
   return (
     <div className="header">
-      <Link to="/">
-        Meghívó
-      </Link>
-
       {
-        (role === 'couple' || role === 'weddingP' || role === 'guest' || role === 'admin') &&
+        (role === 'couple' || role === 'weddingP' || role === 'guest') &&
         <>
+          <Link to="/">
+            Meghívó
+          </Link>
+
           <Link to="/profile">
             Profil
           </Link>
@@ -41,14 +41,12 @@ const Header = ({ googleSignIn, user, logout }) => {
           Admin
         </Link>
       }
-
       <button onClick={() => googleSignIn()}>Login</button>
-      <button onClick={() => logout()}>Logout</button>
-      {/*
-        role === 'couple' || role === 'weddingP' || role === 'photographer' || role === 'guest' || role === 'admin'
-          ? <button onClick={() => googleSignIn()}>Login</button>
-          : <button onClick={() => logout()}>Logout</button>
-      */}
+      {
+        role === 'couple' || role === 'weddingP' || role === 'photographer' || role === 'guest'
+          ? <button onClick={() => logout()}>Logout</button>
+          : <button onClick={() => googleSignIn()}>Login</button>
+      }
     </div>
   )
 }

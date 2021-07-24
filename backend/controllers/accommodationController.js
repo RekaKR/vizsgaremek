@@ -1,10 +1,5 @@
-const jwt = require('jsonwebtoken')
-
-require('dotenv').config()
-const JWT_SECRET = process.env.JWT_SECRET
-
 const Accommodation = require('../models/accommodationModel')
-const User = require('../models/userModel')
+//const User = require('../models/userModel')
 //accommodation_index         get all the box and inject that index view
 //accommodation_details       get a single blog
 
@@ -19,18 +14,6 @@ const accommodation_create_get = (req, res) => {
 //POST TO SERVER AN ACCOMMODATION
 //!!!!!!!!!!! EZ JÓ !!!!!!!!!!!!!
 const accommodation_create_post = (req, res) => {
-  let payload
-
-  if (!req.headers.authorization) return res.status(401).json({ message: 'Token missing' })
-
-  try {
-    payload = jwt.verify(req.headers.authorization, JWT_SECRET)
-  } catch (err) {
-    return res.status(401).json({ message: 'Token invalid' })
-  }
-
-  if (payload.role !== 'admin') return res.status(401).json({ message: 'User is not correct' })
-
   const accommodation = new Accommodation({
     name: req.body.name,
     address: {

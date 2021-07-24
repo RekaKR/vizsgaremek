@@ -20,10 +20,7 @@ function AdminAccommodation() {
         place: place
       })
     }).then(res => res.json())
-      .then(res => {
-        setRes(true)
-        console.log(res)
-      })
+      .then(res => setRes(true))
       .catch(err => setRes(false))
   }
 

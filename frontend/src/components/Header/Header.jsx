@@ -41,7 +41,7 @@ const Header = ({ googleSignIn, user, logout }) => {
           Admin
         </Link>
       }
-      <button onClick={() => googleSignIn()}>Login</button>
+
       {
         role === 'couple' || role === 'weddingP' || role === 'photographer' || role === 'guest'
           ? <button onClick={() => logout()}>Logout</button>

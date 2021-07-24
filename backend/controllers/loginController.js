@@ -10,6 +10,7 @@ const JWT_SECRET = process.env.JWT_SECRET
 const User = require('../models/userModel')
 const EmailList = require('../models/EmailListModel')
 
+
 //CREATE A USER
 const login_create_post = (req, res) => {
   fetch("https://oauth2.googleapis.com/token", {

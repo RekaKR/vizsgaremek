@@ -1,10 +1,9 @@
-const jwt = require('jsonwebtoken')
-
-require('dotenv').config()
-const JWT_SECRET = process.env.JWT_SECRET
+//const jwt = require('jsonwebtoken')
+//require('dotenv').config()
+//const JWT_SECRET = process.env.JWT_SECRET
 
 const EmailList = require('../models/EmailListModel')
-const User = require('../models/userModel')
+
 
 //GET BACK ALL THE EMAILLISTS
 const emailList_create_get = (req, res) => {

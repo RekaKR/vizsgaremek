@@ -1,10 +1,9 @@
-const jwt = require('jsonwebtoken')
-
-require('dotenv').config()
-const JWT_SECRET = process.env.JWT_SECRET
+//const jwt = require('jsonwebtoken')
+//require('dotenv').config()
+//const JWT_SECRET = process.env.JWT_SECRET
 
 const Timeline = require('../models/timelineModel')
-const User = require('../models/userModel')
+//const User = require('../models/userModel')
 
 
 //GET BACK ALL THE TIMELINES
@@ -15,6 +14,7 @@ const timeline_create_get = (req, res) => {
 }
 
 //POST TO SERVER A TIMELINE
+//done
 const timeline_create_post = (req, res) => {
   const timeline = new Timeline({
     time: req.body.time,

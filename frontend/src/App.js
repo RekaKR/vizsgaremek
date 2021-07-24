@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+//import { useHistory } from 'react-router-dom'
 import jwt_decode from 'jwt-decode'
 import './style/css/style.css'
 
@@ -13,6 +14,8 @@ import Galery from "./components/Feature/Galery/Galery"
 import Admin from "./components/adminCollection/Admin/Admin"
 
 const App = () => {
+  //let history = useHistory()
+
   const [accommodations, setAccommodations] = useState(null)
   const [events, setEvents] = useState(null)
   const [user, setUser] = useState('')
@@ -47,6 +50,7 @@ const App = () => {
 
   const logout = () => {
     localStorage.removeItem('token')
+    //history.push("/invitation")
     setUser("")
   }
 

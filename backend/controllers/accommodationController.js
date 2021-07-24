@@ -8,11 +8,11 @@ const Accommodation = require('../models/accommodationModel')
 const accommodation_create_get = (req, res) => {
   Accommodation.find()
     .then(accommodation => res.json(accommodation))
-    .catch(err => res.status(400).json({ message: `Couldn't find accommodation ${err}` }))
+    .catch(err => res.status(400).json({ message: `Couldn't find accommodation` }))
 }
 
 //POST TO SERVER AN ACCOMMODATION
-//!!!!!!!!!!! EZ JÓ !!!!!!!!!!!!!
+//done
 const accommodation_create_post = (req, res) => {
   const accommodation = new Accommodation({
     name: req.body.name,

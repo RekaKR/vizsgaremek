@@ -1,10 +1,9 @@
-const jwt = require('jsonwebtoken')
-
-require('dotenv').config()
-const JWT_SECRET = process.env.JWT_SECRET
+//const jwt = require('jsonwebtoken')
+//require('dotenv').config()
+//const JWT_SECRET = process.env.JWT_SECRET
 
 const ToDo = require('../models/toDoModel')
-const User = require('../models/userModel')
+//const User = require('../models/userModel')
 
 
 //GET BACK ALL THE TODOS
@@ -16,6 +15,7 @@ const toDo_create_get = (req, res) => {
 }
 
 //POST TO SERVER A TODO
+//done
 const toDo_create_post = (req, res) => {
   const toDo = new ToDo({
     type: req.body.type,

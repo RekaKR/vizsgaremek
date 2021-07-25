@@ -31,8 +31,23 @@ const accommodation_create_post = (req, res) => {
     .catch(err => res.json({ message: 'Couldn\'t save accommodation' }))
 }
 
+//DELETE AN ACCOMMODATION BY ID
+//HA NEM JÖN BE ADAT, AKKOR FALSE. HANDLING KELL!!!!
+const accommodation_delete_one = (req, res) => {
+  Accommodation.deleteOne({ _id: req.params.id }, function (err) {
+    if (err) {
+      console.log(err)
+    } else {
+      console.log("Successful deletion")
+    }
+  })
+    .then(deletedAccommodation => res.json(deletedAccommodation))
+    .catch(err => res.json({ message: err }))
+}
+
 
 module.exports = {
   accommodation_create_get,
-  accommodation_create_post
+  accommodation_create_post,
+  accommodation_delete_one
 }

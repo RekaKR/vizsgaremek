@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-function AccommodationInput() {
+function AccommodationInput({ resPostAcc, setResPostAcc }) {
   const [name, setName] = useState('')
   const [zip, setZip] = useState('')
   const [city, setCity] = useState('')
@@ -8,7 +8,6 @@ function AccommodationInput() {
   const [houseNumber, setHouseNumber] = useState('')
   const [phoneNumber, setPhoneNumber] = useState('')
   const [website, setWebsite] = useState('')
-  const [res, setRes] = useState(false)
 
   const submit = () => {
     fetch('http://localhost:3001/accommodation', {
@@ -28,11 +27,8 @@ function AccommodationInput() {
         website: website
       })
     }).then(res => res.json())
-      .then(data => {
-        setRes(true)
-        console.log(data)
-      })
-      .catch(err => setRes(false))
+      .then(data => setResPostAcc(resPostAcc + 1))
+      .catch(err => setResPostAcc(false))
   }
 
   return (

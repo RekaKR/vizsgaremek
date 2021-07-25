@@ -20,17 +20,25 @@ const App = () => {
   const [events, setEvents] = useState(null)
   const [user, setUser] = useState('')
 
+  const [resPostAcc, setResPostAcc] = useState(0)
+  const [resDeleteAcc, setResDeleteAcc] = useState(0)
+
+  const [resPostTime, setResPostTime] = useState(0)
+  const [resDeleteTime, setResDeleteTime] = useState(0)
+
   useEffect(() => {
     fetch('http://localhost:3001/accommodation')
       .then(res => res.json())
       .then(data => setAccommodations(data))
       .catch(err => setAccommodations(null))
+  }, [resPostAcc, resDeleteAcc])
 
+  useEffect(() => {
     fetch('http://localhost:3001/timeline')
       .then(res => res.json())
       .then(data => setEvents(data))
       .catch(err => setEvents(null))
-  }, [])
+  }, [resPostTime, resDeleteTime])
 
   const checkToken = () => {
     const token = localStorage.getItem('token')
@@ -87,7 +95,7 @@ const App = () => {
           </Route>
 
           <Route path='/admin'>
-            <Admin events={events} accommodations={accommodations} />
+            <Admin events={events} accommodations={accommodations} resPostAcc={resPostAcc} setResPostAcc={setResPostAcc} resDeleteAcc={resDeleteAcc} setResDeleteAcc={setResDeleteAcc} resPostTime={resPostTime} setResPostTime={setResPostTime} resDeleteTime={resDeleteTime} setResDeleteTime={setResDeleteTime} />
           </Route>
 
           <Route path='/'>
@@ -96,7 +104,7 @@ const App = () => {
         </Switch>
       </div>
     </Router >
-  );
+  )
 }
 
 export default App

@@ -28,7 +28,23 @@ const timeline_create_post = (req, res) => {
 }
 
 
+//DELETE A TIMELINE BY ID
+//HA NEM JÖN BE ADAT, AKKOR FALSE. HANDLING KELL!!!!
+const timeline_delete_one = (req, res) => {
+  Timeline.deleteOne({ _id: req.params.id }, function (err) {
+    if (err) {
+      console.log(err)
+    } else {
+      console.log("Successful deletion of timeline")
+    }
+  })
+    .then(deletedTimeline => res.json(deletedTimeline))
+    .catch(err => res.json({ message: err }))
+}
+
+
 module.exports = {
   timeline_create_get,
-  timeline_create_post
+  timeline_create_post,
+  timeline_delete_one
 }

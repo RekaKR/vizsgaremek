@@ -25,7 +25,7 @@ const emailList_create_post = (req, res) => {
     .catch(err => res.json({ message: 'Couldn\'t save email list' }))
 }
 
-//DELETE A TODO BY ID
+//DELETE A EMAILLIST BY ID
 //HA NEM JÖN BE ADAT, AKKOR FALSE. HANDLING KELL!!!!
 const emailList_delete_one = (req, res) => {
   EmailList.deleteOne({ _id: req.params.id }, function (err) {

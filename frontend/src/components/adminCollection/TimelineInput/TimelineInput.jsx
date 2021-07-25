@@ -1,10 +1,9 @@
 import React, { useState } from 'react'
 
-function AdminAccommodation() {
+function TimelineInput({ resPostTime, setResPostTime }) {
   const [time, setTime] = useState('')
   const [happening, setHappening] = useState('')
   const [place, setPlace] = useState('')
-  const [res, setRes] = useState(false)
 
   const submit = () => {
     fetch('http://localhost:3001/timeline', {
@@ -20,8 +19,8 @@ function AdminAccommodation() {
         place: place
       })
     }).then(res => res.json())
-      .then(res => setRes(true))
-      .catch(err => setRes(false))
+      .then(res => setResPostTime(resPostTime + 1))
+      .catch(err => setResPostTime(false))
   }
 
   return (
@@ -46,4 +45,4 @@ function AdminAccommodation() {
   );
 }
 
-export default AdminAccommodation
+export default TimelineInput

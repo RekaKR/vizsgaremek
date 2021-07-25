@@ -7,9 +7,9 @@ import AccommodationAdmin from '../AccommodationAdmin/AccommodationAdmin'
 import ToDoAdmin from '../toDoCollection/ToDoAdmin/ToDoAdmin'
 import SeatsAdmin from '../SeatsAdmin/SeatsAdmin'
 
-//Menetrend, Szállás, Ülésrend, Vendég lista/felhasználó hozzáadása - szerkesztés
-const Admin = ({ accommodations, events }) => {
+const Admin = (props) => {
   const { url, path } = useRouteMatch()
+  const { accommodations, events, resDeleteAcc, setResDeleteAcc, resPostAcc, setResPostAcc, resPostTime, setResPostTime, resDeleteTime, setResDeleteTime } = props
 
   return (
     <Router>
@@ -28,11 +28,11 @@ const Admin = ({ accommodations, events }) => {
           </Route>
 
           <Route path={`${path}/timeline`}>
-            <TimelineAdmin events={events} />
+            <TimelineAdmin events={events} resPostTime={resPostTime} setResPostTime={setResPostTime} resDeleteTime={resDeleteTime} setResDeleteTime={setResDeleteTime} />
           </Route>
 
           <Route path={`${path}/accommodations`}>
-            <AccommodationAdmin accommodations={accommodations} />
+            <AccommodationAdmin accommodations={accommodations} resPostAcc={resPostAcc} setResPostAcc={setResPostAcc} resDeleteAcc={resDeleteAcc} setResDeleteAcc={setResDeleteAcc} />
           </Route>
 
           <Route path={`${path}/to-do-list`}>

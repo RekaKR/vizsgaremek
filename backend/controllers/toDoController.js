@@ -49,17 +49,11 @@ const toDo_update_one = (req, res) => {
 }
 
 //DELETE A TODO BY ID
+//done
 const toDo_delete_one = (req, res) => {
-  //HA NEM JÖN BE ADAT, AKKOR FALSE. HANDLING KELL!!!!
-  ToDo.deleteOne({ _id: req.params.id }, function (err) {
-    if (err) {
-      console.log(err)
-    } else {
-      console.log("Successful deletion")
-    }
-  })
+  ToDo.deleteOne({ _id: req.params.id })
     .then(deletedToDo => res.json(deletedToDo))
-    .catch(err => res.json({ message: err }))
+    .catch(err => res.status(400).json({ message: 'Couldn\'t delete this todo' }))
 }
 
 

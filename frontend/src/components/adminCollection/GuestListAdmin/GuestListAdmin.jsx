@@ -26,19 +26,20 @@ const GuestListAdmin = () => {
   }
 
   useEffect(() => {
-    fetch(`http://localhost:3001/emailList/${deleteById}`, {
-      method: 'DELETE',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        'authorization': localStorage.getItem('token')
-      }
-    }).then(res => res.json())
-      .then(res => setResDelete(resDelete + 1))
-      .catch(err => setResDelete(false))
-    //.finally(() => resetRes())
+    if (deleteById) {
+      fetch(`http://localhost:3001/emailList/${deleteById}`, {
+        method: 'DELETE',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'authorization': localStorage.getItem('token')
+        }
+      }).then(res => res.json())
+        .then(res => setResDelete(resDelete + 1))
+        .catch(err => setResDelete(false))
+      //.finally(() => resetRes())
+    }
   }, [changeDelete])
-
 
   return (
     <div className="admin-guest-list">

@@ -22,20 +22,22 @@ const ToDos = ({ toDos, resetRes, resUpdate, setResUpdate, resDelete, setResDele
   }
 
   useEffect(() => {
-    fetch(`http://localhost:3001/to-do-list/${updateById}`, {
-      method: 'PATCH',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        'authorization': localStorage.getItem('token')
-      },
-      body: JSON.stringify({
-        done: done
-      })
-    }).then(res => res.json())
-      .then(res => setResUpdate(resUpdate + 1))
-      .catch(err => setResUpdate(false))
-      .finally(() => resetRes())
+    if (deleteById) {
+      fetch(`http://localhost:3001/to-do-list/${updateById}`, {
+        method: 'PATCH',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'authorization': localStorage.getItem('token')
+        },
+        body: JSON.stringify({
+          done: done
+        })
+      }).then(res => res.json())
+        .then(res => setResUpdate(resUpdate + 1))
+        .catch(err => setResUpdate(false))
+        .finally(() => resetRes())
+    }
   }, [changeUpdate])
 
   const deleteRecord = (toDo) => {

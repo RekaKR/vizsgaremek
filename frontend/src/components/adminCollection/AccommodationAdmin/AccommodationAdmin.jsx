@@ -12,17 +12,19 @@ function AccommodationAdmin({ accommodations, resDeleteAcc, setResDeleteAcc, res
   }
 
   useEffect(() => {
-    fetch(`http://localhost:3001/accommodation/${deleteById}`, {
-      method: 'DELETE',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        'authorization': localStorage.getItem('token')
-      }
-    }).then(res => res.json())
-      .then(res => setResDeleteAcc(resDeleteAcc + 1))
-      .catch(err => setResDeleteAcc(false))
-    //.finally(() => resetRes())
+    if (deleteById) {
+      fetch(`http://localhost:3001/accommodation/${deleteById}`, {
+        method: 'DELETE',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'authorization': localStorage.getItem('token')
+        }
+      }).then(res => res.json())
+        .then(res => setResDeleteAcc(resDeleteAcc + 1))
+        .catch(err => setResDeleteAcc(false))
+      //.finally(() => resetRes())
+    }
   }, [changeDelete])
 
   return (

@@ -26,17 +26,11 @@ const emailList_create_post = (req, res) => {
 }
 
 //DELETE AN EMAILLIST BY ID
-//HA NEM JÖN BE ADAT, AKKOR FALSE. HANDLING KELL!!!!
+//done
 const emailList_delete_one = (req, res) => {
-  EmailList.deleteOne({ _id: req.params.id }, function (err) {
-    if (err) {
-      console.log(err)
-    } else {
-      console.log("Successful deletion")
-    }
-  })
+  EmailList.deleteOne({ _id: req.params.id })
     .then(deletedEmailList => res.json(deletedEmailList))
-    .catch(err => res.json({ message: 'Couldn\'t delete email list' }))
+    .catch(err => res.status(400).json({ message: 'Couldn\'t delete this email-list' }))
 }
 
 

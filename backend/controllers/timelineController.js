@@ -29,17 +29,11 @@ const timeline_create_post = (req, res) => {
 
 
 //DELETE A TIMELINE BY ID
-//HA NEM JÖN BE ADAT, AKKOR FALSE. HANDLING KELL!!!!
+//done
 const timeline_delete_one = (req, res) => {
-  Timeline.deleteOne({ _id: req.params.id }, function (err) {
-    if (err) {
-      console.log(err)
-    } else {
-      console.log("Successful deletion of timeline")
-    }
-  })
+  Timeline.deleteOne({ _id: req.params.id })
     .then(deletedTimeline => res.json(deletedTimeline))
-    .catch(err => res.json({ message: err }))
+    .catch(err => res.status(400).json({ message: 'Couldn\'t delete this event' }))
 }
 
 

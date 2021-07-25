@@ -13,17 +13,19 @@ function TimelineAdmin({ events, resPostTime, setResPostTime, resDeleteTime, set
   }
 
   useEffect(() => {
-    fetch(`http://localhost:3001/timeline/${deleteById}`, {
-      method: 'DELETE',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        'authorization': localStorage.getItem('token')
-      }
-    }).then(res => res.json())
-      .then(res => setResDeleteTime(resDeleteTime + 1))
-      .catch(err => setResDeleteTime(false))
-    //.finally(() => resetRes())
+    if (deleteById) {
+      fetch(`http://localhost:3001/timeline/${deleteById}`, {
+        method: 'DELETE',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'authorization': localStorage.getItem('token')
+        }
+      }).then(res => res.json())
+        .then(res => setResDeleteTime(resDeleteTime + 1))
+        .catch(err => setResDeleteTime(false))
+      //.finally(() => resetRes())
+    }
   }, [changeDelete])
 
   return (

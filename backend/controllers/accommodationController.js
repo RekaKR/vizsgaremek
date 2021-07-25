@@ -32,17 +32,11 @@ const accommodation_create_post = (req, res) => {
 }
 
 //DELETE AN ACCOMMODATION BY ID
-//HA NEM JÖN BE ADAT, AKKOR FALSE. HANDLING KELL!!!!
+//done
 const accommodation_delete_one = (req, res) => {
-  Accommodation.deleteOne({ _id: req.params.id }, function (err) {
-    if (err) {
-      console.log(err)
-    } else {
-      console.log("Successful deletion")
-    }
-  })
+  Accommodation.deleteOne({ _id: req.params.id })
     .then(deletedAccommodation => res.json(deletedAccommodation))
-    .catch(err => res.json({ message: err }))
+    .catch(err => res.status(400).json({ message: 'Couldn\'t delete this accommodation' }))
 }
 
 

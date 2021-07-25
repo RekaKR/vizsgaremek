@@ -25,7 +25,7 @@ const toDo_create_post = (req, res) => {
 
   toDo.save()
     .then(data => res.json(data))
-    .catch(err => res.json({ message: err }))
+    .catch(err => res.status(401).json({ message: 'Couldn\'t save to-do' }))
 }
 
 /*

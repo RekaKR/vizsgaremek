@@ -9,7 +9,7 @@ const EmailList = require('../models/EmailListModel')
 const emailList_create_get = (req, res) => {
   EmailList.find()
     .then(emailLists => res.json(emailLists))
-    .catch(err => res.status(400).json({ message: `Couldn't find accommodation ${err}` }))
+    .catch(err => res.status(400).json({ message: `Couldn't find accommodation` }))
 }
 
 //POST TO SERVER AN EMAILLIST
@@ -25,7 +25,7 @@ const emailList_create_post = (req, res) => {
     .catch(err => res.json({ message: 'Couldn\'t save email list' }))
 }
 
-//DELETE A EMAILLIST BY ID
+//DELETE AN EMAILLIST BY ID
 //HA NEM JÖN BE ADAT, AKKOR FALSE. HANDLING KELL!!!!
 const emailList_delete_one = (req, res) => {
   EmailList.deleteOne({ _id: req.params.id }, function (err) {
@@ -36,7 +36,7 @@ const emailList_delete_one = (req, res) => {
     }
   })
     .then(deletedEmailList => res.json(deletedEmailList))
-    .catch(err => res.json({ message: err }))
+    .catch(err => res.json({ message: 'Couldn\'t delete email list' }))
 }
 
 

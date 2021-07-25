@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react"
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-//import { useHistory } from 'react-router-dom'
 import jwt_decode from 'jwt-decode'
 import './style/css/style.css'
 
@@ -14,8 +13,6 @@ import Galery from "./components/Feature/Galery/Galery"
 import Admin from "./components/adminCollection/Admin/Admin"
 
 const App = () => {
-  //let history = useHistory()
-
   const [accommodations, setAccommodations] = useState(null)
   const [events, setEvents] = useState(null)
   const [user, setUser] = useState('')
@@ -56,9 +53,11 @@ const App = () => {
       "https://accounts.google.com/o/oauth2/v2/auth?response_type=code&prompt=select_account&client_id=716515278040-8devcsi8fm1uh0mledpu00oknp3i3kpv.apps.googleusercontent.com&scope=openid%20profile email&redirect_uri=http://localhost:3000/login"
   }
 
+
+  //HISTORY-VAL NEM MEGY. OK?
   const logout = () => {
     localStorage.removeItem('token')
-    //history.push("/invitation")
+    window.location.href = "http://localhost:3000/"
     setUser("")
   }
 

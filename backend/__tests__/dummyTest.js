@@ -1,15 +1,9 @@
 const { serverSetup } = require("./serverSetup")
-
-//const app = require("../server")
-//const supertest = require("supertest")
-//const request = supertest(app)
-
 const Timeline = require('../models/timelineModel')
 
 
 //Setup a test Database
 serverSetup("dummy-testing")
-
 
 describe("Dummy tests for jest & server", () => {
   it('Checks if Jest works', () => {
@@ -17,7 +11,7 @@ describe("Dummy tests for jest & server", () => {
   })
 
   it('Successfully insert & get information from the database', async () => {
-    //insert information to database
+    //Insert information to database
     await Timeline.insertMany([
       {
         time: "Time test",
@@ -31,18 +25,18 @@ describe("Dummy tests for jest & server", () => {
       }
     ])
 
-    //get information from database
+    //Get information from database
     const timelines = await Timeline.find()
 
-    //tests if database is correct
+    //Tests if database is correct
     expect(typeof timelines).toBe('object')
     expect(timelines.length).toBeGreaterThanOrEqual(1)
     expect(timelines).toHaveLength(2)
 
-    //tests if every element of timelines is present in the database
+    //Tests if every element of timelines is present in the database
     const properties = ['_id', 'time', 'happening', 'place']
 
-    timelines.forEach((timeline) => {
+    timelines.forEach(timeline => {
       expect(timeline.time && timeline.happening && timeline.place).toBeTruthy()
 
       properties.map(property => {
@@ -50,7 +44,7 @@ describe("Dummy tests for jest & server", () => {
       })
     })
 
-    //tests if database gives back the correct elements of random timeline
+    //Tests if database gives back the correct elements of random timeline
     expect(timelines[0].time).toBe("Time test")
     expect(timelines[1].happening).toBe("Happening test2")
     expect(timelines[0].place).toBe("Place test")

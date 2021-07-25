@@ -2,6 +2,9 @@ const mongoose = require('mongoose')
 //mongoose.promise = global.Promise
 const { MongoMemoryServer } = require('mongodb-memory-server')
 
+const jwt = require('jsonwebtoken')
+const verify = jest.spyOn(jwt, 'verify')
+
 
 async function removeAllCollections() {
   const collections = Object.keys(mongoose.connection.collections)
@@ -51,7 +54,7 @@ const serverSetup = (serverName) => {
     await removeAllCollections()
   })
 
-  // Disconnect Mongoose
+  //Disconnect Mongoose
   afterAll(async () => {
     await dropAllCollections()
 
@@ -62,9 +65,19 @@ const serverSetup = (serverName) => {
   })
 }
 
+const mockSetup = () => {
+  //Cleans up mocks between each test
+  afterEach(async () => {
+    await verify.mockReset()
+  })
+}
+
 it('MongoMemoryServer is connected', async () => {
   expect(mongoose).toBeDefined()
 })
 
 
-module.exports = { serverSetup }
+module.exports = {
+  serverSetup,
+  mockSetup
+}

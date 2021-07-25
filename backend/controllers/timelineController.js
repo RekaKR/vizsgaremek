@@ -24,7 +24,7 @@ const timeline_create_post = (req, res) => {
 
   timeline.save()
     .then(data => res.json(data))
-    .catch(err => res.json({ message: 'Couldn\'t save timeline' }))
+    .catch(err => res.status(401).json({ message: 'Couldn\'t save timeline' }))
 }
 
 

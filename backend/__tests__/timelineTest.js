@@ -175,7 +175,7 @@ describe("Test /timeline endpoint", () => {
     expect(result).toBeNull()
 
     expect(res.status).toBe(401)
-    expect(res.body.message).toBe('Couldn\'t save timeline')
+    expect(res.body.message).toBe('Can\'t save this event')
   })
   //ha egy időben nem lehet kettő, akkor megnézni kettőt egy időbpontra. Ha van kettő, akkor hogy nem jó-e.
 })

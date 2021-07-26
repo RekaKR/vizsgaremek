@@ -1,14 +1,11 @@
 const Accommodation = require('../models/accommodationModel')
-//const User = require('../models/userModel')
-//accommodation_index         get all the box and inject that index view
-//accommodation_details       get a single blog
 
 
 //GET BACK ALL THE ACCOMMODATIONS
 const accommodation_create_get = (req, res) => {
   Accommodation.find()
     .then(accommodation => res.json(accommodation))
-    .catch(err => res.status(400).json({ message: `Couldn't find accommodation` }))
+    .catch(err => res.status(403).json({ message: `Can\'t find accommodation` }))
 }
 
 //POST TO SERVER AN ACCOMMODATION
@@ -28,7 +25,7 @@ const accommodation_create_post = (req, res) => {
 
   accommodation.save()
     .then(data => res.json(data))
-    .catch(err => res.status(401).json({ message: 'Couldn\'t save accommodation' }))
+    .catch(err => res.status(401).json({ message: 'Can\'t save accommodation' }))
 }
 
 //DELETE AN ACCOMMODATION BY ID
@@ -36,7 +33,7 @@ const accommodation_create_post = (req, res) => {
 const accommodation_delete_one = (req, res) => {
   Accommodation.deleteOne({ _id: req.params.id })
     .then(deletedAccommodation => res.json(deletedAccommodation))
-    .catch(err => res.status(400).json({ message: 'Couldn\'t delete this accommodation' }))
+    .catch(err => res.status(400).json({ message: 'Can\'t delete this accommodation' }))
 }
 
 

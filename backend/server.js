@@ -23,7 +23,7 @@ app.use('/accommodation', accommodationRoutes)
 app.use('/timeline', timelineRoutes)
 app.use('/to-do-list', toDoRoutes)
 app.use('/login', loginRoutes)
-app.use('/emailList', emailListRoutes)
+app.use('/emaillist', emailListRoutes)
 
 
 module.exports = app

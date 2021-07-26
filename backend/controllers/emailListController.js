@@ -1,15 +1,12 @@
-//const jwt = require('jsonwebtoken')
-//require('dotenv').config()
-//const JWT_SECRET = process.env.JWT_SECRET
-
 const EmailList = require('../models/EmailListModel')
 
 
 //GET BACK ALL THE EMAILLISTS
+//done
 const emailList_create_get = (req, res) => {
   EmailList.find()
     .then(emailLists => res.json(emailLists))
-    .catch(err => res.status(400).json({ message: `Couldn't find accommodation` }))
+    .catch(err => res.status(403).json({ message: `Can\'t find email list` }))
 }
 
 //POST TO SERVER AN EMAILLIST
@@ -22,7 +19,7 @@ const emailList_create_post = (req, res) => {
 
   emailList.save()
     .then(data => res.json(data))
-    .catch(err => res.json({ message: 'Couldn\'t save email list' }))
+    .catch(err => res.status(401).json({ message: 'Can\'t save email list' }))
 }
 
 //DELETE AN EMAILLIST BY ID
@@ -30,7 +27,7 @@ const emailList_create_post = (req, res) => {
 const emailList_delete_one = (req, res) => {
   EmailList.deleteOne({ _id: req.params.id })
     .then(deletedEmailList => res.json(deletedEmailList))
-    .catch(err => res.status(400).json({ message: 'Couldn\'t delete this email-list' }))
+    .catch(err => res.status(400).json({ message: 'Can\'t delete this email-list' }))
 }
 
 

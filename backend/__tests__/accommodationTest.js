@@ -211,6 +211,6 @@ describe("Test /accommodation endpoint", () => {
     expect(result).toBeNull()
 
     expect(res.status).toBe(401)
-    expect(res.body.message).toBe('Couldn\'t save accommodation')
+    expect(res.body.message).toBe('Can\'t save accommodation')
   })
 })

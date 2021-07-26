@@ -175,6 +175,6 @@ describe("Test /to-do-list endpoint", () => {
     expect(result).toBeNull()
 
     expect(res.status).toBe(401)
-    expect(res.body.message).toBe('Couldn\'t save to-do')
+    expect(res.body.message).toBe('Can\'t save to-do')
   })
 })

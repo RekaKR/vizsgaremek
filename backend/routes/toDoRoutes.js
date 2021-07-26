@@ -12,7 +12,5 @@ router.patch('/:id', authenticationChecker.aChecker, toDoController.toDo_update_
 
 router.delete('/:id', authenticationChecker.aChecker, toDoController.toDo_delete_one)
 
-//router.get('/:id', toDoController.toDo_details)
-
 
 module.exports = router

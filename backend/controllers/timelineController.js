@@ -1,16 +1,11 @@
-//const jwt = require('jsonwebtoken')
-//require('dotenv').config()
-//const JWT_SECRET = process.env.JWT_SECRET
-
 const Timeline = require('../models/timelineModel')
-//const User = require('../models/userModel')
 
 
 //GET BACK ALL THE TIMELINES
 const timeline_create_get = (req, res) => {
   Timeline.find()
     .then(timelines => res.json(timelines))
-    .catch(err => res.status(400).json({ message: `Couldn't find accommodation ${err}` }))
+    .catch(err => res.status(403).json({ message: `Can\'t find events` }))
 }
 
 //POST TO SERVER A TIMELINE
@@ -24,7 +19,7 @@ const timeline_create_post = (req, res) => {
 
   timeline.save()
     .then(data => res.json(data))
-    .catch(err => res.status(401).json({ message: 'Couldn\'t save timeline' }))
+    .catch(err => res.status(401).json({ message: 'Can\'t save this event' }))
 }
 
 
@@ -33,7 +28,7 @@ const timeline_create_post = (req, res) => {
 const timeline_delete_one = (req, res) => {
   Timeline.deleteOne({ _id: req.params.id })
     .then(deletedTimeline => res.json(deletedTimeline))
-    .catch(err => res.status(400).json({ message: 'Couldn\'t delete this event' }))
+    .catch(err => res.status(400).json({ message: 'Can\'t delete this event' }))
 }
 
 

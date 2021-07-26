@@ -14,7 +14,9 @@ const GuestListAdmin = () => {
     }
   */
   useEffect(() => {
-    fetch('http://localhost:3001/emailList')
+    fetch('http://localhost:3001/emaillist', {
+      'authorization': localStorage.getItem('token')
+    })
       .then(res => res.json())
       .then(data => setGuests(data))
       .catch(err => setGuests(null))
@@ -27,7 +29,7 @@ const GuestListAdmin = () => {
 
   useEffect(() => {
     if (deleteById) {
-      fetch(`http://localhost:3001/emailList/${deleteById}`, {
+      fetch(`http://localhost:3001/emaillist/${deleteById}`, {
         method: 'DELETE',
         headers: {
           'Accept': 'application/json',

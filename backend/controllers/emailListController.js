@@ -5,7 +5,7 @@ const EmailList = require('../models/EmailListModel')
 //done
 const emailList_create_get = (req, res) => {
   EmailList.find()
-    .then(emailLists => res.json(emailLists))
+    .then(emaillists => res.json(emaillists))
     .catch(err => res.status(403).json({ message: `Can\'t find email list` }))
 }
 

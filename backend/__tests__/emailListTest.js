@@ -215,7 +215,7 @@ describe("Test /emaillist endpoint", () => {
 
       //given
       const emailListByUser = {
-        email: null, //it is a required field at timelineSchema
+        email: null, //it is a required field at emailListSchema
         role: "guest",
       }
 
@@ -229,6 +229,49 @@ describe("Test /emaillist endpoint", () => {
 
       expect(res.status).toBe(401)
       expect(res.body.message).toBe('Can\'t save email list')
+    })
+
+    it("Should not create /emaillist when not all required fields are filled", async () => {
+      verify.mockImplementation(() => { return { role: 'couple' } })
+
+      //given
+      const emailListByUser = {
+        email: "email@cim.hu",
+        role: "guest1",
+      }
+
+      const emailListByUser2 = {
+        email: "email@cim.hu", //it must be different from the "email" field before as it is an unique field at emailListSchema
+        role: "guest2",
+      }
+
+      //when
+      const res = await request.post('/emaillist').set('authorization', 'hasToken').send(emailListByUser)
+      const res2 = await request.post('/emaillist').set('authorization', 'hasToken').send(emailListByUser2)
+
+      //then
+      const result = await EmailList.find({})
+
+      expect(result).not.toBeNull()
+      expect(result).toHaveLength(1)
+
+      result.forEach(item => {
+        const emailListInDB = item.toJSON()
+
+        expect(emailListInDB.__v).toBeDefined()
+        expect(emailListInDB._id).toBeDefined()
+
+        const __v = emailListInDB.__v
+        const _id = emailListInDB._id
+
+        expect(emailListInDB).toEqual({ ...emailListByUser, __v, _id })
+        expect(emailListInDB).not.toEqual({ ...emailListByUser2, __v, _id })
+
+        expect(res.status).toBe(200)
+        expect(res.body).toEqual({ ...emailListByUser, __v, _id: _id.toString() })
+        expect(res.body).not.toEqual({ ...emailListByUser2, __v, _id: _id.toString() })
+        expect(res.body).toEqual({ ...emailListInDB, __v, _id: _id.toString() })
+      })
     })
   })
 })

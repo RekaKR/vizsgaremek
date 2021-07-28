@@ -38,6 +38,9 @@ const Profile = ({ user }) => {
       <p>Étel érzékenység: {profile && profile.foodSensitivity}</p>
 
       <p>Add calendar</p>
+
+
+      
     </div>
   )
 }

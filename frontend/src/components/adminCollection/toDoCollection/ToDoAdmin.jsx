@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import ToDos from '../ToDos/ToDos'
-import ToDoInput from '../ToDoInput/ToDoInput'
+import ToDos from './ToDos'
+import ToDoInput from './ToDoInput'
 
 const ToDoAdmin = () => {
   const [toDos, setToDos] = useState('')

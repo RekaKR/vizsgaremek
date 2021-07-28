@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { v4 as uuidv4 } from 'uuid'
-import Event from '../../timelineCollection/Event/Event'
-import TimelineInput from '../TimelineInput/TimelineInput'
+import Event from '../../timelineCollection/Event'
+import TimelineInput from './TimelineInput'
 
 function TimelineAdmin({ events, resPostTime, setResPostTime, resDeleteTime, setResDeleteTime }) {
   const [deleteById, setDeleteById] = useState('')

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { v4 as uuidv4 } from 'uuid'
-import AccommodationInput from '../AccommodationInput/AccommodationInput'
+import AccommodationInput from './AccommodationInput'
 
 function AccommodationAdmin({ accommodations, resDeleteAcc, setResDeleteAcc, resPostAcc, setResPostAcc }) {
   const [deleteById, setDeleteById] = useState('')

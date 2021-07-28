@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { v4 as uuidv4 } from 'uuid'
-import GuestListInput from '../GuestListInput/GuestListInput'
+import GuestListInput from './GuestListInput'
 
 const GuestListAdmin = () => {
   const [guests, setGuests] = useState(null)
@@ -15,7 +15,9 @@ const GuestListAdmin = () => {
   */
   useEffect(() => {
     fetch('http://localhost:3001/emaillist', {
-      'authorization': localStorage.getItem('token')
+      headers: {
+        'authorization': localStorage.getItem('token')
+      }
     })
       .then(res => res.json())
       .then(data => setGuests(data))

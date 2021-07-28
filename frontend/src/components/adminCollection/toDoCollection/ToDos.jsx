@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { v4 as uuidv4 } from 'uuid'
-import ToDoItem from '../ToDoItem.jsx/ToDoItem'
+import ToDoItem from './ToDoItem'
 
 //todoadminba rakni, vagy ide?
 const ToDos = ({ toDos, resetRes, resUpdate, setResUpdate, resDelete, setResDelete }) => {

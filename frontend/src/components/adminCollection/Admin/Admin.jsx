@@ -1,11 +1,11 @@
 import React from 'react'
 import { BrowserRouter as Router, Switch, Route, useRouteMatch } from 'react-router-dom'
 import AdminHeader from '../AdminHeader/AdminHeader'
-import GuestListAdmin from '../GuestListAdmin/GuestListAdmin'
-import TimelineAdmin from '../TimelineAdmin/TimelineAdmin'
-import AccommodationAdmin from '../AccommodationAdmin/AccommodationAdmin'
-import ToDoAdmin from '../toDoCollection/ToDoAdmin/ToDoAdmin'
-import SeatsAdmin from '../SeatsAdmin/SeatsAdmin'
+import GuestListAdmin from '../guestListCollection/GuestListAdmin'
+import TimelineAdmin from '../timelineCollection/TimelineAdmin'
+import AccommodationAdmin from '../accommodationCollectionAdmin/AccommodationAdmin'
+import ToDoAdmin from '../toDoCollection/ToDoAdmin'
+import SeatsAdmin from '../seatsCollection/SeatsAdmin'
 
 const Admin = (props) => {
   const { url, path } = useRouteMatch()

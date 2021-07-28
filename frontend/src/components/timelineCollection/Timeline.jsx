@@ -1,7 +1,6 @@
 import React from 'react'
 import { v4 as uuidv4 } from 'uuid'
-import Event from '../Event/Event'
-//Esküvő menetrend
+import Event from './Event'
 
 const Timeline = ({ events }) => {
 

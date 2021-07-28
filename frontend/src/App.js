@@ -7,8 +7,8 @@ import Header from './components/Header/Header'
 import Invitation from "./components/Invitation/Invitation"
 import Login from "./components/Login/Login"
 import Profile from "./components/Profile/Profile"
-import Timeline from './components/timelineCollection/Timeline/Timeline'
-import Accommodations from "./components/accommodationCollection/Accommodations/Accommodations"
+import Timeline from './components/timelineCollection/Timeline'
+import Accommodations from "./components/accommodationCollection/Accommodations"
 import Galery from "./components/Feature/Galery/Galery"
 import Admin from "./components/adminCollection/Admin/Admin"
 

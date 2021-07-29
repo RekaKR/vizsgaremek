@@ -13,12 +13,12 @@ function AccommodationAdmin({ accommodations, resDeleteAcc, setResDeleteAcc, res
 
   useEffect(() => {
     if (deleteById) {
-      fetch(`http://localhost:3001/accommodation/${deleteById}`, {
+      fetch(`http://localhost:3001/api/accommodation/${deleteById}`, {
         method: 'DELETE',
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json',
-          'authorization': localStorage.getItem('token')
+          'Authorization': localStorage.getItem('token')
         }
       }).then(res => res.json())
         .then(res => setResDeleteAcc(resDeleteAcc + 1))
@@ -42,7 +42,7 @@ function AccommodationAdmin({ accommodations, resDeleteAcc, setResDeleteAcc, res
 
       <AccommodationInput resPostAcc={resPostAcc} setResPostAcc={setResPostAcc} />
     </div>
-  );
+  )
 }
 
 export default AccommodationAdmin

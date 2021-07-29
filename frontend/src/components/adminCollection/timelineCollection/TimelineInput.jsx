@@ -6,12 +6,12 @@ function TimelineInput({ resPostTime, setResPostTime }) {
   const [place, setPlace] = useState('')
 
   const submit = () => {
-    fetch('http://localhost:3001/timeline', {
+    fetch('http://localhost:3001/api/timeline', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
-        'authorization': localStorage.getItem('token')
+        'Authorization': localStorage.getItem('token')
       },
       body: JSON.stringify({
         time: time,
@@ -42,7 +42,7 @@ function TimelineInput({ resPostTime, setResPostTime }) {
 
       <button disabled={!(time && happening && place)} onClick={() => submit()}>Submit</button>
     </div>
-  );
+  )
 }
 
 export default TimelineInput

@@ -3,25 +3,46 @@ const mongoose = require('mongoose')
 const userSchema = mongoose.Schema({
   username: {
     type: String,
+    required: true,
   },
+
   name: {
     type: String,
+    required: true,
   },
+
   email: {
     type: String,
-    //    required: true,
-    //    unique: true
+    required: true,
+    unique: true
   },
+
   googleId: {
-    type: String
+    type: String,
+    required: true,
+    unique: true
   },
-  role: String,
-  picture: String,
+
+  role: {
+    type: String,
+    required: true,
+  },
+
+  picture: {
+    type: String,
+    required: true,
+  },
+
   plusOne: {
-    isComing: Boolean,
+    isComing: {
+      type: Boolean,
+      required: true,
+    },
+
     name: String,
     foodSensitivity: String
   },
+
   foodSensitivity: String
 })
 

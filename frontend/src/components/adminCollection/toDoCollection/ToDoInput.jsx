@@ -5,12 +5,12 @@ const ToDoInput = ({ resPost, setResPost }) => {
   const [task, setTask] = useState('')
 
   const submit = () => {
-    fetch('http://localhost:3001/to-do-list', {
+    fetch('http://localhost:3001/api/to-do-list', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
-        'authorization': localStorage.getItem('token')
+        'Authorization': localStorage.getItem('token')
       },
       body: JSON.stringify({
         type: type,

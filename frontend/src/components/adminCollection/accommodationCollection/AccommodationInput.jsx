@@ -10,12 +10,12 @@ function AccommodationInput({ resPostAcc, setResPostAcc }) {
   const [website, setWebsite] = useState('')
 
   const submit = () => {
-    fetch('http://localhost:3001/accommodation', {
+    fetch('http://localhost:3001/api/accommodation', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
-        'authorization': localStorage.getItem('token')
+        'Authorization': localStorage.getItem('token')
       },
       body: JSON.stringify({
         name: name,

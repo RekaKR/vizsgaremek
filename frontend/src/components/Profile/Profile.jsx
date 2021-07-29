@@ -1,16 +1,13 @@
 import React, { useState, useEffect } from 'react'
-//Listázza a személyes dolgokat
 //KÜLSŐ API - GOOGLE NAPTÁRBA ADÁS
 
-const Profile = ({ user }) => {
-  const google = user.google
-
+const Profile = () => {
   const [profile, setProfile] = useState(null)
 
   useEffect(() => {
-    fetch('http://localhost:3001/user', {
+    fetch('http://localhost:3001/api/user', {
       headers: {
-        'authorization': localStorage.getItem('token')
+        'Authorization': localStorage.getItem('token')
       }
     })
       .then(res => res.json())
@@ -18,29 +15,66 @@ const Profile = ({ user }) => {
       .catch(err => setProfile(null))
   }, [])
 
+
+
+  const [plusOneName, setPlusOneName] = useState(null)
+  const [plusOneFoodS, setPlusOneFoodS] = useState(null)
+  const [resPatchUser, setResPatchUser] = useState(0)
+
+  const submit = () => {
+    fetch('http://localhost:3001/api/user', {
+      method: 'PATCH',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': localStorage.getItem('token')
+      },
+      body: JSON.stringify({
+        name: plusOneName,
+        foodSensitivity: plusOneFoodS
+      })
+    }).then(res => res.json())
+      .then(data => setResPatchUser(resPatchUser + 1))
+      .catch(err => setResPatchUser(false))
+  }
+
   return (
     <div className="profile">
       <h2>Profil</h2>
 
-      <p>Szia {profile && profile.username}!</p>
-      <p>{profile && profile.name} nem kell ide || {profile && profile.role} nem kell ide</p>
-
       {
-        profile && profile.plusOne.isComing
+        profile
           ? <>
-            <p>+1 főt: Igen</p>
-            <p>Név: {profile && profile.plusOne.name}</p>
-            <p>Étel érzékenysége van-e: {profile && profile.plusOne.foodSensitivy}</p>
+            <p>Szia {profile.username}!</p>
+            <p>({profile.name} nem kell ide || {profile && profile.role} nem kell ide)</p>
+
+            {
+              profile.plusOne.isComing
+                ? <>
+                  <p>+1 főt: Igen</p>
+
+                  <div>
+                    <p>Név: {profile.plusOne.name}</p>
+                    <input type="text" onChange={e => setPlusOneName(e.target.value)} placeholder="+1 fő" />
+                  </div>
+
+                  <div>
+                    <p>Étel érzékenysége van-e: {profile.plusOne.foodSensitivy}</p>
+                    <input type="text" onChange={e => setPlusOneFoodS(e.target.value)} placeholder="+1 fő" />
+                  </div>
+
+
+                  <button disabled={!(plusOneName)} onClick={() => submit()}>Submit</button>
+                </>
+                : <p>+1 főt: Nem</p>
+            }
+
+            <p>Étel érzékenység: {profile.foodSensitivity ? profile.foodSensitivity : "Nincs"}</p>
           </>
-          : <p>+1 főt: Nem</p>
+          : "Loading.."
       }
 
-      <p>Étel érzékenység: {profile && profile.foodSensitivity}</p>
-
-      <p>Add calendar</p>
-
-
-      
+      {/*<p>Add calendar</p>*/}
     </div>
   )
 }

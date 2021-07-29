@@ -14,15 +14,15 @@ function TimelineAdmin({ events, resPostTime, setResPostTime, resDeleteTime, set
 
   useEffect(() => {
     if (deleteById) {
-      fetch(`http://localhost:3001/timeline/${deleteById}`, {
+      fetch(`http://localhost:3001/api/timeline/${deleteById}`, {
         method: 'DELETE',
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json',
-          'authorization': localStorage.getItem('token')
+          'Authorization': localStorage.getItem('token')
         }
       }).then(res => res.json())
-        .then(res => setResDeleteTime(resDeleteTime + 1))
+        .then(data => setResDeleteTime(resDeleteTime + 1))
         .catch(err => setResDeleteTime(false))
       //.finally(() => resetRes())
     }
@@ -43,7 +43,7 @@ function TimelineAdmin({ events, resPostTime, setResPostTime, resDeleteTime, set
 
       <TimelineInput resPostTime={resPostTime} setResPostTime={setResPostTime} />
     </div>
-  );
+  )
 }
 
 export default TimelineAdmin

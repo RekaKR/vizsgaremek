@@ -1,7 +1,7 @@
 import React from 'react'
 
 const Accommodation = ({ accommodation }) => {
-  const address = accommodation.address;
+  const address = accommodation.address
 
   return (
     <div className="accommodation">

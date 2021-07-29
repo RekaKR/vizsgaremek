@@ -32,7 +32,7 @@ const login_create_post = (req, res) => {
 }
 
 const getDataFromGoogle = (data, res) => {
-  const { sub, email, name, picture, given_name, family_name } = jwt.decode(data)
+  const { sub, email, name, picture, given_name } = jwt.decode(data)
 
   EmailList.findOne({ email: email })
     .then(foundEmail => {
@@ -49,11 +49,8 @@ const getDataFromGoogle = (data, res) => {
               picture: picture,
               role: foundEmail.role,
               plusOne: {
-                isComing: false,
-                name: "",
-                foodSensitivity: ""
-              },
-              foodSensitivity: ""
+                isComing: false
+              }
             })
 
             user.save()

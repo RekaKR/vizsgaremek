@@ -19,6 +19,23 @@ const user_create_get = (req, res) => {
     .catch(err => res.status(403).json({ message: `Can\'t find user` }))
 }
 
+
+//NINCS MÉG KÉSZ
+const user_update_one = (req, res) => {
+  /*
+    ToDo.updateOne(
+      { _id: req.params.id },
+      { $set: {
+        name: req.body.name,
+        foodSensitivity: req.body.foodSensitivity
+      }}
+    )
+      .then(updatedToDo => res.json(updatedToDo))
+      .catch(err => res.status(400).json({ message: 'Can\'t update this to-do' }))
+      */
+}
+
 module.exports = {
-  user_create_get
+  user_create_get,
+  user_update_one
 }

@@ -14,9 +14,9 @@ const GuestListAdmin = () => {
     }
   */
   useEffect(() => {
-    fetch('http://localhost:3001/emaillist', {
+    fetch('http://localhost:3001/api/emaillist', {
       headers: {
-        'authorization': localStorage.getItem('token')
+        'Authorization': localStorage.getItem('token')
       }
     })
       .then(res => res.json())
@@ -31,12 +31,12 @@ const GuestListAdmin = () => {
 
   useEffect(() => {
     if (deleteById) {
-      fetch(`http://localhost:3001/emaillist/${deleteById}`, {
+      fetch(`http://localhost:3001/api/emaillist/${deleteById}`, {
         method: 'DELETE',
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json',
-          'authorization': localStorage.getItem('token')
+          'Authorization': localStorage.getItem('token')
         }
       }).then(res => res.json())
         .then(res => setResDelete(resDelete + 1))

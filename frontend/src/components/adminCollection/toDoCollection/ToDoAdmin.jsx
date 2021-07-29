@@ -9,7 +9,7 @@ const ToDoAdmin = () => {
   const [resPost, setResPost] = useState('')
 
   useEffect(() => {
-    fetch('http://localhost:3001/to-do-list')
+    fetch('http://localhost:3001/api/to-do-list')
       .then(res => res.json())
       .then(data => setToDos(data))
       .catch(err => setToDos(null))

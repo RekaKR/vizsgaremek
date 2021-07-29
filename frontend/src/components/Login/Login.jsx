@@ -8,7 +8,7 @@ const Login = ({ checkToken }) => {
     const urlSearchParams = new URLSearchParams(window.location.search)
     const params = Object.fromEntries(urlSearchParams.entries())
 
-    fetch('http://localhost:3001/login', {
+    fetch('http://localhost:3001/api/login', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -20,10 +20,10 @@ const Login = ({ checkToken }) => {
     }).then(res => res.json())
       .then(data => {
         if (data.message) {
-          console.log(data.message)
+          history.push("/")
         } else {
           localStorage.setItem('token', data.token)
-          history.push("/invitation")
+          history.push("/")
           checkToken()
         }
       })
@@ -32,7 +32,7 @@ const Login = ({ checkToken }) => {
 
   return (
     <div className="login">
-
+      Loading...
     </div>
   )
 }

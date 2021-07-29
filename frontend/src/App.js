@@ -24,14 +24,14 @@ const App = () => {
   const [resDeleteTime, setResDeleteTime] = useState(0)
 
   useEffect(() => {
-    fetch('http://localhost:3001/accommodation')
+    fetch('http://localhost:3001/api/accommodation')
       .then(res => res.json())
       .then(data => setAccommodations(data))
       .catch(err => setAccommodations(null))
   }, [resPostAcc, resDeleteAcc])
 
   useEffect(() => {
-    fetch('http://localhost:3001/timeline')
+    fetch('http://localhost:3001/api/timeline')
       .then(res => res.json())
       .then(data => setEvents(data))
       .catch(err => setEvents(null))
@@ -53,12 +53,10 @@ const App = () => {
       "https://accounts.google.com/o/oauth2/v2/auth?response_type=code&prompt=select_account&client_id=716515278040-8devcsi8fm1uh0mledpu00oknp3i3kpv.apps.googleusercontent.com&scope=openid%20profile email&redirect_uri=http://localhost:3000/login"
   }
 
-
-  //HISTORY-VAL NEM MEGY. OK?
   const logout = () => {
     localStorage.removeItem('token')
     window.location.href = "http://localhost:3000/"
-    setUser("")
+    setUser('')
   }
 
   return (
@@ -69,16 +67,12 @@ const App = () => {
         </Route>
 
         <Switch>
-          <Route path='/invitation'>
-            <Invitation />
-          </Route>
-
           <Route path='/login'>
             <Login checkToken={checkToken} />
           </Route>
 
           <Route path='/profile'>
-            <Profile user={user} />
+            <Profile />
           </Route>
 
           <Route path='/timeline'>

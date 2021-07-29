@@ -5,12 +5,12 @@ const GuestListInput = ({ resPost, setResPost }) => {
   const [role, setRole] = useState('')
 
   const submit = () => {
-    fetch('http://localhost:3001/emaillist', {
+    fetch('http://localhost:3001/api/emaillist', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
-        'authorization': localStorage.getItem('token')
+        'Authorization': localStorage.getItem('token')
       },
       body: JSON.stringify({
         email: email,

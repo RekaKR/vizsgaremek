@@ -20,12 +20,12 @@ const loginRoutes = require('./routes/loginRoutes')
 const emailListRoutes = require('./routes/emailListRoutes')
 const userRoutes = require('./routes/userRoutes')
 
-app.use('/accommodation', accommodationRoutes)
-app.use('/timeline', timelineRoutes)
-app.use('/to-do-list', toDoRoutes)
-app.use('/login', loginRoutes)
-app.use('/emaillist', emailListRoutes)
-app.use('/user', userRoutes)
+app.use('/api/accommodation', accommodationRoutes)
+app.use('/api/timeline', timelineRoutes)
+app.use('/api/to-do-list', toDoRoutes)
+app.use('/api/login', loginRoutes)
+app.use('/api/emaillist', emailListRoutes)
+app.use('/api/user', userRoutes)
 
 
 module.exports = app

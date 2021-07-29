@@ -23,12 +23,12 @@ const ToDos = ({ toDos, resetRes, resUpdate, setResUpdate, resDelete, setResDele
 
   useEffect(() => {
     if (deleteById) {
-      fetch(`http://localhost:3001/to-do-list/${updateById}`, {
+      fetch(`http://localhost:3001/api/to-do-list/${updateById}`, {
         method: 'PATCH',
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json',
-          'authorization': localStorage.getItem('token')
+          'Authorization': localStorage.getItem('token')
         },
         body: JSON.stringify({
           done: done
@@ -47,12 +47,12 @@ const ToDos = ({ toDos, resetRes, resUpdate, setResUpdate, resDelete, setResDele
 
   useEffect(() => {
     if (deleteById) {
-      fetch(`http://localhost:3001/to-do-list/${deleteById}`, {
+      fetch(`http://localhost:3001/api/to-do-list/${deleteById}`, {
         method: 'DELETE',
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json',
-          'authorization': localStorage.getItem('token')
+          'Authorization': localStorage.getItem('token')
         }
       }).then(res => res.json())
         .then(res => setResDelete(resDelete + 1))

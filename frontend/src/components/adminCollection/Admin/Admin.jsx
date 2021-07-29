@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Switch, Route, useRouteMatch } from 'react-rou
 import AdminHeader from '../AdminHeader/AdminHeader'
 import GuestListAdmin from '../guestListCollection/GuestListAdmin'
 import TimelineAdmin from '../timelineCollection/TimelineAdmin'
-import AccommodationAdmin from '../accommodationCollectionAdmin/AccommodationAdmin'
+import AccommodationAdmin from '../accommodationCollection/AccommodationAdmin'
 import ToDoAdmin from '../toDoCollection/ToDoAdmin'
 import SeatsAdmin from '../seatsCollection/SeatsAdmin'
 

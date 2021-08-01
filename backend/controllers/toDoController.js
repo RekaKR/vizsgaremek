@@ -29,7 +29,11 @@ const toDo_create_post = (req, res) => {
 const toDo_update_one = (req, res) => {
   ToDo.updateOne(
     { _id: req.params.id },
-    { $set: { done: req.body.done } }
+    {
+      $set: {
+        done: req.body.done
+      }
+    }
   )
     .then(updatedToDo => res.json(updatedToDo))
     .catch(err => res.status(400).json({ message: 'Can\'t update this to-do' }))

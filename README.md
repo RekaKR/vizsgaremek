@@ -7,6 +7,7 @@ React: npx create-react-app frontend \
 Material-ui: npm install @material-ui/core \
 Material-ui styled: npm install @material-ui/styles \
 Material-ui icon: npm install @material-ui/icons \
+Material-ui lab: npm install @material-ui/lab \
 uuid: npm install uuid \
 Router: npm install react-router-dom \
 npm i jwt-decode \

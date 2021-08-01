@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { v4 as uuidv4 } from 'uuid'
-import ToDoItem from './ToDoItem'
+import ToDo from './ToDo'
 
-//todoadminba rakni, vagy ide?
 const ToDos = ({ toDos, resetRes, resUpdate, setResUpdate, resDelete, setResDelete }) => {
   const [checkboxValue, setCheckboxValue] = useState(false)
   const [done, setDone] = useState(false)
@@ -16,7 +15,7 @@ const ToDos = ({ toDos, resetRes, resUpdate, setResUpdate, resDelete, setResDele
   //const otherList = toDos && toDos.filter(toDo => !(toDo.type === 'clothes' || toDo.type === 'design' || toDo.type === 'food'))
 
   const updateRecord = (toDo) => {
-    setCheckboxValue(!checkboxValue)
+    setCheckboxValue(!checkboxValue) //do i need this?!
     setUpdateById(toDos.filter(item => item.key === toDo.key) && toDo._id)
     setChangeUpdate(!changeUpdate)
   }
@@ -69,28 +68,28 @@ const ToDos = ({ toDos, resetRes, resUpdate, setResUpdate, resDelete, setResDele
       {
         toDos && toDos.map(toDo =>
           toDo.type === 'clothes'
-          && <ToDoItem key={uuidv4()} toDo={toDo} updateRecord={updateRecord} setDone={setDone} deleteRecord={deleteRecord} />)
+          && <ToDo key={uuidv4()} toDo={toDo} updateRecord={updateRecord} setDone={setDone} deleteRecord={deleteRecord} />)
       }
 
       <h3>Díszlet</h3>
       {
         toDos && toDos.map(toDo =>
           toDo.type === 'design'
-          && <ToDoItem key={uuidv4()} toDo={toDo} updateRecord={updateRecord} setDone={setDone} deleteRecord={deleteRecord} />)
+          && <ToDo key={uuidv4()} toDo={toDo} updateRecord={updateRecord} setDone={setDone} deleteRecord={deleteRecord} />)
       }
 
       <h3>Étel</h3>
       {
         toDos && toDos.map(toDo =>
           toDo.type === 'food'
-          && <ToDoItem key={uuidv4()} toDo={toDo} updateRecord={updateRecord} setDone={setDone} deleteRecord={deleteRecord} />)
+          && <ToDo key={uuidv4()} toDo={toDo} updateRecord={updateRecord} setDone={setDone} deleteRecord={deleteRecord} />)
       }
 
       <h3>Egyéb</h3>
       {
         toDos && toDos.map(toDo =>
           !(toDo.type === 'clothes' || toDo.type === 'design' || toDo.type === 'food')
-          && <ToDoItem key={uuidv4()} toDo={toDo} updateRecord={updateRecord} setDone={setDone} deleteRecord={deleteRecord} />)
+          && <ToDo key={uuidv4()} toDo={toDo} updateRecord={updateRecord} setDone={setDone} deleteRecord={deleteRecord} />)
       }
     </div >
   )

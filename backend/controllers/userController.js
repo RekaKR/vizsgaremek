@@ -21,21 +21,40 @@ const user_create_get = (req, res) => {
 
 
 //NINCS MÉG KÉSZ
-const user_update_one = (req, res) => {
+const user_update_isComing = (req, res) => {
+  googleId = jwt.decode(req.headers.authorization).google
+  console.log(req.body)
+
+  User.updateOne(
+    { googleId },
+    {
+      $set: {
+        plusOne: {
+          isComing: req.body.isComing
+        }
+      }
+    }
+  )
+    .then(updatedPlusOne => res.status(200).json(updatedPlusOne))
+    .catch(err => res.status(400).json({ message: 'Can\'t update this user' }))
+
   /*
-    ToDo.updateOne(
-      { _id: req.params.id },
-      { $set: {
-        name: req.body.name,
-        foodSensitivity: req.body.foodSensitivity
-      }}
+    User.updateOne(
+      { googleId },
+      {
+        $set: {
+          isComing: req.body.name,
+          foodSensitivity: req.body.foodSensitivity
+        }
+      }
     )
-      .then(updatedToDo => res.json(updatedToDo))
-      .catch(err => res.status(400).json({ message: 'Can\'t update this to-do' }))
+      .then(updatedPlusOne => res.status(200).json(updatedPlusOne))
+      .catch(err => res.status(400).json({ message: 'Can\'t update this user' }))
+  
       */
 }
 
 module.exports = {
   user_create_get,
-  user_update_one
+  user_update_isComing
 }

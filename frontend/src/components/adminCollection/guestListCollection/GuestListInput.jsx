@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
+import ComboBox from '../../ComboBox/ComboBox'
 
 const GuestListInput = ({ resPost, setResPost }) => {
+  const options = ['vendég', 'esküvőszervező']
   const [email, setEmail] = useState('')
-  const [role, setRole] = useState('')
+  const [role, setRole] = useState(options[0])
 
   const submit = () => {
     fetch('http://localhost:3001/api/emaillist', {
@@ -14,7 +16,7 @@ const GuestListInput = ({ resPost, setResPost }) => {
       },
       body: JSON.stringify({
         email: email,
-        role: role,
+        role: (role === 'vendég' ? "guest" : "weddingP"),
       })
     }).then(res => res.json())
       .then(res => setResPost(resPost + 1))
@@ -28,10 +30,11 @@ const GuestListInput = ({ resPost, setResPost }) => {
 
       <div>
         <input type="text" onChange={e => setEmail(e.target.value)} placeholder="Email" />
-      </div>
 
-      <div>
-        <input type="text" onChange={e => setRole(e.target.value)} placeholder="role" />
+        <br />
+        <br />
+
+        <ComboBox options={options} value={role} setValue={setRole} label="Megnevezés" />
       </div>
 
       <button disabled={!(email && role)} onClick={() => submit()}>Submit</button>

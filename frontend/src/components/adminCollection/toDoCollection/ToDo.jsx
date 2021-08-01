@@ -1,6 +1,6 @@
 import React from 'react'
 
-const ToDoItem = ({ toDo, updateRecord, setDone, deleteRecord }) => {
+const ToDo = ({ toDo, updateRecord, setDone, deleteRecord }) => {
   return (
     <div>
       <span>{toDo.task}</span>
@@ -10,4 +10,4 @@ const ToDoItem = ({ toDo, updateRecord, setDone, deleteRecord }) => {
   )
 }
 
-export default ToDoItem
+export default ToDo

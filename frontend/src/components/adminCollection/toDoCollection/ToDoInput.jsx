@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
+import ComboBox from '../../ComboBox/ComboBox'
 
 const ToDoInput = ({ resPost, setResPost }) => {
+  const options = ['ruha', 'dizájn', 'étel', 'egyéb']
   const [type, setType] = useState('')
   const [task, setTask] = useState('')
 
@@ -13,7 +15,7 @@ const ToDoInput = ({ resPost, setResPost }) => {
         'Authorization': localStorage.getItem('token')
       },
       body: JSON.stringify({
-        type: type,
+        type: (type === 'ruha' ? "clothes" : type === 'dizájn' ? "design" : type === 'étel' ? "food" : "other"),
         task: task,
         //  done: false
       })
@@ -24,11 +26,13 @@ const ToDoInput = ({ resPost, setResPost }) => {
 
   return (
     <div className="to-do-input">
-      <div>
+      {/*<div>
         <input type="text" onChange={e => setType(e.target.value)} placeholder="Típus" />
-      </div>
+      </div>*/}
 
       <div>
+        <ComboBox options={options} value={type} setValue={setType} label="Típus" />
+
         <input type="text" onChange={e => setTask(e.target.value)} placeholder="Teendő" />
       </div>
 

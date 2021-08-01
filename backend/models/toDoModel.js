@@ -12,4 +12,4 @@ const toDoSchema = mongoose.Schema({
   done: Boolean
 })
 
-module.exports = mongoose.model('toDo', toDoSchema)
+module.exports = mongoose.model('ToDo', toDoSchema)

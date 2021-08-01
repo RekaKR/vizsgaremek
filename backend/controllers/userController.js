@@ -11,6 +11,7 @@ const user_create_get = (req, res) => {
     .then(user => res.json({
       username: user.username,
       name: user.name,
+      email: user.email,
       role: user.role,
       picture: user.picture,
       plusOne: user.plusOne,
@@ -23,7 +24,6 @@ const user_create_get = (req, res) => {
 //NINCS MÉG KÉSZ
 const user_update_isComing = (req, res) => {
   googleId = jwt.decode(req.headers.authorization).google
-  console.log(req.body)
 
   User.updateOne(
     { googleId },

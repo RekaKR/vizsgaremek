@@ -15,7 +15,6 @@ const ToDoAdmin = () => {
       .catch(err => setToDos(null))
   }, [resUpdate, resDelete, resPost])
 
-
   const resetRes = () => {
     if (resUpdate === 10) setResUpdate(0)
     if (resDelete === 10) setResDelete(0)

@@ -5,7 +5,9 @@ const userController = require('../controllers/userController')
 
 router.get('/', userController.user_create_get)
 
-router.patch('/', userController.user_update_isComing)
+router.patch('/plus-one', userController.user_update_isComing)
+
+router.patch('/plus-one-details', userController.user_update_isComingDetails)
 
 
 module.exports = router

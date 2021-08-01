@@ -21,7 +21,6 @@ const user_create_get = (req, res) => {
 }
 
 
-//NINCS MÉG KÉSZ
 const user_update_isComing = (req, res) => {
   googleId = jwt.decode(req.headers.authorization).google
 
@@ -37,24 +36,32 @@ const user_update_isComing = (req, res) => {
   )
     .then(updatedPlusOne => res.status(200).json(updatedPlusOne))
     .catch(err => res.status(400).json({ message: 'Can\'t update this user' }))
+}
 
-  /*
-    User.updateOne(
-      { googleId },
-      {
-        $set: {
-          isComing: req.body.name,
+//NINCS MÉG KÉSZ
+const user_update_isComingDetails = (req, res) => {
+  googleId = jwt.decode(req.headers.authorization).google
+
+  User.updateOne(
+    { googleId },
+    {
+      $set: {
+        plusOne: {
+          isComing: req.body.isComing,
+          name: req.body.name,
           foodSensitivity: req.body.foodSensitivity
         }
       }
-    )
-      .then(updatedPlusOne => res.status(200).json(updatedPlusOne))
-      .catch(err => res.status(400).json({ message: 'Can\'t update this user' }))
-  
-      */
+    }
+  )
+    .then(updatedPlusOne => res.status(200).json(updatedPlusOne))
+    .catch(err => res.status(400).json({ message: 'Can\'t update this user' }))
+
+
 }
 
 module.exports = {
   user_create_get,
-  user_update_isComing
+  user_update_isComing,
+  user_update_isComingDetails
 }

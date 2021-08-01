@@ -9,10 +9,6 @@ const ToDos = ({ toDos, resetRes, resUpdate, setResUpdate, resDelete, setResDele
   const [deleteById, setDeleteById] = useState('')
   const [changeUpdate, setChangeUpdate] = useState(false)
   const [changeDelete, setChangeDelete] = useState(false)
-  //const clothesList = toDos && toDos.filter(toDo => toDo.type === 'clothes')
-  //const designList = toDos && toDos.filter(toDo => toDo.type === 'design')
-  //const foodList = toDos && toDos.filter(toDo => toDo.type === 'food')
-  //const otherList = toDos && toDos.filter(toDo => !(toDo.type === 'clothes' || toDo.type === 'design' || toDo.type === 'food'))
 
   const updateRecord = (toDo) => {
     setCheckboxValue(!checkboxValue) //do i need this?!

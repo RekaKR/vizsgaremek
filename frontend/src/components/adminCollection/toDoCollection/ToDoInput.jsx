@@ -26,10 +26,6 @@ const ToDoInput = ({ resPost, setResPost }) => {
 
   return (
     <div className="to-do-input">
-      {/*<div>
-        <input type="text" onChange={e => setType(e.target.value)} placeholder="Típus" />
-      </div>*/}
-
       <div>
         <ComboBox options={options} value={type} setValue={setType} label="Típus" />
 

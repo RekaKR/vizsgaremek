@@ -20,8 +20,13 @@ const Profile = () => {
   const [plusOneName, setPlusOneName] = useState(null)
   const [plusOneFoodS, setPlusOneFoodS] = useState(null)
 
+  const [changeUpdate, setChangeUpdate] = useState(false)
 
   const updatePlusOne = () => {
+    setChangeUpdate(!changeUpdate)
+  }
+
+  useEffect(() => {
     fetch('http://localhost:3001/api/user', {
       method: 'PATCH',
       headers: {
@@ -35,7 +40,7 @@ const Profile = () => {
     }).then(res => res.json())
       .then(data => setResPatchIsComing(resPatchIsComing + 1))
       .catch(err => setResPatchIsComing(false))
-  }
+  }, [changeUpdate])
 
   return (
     <div className="profile">

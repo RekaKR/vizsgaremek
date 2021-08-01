@@ -11,6 +11,7 @@ const ComboBox = ({ options, value, setValue, label }) => {
         value={value} onChange={(e, newValue) => setValue(newValue)}
         inputValue={inputValue} onInputChange={(e, newInputValue) => setInputValue(newInputValue)}
         options={options} renderInput={params => <TextField {...params} label={label} variant="outlined" />}
+        getOptionSelected={(option, value) => option.params === value.params}
       />
     </div>
   )

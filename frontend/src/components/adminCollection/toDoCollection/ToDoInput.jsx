@@ -3,7 +3,7 @@ import ComboBox from '../../ComboBox/ComboBox'
 
 const ToDoInput = ({ resPost, setResPost }) => {
   const options = ['ruha', 'dizájn', 'étel', 'egyéb']
-  const [type, setType] = useState('')
+  const [type, setType] = useState(options[3])
   const [task, setTask] = useState('')
 
   const submit = () => {

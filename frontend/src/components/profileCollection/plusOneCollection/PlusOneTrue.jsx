@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
 
-const PlusOne = ({ profile, resUpdatePlusOneData, setResUpdatePlusOneData }) => {
+const PlusOneTrue = ({ profile, resUpdatePlusOneData, setResUpdatePlusOneData }) => {
+  const [nextInp, setNextInp] = useState(false)
   const [plusOneName, setPlusOneName] = useState(null)
   const [plusOneFoodS, setPlusOneFoodS] = useState(null)
-
   const [changeUpdate, setChangeUpdate] = useState(false)
 
   const updatePlusOneDetails = () => {
@@ -33,26 +33,22 @@ const PlusOne = ({ profile, resUpdatePlusOneData, setResUpdatePlusOneData }) => 
   return (
     <div>
       {
-        profile.role !== 'couple' && (profile.plusOne.isComing
+        profile.plusOne.name || nextInp
           ? <>
-            <p>Jön velem +1 fő.</p>
+            <p>A neve: {profile.plusOne.name || plusOneName}</p>
 
-            <div>
-              <p>Az ő neve: {profile.plusOne.name}</p>
-              <input type="text" onChange={e => setPlusOneName(e.target.value)} placeholder="Neve" />
-            </div>
-
-            <div>
-              <p>Étel érzékenysége van-e: {profile.plusOne.foodSensitivy}</p>
-              <input type="text" onChange={e => setPlusOneFoodS(e.target.value)} placeholder="Food sensitivity" />
-            </div>
+            <p>Étel érzékenysége van-e: {profile.plusOne.foodSensitivy || plusOneFoodS}</p>
+            <input type="text" onChange={e => setPlusOneFoodS(e.target.value)} placeholder="Food sensitivity" />
 
             <button disabled={!(plusOneName && plusOneFoodS)} onClick={() => updatePlusOneDetails()}>Submit</button>
           </>
-          : <p>Nem jön velem +1 fő.</p>)
+          : <>
+            <input type="text" onChange={e => setPlusOneName(e.target.value)} placeholder="Neve" />
+            <button onClick={() => setNextInp(!nextInp)}>Next</button>
+          </>
       }
     </div>
   )
 }
 
-export default PlusOne
+export default PlusOneTrue

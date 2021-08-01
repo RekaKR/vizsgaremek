@@ -40,6 +40,8 @@ const GoodWishes = ({ profile }) => {
 
   return (
     <div>
+      <h3>Jókívánságok a párnak</h3>
+
       {
         profile.role !== 'couple'
           ? <>

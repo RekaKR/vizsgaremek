@@ -3,9 +3,9 @@ const jwt = require('jsonwebtoken')
 const User = require('../models/userModel')
 
 
-//GET BACK THE LOGGED IN USER
+//GET BACK THE LOGGED IN USER'S PROFILE
 const user_create_get = (req, res) => {
-  googleId = jwt.decode(req.headers.authorization).google
+  const googleId = jwt.decode(req.headers.authorization).google
 
   User.findOne({ googleId })
     .then(user => res.json({
@@ -22,7 +22,7 @@ const user_create_get = (req, res) => {
 
 
 const user_update_isComing = (req, res) => {
-  googleId = jwt.decode(req.headers.authorization).google
+  const googleId = jwt.decode(req.headers.authorization).google
 
   User.updateOne(
     { googleId },
@@ -40,7 +40,7 @@ const user_update_isComing = (req, res) => {
 
 //NINCS MÉG KÉSZ
 const user_update_isComingDetails = (req, res) => {
-  googleId = jwt.decode(req.headers.authorization).google
+  const googleId = jwt.decode(req.headers.authorization).google
 
   User.updateOne(
     { googleId },
@@ -56,8 +56,6 @@ const user_update_isComingDetails = (req, res) => {
   )
     .then(updatedPlusOne => res.status(200).json(updatedPlusOne))
     .catch(err => res.status(400).json({ message: 'Can\'t update this user' }))
-
-
 }
 
 module.exports = {

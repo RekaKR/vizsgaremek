@@ -1,5 +1,4 @@
 import React from 'react'
-//Főoldal
 
 const Invitation = () => {
   return (

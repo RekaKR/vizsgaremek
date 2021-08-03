@@ -39,10 +39,10 @@ const userSchema = mongoose.Schema({
       required: true,
     },
     name: String,
-    foodSensitivity: String
+    foodSensitivity: Array
   },
 
-  foodSensitivity: String
+  foodSensitivity: Array
 })
 
 module.exports = mongoose.model('User', userSchema)

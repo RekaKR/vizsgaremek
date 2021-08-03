@@ -9,5 +9,7 @@ router.patch('/plus-one', userController.user_update_isComing)
 
 router.patch('/plus-one-details', userController.user_update_isComingDetails)
 
+router.patch('/food-sensitivity', userController.user_update_foodSensitivity)
+
 
 module.exports = router

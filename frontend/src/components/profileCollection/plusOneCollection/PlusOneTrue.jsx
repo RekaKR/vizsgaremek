@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react'
+import CheckComboBox from '../../CheckComboBox/CheckComboBox'
 
 const PlusOneTrue = ({ profile, resUpdatePlusOneData, setResUpdatePlusOneData }) => {
+  const options = ['nincs', 'vega', 'vegán', 'laktóz mentes', 'glutén mentes', 'cukor mentes', 'paleo']
+
   const [nextInp, setNextInp] = useState(false)
   const [plusOneName, setPlusOneName] = useState(null)
   const [plusOneFoodS, setPlusOneFoodS] = useState(null)
@@ -38,7 +41,7 @@ const PlusOneTrue = ({ profile, resUpdatePlusOneData, setResUpdatePlusOneData })
             <p>A neve: {profile.plusOne.name || plusOneName}</p>
 
             <p>Étel érzékenysége van-e: {profile.plusOne.foodSensitivy || plusOneFoodS}</p>
-            <input type="text" onChange={e => setPlusOneFoodS(e.target.value)} placeholder="Food sensitivity" />
+            <CheckComboBox options={options} setValue={setPlusOneFoodS} />
 
             <button disabled={!(plusOneName && plusOneFoodS)} onClick={() => updatePlusOneDetails()}>Submit</button>
           </>

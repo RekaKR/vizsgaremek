@@ -20,7 +20,6 @@ const user_create_get = (req, res) => {
     .catch(err => res.status(403).json({ message: `Can\'t find user` }))
 }
 
-
 const user_update_isComing = (req, res) => {
   const googleId = jwt.decode(req.headers.authorization).google
 
@@ -38,7 +37,6 @@ const user_update_isComing = (req, res) => {
     .catch(err => res.status(400).json({ message: 'Can\'t update this user' }))
 }
 
-//NINCS MÉG KÉSZ
 const user_update_isComingDetails = (req, res) => {
   const googleId = jwt.decode(req.headers.authorization).google
 
@@ -58,8 +56,25 @@ const user_update_isComingDetails = (req, res) => {
     .catch(err => res.status(400).json({ message: 'Can\'t update this user' }))
 }
 
+const user_update_foodSensitivity = (req, res) => {
+  const googleId = jwt.decode(req.headers.authorization).google
+
+  User.updateOne(
+    { googleId },
+    {
+      $set: {
+        foodSensitivity: req.body.foodSensitivity
+      }
+    }
+  )
+    .then(updatedPlusOne => res.status(200).json(updatedPlusOne))
+    .catch(err => res.status(400).json({ message: 'Can\'t update this user' }))
+}
+
+
 module.exports = {
   user_create_get,
   user_update_isComing,
-  user_update_isComingDetails
+  user_update_isComingDetails,
+  user_update_foodSensitivity
 }

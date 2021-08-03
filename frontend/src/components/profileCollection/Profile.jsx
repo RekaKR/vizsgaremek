@@ -8,6 +8,7 @@ const Profile = () => {
   const [profile, setProfile] = useState(null)
   const [resUpdateIsComing, setResUpdateIsComing] = useState(0)
   const [resUpdatePlusOneData, setResUpdatePlusOneData] = useState(0)
+  const [resUpdateUser, setResUpdateUser] = useState(0)
 
   useEffect(() => {
     fetch('http://localhost:3001/api/user', {
@@ -18,8 +19,7 @@ const Profile = () => {
       .then(res => res.json())
       .then(data => setProfile(data))
       .catch(err => setProfile(null))
-  }, [resUpdateIsComing, resUpdatePlusOneData])
-
+  }, [resUpdateIsComing, resUpdatePlusOneData, resUpdateUser])
 
   return (
     <div className="profile">
@@ -30,7 +30,7 @@ const Profile = () => {
           ? <>
             <p>Szia {profile.username}!</p>
 
-            <MenuSelection profile={profile} />
+            <MenuSelection profile={profile} resUpdateUser={resUpdateUser} setResUpdateUser={setResUpdateUser} />
             <PlusOne profile={profile} resUpdatePlusOneData={resUpdatePlusOneData} setResUpdatePlusOneData={setResUpdatePlusOneData} resUpdateIsComing={resUpdateIsComing} setResUpdateIsComing={setResUpdateIsComing} />
             <GoodWishes profile={profile} />
           </>

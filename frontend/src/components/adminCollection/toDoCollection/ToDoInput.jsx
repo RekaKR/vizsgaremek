@@ -16,8 +16,7 @@ const ToDoInput = ({ resPost, setResPost }) => {
       },
       body: JSON.stringify({
         type: (type === 'ruha' ? "clothes" : type === 'dizájn' ? "design" : type === 'étel' ? "food" : "other"),
-        task: task,
-        //  done: false
+        task: task
       })
     }).then(res => res.json())
       .then(res => setResPost(`${resPost}1`))

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react"
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import jwt_decode from 'jwt-decode'
+import useFetchGet from "./useFetchGet"
 import './style/css/style.css'
 
 import Header from './components/Header/Header'
@@ -13,29 +14,14 @@ import Galery from "./components/Feature/Galery/Galery"
 import Admin from "./components/adminCollection/Admin/Admin"
 
 const App = () => {
-  const [accommodations, setAccommodations] = useState(null)
-  const [events, setEvents] = useState(null)
   const [user, setUser] = useState('')
-
   const [resPostAcc, setResPostAcc] = useState(0)
   const [resDeleteAcc, setResDeleteAcc] = useState(0)
-
   const [resPostTime, setResPostTime] = useState(0)
   const [resDeleteTime, setResDeleteTime] = useState(0)
 
-  useEffect(() => {
-    fetch('http://localhost:3001/api/accommodation')
-      .then(res => res.json())
-      .then(data => setAccommodations(data))
-      .catch(err => setAccommodations(null))
-  }, [resPostAcc, resDeleteAcc])
-
-  useEffect(() => {
-    fetch('http://localhost:3001/api/timeline')
-      .then(res => res.json())
-      .then(data => setEvents(data))
-      .catch(err => setEvents(null))
-  }, [resPostTime, resDeleteTime])
+  const { data: accommodations } = useFetchGet(true, 'http://localhost:3001/api/accommodation', [resPostAcc, resDeleteAcc])
+  const { data: events } = useFetchGet(true, 'http://localhost:3001/api/timeline', [resPostTime, resDeleteTime])
 
   const checkToken = () => {
     const token = localStorage.getItem('token')
@@ -53,17 +39,11 @@ const App = () => {
       "https://accounts.google.com/o/oauth2/v2/auth?response_type=code&prompt=select_account&client_id=716515278040-8devcsi8fm1uh0mledpu00oknp3i3kpv.apps.googleusercontent.com&scope=openid%20profile email&redirect_uri=http://localhost:3000/login"
   }
 
-  const logout = () => {
-    localStorage.removeItem('token')
-    window.location.href = "http://localhost:3000/"
-    setUser('')
-  }
-
   return (
     <Router>
-      <div className='app'>
+      <div className="app">
         <Route path='/' >
-          <Header googleSignIn={googleSignIn} user={user} logout={logout} />
+          <Header googleSignIn={googleSignIn} user={user} setUser={setUser} />
         </Route>
 
         <Switch>

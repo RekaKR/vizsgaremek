@@ -2,8 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 import ToDo from './ToDo'
 
-const ToDos = ({ toDos, resetRes, resUpdate, setResUpdate, resDelete, setResDelete }) => {
-  const [checkboxValue, setCheckboxValue] = useState(false)
+const ToDos = ({ toDos, resUpdate, setResUpdate, resDelete, setResDelete }) => {
   const [done, setDone] = useState(false)
   const [updateById, setUpdateById] = useState(false)
   const [deleteById, setDeleteById] = useState('')
@@ -11,13 +10,12 @@ const ToDos = ({ toDos, resetRes, resUpdate, setResUpdate, resDelete, setResDele
   const [changeDelete, setChangeDelete] = useState(false)
 
   const updateRecord = (toDo) => {
-    setCheckboxValue(!checkboxValue) //do i need this?!
     setUpdateById(toDos.filter(item => item.key === toDo.key) && toDo._id)
     setChangeUpdate(!changeUpdate)
   }
 
   useEffect(() => {
-    if (deleteById) {
+    if (updateById) {
       fetch(`http://localhost:3001/api/to-do-list/${updateById}`, {
         method: 'PATCH',
         headers: {
@@ -31,7 +29,7 @@ const ToDos = ({ toDos, resetRes, resUpdate, setResUpdate, resDelete, setResDele
       }).then(res => res.json())
         .then(res => setResUpdate(resUpdate + 1))
         .catch(err => setResUpdate(false))
-        .finally(() => resetRes())
+      //.finally(() => resetRes())
     }
   }, [changeUpdate])
 
@@ -52,7 +50,6 @@ const ToDos = ({ toDos, resetRes, resUpdate, setResUpdate, resDelete, setResDele
       }).then(res => res.json())
         .then(res => setResDelete(resDelete + 1))
         .catch(err => setResDelete(false))
-        .finally(() => resetRes())
     }
   }, [changeDelete])
 

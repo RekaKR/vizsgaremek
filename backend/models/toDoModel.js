@@ -10,6 +10,7 @@ const toDoSchema = mongoose.Schema({
     required: true
   },
   done: Boolean
+  //default érték false
 })
 
 module.exports = mongoose.model('ToDo', toDoSchema)

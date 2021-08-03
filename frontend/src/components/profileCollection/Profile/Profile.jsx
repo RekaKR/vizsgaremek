@@ -1,25 +1,17 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
+import useFetchGet from '../../../useFetchGet'
+
 import GoodWishes from '../goodWishesCollection/GoodWishes'
 import MenuSelection from '../MenuSelection/MenuSelection'
 import PlusOne from '../plusOneCollection/PlusOne'
 //KÜLSŐ API - GOOGLE NAPTÁRBA ADÁS
 
 const Profile = () => {
-  const [profile, setProfile] = useState(null)
   const [resUpdateIsComing, setResUpdateIsComing] = useState(0)
   const [resUpdatePlusOneData, setResUpdatePlusOneData] = useState(0)
   const [resUpdateUser, setResUpdateUser] = useState(0)
 
-  useEffect(() => {
-    fetch('http://localhost:3001/api/user', {
-      headers: {
-        'Authorization': localStorage.getItem('token')
-      }
-    })
-      .then(res => res.json())
-      .then(data => setProfile(data))
-      .catch(err => setProfile(null))
-  }, [resUpdateIsComing, resUpdatePlusOneData, resUpdateUser])
+  const { data: profile } = useFetchGet(true, 'http://localhost:3001/api/user', [resUpdateIsComing, resUpdatePlusOneData, resUpdateUser])
 
   return (
     <div className="profile">

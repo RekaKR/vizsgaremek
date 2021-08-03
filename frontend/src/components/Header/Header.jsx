@@ -1,28 +1,34 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
-//import '../../style/css/style.css'
+import { Link, useHistory } from 'react-router-dom'
 
-const Header = ({ googleSignIn, user, logout }) => {
+const Header = ({ googleSignIn, user, setUser }) => {
+  let history = useHistory()
   const role = user.role
+
+  const logout = () => {
+    localStorage.removeItem('token')
+    history.push('/')
+    setUser('')
+  }
 
   return (
     <div className="header">
       {
         (role === 'couple' || role === 'weddingP' || role === 'guest') &&
         <>
-          <Link to="/">
+          <Link to='/'>
             Meghívó
           </Link>
 
-          <Link to="/profile">
+          <Link to='/profile'>
             Profil
           </Link>
 
-          <Link to="/timeline">
+          <Link to='/timeline'>
             Menetrend
           </Link>
 
-          <Link to="/accommodation">
+          <Link to='/accommodation'>
             Szállás
           </Link>
         </>
@@ -30,14 +36,14 @@ const Header = ({ googleSignIn, user, logout }) => {
 
       {
         (role === 'couple' || role === 'weddingP' || role === 'photographer' || role === 'guest') &&
-        <Link to="/galery">
+        <Link to='/galery'>
           Galéria
         </Link>
       }
 
       {
         (role === 'couple' || role === 'weddingP') &&
-        <Link to="/admin">
+        <Link to='/admin'>
           Admin
         </Link>
       }

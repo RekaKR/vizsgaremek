@@ -1,24 +1,13 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { v4 as uuidv4 } from 'uuid'
+import useFetchGetWAuth from '../../../useFetchGet'
 import GoodWish from './GoodWish'
 
 const GoodWishes = ({ profile }) => {
-  const [goodWishes, setGoodWishes] = useState(null)
   const [goodWish, setGoodWish] = useState(null)
   const [resPostGW, setResPostGW] = useState(0)
 
-  useEffect(() => {
-    if (profile.role === 'couple') {
-      fetch('http://localhost:3001/api/good-wish', {
-        headers: {
-          'Authorization': localStorage.getItem('token')
-        }
-      })
-        .then(res => res.json())
-        .then(data => setGoodWishes(data))
-        .catch(err => setGoodWishes(null))
-    }
-  }, [resPostGW])
+  const { data: goodWishes } = useFetchGetWAuth((profile.role === 'couple'), 'http://localhost:3001/api/good-wish', [resPostGW])
 
   const submit = () => {
     fetch('http://localhost:3001/api/good-wish', {

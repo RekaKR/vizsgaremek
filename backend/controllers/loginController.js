@@ -54,17 +54,29 @@ const getDataFromGoogle = (data, res) => {
             })
 
             user.save()
-              .then(res => console.log("Done saving new user"))
+              .then(res => {
+                jwt.sign({
+                  "google": sub,
+                  "email": foundEmail.email,
+                  "name": name,
+                  "role": foundEmail.role
+                }, JWT_SECRET, { expiresIn: '1h' },
+                  (err, token) => res.json({ token: token }))
+
+                console.log("Done saving new user")
+              })
+          }
+
+          else {
+            jwt.sign({
+              "google": sub,
+              "email": foundEmail.email,
+              "name": name,
+              "role": foundEmail.role
+            }, JWT_SECRET, { expiresIn: '1h' },
+              (err, token) => res.json({ token: token }))
           }
         })
-
-      jwt.sign({
-        "google": sub,
-        "email": foundEmail.email,
-        "name": name,
-        "role": foundEmail.role
-      }, JWT_SECRET, { expiresIn: '1h' },
-        (err, token) => res.json({ token: token }))
     })
 }
 

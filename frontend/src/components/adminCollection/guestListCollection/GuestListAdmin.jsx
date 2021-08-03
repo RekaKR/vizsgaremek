@@ -1,49 +1,22 @@
 import React, { useState, useEffect } from 'react'
 import { v4 as uuidv4 } from 'uuid'
+import useFetchGet from '../../../useFetchGet'
+import useFetchDelete from '../../../useFetchDelete'
 import GuestListInput from './GuestListInput'
 
 const GuestListAdmin = () => {
-  const [guests, setGuests] = useState(null)
   const [deleteById, setDeleteById] = useState('')
   const [changeDelete, setChangeDelete] = useState(false)
-  const [resDelete, setResDelete] = useState(0)
   const [resPost, setResPost] = useState(0)
-  /*
-    const resetRes = () => {
-      if (resDelete === 10) setResDelete(0)
-    }
-  */
-  useEffect(() => {
-    fetch('http://localhost:3001/api/emaillist', {
-      headers: {
-        'Authorization': localStorage.getItem('token')
-      }
-    })
-      .then(res => res.json())
-      .then(data => setGuests(data))
-      .catch(err => setGuests(null))
-  }, [resDelete, resPost])
 
   const deleteRecord = (guest) => {
     setDeleteById(guests.filter(item => item.key === guest.key) && guest._id)
     setChangeDelete(!changeDelete)
   }
 
-  useEffect(() => {
-    if (deleteById) {
-      fetch(`http://localhost:3001/api/emaillist/${deleteById}`, {
-        method: 'DELETE',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-          'Authorization': localStorage.getItem('token')
-        }
-      }).then(res => res.json())
-        .then(res => setResDelete(resDelete + 1))
-        .catch(err => setResDelete(false))
-      //.finally(() => resetRes())
-    }
-  }, [changeDelete])
+  const { data: resDelete } = useFetchDelete(deleteById, `http://localhost:3001/api/emaillist/${deleteById}`, [changeDelete])
+  const { data: guests } = useFetchGet(true, 'http://localhost:3001/api/emaillist', [resDelete, resPost])
+
 
   return (
     <div className="admin-guest-list">

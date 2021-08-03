@@ -11,6 +11,7 @@ Material-ui lab: npm install @material-ui/lab \
 uuid: npm install uuid \
 Router: npm install react-router-dom \
 npm i jwt-decode \
+Email validator: npm install validator \
 
 ### backend
 npm init -y \

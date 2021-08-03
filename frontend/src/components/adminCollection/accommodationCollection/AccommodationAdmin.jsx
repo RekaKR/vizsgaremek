@@ -32,12 +32,11 @@ function AccommodationAdmin({ accommodations, resDeleteAcc, setResDeleteAcc, res
       <h3>Szállás</h3>
 
       <h4>Szállás lista</h4>
-      {
-        accommodations && accommodations.map(accommodation =>
-          <div key={uuidv4()}>
-            <p>{accommodation.name}</p>
-            <button onClick={() => deleteRecord(accommodation)}>Szállás törlése</button>
-          </div>)
+      {accommodations && accommodations.map(accommodation =>
+        <div key={uuidv4()}>
+          <p>{accommodation.name}</p>
+          <button onClick={() => deleteRecord(accommodation)}>Szállás törlése</button>
+        </div>)
       }
 
       <AccommodationInput resPostAcc={resPostAcc} setResPostAcc={setResPostAcc} />

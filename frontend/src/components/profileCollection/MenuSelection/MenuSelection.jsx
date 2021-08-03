@@ -3,6 +3,7 @@ import CheckComboBox from '../../CheckComboBox/CheckComboBox'
 
 const MenuSelection = ({ profile, resUpdateUser, setResUpdateUser }) => {
   const options = ['nincs', 'vega', 'vegán', 'laktóz mentes', 'glutén mentes', 'cukor mentes', 'paleo']
+  const userFoodS = profile.foodSensitivity
 
   const [foodS, setFoodS] = useState(null)
   const [changeUpdate, setChangeUpdate] = useState(false)
@@ -31,10 +32,20 @@ const MenuSelection = ({ profile, resUpdateUser, setResUpdateUser }) => {
 
   return (
     <div>
-      <p>Speciális menü: {profile.foodSensitivity ? profile.foodSensitivity : "Nincs"}</p>
+      {
+        profile && profile.role !== 'couple' &&
+        <>
+          <p>Speciális menü: {userFoodS ? userFoodS : "Nincs"}</p>
 
-      <CheckComboBox options={options} setValue={setFoodS} />
-      <button onClick={() => updateUser()}>Submit</button>
+          {
+            userFoodS && userFoodS.length < 1 &&
+            <>
+              <CheckComboBox options={options} setValue={setFoodS} />
+              <button disabled={!foodS} onClick={() => updateUser()}>Submit</button>
+            </>
+          }
+        </>
+      }
     </div>
   )
 }

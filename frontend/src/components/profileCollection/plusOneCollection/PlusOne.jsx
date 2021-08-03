@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react'
 import PlusOneTrue from './PlusOneTrue'
 
 const PlusOne = ({ profile, resUpdatePlusOneData, setResUpdatePlusOneData, resUpdateIsComing, setResUpdateIsComing }) => {
+  const isComing = profile.plusOne.isComing
+
   const [plusOneIsComing, setPlusOneIsComing] = useState('')
   const [changeUpdate, setChangeUpdate] = useState(false)
 
@@ -31,10 +33,11 @@ const PlusOne = ({ profile, resUpdatePlusOneData, setResUpdatePlusOneData, resUp
   return (
     <div>
       {
-        profile.role !== 'couple' && <>
-          <input type="checkbox" checked={profile.plusOne.isComing ? true : false} onClick={() => updatePlusOne()} onChange={() => setPlusOneIsComing(!profile.plusOne.isComing)} />
+        profile.role !== 'couple' &&
+        <>
+          <input type="checkbox" checked={isComing} onClick={() => updatePlusOne()} onChange={() => setPlusOneIsComing(!isComing)} />
 
-          {profile.plusOne.isComing
+          {isComing
             ? <>
               <p>Jön velem +1 fő.</p>
               <PlusOneTrue profile={profile} resUpdatePlusOneData={resUpdatePlusOneData} setResUpdatePlusOneData={setResUpdatePlusOneData} />

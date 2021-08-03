@@ -10,7 +10,6 @@ const PlusOneTrue = ({ profile, resUpdatePlusOneData, setResUpdatePlusOneData })
   const [plusOneName, setPlusOneName] = useState(null)
   const [plusOneFoodS, setPlusOneFoodS] = useState(null)
   const [changeUpdate, setChangeUpdate] = useState(false)
-  const [offInp, setOffInp] = useState(false)
 
   const updatePlusOneDetails = () => {
     setChangeUpdate(!changeUpdate)
@@ -31,10 +30,7 @@ const PlusOneTrue = ({ profile, resUpdatePlusOneData, setResUpdatePlusOneData })
           foodSensitivity: plusOneFoodS
         })
       }).then(res => res.json())
-        .then(data => {
-          setResUpdatePlusOneData(resUpdatePlusOneData + 1)
-          setOffInp(true)
-        })
+        .then(data => setResUpdatePlusOneData(resUpdatePlusOneData + 1))
         .catch(err => setResUpdatePlusOneData(false))
     }
   }, [changeUpdate])
@@ -46,9 +42,11 @@ const PlusOneTrue = ({ profile, resUpdatePlusOneData, setResUpdatePlusOneData })
           ? <>
             <p>A neve: {name || plusOneName}</p>
 
-            <p>Speciális menü: {foodS ? foodS : "Nincs"}</p>
+            <p>Speciális menü: {foodS}</p>
+
             {
-              foodS && foodS.length < 1 && <>
+              foodS && foodS.length < 1 &&
+              <>
                 <CheckComboBox options={options} setValue={setPlusOneFoodS} />
                 <button disabled={!plusOneFoodS} onClick={() => updatePlusOneDetails()}>Submit</button>
               </>

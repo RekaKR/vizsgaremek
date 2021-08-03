@@ -3,11 +3,14 @@ import CheckComboBox from '../../CheckComboBox/CheckComboBox'
 
 const PlusOneTrue = ({ profile, resUpdatePlusOneData, setResUpdatePlusOneData }) => {
   const options = ['nincs', 'vega', 'vegán', 'laktóz mentes', 'glutén mentes', 'cukor mentes', 'paleo']
+  const name = profile.plusOne.name
+  const foodS = profile.plusOne.foodSensitivity
 
   const [nextInp, setNextInp] = useState(false)
   const [plusOneName, setPlusOneName] = useState(null)
   const [plusOneFoodS, setPlusOneFoodS] = useState(null)
   const [changeUpdate, setChangeUpdate] = useState(false)
+  const [offInp, setOffInp] = useState(false)
 
   const updatePlusOneDetails = () => {
     setChangeUpdate(!changeUpdate)
@@ -28,7 +31,10 @@ const PlusOneTrue = ({ profile, resUpdatePlusOneData, setResUpdatePlusOneData })
           foodSensitivity: plusOneFoodS
         })
       }).then(res => res.json())
-        .then(data => setResUpdatePlusOneData(resUpdatePlusOneData + 1))
+        .then(data => {
+          setResUpdatePlusOneData(resUpdatePlusOneData + 1)
+          setOffInp(true)
+        })
         .catch(err => setResUpdatePlusOneData(false))
     }
   }, [changeUpdate])
@@ -36,14 +42,17 @@ const PlusOneTrue = ({ profile, resUpdatePlusOneData, setResUpdatePlusOneData })
   return (
     <div>
       {
-        profile.plusOne.name || nextInp
+        name || nextInp
           ? <>
-            <p>A neve: {profile.plusOne.name || plusOneName}</p>
+            <p>A neve: {name || plusOneName}</p>
 
-            <p>Étel érzékenysége van-e: {profile.plusOne.foodSensitivy || plusOneFoodS}</p>
-            <CheckComboBox options={options} setValue={setPlusOneFoodS} />
-
-            <button disabled={!(plusOneName && plusOneFoodS)} onClick={() => updatePlusOneDetails()}>Submit</button>
+            <p>Speciális menü: {foodS ? foodS : "Nincs"}</p>
+            {
+              foodS && foodS.length < 1 && <>
+                <CheckComboBox options={options} setValue={setPlusOneFoodS} />
+                <button disabled={!plusOneFoodS} onClick={() => updatePlusOneDetails()}>Submit</button>
+              </>
+            }
           </>
           : <>
             <input type="text" onChange={e => setPlusOneName(e.target.value)} placeholder="Neve" />

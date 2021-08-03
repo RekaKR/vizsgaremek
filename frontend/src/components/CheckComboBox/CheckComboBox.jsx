@@ -10,7 +10,7 @@ const checkedIcon = <CheckBoxIcon fontSize="small" />
 const CheckComboBox = ({ options, setValue }) => {
   return (
     <div>
-      <Autocomplete id="checkboxes-tags-demo" multiple disableCloseOnSelect
+      <Autocomplete /*id="checkboxes-tags-demo"*/ multiple disableCloseOnSelect
         onChange={(e, newValue) => setValue(newValue)}
         options={options} renderInput={(params) => <TextField {...params} variant="outlined" label="Speciális menü (többet is lehet választani)" placeholder="választott" />}
         getOptionLabel={option => option} renderOption={(option, { selected }) =>

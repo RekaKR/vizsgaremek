@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import GoodWishes from './goodWishesCollection/GoodWishes'
-import MenuSelection from './MenuSelection'
-import PlusOne from './plusOneCollection/PlusOne'
+import GoodWishes from '../goodWishesCollection/GoodWishes'
+import MenuSelection from '../MenuSelection/MenuSelection'
+import PlusOne from '../plusOneCollection/PlusOne'
 //KÜLSŐ API - GOOGLE NAPTÁRBA ADÁS
 
 const Profile = () => {

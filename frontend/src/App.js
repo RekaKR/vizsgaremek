@@ -6,7 +6,7 @@ import './style/css/style.css'
 import Header from './components/Header/Header'
 import Invitation from "./components/Invitation/Invitation"
 import Login from "./components/Login/Login"
-import Profile from "./components/profileCollection/Profile"
+import Profile from "./components/profileCollection/Profile/Profile"
 import Timeline from './components/timelineCollection/Timeline'
 import Accommodations from "./components/accommodationCollection/Accommodations"
 import Galery from "./components/Feature/Galery/Galery"

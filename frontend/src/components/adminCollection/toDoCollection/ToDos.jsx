@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { v4 as uuidv4 } from 'uuid'
+import useFetchDelete from '../../../useFetchDelete'
 import ToDo from './ToDo'
 
 const ToDos = ({ toDos, resUpdate, setResUpdate, resDelete, setResDelete }) => {
@@ -8,6 +9,12 @@ const ToDos = ({ toDos, resUpdate, setResUpdate, resDelete, setResDelete }) => {
   const [deleteById, setDeleteById] = useState('')
   const [changeUpdate, setChangeUpdate] = useState(false)
   const [changeDelete, setChangeDelete] = useState(false)
+
+  const { data } = useFetchDelete(deleteById, `http://localhost:3001/api/to-do-list/${deleteById}`, [changeDelete])
+
+  useEffect(() => {
+    setResDelete(data)
+  }, [data])
 
   const updateRecord = (toDo) => {
     setUpdateById(toDos.filter(item => item.key === toDo.key) && toDo._id)
@@ -37,21 +44,6 @@ const ToDos = ({ toDos, resUpdate, setResUpdate, resDelete, setResDelete }) => {
     setDeleteById(toDos.filter(item => item.key === toDo.key) && toDo._id)
     setChangeDelete(!changeDelete)
   }
-
-  useEffect(() => {
-    if (deleteById) {
-      fetch(`http://localhost:3001/api/to-do-list/${deleteById}`, {
-        method: 'DELETE',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-          'Authorization': localStorage.getItem('token')
-        }
-      }).then(res => res.json())
-        .then(res => setResDelete(resDelete + 1))
-        .catch(err => setResDelete(false))
-    }
-  }, [changeDelete])
 
   return (
     <div className="to-do">

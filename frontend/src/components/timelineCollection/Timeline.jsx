@@ -3,7 +3,6 @@ import { v4 as uuidv4 } from 'uuid'
 import Event from './Event'
 
 const Timeline = ({ events }) => {
-
   return (
     <div className="timeline">
       <h2>Menetrend</h2>

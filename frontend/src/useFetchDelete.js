@@ -23,3 +23,9 @@ const useFetchDelete = (ifStatement, url, reCall) => {
 }
 
 export default useFetchDelete
+
+/*
+  const resetRes = () => {
+    if (resUpdate === 10) setResUpdate(0)
+    if (resDelete === 10) setResDelete(0)
+  }*/

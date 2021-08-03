@@ -10,12 +10,6 @@ const ToDoAdmin = () => {
 
   const { data: toDos } = useFetchGet(true, 'http://localhost:3001/api/to-do-list', [resUpdate, resDelete, resPost])
 
-  /*
-    const resetRes = () => {
-      if (resUpdate === 10) setResUpdate(0)
-      if (resDelete === 10) setResDelete(0)
-    }*/
-
   return (
     <div className="admin-to-dos">
       <ToDos toDos={toDos} resUpdate={resUpdate} setResUpdate={setResUpdate} resDelete={resDelete} setResDelete={setResDelete} />

@@ -1,48 +1,37 @@
 import React, { useState, useEffect } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 import useFetchDelete from '../../../useFetchDelete'
+import useFetchPatch from '../../../useFetchPatch'
 import ToDo from './ToDo'
 
-const ToDos = ({ toDos, resUpdate, setResUpdate, resDelete, setResDelete }) => {
+const ToDos = ({ toDos, setResUpdate, setResDelete }) => {
   const [done, setDone] = useState(false)
   const [updateById, setUpdateById] = useState(false)
   const [deleteById, setDeleteById] = useState('')
   const [changeUpdate, setChangeUpdate] = useState(false)
   const [changeDelete, setChangeDelete] = useState(false)
 
-  const { data } = useFetchDelete(deleteById, `http://localhost:3001/api/to-do-list/${deleteById}`, [changeDelete])
+  const body = { done: done }
+
+  const { data: deleteData } = useFetchDelete(deleteById, `http://localhost:3001/api/to-do-list/${deleteById}`, [changeDelete])
+  const { data: updateData } = useFetchPatch(updateById, `http://localhost:3001/api/to-do-list/${updateById}`, body, [changeUpdate])
 
   useEffect(() => {
-    setResDelete(data)
-  }, [data])
-
-  const updateRecord = (toDo) => {
-    setUpdateById(toDos.filter(item => item.key === toDo.key) && toDo._id)
-    setChangeUpdate(!changeUpdate)
-  }
+    setResDelete(deleteData)
+  }, [deleteData])
 
   useEffect(() => {
-    if (updateById) {
-      fetch(`http://localhost:3001/api/to-do-list/${updateById}`, {
-        method: 'PATCH',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-          'Authorization': localStorage.getItem('token')
-        },
-        body: JSON.stringify({
-          done: done
-        })
-      }).then(res => res.json())
-        .then(res => setResUpdate(resUpdate + 1))
-        .catch(err => setResUpdate(false))
-      //.finally(() => resetRes())
-    }
-  }, [changeUpdate])
+    setResUpdate(updateData)
+  }, [updateData])
 
   const deleteRecord = (toDo) => {
     setDeleteById(toDos.filter(item => item.key === toDo.key) && toDo._id)
     setChangeDelete(!changeDelete)
+  }
+
+  const updateRecord = (toDo) => {
+    setUpdateById(toDos.filter(item => item.key === toDo.key) && toDo._id)
+    setChangeUpdate(!changeUpdate)
   }
 
   return (

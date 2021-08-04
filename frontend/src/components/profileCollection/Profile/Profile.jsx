@@ -22,8 +22,8 @@ const Profile = () => {
           ? <>
             <p>Szia {profile.username}!</p>
 
-            <MenuSelection profile={profile} resUpdateUser={resUpdateUser} setResUpdateUser={setResUpdateUser} />
-            <PlusOne profile={profile} resUpdatePlusOneData={resUpdatePlusOneData} setResUpdatePlusOneData={setResUpdatePlusOneData} resUpdateIsComing={resUpdateIsComing} setResUpdateIsComing={setResUpdateIsComing} />
+            <MenuSelection profile={profile} setResUpdateUser={setResUpdateUser} />
+            <PlusOne profile={profile} setResUpdatePlusOneData={setResUpdatePlusOneData} setResUpdateIsComing={setResUpdateIsComing} />
             <GoodWishes profile={profile} />
           </>
           : "Loading.."

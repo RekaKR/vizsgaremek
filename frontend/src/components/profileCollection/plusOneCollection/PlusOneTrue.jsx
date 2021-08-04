@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'
+import useFetchPatch from '../../../useFetchPatch'
 import CheckComboBox from '../../CheckComboBox/CheckComboBox'
 
-const PlusOneTrue = ({ profile, resUpdatePlusOneData, setResUpdatePlusOneData }) => {
+const PlusOneTrue = ({ profile, setResUpdatePlusOneData }) => {
   const options = ['nincs', 'vega', 'vegán', 'laktóz mentes', 'glutén mentes', 'cukor mentes', 'paleo']
   const name = profile.plusOne.name
   const foodS = profile.plusOne.foodSensitivity
@@ -11,29 +12,22 @@ const PlusOneTrue = ({ profile, resUpdatePlusOneData, setResUpdatePlusOneData })
   const [plusOneFoodS, setPlusOneFoodS] = useState(null)
   const [changeUpdate, setChangeUpdate] = useState(false)
 
+  const body = {
+    isComing: profile.plusOne.isComing,
+    name: plusOneName,
+    foodSensitivity: plusOneFoodS
+  }
+
+  const { data } = useFetchPatch((plusOneName !== null || plusOneFoodS !== null), 'http://localhost:3001/api/user/plus-one-details', body, [changeUpdate])
+
+  useEffect(() => {
+    setResUpdatePlusOneData(data)
+  }, [data])
+
+
   const updatePlusOneDetails = () => {
     setChangeUpdate(!changeUpdate)
   }
-
-  useEffect(() => {
-    if (plusOneName !== null || plusOneFoodS !== null) {
-      fetch('http://localhost:3001/api/user/plus-one-details', {
-        method: 'PATCH',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-          'Authorization': localStorage.getItem('token')
-        },
-        body: JSON.stringify({
-          isComing: profile.plusOne.isComing,
-          name: plusOneName,
-          foodSensitivity: plusOneFoodS
-        })
-      }).then(res => res.json())
-        .then(data => setResUpdatePlusOneData(resUpdatePlusOneData + 1))
-        .catch(err => setResUpdatePlusOneData(false))
-    }
-  }, [changeUpdate])
 
   return (
     <div>

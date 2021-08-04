@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 
-const useFetchDelete = (ifStatement, url, reCall) => {
+const useFetchPatch = (ifStatement, url, body, reCall) => {
   const [data, setData] = useState(null)
 
   const resetRes = () => {
@@ -10,12 +10,13 @@ const useFetchDelete = (ifStatement, url, reCall) => {
   useEffect(() => {
     if (ifStatement) {
       fetch(url, {
-        method: 'DELETE',
+        method: 'PATCH',
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json',
           'Authorization': localStorage.getItem('token')
-        }
+        },
+        body: JSON.stringify({ ...body })
       }).then(res => res.json())
         .then(res => setData(data + 1))
         .catch(err => setData(null))
@@ -26,4 +27,4 @@ const useFetchDelete = (ifStatement, url, reCall) => {
   return { data }
 }
 
-export default useFetchDelete
+export default useFetchPatch

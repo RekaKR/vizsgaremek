@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import useFetchGet from '../../../useFetchGet'
+import useFetchGet from '../../../customHooks/useFetchGet'
 import ToDos from './ToDos'
 import ToDoInput from './ToDoInput'
 
@@ -14,7 +14,7 @@ const ToDoAdmin = () => {
     <div className="admin-to-dos">
       <ToDos toDos={toDos} resUpdate={resUpdate} setResUpdate={setResUpdate} resDelete={resDelete} setResDelete={setResDelete} />
 
-      <ToDoInput resPost={resPost} setResPost={setResPost} />
+      <ToDoInput setResPost={setResPost} />
     </div>
   )
 }

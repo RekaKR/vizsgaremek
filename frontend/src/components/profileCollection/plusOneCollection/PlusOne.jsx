@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import useFetchPatch from '../../../useFetchPatch'
+import useFetchPatch from '../../../customHooks/useFetchPatch'
 import PlusOneTrue from './PlusOneTrue'
 
 const PlusOne = ({ profile, setResUpdatePlusOneData, setResUpdateIsComing }) => {
@@ -8,9 +8,9 @@ const PlusOne = ({ profile, setResUpdatePlusOneData, setResUpdateIsComing }) => 
   const [plusOneIsComing, setPlusOneIsComing] = useState('')
   const [changeUpdate, setChangeUpdate] = useState(false)
 
-  const body = { isComing: plusOneIsComing }
+  const patchBody = { isComing: plusOneIsComing }
 
-  const { data } = useFetchPatch((plusOneIsComing !== ''), 'http://localhost:3001/api/user/plus-one', body, [changeUpdate])
+  const { data } = useFetchPatch((plusOneIsComing !== ''), 'http://localhost:3001/api/user/plus-one', patchBody, [changeUpdate])
 
   useEffect(() => {
     setResUpdateIsComing(data)

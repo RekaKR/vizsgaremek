@@ -1,5 +1,6 @@
 import React from 'react'
 import { BrowserRouter as Router, Switch, Route, useRouteMatch } from 'react-router-dom'
+
 import AdminHeader from '../AdminHeader/AdminHeader'
 import GuestListAdmin from '../guestListCollection/GuestListAdmin'
 import TimelineAdmin from '../timelineCollection/TimelineAdmin'
@@ -9,7 +10,7 @@ import SeatsAdmin from '../seatsCollection/SeatsAdmin'
 
 const Admin = (props) => {
   const { url, path } = useRouteMatch()
-  const { accommodations, events, resDeleteAcc, setResDeleteAcc, resPostAcc, setResPostAcc, resPostTime, setResPostTime, resDeleteTime, setResDeleteTime } = props
+  const { accommodations, events, setResDeleteAcc, setResPostAcc, resPostTime, setResPostTime, setResDeleteTime } = props
 
   return (
     <Router>
@@ -19,7 +20,7 @@ const Admin = (props) => {
         </Route>
 
         <Switch>
-          <Route path={`${path}`} exact>
+          <Route path={path} exact>
             <h2>Admin felület</h2>
           </Route>
 
@@ -28,11 +29,11 @@ const Admin = (props) => {
           </Route>
 
           <Route path={`${path}/timeline`}>
-            <TimelineAdmin events={events} resPostTime={resPostTime} setResPostTime={setResPostTime} resDeleteTime={resDeleteTime} setResDeleteTime={setResDeleteTime} />
+            <TimelineAdmin events={events} resPostTime={resPostTime} setResPostTime={setResPostTime} setResDeleteTime={setResDeleteTime} />
           </Route>
 
           <Route path={`${path}/accommodations`}>
-            <AccommodationAdmin accommodations={accommodations} resPostAcc={resPostAcc} setResPostAcc={setResPostAcc} resDeleteAcc={resDeleteAcc} setResDeleteAcc={setResDeleteAcc} />
+            <AccommodationAdmin accommodations={accommodations} setResPostAcc={setResPostAcc} setResDeleteAcc={setResDeleteAcc} />
           </Route>
 
           <Route path={`${path}/to-do-list`}>

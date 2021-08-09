@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import useFetchPost from '../../../customHooks/useFetchPost'
 
-function AccommodationInput({ resPostAcc, setResPostAcc }) {
+function AccommodationInput({ setResPostAcc }) {
   const [name, setName] = useState('')
   const [zip, setZip] = useState('')
   const [city, setCity] = useState('')
@@ -8,28 +9,23 @@ function AccommodationInput({ resPostAcc, setResPostAcc }) {
   const [houseNumber, setHouseNumber] = useState('')
   const [phoneNumber, setPhoneNumber] = useState('')
   const [website, setWebsite] = useState('')
+  const [submit, setSubmit] = useState(true)
 
-  const submit = () => {
-    fetch('http://localhost:3001/api/accommodation', {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        'Authorization': localStorage.getItem('token')
-      },
-      body: JSON.stringify({
-        name: name,
-        zip: zip,
-        city: city,
-        street: street,
-        houseNumber: houseNumber,
-        phoneNumber: phoneNumber,
-        website: website
-      })
-    }).then(res => res.json())
-      .then(data => setResPostAcc(resPostAcc + 1))
-      .catch(err => setResPostAcc(false))
+  const postBody = {
+    name: name,
+    zip: zip,
+    city: city,
+    street: street,
+    houseNumber: houseNumber,
+    phoneNumber: phoneNumber,
+    website: website
   }
+
+  const { data } = useFetchPost('http://localhost:3001/api/accommodation', postBody, [submit])
+
+  useEffect(() => {
+    setResPostAcc(data)
+  }, [submit])
 
   return (
     <div className="accommodation-input">
@@ -65,65 +61,9 @@ function AccommodationInput({ resPostAcc, setResPostAcc }) {
       </div>
 
 
-      <button disabled={!(name && zip && city && street && houseNumber && phoneNumber && website)} onClick={() => submit()}>Submit</button>
+      <button disabled={!(name && zip && city && street && houseNumber && phoneNumber && website)} onClick={() => setSubmit(!submit)}>Submit</button>
     </div >
   )
 }
 
 export default AccommodationInput
-
-
-
-/*
-
-const inputs = [
-    {
-      var: name,
-      set: setName,
-      type: 'text',
-      placeholder: "Név"
-    },
-    {
-      var: zip,
-      set: setZip,
-      type: 'number',
-      placeholder: "Irányítószám"
-    },
-    {
-      var: city,
-      set: setCity,
-      type: 'text',
-      placeholder: "Város"
-    },
-    {
-      var: street,
-      set: setStreet,
-      type: 'text',
-      placeholder: "Utca"
-    },
-    {
-      var: houseNumber,
-      set: setHouseNumber,
-      type: 'number',
-      placeholder: "Házszám"
-    },
-    {
-      var: phoneNumber,
-      set: setPhoneNumber,
-      type: 'text',
-      placeholder: "Telefonszám"
-    },
-    {
-      var: website,
-      set: setWebsite,
-      type: 'text',
-      placeholder: "Weboldal"
-    }
-  ]
-
-inputs.map(input =>
-  <div key={uuidv4()}>
-    <p>{input.placeholder}</p>
-    <input type={input.type} onChange={e => input.set(e.target.value)} />
-  </div>)
-*/

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { v4 as uuidv4 } from 'uuid'
-import useFetchDelete from '../../../useFetchDelete'
-import useFetchPatch from '../../../useFetchPatch'
+import useFetchDelete from '../../../customHooks/useFetchDelete'
+import useFetchPatch from '../../../customHooks/useFetchPatch'
 import ToDo from './ToDo'
 
 const ToDos = ({ toDos, setResUpdate, setResDelete }) => {
@@ -11,10 +11,10 @@ const ToDos = ({ toDos, setResUpdate, setResDelete }) => {
   const [changeUpdate, setChangeUpdate] = useState(false)
   const [changeDelete, setChangeDelete] = useState(false)
 
-  const body = { done: done }
+  const patchBody = { done: done }
 
   const { data: deleteData } = useFetchDelete(deleteById, `http://localhost:3001/api/to-do-list/${deleteById}`, [changeDelete])
-  const { data: updateData } = useFetchPatch(updateById, `http://localhost:3001/api/to-do-list/${updateById}`, body, [changeUpdate])
+  const { data: updateData } = useFetchPatch(updateById, `http://localhost:3001/api/to-do-list/${updateById}`, patchBody, [changeUpdate])
 
   useEffect(() => {
     setResDelete(deleteData)

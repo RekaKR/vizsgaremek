@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import jwt_decode from 'jwt-decode'
-import useFetchGet from "./useFetchGet"
+import useFetchGet from "./customHooks/useFetchGet"
 import './style/css/style.css'
 
 import Header from './components/Header/Header'
@@ -68,7 +68,7 @@ const App = () => {
           </Route>
 
           <Route path='/admin'>
-            <Admin events={events} accommodations={accommodations} resPostAcc={resPostAcc} setResPostAcc={setResPostAcc} resDeleteAcc={resDeleteAcc} setResDeleteAcc={setResDeleteAcc} resPostTime={resPostTime} setResPostTime={setResPostTime} resDeleteTime={resDeleteTime} setResDeleteTime={setResDeleteTime} />
+            <Admin events={events} accommodations={accommodations} setResPostAcc={setResPostAcc} resDeleteAcc={resDeleteAcc} setResDeleteAcc={setResDeleteAcc} resPostTime={resPostTime} setResPostTime={setResPostTime} resDeleteTime={resDeleteTime} setResDeleteTime={setResDeleteTime} />
           </Route>
 
           <Route path='/'>

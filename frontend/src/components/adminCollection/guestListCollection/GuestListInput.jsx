@@ -1,30 +1,25 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import validator from 'validator'
-
+import useFetchPost from '../../../customHooks/useFetchPost'
 import ComboBox from '../../ComboBox/ComboBox'
 
-const GuestListInput = ({ resPost, setResPost }) => {
+const GuestListInput = ({ setResPost }) => {
   const options = ['vendég', 'esküvőszervező']
   const [email, setEmail] = useState('')
   const [role, setRole] = useState(options[0])
   const [emailError, setEmailError] = useState('')
+  const [submit, setSubmit] = useState(true)
 
-  const submit = () => {
-    fetch('http://localhost:3001/api/emaillist', {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        'Authorization': localStorage.getItem('token')
-      },
-      body: JSON.stringify({
-        email: email,
-        role: (role === 'vendég' ? "guest" : "weddingP"),
-      })
-    }).then(res => res.json())
-      .then(res => setResPost(resPost + 1))
-      .catch(err => setResPost(false))
+  const postBody = {
+    email: email,
+    role: (role === 'vendég' ? "guest" : "weddingP"),
   }
+
+  const { data } = useFetchPost('http://localhost:3001/api/emaillist', postBody, [submit])
+
+  useEffect(() => {
+    setResPost(data)
+  }, [submit])
 
   const validateEmail = (e) => {
     const email = e.target.value
@@ -49,7 +44,7 @@ const GuestListInput = ({ resPost, setResPost }) => {
         <ComboBox options={options} value={role} setValue={setRole} label="Megnevezés" />
       </div>
 
-      <button disabled={!(email && role)} onClick={() => submit()}>Submit</button>
+      <button disabled={!(email && role)} onClick={() => setSubmit(!submit)}>Submit</button>
     </div>
   )
 }

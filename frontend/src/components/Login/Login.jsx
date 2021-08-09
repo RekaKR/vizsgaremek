@@ -1,8 +1,10 @@
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 
 const Login = ({ checkToken }) => {
   let history = useHistory()
+
+  const [isShow, setIsShow] = useState("Loading...")
 
   useEffect(() => {
     const urlSearchParams = new URLSearchParams(window.location.search)
@@ -21,6 +23,8 @@ const Login = ({ checkToken }) => {
       .then(data => {
         if (data.message) {
           history.push("/")
+          //setIsShow(data.message)
+          console.log(data.message)
         } else {
           localStorage.setItem('token', data.token)
           history.push("/")
@@ -32,7 +36,7 @@ const Login = ({ checkToken }) => {
 
   return (
     <div className="login">
-      Loading...
+      {isShow}
     </div>
   )
 }

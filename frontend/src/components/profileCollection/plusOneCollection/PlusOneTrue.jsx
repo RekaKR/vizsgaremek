@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import useFetchPatch from '../../../useFetchPatch'
+import useFetchPatch from '../../../customHooks/useFetchPatch'
 import CheckComboBox from '../../CheckComboBox/CheckComboBox'
 
 const PlusOneTrue = ({ profile, setResUpdatePlusOneData }) => {
@@ -12,18 +12,17 @@ const PlusOneTrue = ({ profile, setResUpdatePlusOneData }) => {
   const [plusOneFoodS, setPlusOneFoodS] = useState(null)
   const [changeUpdate, setChangeUpdate] = useState(false)
 
-  const body = {
+  const patchBody = {
     isComing: profile.plusOne.isComing,
     name: plusOneName,
     foodSensitivity: plusOneFoodS
   }
 
-  const { data } = useFetchPatch((plusOneName !== null || plusOneFoodS !== null), 'http://localhost:3001/api/user/plus-one-details', body, [changeUpdate])
+  const { data } = useFetchPatch((plusOneName !== null || plusOneFoodS !== null), 'http://localhost:3001/api/user/plus-one-details', patchBody, [changeUpdate])
 
   useEffect(() => {
     setResUpdatePlusOneData(data)
   }, [data])
-
 
   const updatePlusOneDetails = () => {
     setChangeUpdate(!changeUpdate)

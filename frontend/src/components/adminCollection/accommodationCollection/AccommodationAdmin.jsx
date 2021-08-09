@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { v4 as uuidv4 } from 'uuid'
-import useFetchDelete from '../../../useFetchDelete'
+import useFetchDelete from '../../../customHooks/useFetchDelete'
 import AccommodationInput from './AccommodationInput'
 
-function AccommodationAdmin({ accommodations, setResDeleteAcc, resPostAcc, setResPostAcc }) {
+function AccommodationAdmin({ accommodations, setResPostAcc, setResDeleteAcc }) {
   const [deleteById, setDeleteById] = useState('')
   const [changeDelete, setChangeDelete] = useState(false)
 
@@ -30,7 +30,7 @@ function AccommodationAdmin({ accommodations, setResDeleteAcc, resPostAcc, setRe
         </div>)
       }
 
-      <AccommodationInput resPostAcc={resPostAcc} setResPostAcc={setResPostAcc} />
+      <AccommodationInput setResPostAcc={setResPostAcc} />
     </div>
   )
 }

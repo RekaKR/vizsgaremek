@@ -1,10 +1,9 @@
 import React, { useState } from 'react'
-import useFetchGet from '../../../useFetchGet'
+import useFetchGet from '../../../customHooks/useFetchGet'
 
 import GoodWishes from '../goodWishesCollection/GoodWishes'
 import MenuSelection from '../MenuSelection/MenuSelection'
 import PlusOne from '../plusOneCollection/PlusOne'
-//KÜLSŐ API - GOOGLE NAPTÁRBA ADÁS
 
 const Profile = () => {
   const [resUpdateIsComing, setResUpdateIsComing] = useState(0)

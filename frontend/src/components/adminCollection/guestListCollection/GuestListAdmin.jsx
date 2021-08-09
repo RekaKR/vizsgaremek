@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { v4 as uuidv4 } from 'uuid'
-import useFetchGet from '../../../useFetchGet'
-import useFetchDelete from '../../../useFetchDelete'
+import useFetchGet from '../../../customHooks/useFetchGet'
+import useFetchDelete from '../../../customHooks/useFetchDelete'
 import GuestListInput from './GuestListInput'
 
 const GuestListAdmin = () => {

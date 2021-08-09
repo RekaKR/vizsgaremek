@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { v4 as uuidv4 } from 'uuid'
-import useFetchDelete from '../../../useFetchDelete'
+import useFetchDelete from '../../../customHooks/useFetchDelete'
 
 import Event from '../../timelineCollection/Event'
 import TimelineInput from './TimelineInput'

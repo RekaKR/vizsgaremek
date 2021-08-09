@@ -1,27 +1,23 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import useFetchPost from '../../../customHooks/useFetchPost'
 
-function TimelineInput({ resPostTime, setResPostTime }) {
+function TimelineInput({ setResPostTime }) {
   const [time, setTime] = useState('')
   const [happening, setHappening] = useState('')
   const [place, setPlace] = useState('')
+  const [submit, setSubmit] = useState(true)
 
-  const submit = () => {
-    fetch('http://localhost:3001/api/timeline', {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        'Authorization': localStorage.getItem('token')
-      },
-      body: JSON.stringify({
-        time: time,
-        happening: happening,
-        place: place
-      })
-    }).then(res => res.json())
-      .then(res => setResPostTime(resPostTime + 1))
-      .catch(err => setResPostTime(false))
+  const postBody = {
+    time: time,
+    happening: happening,
+    place: place
   }
+
+  const { data } = useFetchPost('http://localhost:3001/api/timeline', postBody, [submit])
+
+  useEffect(() => {
+    setResPostTime(data)
+  }, [submit])
 
   return (
     <div className="timeline-input">
@@ -40,7 +36,7 @@ function TimelineInput({ resPostTime, setResPostTime }) {
         <input type="text" onChange={e => setPlace(e.target.value)} placeholder="Helyszín" />
       </div>
 
-      <button disabled={!(time && happening && place)} onClick={() => submit()}>Submit</button>
+      <button disabled={!(time && happening && place)} onClick={() => setSubmit(!submit)}>Submit</button>
     </div>
   )
 }

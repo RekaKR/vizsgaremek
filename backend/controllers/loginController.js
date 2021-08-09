@@ -36,7 +36,7 @@ const getDataFromGoogle = (data, res) => {
 
   EmailList.findOne({ email: email })
     .then(foundEmail => {
-      if (!foundEmail) return res.status(400).json({ message: 'Couldn\'t find email' })
+      if (!foundEmail) return res.status(400).json({ message: 'Something went wrong. Please contact with the couple.' })
 
       User.findOne({ googleId: sub })
         .then(user => {
@@ -54,28 +54,16 @@ const getDataFromGoogle = (data, res) => {
             })
 
             user.save()
-              .then(res => {
-                jwt.sign({
-                  "google": sub,
-                  "email": foundEmail.email,
-                  "name": name,
-                  "role": foundEmail.role
-                }, JWT_SECRET, { expiresIn: '1h' },
-                  (err, token) => res.json({ token: token }))
-
-                console.log("Done saving new user")
-              })
+              .then(res => console.log("Done saving new user"))
           }
 
-          else {
-            jwt.sign({
-              "google": sub,
-              "email": foundEmail.email,
-              "name": name,
-              "role": foundEmail.role
-            }, JWT_SECRET, { expiresIn: '1h' },
-              (err, token) => res.json({ token: token }))
-          }
+          jwt.sign({
+            "google": sub,
+            "email": foundEmail.email,
+            "name": name,
+            "role": foundEmail.role
+          }, JWT_SECRET, { expiresIn: '1h' },
+            (err, token) => res.json({ token: token }))
         })
     })
 }

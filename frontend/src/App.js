@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react"
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import jwt_decode from 'jwt-decode'
+import { ProfileContext } from './ProfileContext'
 import useFetchGet from "./customHooks/useFetchGet"
 import './style/css/style.css'
 
@@ -15,68 +16,72 @@ import Admin from "./components/adminCollection/Admin/Admin"
 
 const App = () => {
   const [user, setUser] = useState('')
+  const [profile, setProfile] = useState(null)
   const [resPostAcc, setResPostAcc] = useState(0)
   const [resDeleteAcc, setResDeleteAcc] = useState(0)
   const [resPostTime, setResPostTime] = useState(0)
   const [resDeleteTime, setResDeleteTime] = useState(0)
+  const [resUpdateIsComing, setResUpdateIsComing] = useState(0)
+  const [resUpdatePlusOneData, setResUpdatePlusOneData] = useState(0)
+  const [resUpdateUser, setResUpdateUser] = useState(0)
 
   const { data: accommodations } = useFetchGet(true, 'http://localhost:3001/api/accommodation', [resPostAcc, resDeleteAcc])
   const { data: events } = useFetchGet(true, 'http://localhost:3001/api/timeline', [resPostTime, resDeleteTime])
+  const { data } = useFetchGet(localStorage.getItem('token'), 'http://localhost:3001/api/user', [resUpdateIsComing, resUpdatePlusOneData, resUpdateUser, localStorage.getItem('token')])
 
   const checkToken = () => {
     const token = localStorage.getItem('token')
-    if (token) {
-      setUser(jwt_decode(token))
-    }
+    if (token) setUser(jwt_decode(token))
   }
 
   useEffect(() => {
     checkToken()
   }, [])
 
-  const googleSignIn = () => {
-    window.location.href =
-      "https://accounts.google.com/o/oauth2/v2/auth?response_type=code&prompt=select_account&client_id=716515278040-8devcsi8fm1uh0mledpu00oknp3i3kpv.apps.googleusercontent.com&scope=openid%20profile email&redirect_uri=http://localhost:3000/login"
-  }
+  useEffect(() => {
+    setProfile(data)
+  }, [data])
 
   return (
-    <Router>
-      <div className="app">
-        <Route path='/' >
-          <Header googleSignIn={googleSignIn} user={user} setUser={setUser} />
-        </Route>
-
-        <Switch>
-          <Route path='/login'>
-            <Login checkToken={checkToken} />
+    <ProfileContext.Provider value={{ profile, events, accommodations, setResUpdateUser, setResUpdatePlusOneData, setResUpdateIsComing, setResPostAcc, setResDeleteAcc, setResPostTime, setResDeleteTime }}>
+      <Router>
+        <div className="app">
+          <Route path='/' >
+            <Header user={user} setUser={setUser} />
           </Route>
 
-          <Route path='/profile'>
-            <Profile />
-          </Route>
+          <Switch>
+            <Route path='/login'>
+              <Login checkToken={checkToken} />
+            </Route>
 
-          <Route path='/timeline'>
-            <Timeline events={events} />
-          </Route>
+            <Route path='/profile'>
+              <Profile />
+            </Route>
 
-          <Route path='/accommodation'>
-            <Accommodations accommodations={accommodations} />
-          </Route>
+            <Route path='/timeline'>
+              <Timeline />
+            </Route>
 
-          <Route path='/galery'>
-            <Galery />
-          </Route>
+            <Route path='/accommodation'>
+              <Accommodations />
+            </Route>
 
-          <Route path='/admin'>
-            <Admin events={events} accommodations={accommodations} setResPostAcc={setResPostAcc} resDeleteAcc={resDeleteAcc} setResDeleteAcc={setResDeleteAcc} resPostTime={resPostTime} setResPostTime={setResPostTime} resDeleteTime={resDeleteTime} setResDeleteTime={setResDeleteTime} />
-          </Route>
+            <Route path='/galery'>
+              <Galery />
+            </Route>
 
-          <Route path='/'>
-            <Invitation />
-          </Route>
-        </Switch>
-      </div>
-    </Router >
+            <Route path='/admin'>
+              <Admin />
+            </Route>
+
+            <Route path='/'>
+              <Invitation />
+            </Route>
+          </Switch>
+        </div>
+      </Router >
+    </ProfileContext.Provider>
   )
 }
 

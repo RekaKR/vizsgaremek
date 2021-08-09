@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { v4 as uuidv4 } from 'uuid'
+import { ProfileContext } from '../../ProfileContext'
 import Accommodation from './Accommodation'
 
-const Accommodations = ({ accommodations }) => {
+const Accommodations = () => {
+  const { accommodations } = useContext(ProfileContext)
 
   return (
     <div className="accommodations">

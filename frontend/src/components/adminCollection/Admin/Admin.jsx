@@ -7,10 +7,10 @@ import TimelineAdmin from '../timelineCollection/TimelineAdmin'
 import AccommodationAdmin from '../accommodationCollection/AccommodationAdmin'
 import ToDoAdmin from '../toDoCollection/ToDoAdmin'
 import SeatsAdmin from '../seatsCollection/SeatsAdmin'
+import AdminPage from '../AdminPage/AdminPage'
 
-const Admin = (props) => {
+const Admin = () => {
   const { url, path } = useRouteMatch()
-  const { accommodations, events, setResDeleteAcc, setResPostAcc, resPostTime, setResPostTime, setResDeleteTime } = props
 
   return (
     <Router>
@@ -20,20 +20,16 @@ const Admin = (props) => {
         </Route>
 
         <Switch>
-          <Route path={path} exact>
-            <h2>Admin felület</h2>
-          </Route>
-
           <Route path={`${path}/guest-list`}>
             <GuestListAdmin />
           </Route>
 
           <Route path={`${path}/timeline`}>
-            <TimelineAdmin events={events} resPostTime={resPostTime} setResPostTime={setResPostTime} setResDeleteTime={setResDeleteTime} />
+            <TimelineAdmin />
           </Route>
 
           <Route path={`${path}/accommodations`}>
-            <AccommodationAdmin accommodations={accommodations} setResPostAcc={setResPostAcc} setResDeleteAcc={setResDeleteAcc} />
+            <AccommodationAdmin />
           </Route>
 
           <Route path={`${path}/to-do-list`}>
@@ -42,6 +38,10 @@ const Admin = (props) => {
 
           <Route path={`${path}/seats`}>
             <SeatsAdmin />
+          </Route>
+
+          <Route path={path}>
+            <AdminPage />
           </Route>
         </Switch>
       </div>

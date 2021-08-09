@@ -1,9 +1,14 @@
 import React from 'react'
 import { Link, useHistory } from 'react-router-dom'
 
-const Header = ({ googleSignIn, user, setUser }) => {
+const Header = ({ user, setUser }) => {
   let history = useHistory()
   const role = user.role
+
+  const googleSignIn = () => {
+    window.location.href =
+      "https://accounts.google.com/o/oauth2/v2/auth?response_type=code&prompt=select_account&client_id=716515278040-8devcsi8fm1uh0mledpu00oknp3i3kpv.apps.googleusercontent.com&scope=openid%20profile email&redirect_uri=http://localhost:3000/login"
+  }
 
   const logout = () => {
     localStorage.removeItem('token')

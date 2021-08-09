@@ -1,11 +1,14 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { v4 as uuidv4 } from 'uuid'
+import { ProfileContext } from '../../../ProfileContext'
 import useFetchDelete from '../../../customHooks/useFetchDelete'
 
 import Event from '../../timelineCollection/Event'
 import TimelineInput from './TimelineInput'
 
-function TimelineAdmin({ events, resPostTime, setResPostTime, setResDeleteTime }) {
+const TimelineAdmin = () => {
+  const { events, setResDeleteTime } = useContext(ProfileContext)
+
   const [deleteById, setDeleteById] = useState('')
   const [changeDelete, setChangeDelete] = useState(false)
 
@@ -33,7 +36,7 @@ function TimelineAdmin({ events, resPostTime, setResPostTime, setResDeleteTime }
           </div>)
       }
 
-      <TimelineInput resPostTime={resPostTime} setResPostTime={setResPostTime} />
+      <TimelineInput />
     </div>
   )
 }

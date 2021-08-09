@@ -1,11 +1,14 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { v4 as uuidv4 } from 'uuid'
-import useFetchGetWAuth from '../../../customHooks/useFetchGet'
+import { ProfileContext } from '../../../ProfileContext'
+import useFetchGet from '../../../customHooks/useFetchGet'
 import useFetchPost from '../../../customHooks/useFetchPost'
 
 import GoodWish from './GoodWish'
 
-const GoodWishes = ({ profile }) => {
+const GoodWishes = () => {
+  const { profile } = useContext(ProfileContext)
+
   const [goodWish, setGoodWish] = useState(null)
   const [resPostGW, setResPostGW] = useState(0)
   const [submit, setSubmit] = useState(true)
@@ -16,7 +19,7 @@ const GoodWishes = ({ profile }) => {
     email: profile.email
   }
 
-  const { data: goodWishes } = useFetchGetWAuth((profile.role === 'couple'), 'http://localhost:3001/api/good-wish', [resPostGW])
+  const { data: goodWishes } = useFetchGet((profile.role === 'couple'), 'http://localhost:3001/api/good-wish', [resPostGW])
   const { data } = useFetchPost('http://localhost:3001/api/good-wish', postBody, [submit])
 
   useEffect(() => {

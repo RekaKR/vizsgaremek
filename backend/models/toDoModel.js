@@ -9,8 +9,10 @@ const toDoSchema = mongoose.Schema({
     type: String,
     required: true
   },
-  done: Boolean
-  //default érték false
+  done: {
+    type: Boolean,
+    default: false
+  }
 })
 
 module.exports = mongoose.model('ToDo', toDoSchema)

@@ -1,10 +1,14 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
+import { ProfileContext } from '../../../ProfileContext'
 import useFetchPatch from '../../../customHooks/useFetchPatch'
+
 import CheckComboBox from '../../CheckComboBox/CheckComboBox'
 
-const MenuSelection = ({ profile, setResUpdateUser }) => {
-  const options = ['nincs', 'vega', 'vegán', 'laktóz mentes', 'glutén mentes', 'cukor mentes', 'paleo']
+const MenuSelection = () => {
+  const { profile, setResUpdateUser } = useContext(ProfileContext)
+
   const userFoodS = profile.foodSensitivity
+  const options = ['nincs', 'vega', 'vegán', 'laktóz mentes', 'glutén mentes', 'cukor mentes', 'paleo']
 
   const [foodS, setFoodS] = useState(null)
   const [changeUpdate, setChangeUpdate] = useState(false)

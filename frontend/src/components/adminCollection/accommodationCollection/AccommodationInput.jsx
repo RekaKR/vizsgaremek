@@ -1,7 +1,10 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
+import { ProfileContext } from '../../../ProfileContext'
 import useFetchPost from '../../../customHooks/useFetchPost'
 
-function AccommodationInput({ setResPostAcc }) {
+function AccommodationInput() {
+  const { setResPostAcc } = useContext(ProfileContext)
+
   const [name, setName] = useState('')
   const [zip, setZip] = useState('')
   const [city, setCity] = useState('')

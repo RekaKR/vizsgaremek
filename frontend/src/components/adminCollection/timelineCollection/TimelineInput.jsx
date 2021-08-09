@@ -1,7 +1,10 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
+import { ProfileContext } from '../../../ProfileContext'
 import useFetchPost from '../../../customHooks/useFetchPost'
 
-function TimelineInput({ setResPostTime }) {
+function TimelineInput() {
+  const { setResPostTime } = useContext(ProfileContext)
+
   const [time, setTime] = useState('')
   const [happening, setHappening] = useState('')
   const [place, setPlace] = useState('')

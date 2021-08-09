@@ -1,8 +1,11 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
+import { ProfileContext } from '../../../ProfileContext'
 import useFetchPatch from '../../../customHooks/useFetchPatch'
+
 import PlusOneTrue from './PlusOneTrue'
 
-const PlusOne = ({ profile, setResUpdatePlusOneData, setResUpdateIsComing }) => {
+const PlusOne = () => {
+  const { profile, setResUpdatePlusOneData, setResUpdateIsComing } = useContext(ProfileContext)
   const isComing = profile.plusOne.isComing
 
   const [plusOneIsComing, setPlusOneIsComing] = useState('')

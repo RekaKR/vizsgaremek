@@ -4,7 +4,7 @@ const User = require('../models/userModel')
 
 
 //GET BACK THE LOGGED IN USER'S PROFILE
-const user_create_get = (req, res) => {
+const user_create_get_one = (req, res) => {
   const googleId = jwt.decode(req.headers.authorization).google
 
   User.findOne({ googleId })
@@ -18,6 +18,26 @@ const user_create_get = (req, res) => {
       foodSensitivity: user.foodSensitivity
     }))
     .catch(err => res.status(403).json({ message: `Can\'t find user` }))
+}
+
+const user_create_get_all = (req, res) => {
+  User.find()
+    .then(users => {
+      const newData = []
+
+      users.map(user => {
+        newData.push({
+          name: user.name,
+          email: user.email,
+          foodS: user.foodSensitivity,
+          plusOneComing: user.plusOne.isComing,
+          plusOneFoodS: user.plusOne.foodSensitivity
+        })
+      })
+
+      res.json(newData)
+    })
+    .catch(err => res.status(403).json({ message: `Can\'t find users' data` }))
 }
 
 const user_update_isComing = (req, res) => {
@@ -73,7 +93,8 @@ const user_update_foodSensitivity = (req, res) => {
 
 
 module.exports = {
-  user_create_get,
+  user_create_get_one,
+  user_create_get_all,
   user_update_isComing,
   user_update_isComingDetails,
   user_update_foodSensitivity

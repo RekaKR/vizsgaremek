@@ -1,13 +1,30 @@
-import React, { useContext } from 'react'
-import { ProfileContext } from '../../../ProfileContext'
+import React, { useState, useEffect } from 'react'
+import { v4 as uuidv4 } from 'uuid'
+import useFetchGet from "../../../customHooks/useFetchGet"
 
 const AdminPage = () => {
-  const { profile } = useContext(ProfileContext)
+  const [allInfo, setAllInfo] = useState(null)
 
-  console.log(profile)
+  const { data } = useFetchGet(true, 'http://localhost:3001/api/user/all', [''])
+
+  useEffect(() => {
+    setAllInfo(data)
+  }, [data])
+
+
   return (
     <div>
       <h2>Admin felület</h2>
+
+      {
+        allInfo &&
+        allInfo.map(info =>
+          <div key={uuidv4()}>
+            <p>{info.name}</p>
+            <p>{info.email}</p>
+          </div>
+        )
+      }
 
     </div>
   )

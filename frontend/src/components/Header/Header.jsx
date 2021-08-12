@@ -40,13 +40,6 @@ const Header = ({ user, setUser }) => {
       }
 
       {
-        (role === 'couple' || role === 'weddingP' || role === 'photographer' || role === 'guest') &&
-        <Link to='/galery'>
-          Galéria
-        </Link>
-      }
-
-      {
         (role === 'couple' || role === 'weddingP') &&
         <Link to='/admin'>
           Admin

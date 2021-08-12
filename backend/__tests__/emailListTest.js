@@ -231,7 +231,8 @@ describe("Test /emaillist endpoint", () => {
       expect(res.body.message).toBe('Can\'t save email list')
     })
 
-    it("Should not create /emaillist when not all required fields are filled", async () => {
+    //átírni a szöveget
+    it("Should not create /emaillist when not all unique fields are filled", async () => {
       verify.mockImplementation(() => { return { role: 'couple' } })
 
       //given

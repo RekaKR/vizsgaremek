@@ -11,7 +11,6 @@ import Login from "./components/Login/Login"
 import Profile from "./components/profileCollection/Profile/Profile"
 import Timeline from './components/timelineCollection/Timeline'
 import Accommodations from "./components/accommodationCollection/Accommodations"
-import Galery from "./components/Feature/Galery/Galery"
 import Admin from "./components/adminCollection/Admin/Admin"
 
 const App = () => {
@@ -29,6 +28,10 @@ const App = () => {
   const { data: events } = useFetchGet(true, 'http://localhost:3001/api/timeline', [resPostTime, resDeleteTime])
   const { data } = useFetchGet(localStorage.getItem('token'), 'http://localhost:3001/api/user', [resUpdateIsComing, resUpdatePlusOneData, resUpdateUser, localStorage.getItem('token')])
 
+  useEffect(() => {
+    setProfile(data)
+  }, [data])
+
   const checkToken = () => {
     const token = localStorage.getItem('token')
     if (token) setUser(jwt_decode(token))
@@ -37,10 +40,6 @@ const App = () => {
   useEffect(() => {
     checkToken()
   }, [])
-
-  useEffect(() => {
-    setProfile(data)
-  }, [data])
 
   return (
     <ProfileContext.Provider value={{ profile, events, accommodations, setResUpdateUser, setResUpdatePlusOneData, setResUpdateIsComing, setResPostAcc, setResDeleteAcc, setResPostTime, setResDeleteTime }}>
@@ -65,10 +64,6 @@ const App = () => {
 
             <Route path='/accommodation'>
               <Accommodations />
-            </Route>
-
-            <Route path='/galery'>
-              <Galery />
             </Route>
 
             <Route path='/admin'>

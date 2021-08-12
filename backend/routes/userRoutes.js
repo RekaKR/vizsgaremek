@@ -3,7 +3,9 @@ const router = express.Router()
 const userController = require('../controllers/userController')
 
 
-router.get('/', userController.user_create_get)
+router.get('/', userController.user_create_get_one)
+
+router.get('/all', userController.user_create_get_all)
 
 router.patch('/plus-one', userController.user_update_isComing)
 

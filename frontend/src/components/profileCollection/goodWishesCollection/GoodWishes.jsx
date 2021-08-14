@@ -27,7 +27,7 @@ const GoodWishes = () => {
   }, [submit])
 
   return (
-    <div>
+    <div className="good-wish-container">
       <h3>Jókívánságok a párnak</h3>
 
       {

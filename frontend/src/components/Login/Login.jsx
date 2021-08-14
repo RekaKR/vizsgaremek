@@ -1,8 +1,11 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { useHistory } from 'react-router-dom'
+import { checkToken } from "../../logInOutActions"
+import { ProfileContext } from '../../ProfileContext'
 
-const Login = ({ checkToken }) => {
+const Login = () => {
   let history = useHistory()
+  const { setUser } = useContext(ProfileContext)
 
   const [isShow, setIsShow] = useState("Loading...")
 
@@ -22,16 +25,14 @@ const Login = ({ checkToken }) => {
     }).then(res => res.json())
       .then(data => {
         if (data.message) {
-          history.push("/")
-          //setIsShow(data.message)
-          console.log(data.message)
+          setIsShow(data.message)
+          setTimeout(() => history.push("/"), 5000)
         } else {
           localStorage.setItem('token', data.token)
+          checkToken(setUser)
           history.push("/")
-          checkToken()
         }
       })
-    //.catch(err => console.log({ message: "Couldn't find user" }))
   }, [])
 
   return (

@@ -36,7 +36,7 @@ const MenuSelection = () => {
             userFoodS && userFoodS.length < 1 &&
             <>
               <CheckComboBox options={options} setValue={setFoodS} />
-              <button disabled={!foodS} onClick={() => updateUser()}>Submit</button>
+              <button disabled={!foodS} onClick={() => updateUser()}>Elküldés</button>
             </>
           }
         </>

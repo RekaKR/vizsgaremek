@@ -1,5 +1,3 @@
 import { createContext } from "react"
 
-const ProfileContext = createContext(null)
-
-export { ProfileContext }
+export const ProfileContext = createContext(null)

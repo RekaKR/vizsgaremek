@@ -2,11 +2,11 @@ import React from 'react'
 
 const GoodWish = ({ gWish }) => {
   return (
-    <div>
+    <div className="good-wish">
       <br />
 
       <p>{gWish.goodWish}</p>
-      <p>Üdvözlettel: {gWish.from}</p>
+      <p>Sok szeretettel: {gWish.from}</p>
       <p>{gWish.email}</p>
     </div>
   )

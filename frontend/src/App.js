@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react"
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-import jwt_decode from 'jwt-decode'
 import { ProfileContext } from './ProfileContext'
 import useFetchGet from "./customHooks/useFetchGet"
+import { checkToken, autoLogout } from "./logInOutActions"
 import './style/css/style.css'
 
 import Header from './components/Header/Header'
@@ -32,26 +32,24 @@ const App = () => {
     setProfile(data)
   }, [data])
 
-  const checkToken = () => {
-    const token = localStorage.getItem('token')
-    if (token) setUser(jwt_decode(token))
-  }
-
   useEffect(() => {
-    checkToken()
+    checkToken(setUser)
+    autoLogout(setUser)
   }, [])
 
+  setTimeout(() => autoLogout(setUser), 3600000)
+
   return (
-    <ProfileContext.Provider value={{ profile, events, accommodations, setResUpdateUser, setResUpdatePlusOneData, setResUpdateIsComing, setResPostAcc, setResDeleteAcc, setResPostTime, setResDeleteTime }}>
+    <ProfileContext.Provider value={{ setUser, profile, events, accommodations, setResUpdateUser, setResUpdatePlusOneData, setResUpdateIsComing, setResPostAcc, setResDeleteAcc, setResPostTime, setResDeleteTime }}>
       <Router>
         <div className="app">
           <Route path='/' >
-            <Header user={user} setUser={setUser} />
+            <Header user={user} />
           </Route>
 
           <Switch>
             <Route path='/login'>
-              <Login checkToken={checkToken} />
+              <Login />
             </Route>
 
             <Route path='/profile'>

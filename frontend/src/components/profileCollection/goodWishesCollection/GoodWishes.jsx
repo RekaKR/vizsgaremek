@@ -20,11 +20,11 @@ const GoodWishes = () => {
   }
 
   const { data: goodWishes } = useFetchGet((profile.role === 'couple'), 'http://localhost:3001/api/good-wish', [resPostGW])
-  const { data } = useFetchPost('http://localhost:3001/api/good-wish', postBody, [submit])
+  const { data } = useFetchPost(goodWish, 'http://localhost:3001/api/good-wish', postBody, [submit])
 
   useEffect(() => {
     setResPostGW(data)
-  }, [submit])
+  }, [data])
 
   return (
     <div className="good-wish-container">

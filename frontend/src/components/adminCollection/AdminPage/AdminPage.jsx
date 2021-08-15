@@ -64,16 +64,17 @@ const AdminPage = () => {
               <p>Cukor mentes: {sugar}</p>
               <p>Paleo: {paleo}</p>
             </div>
+
+            <br /> {/*törölni később*/}
+
+            <button onClick={() => setShow(!show)}>Mutasd részletesen</button>
+
           </>
           : "Loading..."
       }
 
-      <br /> {/*törölni később*/}
-
-      <button onClick={() => setShow(!show)}>Mutasd részletesen</button>
-
       {
-        show && people &&
+        show &&
         people.map(person =>
           <div key={uuidv4()}>
 

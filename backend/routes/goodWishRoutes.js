@@ -6,7 +6,7 @@ const authenticationChecker = require('../middlewares/authenticationChecker')
 
 router.get('/', authenticationChecker.aChecker, goodWishController.goodWish_create_get)
 
-router.post('/', goodWishController.goodWish_create_post)
+router.post('/', authenticationChecker.guestChecker, goodWishController.goodWish_create_post)
 
 
 module.exports = router

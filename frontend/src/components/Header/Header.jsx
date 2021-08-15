@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom'
 import { ProfileContext } from '../../ProfileContext'
 import { googleSignIn, autoLogout, logout } from "../../logInOutActions"
 
+import Player from '../Player/Player'
+
 const Header = ({ user }) => {
   const { setUser } = useContext(ProfileContext)
   const role = user.role
@@ -41,7 +43,10 @@ const Header = ({ user }) => {
 
       {
         role === 'couple' || role === 'weddingP' || role === 'guest'
-          ? <button onClick={() => logout(setUser)}>Logout</button>
+          ? <>
+            <button onClick={() => logout(setUser)}>Logout</button>
+            <Player />
+          </>
           : <button onClick={() => googleSignIn()}>Login</button>
       }
     </div>

@@ -31,6 +31,7 @@ const user_create_get_all = (req, res) => {
           email: user.email,
           foodS: user.foodSensitivity,
           plusOneComing: user.plusOne.isComing,
+          plusOneName: user.plusOne.name,
           plusOneFoodS: user.plusOne.foodSensitivity
         })
       })

@@ -7,6 +7,7 @@ const AdminPage = () => {
   const [people, setPeople] = useState(null)
   const [show, setShow] = useState(false)
   const [isComing, setIsComing] = useState('')
+  const [isComingPlus, setIsComingPlus] = useState('')
   const [no, setNo] = useState('')
   const [vega, setVega] = useState('')
   const [vegan, setVegan] = useState('')
@@ -24,6 +25,7 @@ const AdminPage = () => {
   useEffect(() => {
     if (people) {
       setIsComing(people.map(person => person.name))
+      setIsComingPlus(people.map(person => person.plusOneName))
 
       people.map(person => {
         person.foodS.map(foodS => menuSpec.push(foodS))
@@ -50,6 +52,7 @@ const AdminPage = () => {
             <div>
               <h3>Vendég lista</h3>
               {isComing && isComing.map(person => <p key={uuidv4()}>{person}</p>)}
+              {isComingPlus && isComingPlus.map(person => <p key={uuidv4()}>{person}</p>)}
             </div>
 
             <br /> {/*törölni később*/}

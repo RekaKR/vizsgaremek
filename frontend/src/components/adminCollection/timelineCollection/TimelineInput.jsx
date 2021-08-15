@@ -16,11 +16,11 @@ function TimelineInput() {
     place: place
   }
 
-  const { data } = useFetchPost('http://localhost:3001/api/timeline', postBody, [submit])
+  const { data } = useFetchPost((time && happening && place), 'http://localhost:3001/api/timeline', postBody, [submit])
 
   useEffect(() => {
     setResPostTime(data)
-  }, [submit])
+  }, [data])
 
   return (
     <div className="timeline-input">

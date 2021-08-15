@@ -15,11 +15,11 @@ const GuestListInput = ({ setResPost }) => {
     role: (role === 'vendég' ? "guest" : "weddingP"),
   }
 
-  const { data } = useFetchPost('http://localhost:3001/api/emaillist', postBody, [submit])
+  const { data } = useFetchPost((email && role), 'http://localhost:3001/api/emaillist', postBody, [submit])
 
   useEffect(() => {
     setResPost(data)
-  }, [submit])
+  }, [data])
 
   const validateEmail = (e) => {
     const email = e.target.value

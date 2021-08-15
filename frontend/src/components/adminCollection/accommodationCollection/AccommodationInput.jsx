@@ -24,11 +24,11 @@ function AccommodationInput() {
     website: website
   }
 
-  const { data } = useFetchPost('http://localhost:3001/api/accommodation', postBody, [submit])
+  const { data } = useFetchPost((name && zip && city && street && houseNumber && phoneNumber && website), 'http://localhost:3001/api/accommodation', postBody, [submit])
 
   useEffect(() => {
     setResPostAcc(data)
-  }, [submit])
+  }, [data])
 
   return (
     <div className="accommodation-input">

@@ -13,11 +13,11 @@ const ToDoInput = ({ setResPost }) => {
     task: task
   }
 
-  const { data } = useFetchPost('http://localhost:3001/api/to-do-list', postBody, [submit])
+  const { data } = useFetchPost((type && task), 'http://localhost:3001/api/to-do-list', postBody, [submit])
 
   useEffect(() => {
     setResPost(data)
-  }, [submit])
+  }, [data])
 
   return (
     <div className="to-do-input">

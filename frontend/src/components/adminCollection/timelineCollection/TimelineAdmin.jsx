@@ -5,6 +5,7 @@ import useFetchDelete from '../../../customHooks/useFetchDelete'
 
 import Event from '../../timelineCollection/Event'
 import TimelineInput from './TimelineInput'
+import DeleteButton from '../../DeleteButton/DeleteButton'
 
 const TimelineAdmin = () => {
   const { events, setResDeleteTime } = useContext(ProfileContext)
@@ -32,7 +33,7 @@ const TimelineAdmin = () => {
         events && events.map(event =>
           <div key={uuidv4()}>
             <Event event={event} />
-            <button onClick={() => deleteRecord(event)}>Esemény törlése</button>
+            <DeleteButton deleteRecord={deleteRecord} element={event} />
           </div>)
       }
 

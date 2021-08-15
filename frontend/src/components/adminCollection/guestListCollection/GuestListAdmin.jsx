@@ -3,6 +3,7 @@ import { v4 as uuidv4 } from 'uuid'
 import useFetchGet from '../../../customHooks/useFetchGet'
 import useFetchDelete from '../../../customHooks/useFetchDelete'
 import GuestListInput from './GuestListInput'
+import DeleteButton from '../../DeleteButton/DeleteButton'
 
 const GuestListAdmin = () => {
   const [deleteById, setDeleteById] = useState('')
@@ -26,7 +27,7 @@ const GuestListAdmin = () => {
         guests && guests.map(guest =>
           <div key={uuidv4()}>
             <p>{guest.email}</p>
-            <button onClick={() => deleteRecord(guest)}>Felhasználó törlése</button>
+            <DeleteButton deleteRecord={deleteRecord} element={guest} />
           </div>)
       }
 

@@ -12,6 +12,63 @@ input {
   outline: none;
 }
 
+.delete {
+  -webkit-touch-callout: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.delete {
+  width: 90px;
+  height: 30px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  background: red;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15);
+  background: #e62222;
+  transition: 200ms;
+}
+.delete span {
+  transition: 200ms;
+}
+.delete .text {
+  color: white;
+  font-weight: bold;
+  font-size: 14px;
+  margin: auto;
+}
+.delete .icon {
+  width: 0;
+  height: 20px;
+  position: absolute;
+  border-left: 1px solid #c41b1b;
+  transform: translateX(90px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.delete svg {
+  width: 15px;
+  fill: white;
+}
+.delete:hover {
+  background: #ff3636;
+}
+.delete:hover .text {
+  color: transparent;
+}
+.delete:hover .icon {
+  width: 90px;
+  border-left: none;
+  transform: translateX(0);
+}
+.delete:focus {
+  outline: none;
+}
+
 body {
   background-color: #138073;
   /*

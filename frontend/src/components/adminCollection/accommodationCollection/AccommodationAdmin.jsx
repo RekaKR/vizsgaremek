@@ -3,6 +3,7 @@ import { v4 as uuidv4 } from 'uuid'
 import { ProfileContext } from '../../../ProfileContext'
 import useFetchDelete from '../../../customHooks/useFetchDelete'
 import AccommodationInput from './AccommodationInput'
+import DeleteButton from '../../DeleteButton/DeleteButton'
 
 const AccommodationAdmin = () => {
   const { accommodations, setResDeleteAcc } = useContext(ProfileContext)
@@ -29,7 +30,8 @@ const AccommodationAdmin = () => {
       {accommodations && accommodations.map(accommodation =>
         <div key={uuidv4()}>
           <p>{accommodation.name}</p>
-          <button onClick={() => deleteRecord(accommodation)}>Szállás törlése</button>
+
+          <DeleteButton deleteRecord={deleteRecord} element={accommodation} />
         </div>)
       }
 

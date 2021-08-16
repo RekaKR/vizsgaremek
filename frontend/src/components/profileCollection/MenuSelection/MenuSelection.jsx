@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react'
 import { ProfileContext } from '../../../ProfileContext'
 import useFetchPatch from '../../../customHooks/useFetchPatch'
 
-import CheckComboBox from '../../CheckComboBox/CheckComboBox'
+import CheckComboBox from '../../elementsCollection/CheckComboBox/CheckComboBox'
 
 const MenuSelection = () => {
   const { profile, setResUpdateUser } = useContext(ProfileContext)

@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { ProfileContext } from '../../../ProfileContext'
 import useFetchPost from '../../../customHooks/useFetchPost'
+import Inp from '../../elementsCollection/Inp/Inp'
+import MultiLineInp from '../../elementsCollection/MultiLineInp/MultiLineInp'
 
 function TimelineInput() {
   const { setResPostTime } = useContext(ProfileContext)
@@ -28,15 +30,9 @@ function TimelineInput() {
       <p>Add meg az új programpont adatait!</p>
 
       <div>
-        <input type="text" onChange={e => setTime(e.target.value)} placeholder="Időpont" />
-      </div>
-
-      <div>
-        <input type="text" onChange={e => setHappening(e.target.value)} placeholder="Esemény" />
-      </div>
-
-      <div>
-        <input type="text" onChange={e => setPlace(e.target.value)} placeholder="Helyszín" />
+        <Inp classN="timeline-i" label="Időpont" value={time} setValue={setTime} />
+        <MultiLineInp classN="timeline-i" label="Esemény" value={happening} setValue={setHappening} />
+        <Inp classN="timeline-i" label="Helyszín" value={place} setValue={setPlace} />
       </div>
 
       <button disabled={!(time && happening && place)} onClick={() => setSubmit(!submit)}>Submit</button>

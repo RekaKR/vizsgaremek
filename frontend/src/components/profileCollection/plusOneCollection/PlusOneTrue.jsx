@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import useFetchPatch from '../../../customHooks/useFetchPatch'
-import CheckComboBox from '../../CheckComboBox/CheckComboBox'
+import CheckComboBox from '../../elementsCollection/CheckComboBox/CheckComboBox'
 
 const PlusOneTrue = ({ profile, setResUpdatePlusOneData }) => {
   const options = ['nincs', 'vega', 'vegán', 'laktóz mentes', 'glutén mentes', 'cukor mentes', 'paleo']

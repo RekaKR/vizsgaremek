@@ -1,0 +1,35 @@
+.admin-guest-list h3 {
+  text-align: center;
+  margin: 40px 0;
+}
+.admin-guest-list .guest-list-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+.admin-guest-list .guest-list-container h4 {
+  margin-bottom: 20px;
+}
+.admin-guest-list .guest-list-container .guest-list,
+.admin-guest-list .guest-list-container .guest-list-input {
+  width: 340px;
+  padding: 0 5px;
+  margin: 20px;
+  border: 1px black solid;
+}
+.admin-guest-list .guest-list-container .guest-list .guest-list-names {
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+.admin-guest-list .guest-list-container .guest-list-input div #guest-input {
+  margin: 15px 0 20px;
+}
+.admin-guest-list .guest-list-container .guest-list-input div span {
+  margin-left: 5px;
+}
+.admin-guest-list .guest-list-container .guest-list-input .send-button {
+  margin-top: 15px;
+}
+
+/*# sourceMappingURL=guestList.css.map */

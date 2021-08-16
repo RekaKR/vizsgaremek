@@ -1,0 +1,45 @@
+.admin-timeline h3 {
+  text-align: center;
+  margin: 40px 0;
+}
+.admin-timeline .timeline-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+.admin-timeline .timeline-container h4 {
+  margin-bottom: 20px;
+}
+.admin-timeline .timeline-container .timeline,
+.admin-timeline .timeline-container .timeline-input {
+  width: 340px;
+  padding: 0 5px;
+  margin: 20px;
+}
+.admin-timeline .timeline-container .timeline {
+  border: 1px black solid;
+}
+.admin-timeline .timeline-container .timeline .timeline-names {
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+.admin-timeline .timeline-container .timeline .timeline-names p {
+  max-width: 200px;
+}
+.admin-timeline .timeline-container .timeline-input {
+  border: 1px black solid;
+}
+.admin-timeline .timeline-container .timeline-input p {
+  margin-bottom: 10px;
+}
+.admin-timeline .timeline-container .timeline-input div .timeline-i {
+  width: 200px;
+  margin-bottom: 10px;
+  padding: 3px;
+}
+.admin-timeline .timeline-container .timeline-input .send-button {
+  margin-top: 15px;
+}
+
+/*# sourceMappingURL=timeline.css.map */

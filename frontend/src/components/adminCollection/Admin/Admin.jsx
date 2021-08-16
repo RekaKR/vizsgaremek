@@ -6,7 +6,6 @@ import GuestListAdmin from '../guestListCollection/GuestListAdmin'
 import TimelineAdmin from '../timelineCollection/TimelineAdmin'
 import AccommodationAdmin from '../accommodationCollection/AccommodationAdmin'
 import ToDoAdmin from '../toDoCollection/ToDoAdmin'
-import SeatsAdmin from '../seatsCollection/SeatsAdmin'
 import AdminPage from '../AdminPage/AdminPage'
 
 const Admin = () => {
@@ -34,10 +33,6 @@ const Admin = () => {
 
           <Route path={`${path}/to-do-list`}>
             <ToDoAdmin />
-          </Route>
-
-          <Route path={`${path}/seats`}>
-            <SeatsAdmin />
           </Route>
 
           <Route path={path}>

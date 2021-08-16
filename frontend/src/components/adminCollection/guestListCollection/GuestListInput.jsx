@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import validator from 'validator'
 import useFetchPost from '../../../customHooks/useFetchPost'
-import ComboBox from '../../ComboBox/ComboBox'
+import ComboBox from '../../elementsCollection/ComboBox/ComboBox'
 
 const GuestListInput = ({ setResPost }) => {
   const options = ['vendég', 'esküvőszervező']
@@ -36,15 +36,15 @@ const GuestListInput = ({ setResPost }) => {
   return (
     <div className="guest-list-input">
       <h4>Vendég hozzáadása</h4>
-      <p>Add meg az új felhasználó email címét!</p>
+      <p>Add meg az új vendég, esküvőszervező címét!</p>
 
       <div>
-        <input type="text" onChange={e => validateEmail(e)} placeholder="Email" />
+        <input id="guest-input" type="text" onChange={e => validateEmail(e)} placeholder="Email" />
         <span>{emailError}</span>
         <ComboBox options={options} value={role} setValue={setRole} label="Megnevezés" />
       </div>
 
-      <button disabled={!(email && role)} onClick={() => setSubmit(!submit)}>Submit</button>
+      <button className="send-button" disabled={!(email && role)} onClick={() => setSubmit(!submit)}>Submit</button>
     </div>
   )
 }

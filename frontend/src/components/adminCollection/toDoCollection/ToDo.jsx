@@ -1,5 +1,5 @@
 import React from 'react'
-import DeleteButton from '../../DeleteButton/DeleteButton'
+import DeleteButton from '../../elementsCollection/DeleteButton/DeleteButton'
 
 const ToDo = ({ toDo, updateRecord, setDone, deleteRecord }) => {
   return (

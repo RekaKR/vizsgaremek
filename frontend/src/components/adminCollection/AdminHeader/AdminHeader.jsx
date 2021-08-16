@@ -24,10 +24,6 @@ const AdminHeader = ({ url }) => {
       <Link to={`${url}/to-do-list`}>
         Teendők
       </Link>
-
-      <Link to={`${url}/seats`}>
-        Ülésrend
-      </Link>
     </div>
   )
 }

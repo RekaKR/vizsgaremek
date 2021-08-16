@@ -1,0 +1,61 @@
+.delete {
+  -webkit-touch-callout: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.delte-button-container {
+  width: 90px;
+}
+.delte-button-container .delete {
+  width: 90px;
+  height: 30px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  background: red;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15);
+  background: #e62222;
+  transition: 200ms;
+}
+.delte-button-container .delete span {
+  transition: 200ms;
+}
+.delte-button-container .delete .text {
+  color: white;
+  font-weight: bold;
+  font-size: 14px;
+  margin: auto;
+}
+.delte-button-container .delete .icon {
+  width: 0;
+  height: 20px;
+  position: absolute;
+  border-left: 1px solid #c41b1b;
+  transform: translateX(90px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.delte-button-container .delete svg {
+  width: 15px;
+  fill: white;
+}
+.delte-button-container .delete:hover {
+  background: #ff3636;
+}
+.delte-button-container .delete:hover .text {
+  color: transparent;
+}
+.delte-button-container .delete:hover .icon {
+  width: 90px;
+  border-left: none;
+  transform: translateX(0);
+}
+.delte-button-container .delete:focus {
+  outline: none;
+}
+
+/*# sourceMappingURL=deleteButton.css.map */

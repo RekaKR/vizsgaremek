@@ -3,7 +3,8 @@ import { v4 as uuidv4 } from 'uuid'
 import useFetchGet from '../../../customHooks/useFetchGet'
 import useFetchDelete from '../../../customHooks/useFetchDelete'
 import GuestListInput from './GuestListInput'
-import DeleteButton from '../../DeleteButton/DeleteButton'
+import DeleteButton from '../../elementsCollection/DeleteButton/DeleteButton'
+import '../../../style/css/guestList.css'
 
 const GuestListAdmin = () => {
   const [deleteById, setDeleteById] = useState('')
@@ -22,16 +23,20 @@ const GuestListAdmin = () => {
     <div className="admin-guest-list">
       <h3>Vendéglista</h3>
 
-      <h4>Vendéglista (részletezve)</h4>
-      {
-        guests && guests.map(guest =>
-          <div key={uuidv4()}>
-            <p>{guest.email}</p>
-            <DeleteButton deleteRecord={deleteRecord} element={guest} />
-          </div>)
-      }
+      <div className="guest-list-container">
+        <div className="guest-list">
+          <h4>Vendéglista (részletezve)</h4>
+          {
+            guests && guests.map(guest =>
+              <div className="guest-list-names" key={uuidv4()}>
+                <p>{guest.email}</p>
+                <DeleteButton deleteRecord={deleteRecord} element={guest} />
+              </div>)
+          }
+        </div>
 
-      <GuestListInput resPost={resPost} setResPost={setResPost} />
+        <GuestListInput resPost={resPost} setResPost={setResPost} />
+      </div>
     </div>
   )
 }

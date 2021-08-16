@@ -1,0 +1,58 @@
+.admin-timeline {
+  h3 {
+    text-align: center;
+    margin: 40px 0;
+  }
+
+  .timeline-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+
+    h4 {
+      margin-bottom: 20px;
+    }
+
+    .timeline,
+    .timeline-input {
+      width: 340px;
+      padding: 0 5px;
+      margin: 20px;
+    }
+
+    .timeline {
+      //TÖRLÉS
+    border: 1px black solid;
+
+      .timeline-names {
+        margin-bottom: 10px;
+        display: flex;
+        justify-content: space-between;
+
+        p {
+          max-width: 200px;
+        }
+      }
+    }
+
+    .timeline-input {
+        //TÖRLÉS
+    border: 1px black solid;
+      p {
+        margin-bottom: 10px;
+      }
+
+      div {
+        .timeline-i {
+          width: 200px;
+          margin-bottom: 10px;
+          padding: 3px;
+        }
+      }
+
+      .send-button {
+        margin-top: 15px;
+      }
+    }
+  }
+}

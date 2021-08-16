@@ -1,0 +1,48 @@
+.admin-guest-list {
+   h3 {
+     text-align: center;
+     margin: 40px 0;
+   }
+
+  .guest-list-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+
+    h4 {
+      margin-bottom: 20px;
+    }
+
+    .guest-list,
+    .guest-list-input {
+      width: 340px;
+      padding: 0 5px;
+      margin: 20px;
+      border: 1px black solid;
+    }
+
+    .guest-list {
+      .guest-list-names {
+        margin-bottom: 10px;
+        display: flex;
+        justify-content: space-between;
+      }
+    }
+
+    .guest-list-input {
+      div {
+        #guest-input {
+         margin: 15px 0 20px;
+        }
+
+        span {
+          margin-left: 5px;
+        }
+      }
+
+      .send-button {
+        margin-top: 15px;
+      }
+    }
+  }
+}

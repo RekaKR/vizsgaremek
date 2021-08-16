@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from 'uuid'
 import { ProfileContext } from '../../../ProfileContext'
 import useFetchDelete from '../../../customHooks/useFetchDelete'
 import AccommodationInput from './AccommodationInput'
-import DeleteButton from '../../DeleteButton/DeleteButton'
+import DeleteButton from '../../elementsCollection/DeleteButton/DeleteButton'
 
 const AccommodationAdmin = () => {
   const { accommodations, setResDeleteAcc } = useContext(ProfileContext)

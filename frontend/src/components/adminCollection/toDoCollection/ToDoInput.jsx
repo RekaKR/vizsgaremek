@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import useFetchPost from '../../../customHooks/useFetchPost'
-import ComboBox from '../../ComboBox/ComboBox'
+import ComboBox from '../../elementsCollection/ComboBox/ComboBox'
 
 const ToDoInput = ({ setResPost }) => {
   const options = ['ruha', 'dizájn', 'étel', 'egyéb']

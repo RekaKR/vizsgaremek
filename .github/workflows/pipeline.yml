@@ -4,10 +4,6 @@ on:
   push:
     branches:
       - '**'
-      - '!main'
-  pull_request:
-    branches: [ main ]
-    types: [closed]
 
 jobs:
   Backend-test:
@@ -29,7 +25,6 @@ jobs:
       run: npm run test --prefix frontend/
 
   Build-and-Deploy-Frontend:
-    if: github.event.pull_request.merged == true
     needs: [Backend-test, Frontend-test]
     runs-on: ubuntu-latest
     steps:
@@ -61,7 +56,6 @@ jobs:
         run: echo ${{ steps.docker_build.outputs.digest }}
 
   Build-and-Deploy-Backend:
-    if: github.event.pull_request.merged == true
     needs: [Backend-test, Frontend-test]
     runs-on: ubuntu-latest
     steps:
@@ -91,17 +85,3 @@ jobs:
           tags: rekakr/proba-backend:latest
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
-
-    # steps:
-      # - name: Install SSH key
-      #   uses: shimataro/ssh-key-action@v2
-      #   with:
-      #     key: ${{ secrets.SSH_KEY }}
-      #     name: AWS_mod
-      #     known_hosts: ${{ secrets.KNOWN_HOSTS }}
-
-      # - name: Add permission to deploy script
-      #   run: chmod +x ./deploy_to_aws.sh
-
-      # - name: Deploy over ssh
-      #   run: ./deploy_to_aws.sh

@@ -21,3 +21,5 @@ npm install dotenv \
 npm install mongoose \
 npm install node-fetch \
 npm i jsonwebtoken \
+npm i swagger-ui-express \
+npm install yamljs \

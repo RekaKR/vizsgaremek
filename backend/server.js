@@ -3,6 +3,10 @@ const app = express()
 
 const cors = require('cors')
 
+const swaggerUi = require("swagger-ui-express")
+const YAML = require("yamljs")
+const swaggerDocument = YAML.load("./doc.yaml")
+
 
 //MIDDLEWARES
 app.use(express.urlencoded({ extended: false })) //parse requests of content-type - application/x-www-form-urlencoded
@@ -11,6 +15,8 @@ app.use(cors({
   origin: 'http://localhost:3000',
   credentials: true
 }))
+app.use("/doc", swaggerUi.serve, swaggerUi.setup(swaggerDocument))
+
 
 //ROUTES
 const accommodationRoutes = require('./routes/accommodationRoutes')

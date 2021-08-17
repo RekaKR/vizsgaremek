@@ -18,7 +18,9 @@
     "jsonwebtoken": "^8.5.1",
     "mongodb-memory-server": "^7.2.1",
     "mongoose": "^5.12.14",
-    "node-fetch": "^2.6.1"
+    "node-fetch": "^2.6.1",
+    "swagger-ui-express": "^4.1.6",
+    "yamljs": "^0.3.0"
   },
   "devDependencies": {
     "jest": "^27.0.6",

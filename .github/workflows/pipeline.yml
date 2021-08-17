@@ -25,7 +25,7 @@ jobs:
       run: npm run test --prefix frontend/
 
   Build-and-Deploy-Frontend:
-    needs: [Frontend-test] #needs: [Backend-test, Frontend-test]
+    needs: [Backend-test, Frontend-test]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -56,7 +56,7 @@ jobs:
         run: echo ${{ steps.docker_build.outputs.digest }}
 
   Build-and-Deploy-Backend:
-    needs: [Frontend-test] #needs: [Backend-test, Frontend-test]
+    needs: [Backend-test, Frontend-test]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout

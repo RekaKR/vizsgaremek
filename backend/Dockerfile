@@ -16,5 +16,5 @@ COPY . .
 #makes PORT to 3001
 EXPOSE 3001
 
-#?!
+#
 CMD [ "node", "start.js" ]

@@ -13,33 +13,31 @@ const Admin = () => {
 
   return (
     <Router>
-      <div className='admin'>
-        <Route path='/' >
-          <AdminHeader url={url} />
+      <Route path='/' >
+        <AdminHeader url={url} />
+      </Route>
+
+      <Switch>
+        <Route path={`${path}/guest-list`}>
+          <GuestListAdmin />
         </Route>
 
-        <Switch>
-          <Route path={`${path}/guest-list`}>
-            <GuestListAdmin />
-          </Route>
+        <Route path={`${path}/timeline`}>
+          <TimelineAdmin />
+        </Route>
 
-          <Route path={`${path}/timeline`}>
-            <TimelineAdmin />
-          </Route>
+        <Route path={`${path}/accommodations`}>
+          <AccommodationAdmin />
+        </Route>
 
-          <Route path={`${path}/accommodations`}>
-            <AccommodationAdmin />
-          </Route>
+        <Route path={`${path}/to-do-list`}>
+          <ToDoAdmin />
+        </Route>
 
-          <Route path={`${path}/to-do-list`}>
-            <ToDoAdmin />
-          </Route>
-
-          <Route path={path}>
-            <AdminPage />
-          </Route>
-        </Switch>
-      </div>
+        <Route path={path}>
+          <AdminPage />
+        </Route>
+      </Switch>
     </Router >
   )
 }

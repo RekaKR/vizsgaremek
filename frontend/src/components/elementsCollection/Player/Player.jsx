@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import music from "../../Music.mp3"
+import music from "../../../Music.mp3"
 
 const Player = () => {
   const [audio, setAudio] = useState(new Audio(music))

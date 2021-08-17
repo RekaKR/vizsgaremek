@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { ProfileContext } from '../../ProfileContext'
 import { googleSignIn, autoLogout, logout } from "../../logInOutActions"
 
-import Player from '../Player/Player'
+import Player from '../elementsCollection/Player/Player'
 
 const Header = ({ user }) => {
   const { setUser } = useContext(ProfileContext)

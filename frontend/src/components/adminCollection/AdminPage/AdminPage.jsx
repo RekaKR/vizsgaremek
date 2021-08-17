@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 import useFetchGet from "../../../customHooks/useFetchGet"
+import '../../../style/css/admin.css'
 
 const AdminPage = () => {
   const menuSpec = []
@@ -42,10 +43,8 @@ const AdminPage = () => {
     }
   }, [people])
 
-
-  console.log(people)
   return (
-    <div>
+    <div className="admin-page">
       <h2>Admin felület</h2>
 
       {

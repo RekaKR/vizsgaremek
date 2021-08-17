@@ -1,4 +1,5 @@
 import React from 'react'
+
 const Invitation = () => {
   return (
     <div className="invitation">

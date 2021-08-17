@@ -1,0 +1,107 @@
+name: CI/CD
+
+on:
+  push:
+    branches:
+      - '**'
+      - '!main'
+  pull_request:
+    branches: [ main ]
+    types: [closed]
+
+jobs:
+  Backend-test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install npm packages
+      run: npm install --prefix backend/
+    - name: Running backend tests
+      run: npm run test --prefix backend/
+
+  Frontend-test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install npm packages
+      run: npm install --prefix frontend/
+    - name: Running frontend tests
+      run: npm run test --prefix frontend/
+
+  Build-and-Deploy-Frontend:
+    if: github.event.pull_request.merged == true
+    needs: [Backend-test, Frontend-test]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
+      
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+      
+      - name: Login to DockerHub
+        uses: docker/login-action@v1 
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+      
+      - name: Build and push frontend
+        id: docker_build_frontend
+        uses: docker/build-push-action@v2
+        with:
+          context: frontend/
+          file: frontend/Dockerfile
+          platforms: linux/amd64,linux/arm64
+          push: true
+          tags: rekakr/proba:latest
+      - name: Image digest
+        run: echo ${{ steps.docker_build.outputs.digest }}
+
+  Build-and-Deploy-Backend:
+    if: github.event.pull_request.merged == true
+    needs: [Backend-test, Frontend-test]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
+      
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+      
+      - name: Login to DockerHub
+        uses: docker/login-action@v1 
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+      
+      - name: Build and push backend
+        id: docker_build_backend
+        uses: docker/build-push-action@v2
+        with:
+          context: backend/
+          file: backend/Dockerfile
+          platforms: linux/amd64,linux/arm64
+          push: true
+          tags: rekakr/proba-backend:latest
+      - name: Image digest
+        run: echo ${{ steps.docker_build.outputs.digest }}
+
+    # steps:
+      # - name: Install SSH key
+      #   uses: shimataro/ssh-key-action@v2
+      #   with:
+      #     key: ${{ secrets.SSH_KEY }}
+      #     name: AWS_mod
+      #     known_hosts: ${{ secrets.KNOWN_HOSTS }}
+
+      # - name: Add permission to deploy script
+      #   run: chmod +x ./deploy_to_aws.sh
+
+      # - name: Deploy over ssh
+      #   run: ./deploy_to_aws.sh

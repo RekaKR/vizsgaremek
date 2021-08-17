@@ -15,20 +15,20 @@ serverSetup("to-do-testing")
 //Setup mock reset
 mockSetup()
 
-describe("Test /to-do-list endpoint", () => {
-  it("Get from /to-do-list", async () => {
+describe("Test /api/to-do-list endpoint", () => {
+  it("Get from /api/to-do-list", async () => {
     //given
     //app has started
 
     //when
-    const response = await request.get('/to-do-list')
+    const response = await request.get('/api/to-do-list')
 
     //then
     expect(response.status).toBe(200)
     expect(response.body).toEqual([])
   })
 
-  it("Should not create /to-do-list /wo jwt", async () => {
+  it("Should not create /api/to-do-list /wo jwt", async () => {
     //given
     const toDoByUser = {
       type: "dress",
@@ -37,7 +37,7 @@ describe("Test /to-do-list endpoint", () => {
     }
 
     //when
-    const res = await request.post('/to-do-list').send(toDoByUser)
+    const res = await request.post('/api/to-do-list').send(toDoByUser)
 
     //then
     const result = await ToDo.findOne()
@@ -48,7 +48,7 @@ describe("Test /to-do-list endpoint", () => {
     expect(res.body.message).toBe('Token missing')
   })
 
-  it("Should not create /to-do-list /w wrong jwt", async () => {
+  it("Should not create /api/to-do-list /w wrong jwt", async () => {
     verify.mockImplementation(() => { throw new Error })
 
     //given
@@ -59,7 +59,7 @@ describe("Test /to-do-list endpoint", () => {
     }
 
     //when
-    const res = await request.post('/to-do-list').set('authorization', 'hasToken').send(toDoByUser)
+    const res = await request.post('/api/to-do-list').set('authorization', 'hasToken').send(toDoByUser)
 
     //then
     const result = await ToDo.findOne()
@@ -70,7 +70,7 @@ describe("Test /to-do-list endpoint", () => {
     expect(res.body.message).toBe('Token invalid')
   })
 
-  it("Should not create /to-do-list when not admin", async () => {
+  it("Should not create /api/to-do-list when not admin", async () => {
     verify.mockImplementation(() => { return { role: 'guest' } })
 
     //given
@@ -81,7 +81,7 @@ describe("Test /to-do-list endpoint", () => {
     }
 
     //when
-    const res = await request.post('/to-do-list').set('authorization', 'hasToken').send(toDoByUser)
+    const res = await request.post('/api/to-do-list').set('authorization', 'hasToken').send(toDoByUser)
 
     //then
     const result = await ToDo.findOne()
@@ -92,7 +92,7 @@ describe("Test /to-do-list endpoint", () => {
     expect(res.body.message).toBe('User is not correct')
   })
 
-  it("Should create /to-do-list when couple", async () => {
+  it("Should create /api/to-do-list when couple", async () => {
     verify.mockImplementation(() => { return { role: 'couple' } })
 
     //given
@@ -103,7 +103,7 @@ describe("Test /to-do-list endpoint", () => {
     }
 
     //when
-    const res = await request.post('/to-do-list').set('authorization', 'hasToken').send(toDoByUser)
+    const res = await request.post('/api/to-do-list').set('authorization', 'hasToken').send(toDoByUser)
 
     //then
     const result = await ToDo.findOne()
@@ -124,7 +124,7 @@ describe("Test /to-do-list endpoint", () => {
     expect(res.body).toEqual({ ...toDoInDB, _id: _id.toString() })
   })
 
-  it("Should create /to-do-list when weddingP", async () => {
+  it("Should create /api/to-do-list when weddingP", async () => {
     verify.mockImplementation(() => { return { role: 'weddingP' } })
 
     //given
@@ -135,7 +135,7 @@ describe("Test /to-do-list endpoint", () => {
     }
 
     //when
-    const res = await request.post('/to-do-list').set('authorization', 'hasToken').send(toDoByUser)
+    const res = await request.post('/api/to-do-list').set('authorization', 'hasToken').send(toDoByUser)
 
     //then
     const result = await ToDo.findOne()
@@ -156,7 +156,7 @@ describe("Test /to-do-list endpoint", () => {
     expect(res.body).toEqual({ ...toDoInDB, _id: _id.toString() })
   })
 
-  it("Should not create /to-do-list when not all required fields are filled", async () => {
+  it("Should not create /api/to-do-list when not all required fields are filled", async () => {
     verify.mockImplementation(() => { return { role: 'couple' } })
 
     //given
@@ -167,7 +167,7 @@ describe("Test /to-do-list endpoint", () => {
     }
 
     //when
-    const res = await request.post('/to-do-list').set('authorization', 'hasToken').send(toDoByUser)
+    const res = await request.post('/api/to-do-list').set('authorization', 'hasToken').send(toDoByUser)
 
     //then
     const result = await ToDo.findOne()

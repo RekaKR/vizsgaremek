@@ -15,20 +15,20 @@ serverSetup("timeline-testing")
 //Setup mock reset
 mockSetup()
 
-describe("Test /timeline endpoint", () => {
-  it("Get from /timeline", async () => {
+describe("Test /api/timeline endpoint", () => {
+  it("Get from /api/timeline", async () => {
     //given
     //app has started
 
     //when
-    const response = await request.get('/timeline')
+    const response = await request.get('/api/timeline')
 
     //then
     expect(response.status).toBe(200)
     expect(response.body).toEqual([])
   })
 
-  it("Should not create /timeline /wo jwt", async () => {
+  it("Should not create /api/timeline /wo jwt", async () => {
     //given
     const timelineByUser = {
       time: "Time test",
@@ -37,7 +37,7 @@ describe("Test /timeline endpoint", () => {
     }
 
     //when
-    const res = await request.post('/timeline').send(timelineByUser)
+    const res = await request.post('/api/timeline').send(timelineByUser)
 
     //then
     const result = await Timeline.findOne()
@@ -48,7 +48,7 @@ describe("Test /timeline endpoint", () => {
     expect(res.body.message).toBe('Token missing')
   })
 
-  it("Should not create /timeline /w wrong jwt", async () => {
+  it("Should not create /api/timeline /w wrong jwt", async () => {
     verify.mockImplementation(() => { throw new Error })
 
     //given
@@ -59,7 +59,7 @@ describe("Test /timeline endpoint", () => {
     }
 
     //when
-    const res = await request.post('/timeline').set('authorization', 'hasToken').send(timelineByUser)
+    const res = await request.post('/api/timeline').set('authorization', 'hasToken').send(timelineByUser)
 
     //then
     const result = await Timeline.findOne()
@@ -70,7 +70,7 @@ describe("Test /timeline endpoint", () => {
     expect(res.body.message).toBe('Token invalid')
   })
 
-  it("Should not create /timeline when not admin", async () => {
+  it("Should not create /api/timeline when not admin", async () => {
     verify.mockImplementation(() => { return { role: 'guest' } })
 
     //given
@@ -81,7 +81,7 @@ describe("Test /timeline endpoint", () => {
     }
 
     //when
-    const res = await request.post('/timeline').set('authorization', 'hasToken').send(timelineByUser)
+    const res = await request.post('/api/timeline').set('authorization', 'hasToken').send(timelineByUser)
 
     //then
     const result = await Timeline.findOne()
@@ -92,7 +92,7 @@ describe("Test /timeline endpoint", () => {
     expect(res.body.message).toBe('User is not correct')
   })
 
-  it("Should create /timeline when couple", async () => {
+  it("Should create /api/timeline when couple", async () => {
     verify.mockImplementation(() => { return { role: 'couple' } })
 
     //given
@@ -103,7 +103,7 @@ describe("Test /timeline endpoint", () => {
     }
 
     //when
-    const res = await request.post('/timeline').set('authorization', 'hasToken').send(timelineByUser)
+    const res = await request.post('/api/timeline').set('authorization', 'hasToken').send(timelineByUser)
 
     //then
     const result = await Timeline.findOne()
@@ -124,7 +124,7 @@ describe("Test /timeline endpoint", () => {
     expect(res.body).toEqual({ ...timelineInDB, __v, _id: _id.toString() })
   })
 
-  it("Should create /timeline when weddingP", async () => {
+  it("Should create /api/timeline when weddingP", async () => {
     verify.mockImplementation(() => { return { role: 'weddingP' } })
 
     //given
@@ -135,7 +135,7 @@ describe("Test /timeline endpoint", () => {
     }
 
     //when
-    const res = await request.post('/timeline').set('authorization', 'hasToken').send(timelineByUser)
+    const res = await request.post('/api/timeline').set('authorization', 'hasToken').send(timelineByUser)
 
     //then
     const result = await Timeline.findOne()
@@ -156,7 +156,7 @@ describe("Test /timeline endpoint", () => {
     expect(res.body).toEqual({ ...timelineInDB, __v, _id: _id.toString() })
   })
 
-  it("Should not create /timeline when not all required fields are filled", async () => {
+  it("Should not create /api/timeline when not all required fields are filled", async () => {
     verify.mockImplementation(() => { return { role: 'couple' } })
 
     //given
@@ -167,7 +167,7 @@ describe("Test /timeline endpoint", () => {
     }
 
     //when
-    const res = await request.post('/timeline').set('authorization', 'hasToken').send(timelineByUser)
+    const res = await request.post('/api/timeline').set('authorization', 'hasToken').send(timelineByUser)
 
     //then
     const result = await Timeline.findOne()

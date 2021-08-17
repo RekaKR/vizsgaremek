@@ -15,20 +15,20 @@ serverSetup("accommodation-testing")
 //Setup mock reset
 mockSetup()
 
-describe("Test /accommodation endpoint", () => {
-  it("Get from /accommodation", async () => {
+describe("Test /api/accommodation endpoint", () => {
+  it("Get from /api/accommodation", async () => {
     //given
     //app has started
 
     //when
-    const response = await request.get('/accommodation')
+    const response = await request.get('/api/accommodation')
 
     //then
     expect(response.status).toBe(200)
     expect(response.body).toEqual([])
   })
 
-  it("Should not create /accommodation /wo jwt", async () => {
+  it("Should not create /api/accommodation /wo jwt", async () => {
     //given
     const accommodationByUser = {
       name: "Hotel name",
@@ -41,7 +41,7 @@ describe("Test /accommodation endpoint", () => {
     }
 
     //when
-    const res = await request.post('/accommodation').send(accommodationByUser)
+    const res = await request.post('/api/accommodation').send(accommodationByUser)
 
     //then
     const result = await Accommodation.findOne()
@@ -52,7 +52,7 @@ describe("Test /accommodation endpoint", () => {
     expect(res.body.message).toBe('Token missing')
   })
 
-  it("Should not create /accommodation /w wrong jwt", async () => {
+  it("Should not create /api/accommodation /w wrong jwt", async () => {
     verify.mockImplementation(() => { throw new Error })
 
     //given
@@ -67,7 +67,7 @@ describe("Test /accommodation endpoint", () => {
     }
 
     //when
-    const res = await request.post('/accommodation').set('authorization', 'hasToken').send(accommodationByUser)
+    const res = await request.post('/api/accommodation').set('authorization', 'hasToken').send(accommodationByUser)
 
     //then
     const result = await Accommodation.findOne()
@@ -78,7 +78,7 @@ describe("Test /accommodation endpoint", () => {
     expect(res.body.message).toBe('Token invalid')
   })
 
-  it("Should not create /accommodation when not admin", async () => {
+  it("Should not create /api/accommodation when not admin", async () => {
     verify.mockImplementation(() => { return { role: 'guest' } })
 
     //given
@@ -93,7 +93,7 @@ describe("Test /accommodation endpoint", () => {
     }
 
     //when
-    const res = await request.post('/accommodation').set('authorization', 'hasToken').send(accommodationByUser)
+    const res = await request.post('/api/accommodation').set('authorization', 'hasToken').send(accommodationByUser)
 
     //then
     const result = await Accommodation.findOne()
@@ -104,7 +104,7 @@ describe("Test /accommodation endpoint", () => {
     expect(res.body.message).toBe('User is not correct')
   })
 
-  it("Should create /accommodation when couple", async () => {
+  it("Should create /api/accommodation when couple", async () => {
     verify.mockImplementation(() => { return { role: 'couple' } })
 
     //given
@@ -119,7 +119,7 @@ describe("Test /accommodation endpoint", () => {
     }
 
     //when
-    const res = await request.post('/accommodation').set('authorization', 'hasToken').send(accommodationByUser)
+    const res = await request.post('/api/accommodation').set('authorization', 'hasToken').send(accommodationByUser)
 
     //then
     const result = await Accommodation.findOne()
@@ -146,7 +146,7 @@ describe("Test /accommodation endpoint", () => {
     expect(res.body).toEqual({ ...accommodationInDB, _id: _id.toString() })
   })
 
-  it("Should create /accommodation when weddingP", async () => {
+  it("Should create /api/accommodation when weddingP", async () => {
     verify.mockImplementation(() => { return { role: 'weddingP' } })
 
     //given
@@ -161,7 +161,7 @@ describe("Test /accommodation endpoint", () => {
     }
 
     //when
-    const res = await request.post('/accommodation').set('authorization', 'hasToken').send(accommodationByUser)
+    const res = await request.post('/api/accommodation').set('authorization', 'hasToken').send(accommodationByUser)
 
     //then
     const result = await Accommodation.findOne()
@@ -203,7 +203,7 @@ describe("Test /accommodation endpoint", () => {
     }
 
     //when
-    const res = await request.post('/accommodation').set('authorization', 'hasToken').send(accommodationByUser)
+    const res = await request.post('/api/accommodation').set('authorization', 'hasToken').send(accommodationByUser)
 
     //then
     const result = await Accommodation.findOne()

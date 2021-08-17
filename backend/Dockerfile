@@ -7,7 +7,7 @@ WORKDIR /backend
 #copying the package.json & package lock files
 COPY package*.json ./
 
-#?!
+#install dev-dep
 RUN npm install --only=production
 
 #copying everything from the folder where Dockerfile is except .dockerignore

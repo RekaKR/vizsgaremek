@@ -15,70 +15,70 @@ serverSetup("emaillist-testing")
 //Setup mock reset
 mockSetup()
 
-describe("Test /emaillist endpoint", () => {
-  describe("Test /emaillist/get endpoint", () => {
-    it("Should not get from /emaillist /wo jwt", async () => {
+describe("Test /api/emaillist endpoint", () => {
+  describe("Test /api/emaillist/get endpoint", () => {
+    it("Should not get from /api/emaillist /wo jwt", async () => {
       //given
       //app has started
 
       //when
-      const response = await request.get('/emaillist')
+      const response = await request.get('/api/emaillist')
 
       //then
       expect(response.status).toBe(401)
       expect(response.body.message).toBe('Token missing')
     })
 
-    it("Should not get from /emaillist /w wrong jwt", async () => {
+    it("Should not get from /api/emaillist /w wrong jwt", async () => {
       verify.mockImplementation(() => { throw new Error })
 
       //given
       //app has started
 
       //when
-      const response = await request.get('/emaillist').set('authorization', 'hasToken')
+      const response = await request.get('/api/emaillist').set('authorization', 'hasToken')
 
       //then
       expect(response.status).toBe(401)
       expect(response.body.message).toEqual('Token invalid')
     })
 
-    it("Should not get from /emaillist when not admin", async () => {
+    it("Should not get from /api/emaillist when not admin", async () => {
       verify.mockImplementation(() => { return { role: 'guest' } })
 
       //given
       //app has started
 
       //when
-      const response = await request.get('/emaillist').set('authorization', 'hasToken')
+      const response = await request.get('/api/emaillist').set('authorization', 'hasToken')
 
       //then
       expect(response.status).toBe(401)
       expect(response.body.message).toEqual('User is not correct')
     })
 
-    it("Should get from /emaillist when couple", async () => {
+    it("Should get from /api/emaillist when couple", async () => {
       verify.mockImplementation(() => { return { role: 'couple' } })
 
       //given
       //app has started
 
       //when
-      const response = await request.get('/emaillist').set('authorization', 'hasToken')
+      const response = await request.get('/api/emaillist').set('authorization', 'hasToken')
 
       //then
       expect(response.status).toBe(200)
       expect(response.body).toEqual([])
     })
 
-    it("Should get from /emaillist when weddingP", async () => {
+    it("Should get from /api/emaillist when weddingP", async () => {
       verify.mockImplementation(() => { return { role: 'weddingP' } })
 
       //given
       //app has started
 
       //when
-      const response = await request.get('/emaillist').set('authorization', 'hasToken')
+      const response = await request.get('/api/emaillist').set('authorization', 'hasToken')
 
       //then
       expect(response.status).toBe(200)
@@ -86,8 +86,8 @@ describe("Test /emaillist endpoint", () => {
     })
   })
 
-  describe("Test /emaillist/post endpoint", () => {
-    it("Should not create /emaillist /wo jwt", async () => {
+  describe("Test /api/emaillist/post endpoint", () => {
+    it("Should not create /api/emaillist /wo jwt", async () => {
       //given
       const emailListByUser = {
         email: "email@cim.hu",
@@ -95,7 +95,7 @@ describe("Test /emaillist endpoint", () => {
       }
 
       //when
-      const res = await request.post('/emaillist').send(emailListByUser)
+      const res = await request.post('/api/emaillist').send(emailListByUser)
 
       //then
       const result = await EmailList.findOne()
@@ -106,7 +106,7 @@ describe("Test /emaillist endpoint", () => {
       expect(res.body.message).toBe('Token missing')
     })
 
-    it("Should not create /emaillist /w wrong jwt", async () => {
+    it("Should not create /api/emaillist /w wrong jwt", async () => {
       verify.mockImplementation(() => { throw new Error })
 
       //given
@@ -116,7 +116,7 @@ describe("Test /emaillist endpoint", () => {
       }
 
       //when
-      const res = await request.post('/emaillist').set('authorization', 'hasToken').send(emailListByUser)
+      const res = await request.post('/api/emaillist').set('authorization', 'hasToken').send(emailListByUser)
 
       //then
       const result = await EmailList.findOne()
@@ -127,7 +127,7 @@ describe("Test /emaillist endpoint", () => {
       expect(res.body.message).toBe('Token invalid')
     })
 
-    it("Should not create /emaillist when not admin", async () => {
+    it("Should not create /api/emaillist when not admin", async () => {
       verify.mockImplementation(() => { return { role: 'guest' } })
 
       //given
@@ -137,7 +137,7 @@ describe("Test /emaillist endpoint", () => {
       }
 
       //when
-      const res = await request.post('/emaillist').set('authorization', 'hasToken').send(emailListByUser)
+      const res = await request.post('/api/emaillist').set('authorization', 'hasToken').send(emailListByUser)
 
       //then
       const result = await EmailList.findOne()
@@ -148,7 +148,7 @@ describe("Test /emaillist endpoint", () => {
       expect(res.body.message).toBe('User is not correct')
     })
 
-    it("Should create /emaillist when couple", async () => {
+    it("Should create /api/emaillist when couple", async () => {
       verify.mockImplementation(() => { return { role: 'couple' } })
 
       //given
@@ -158,7 +158,7 @@ describe("Test /emaillist endpoint", () => {
       }
 
       //when
-      const res = await request.post('/emaillist').set('authorization', 'hasToken').send(emailListByUser)
+      const res = await request.post('/api/emaillist').set('authorization', 'hasToken').send(emailListByUser)
 
       //then
       const result = await EmailList.findOne()
@@ -179,7 +179,7 @@ describe("Test /emaillist endpoint", () => {
       expect(res.body).toEqual({ ...emailListInDB, __v, _id: _id.toString() })
     })
 
-    it("Should create /emaillist when weddingP", async () => {
+    it("Should create /api/emaillist when weddingP", async () => {
       verify.mockImplementation(() => { return { role: 'weddingP' } })
 
       //given
@@ -189,7 +189,7 @@ describe("Test /emaillist endpoint", () => {
       }
 
       //when
-      const res = await request.post('/emaillist').set('authorization', 'hasToken').send(emailListByUser)
+      const res = await request.post('/api/emaillist').set('authorization', 'hasToken').send(emailListByUser)
 
       //then
       const result = await EmailList.findOne()
@@ -210,7 +210,7 @@ describe("Test /emaillist endpoint", () => {
       expect(res.body).toEqual({ ...emailListInDB, __v, _id: _id.toString() })
     })
 
-    it("Should not create /emaillist when not all required fields are filled", async () => {
+    it("Should not create /api/emaillist when not all required fields are filled", async () => {
       verify.mockImplementation(() => { return { role: 'couple' } })
 
       //given
@@ -220,7 +220,7 @@ describe("Test /emaillist endpoint", () => {
       }
 
       //when
-      const res = await request.post('/emaillist').set('authorization', 'hasToken').send(emailListByUser)
+      const res = await request.post('/api/emaillist').set('authorization', 'hasToken').send(emailListByUser)
 
       //then
       const result = await EmailList.findOne()
@@ -232,7 +232,7 @@ describe("Test /emaillist endpoint", () => {
     })
 
     //átírni a szöveget
-    it("Should not create /emaillist when not all unique fields are filled", async () => {
+    it("Should not create /api/emaillist when not all unique fields are filled", async () => {
       verify.mockImplementation(() => { return { role: 'couple' } })
 
       //given
@@ -247,8 +247,8 @@ describe("Test /emaillist endpoint", () => {
       }
 
       //when
-      const res = await request.post('/emaillist').set('authorization', 'hasToken').send(emailListByUser)
-      const res2 = await request.post('/emaillist').set('authorization', 'hasToken').send(emailListByUser2)
+      const res = await request.post('/api/emaillist').set('authorization', 'hasToken').send(emailListByUser)
+      const res2 = await request.post('/api/emaillist').set('authorization', 'hasToken').send(emailListByUser2)
 
       //then
       const result = await EmailList.find({})

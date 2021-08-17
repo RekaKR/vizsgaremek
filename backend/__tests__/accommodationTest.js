@@ -1,4 +1,4 @@
-const { serverSetup, mockSetup } = require("./serverSetup")
+const { serverSetup, mockSetup } = require("../serverSetup")
 const jwt = require('jsonwebtoken')
 const verify = jest.spyOn(jwt, 'verify')
 

@@ -1,4 +1,9 @@
-const { serverSetup } = require("./serverSetup")
+const { serverSetup } = require("../serverSetup")
+
+const app = require("../server")
+const supertest = require("supertest")
+const request = supertest(app)
+
 const Timeline = require('../models/timelineModel')
 
 
@@ -10,7 +15,7 @@ describe("Dummy tests for jest & server", () => {
     expect(1).toBe(1)
   })
 
-  it('Successfully insert & get information from the database', async () => {
+  it('Checks if database works', async () => {
     //Insert information to database
     await Timeline.insertMany([
       {
@@ -48,5 +53,11 @@ describe("Dummy tests for jest & server", () => {
     expect(timelines[0].time).toBe("Time test")
     expect(timelines[1].happening).toBe("Happening test2")
     expect(timelines[0].place).toBe("Place test")
+  })
+
+  it("Checks if supertest works", async () => {
+    const response = await request.get("/api/something/not-exist")
+
+    expect(response.status).toBe(404)
   })
 })

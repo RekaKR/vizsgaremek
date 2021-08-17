@@ -72,10 +72,6 @@ const mockSetup = () => {
   })
 }
 
-it('MongoMemoryServer is connected', async () => {
-  expect(mongoose).toBeDefined()
-})
-
 
 module.exports = {
   serverSetup,

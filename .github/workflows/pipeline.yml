@@ -11,9 +11,9 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Install npm packages
-      run: npm install --prefix backend/
+      run: npm install --prefix /backend/
     - name: Running backend tests
-      run: npm run test --prefix backend/
+      run: npm run test --prefix /backend/
 
   Frontend-test:
     runs-on: ubuntu-latest

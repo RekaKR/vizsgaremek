@@ -1,0 +1,40 @@
+.admin-accommodation h2 {
+  text-align: center;
+  margin: 40px 0;
+}
+.admin-accommodation .accommodation-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+.admin-accommodation .accommodation-container h3 {
+  margin-bottom: 20px;
+}
+.admin-accommodation .accommodation-container .accommodation,
+.admin-accommodation .accommodation-container .accommodation-input {
+  width: 340px;
+  padding: 0 5px;
+  margin: 20px;
+  border: 1px black solid;
+}
+.admin-accommodation .accommodation-container .accommodation .accommodation-names {
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+.admin-accommodation .accommodation-container .accommodation .accommodation-names p {
+  max-width: 200px;
+}
+.admin-accommodation .accommodation-container .accommodation-input p {
+  margin-bottom: 10px;
+}
+.admin-accommodation .accommodation-container .accommodation-input div .timeline-i {
+  width: 250px;
+  margin-bottom: 10px;
+  padding: 3px;
+}
+.admin-accommodation .accommodation-container .accommodation-input .send-button {
+  margin-bottom: 15px;
+}
+
+/*# sourceMappingURL=accomodation.css.map */

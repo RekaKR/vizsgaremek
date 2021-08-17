@@ -42,6 +42,8 @@ const AdminPage = () => {
     }
   }, [people])
 
+
+  console.log(people)
   return (
     <div>
       <h2>Admin felület</h2>
@@ -83,35 +85,33 @@ const AdminPage = () => {
 
             <br /> {/*törölni később*/}
 
-            <div>
-              <p>Visszajelzett, hogy jön: </p>
-              <p>{person.name} | {person.email}</p>
-            </div>
+            <h3>Vendég</h3>
+            <p>{person.name} | {person.email}</p>
 
-            <div>
-              <p>Speciális menü igénye: </p>
-              <p>{person.foodS.length > 0
+            <p>Speciális menü igénye:
+              {person.foodS.length > 0
                 ? person.foodS.map(foodS =>
-                  <span key={uuidv4()}>{foodS} </span>)
-                : "nincs"
-              }</p>
-            </div>
+                  <span key={uuidv4()}> {foodS}</span>)
+                : <span> nincs</span>
+              }
+            </p>
 
-            <div>
-              <p>Kísérővel érkezik:</p>
-
+            <p>Kísérővel érkezik:
               {person.plusOneComing
-                ? <>
-                  <p>igen</p>
+                ? <span> igen</span>
+                : <span> nem</span>
+              }
+            </p>
 
-                  <p>Kísérő speciális menü igénye:</p>
-                  <p>{person.plusOneFoods
-                    ? person.plusOneFoods
-                    : "nincs"
-                  }</p>
-                </>
-                : <p>nem</p>}
-            </div>
+            {person.plusOneComing &&
+              <p>Kísérő speciális menü igénye:
+                {person.plusOneFoodS
+                  ? person.plusOneFoodS.map(foodS =>
+                    <span key={uuidv4()}> {foodS}</span>)
+                  : <span> nincs</span>
+                }
+              </p>
+            }
 
             <br /> {/*törölni később*/}
 

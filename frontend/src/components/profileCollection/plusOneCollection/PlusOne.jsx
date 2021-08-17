@@ -32,10 +32,10 @@ const PlusOne = () => {
 
           {isComing
             ? <>
-              <p>Jön velem +1 fő.</p>
+              <p>Jön velem kísérő.</p>
               <PlusOneTrue profile={profile} setResUpdatePlusOneData={setResUpdatePlusOneData} />
             </>
-            : <p>Nem jön velem +1 fő.</p>
+            : <p>Nem jön velem kísérő.</p>
           }
         </>
       }

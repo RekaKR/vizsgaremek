@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { ProfileContext } from '../../../ProfileContext'
 import useFetchPost from '../../../customHooks/useFetchPost'
+import Inp from '../../elementsCollection/Inp/Inp'
+import NumInp from '../../elementsCollection/NumInp/NumInp'
 
 function AccommodationInput() {
   const { setResPostAcc } = useContext(ProfileContext)
@@ -32,39 +34,20 @@ function AccommodationInput() {
 
   return (
     <div className="accommodation-input">
-      <h4>Új szállás lehetőség hozzáadása</h4>
+      <h3>Új szállás lehetőség hozzáadása</h3>
       <p>Add meg az új szállás adatait!</p>
 
       <div>
-        <input type="text" onChange={e => setName(e.target.value)} placeholder="Név" />
+        <Inp classN="timeline-i" label="Név" value={name} setValue={setName} />
+        <NumInp classN="timeline-i" label="Irányítószám" value={zip} setValue={setZip} />
+        <Inp classN="timeline-i" label="Város" value={city} setValue={setCity} />
+        <Inp classN="timeline-i" label="Utca" value={street} setValue={setStreet} />
+        <NumInp classN="timeline-i" label="Házszám" value={houseNumber} setValue={setHouseNumber} />
+        <Inp classN="timeline-i" label="Telefonszám" value={phoneNumber} setValue={setPhoneNumber} />
+        <Inp classN="timeline-i" label="Weboldal" value={website} setValue={setWebsite} />
       </div>
 
-      <div>
-        <input type="number" onChange={e => setZip(e.target.value)} placeholder="Irányítószám" />
-      </div>
-
-      <div>
-        <input type="text" onChange={e => setCity(e.target.value)} placeholder="Város" />
-      </div>
-
-      <div>
-        <input type="text" onChange={e => setStreet(e.target.value)} placeholder="Utca" />
-      </div>
-
-      <div>
-        <input type="number" onChange={e => setHouseNumber(e.target.value)} placeholder="Házszám" />
-      </div>
-
-      <div>
-        <input type="text" onChange={e => setPhoneNumber(e.target.value)} placeholder="Telefonszám" />
-      </div>
-
-      <div>
-        <input type="text" onChange={e => setWebsite(e.target.value)} placeholder="Weboldal" />
-      </div>
-
-
-      <button disabled={!(name && zip && city && street && houseNumber && phoneNumber && website)} onClick={() => setSubmit(!submit)}>Submit</button>
+      <button className="send-button" disabled={!(name && zip && city && street && houseNumber && phoneNumber && website)} onClick={() => setSubmit(!submit)}>Submit</button>
     </div >
   )
 }

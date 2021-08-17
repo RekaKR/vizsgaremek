@@ -1,0 +1,41 @@
+.admin-to-dos h2 {
+  text-align: center;
+  margin: 40px 0;
+}
+.admin-to-dos .to-do-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+.admin-to-dos .to-do-container .to-do,
+.admin-to-dos .to-do-container .to-do-input {
+  width: 340px;
+  padding: 0 5px;
+  margin: 20px;
+  border: 1px black solid;
+}
+.admin-to-dos .to-do-container .to-do h3:first-child,
+.admin-to-dos .to-do-container .to-do-input h3:first-child {
+  margin-bottom: 20px;
+}
+.admin-to-dos .to-do-container .to-do .to-do-names {
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+.admin-to-dos .to-do-container .to-do .to-do-names p {
+  max-width: 200px;
+}
+.admin-to-dos .to-do-container .to-do-input p {
+  margin-bottom: 10px;
+}
+.admin-to-dos .to-do-container .to-do-input div .timeline-i {
+  width: 250px;
+  margin-bottom: 10px;
+  padding: 3px;
+}
+.admin-to-dos .to-do-container .to-do-input .send-button {
+  margin-bottom: 15px;
+}
+
+/*# sourceMappingURL=todo.css.map */

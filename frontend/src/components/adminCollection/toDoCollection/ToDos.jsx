@@ -36,7 +36,7 @@ const ToDos = ({ toDos, setResUpdate, setResDelete }) => {
 
   return (
     <div className="to-do">
-      <h2>Teendők</h2>
+      <h3>Teendők</h3>
 
       <h3>Ruha</h3>
       {

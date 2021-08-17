@@ -1,4 +1,4 @@
-.admin-guest-list h3 {
+.admin-guest-list h2 {
   text-align: center;
   margin: 40px 0;
 }
@@ -7,7 +7,7 @@
   flex-wrap: wrap;
   justify-content: space-evenly;
 }
-.admin-guest-list .guest-list-container h4 {
+.admin-guest-list .guest-list-container h3 {
   margin-bottom: 20px;
 }
 .admin-guest-list .guest-list-container .guest-list,
@@ -29,7 +29,7 @@
   margin-left: 5px;
 }
 .admin-guest-list .guest-list-container .guest-list-input .send-button {
-  margin-top: 15px;
+  margin-bottom: 15px;
 }
 
 /*# sourceMappingURL=guestList.css.map */

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import useFetchPost from '../../../customHooks/useFetchPost'
 import ComboBox from '../../elementsCollection/ComboBox/ComboBox'
+import Inp from '../../elementsCollection/Inp/Inp'
 
 const ToDoInput = ({ setResPost }) => {
   const options = ['ruha', 'dizájn', 'étel', 'egyéb']
@@ -21,13 +22,15 @@ const ToDoInput = ({ setResPost }) => {
 
   return (
     <div className="to-do-input">
-      <div>
-        <ComboBox options={options} value={type} setValue={setType} label="Típus" />
+      <h3>Új teendő hozzáadása</h3>
+      <p>Add meg az új teendő adatait!</p>
 
-        <input type="text" onChange={e => setTask(e.target.value)} placeholder="Teendő" />
+      <div>
+        <ComboBox classN="timeline-i" options={options} value={type} setValue={setType} label="Típus" />
+        <Inp classN="timeline-i" label="Teendő" value={task} setValue={setTask} />
       </div>
 
-      <button disabled={!(type && task)} onClick={() => setSubmit(!submit)}>Submit</button>
+      <button className="send-button" disabled={!(type && task)} onClick={() => setSubmit(!submit)}>Submit</button>
     </div>
   )
 }

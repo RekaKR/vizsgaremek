@@ -2,7 +2,6 @@ import React, { useState, useEffect, useContext } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 import { ProfileContext } from '../../../ProfileContext'
 import useFetchDelete from '../../../customHooks/useFetchDelete'
-
 import '../../../style/css/timeline.css'
 
 import Event from '../../timelineCollection/Event'
@@ -28,11 +27,11 @@ const TimelineAdmin = () => {
 
   return (
     <div className="admin-timeline">
-      <h3>Menetrend</h3>
+      <h2>Menetrend</h2>
 
       <div className="timeline-container">
         <div className="timeline">
-          <h4>Menetrend lista</h4>
+          <h3>Menetrend lista</h3>
 
           {
             events && events.map(event =>

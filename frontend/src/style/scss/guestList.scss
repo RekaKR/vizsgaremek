@@ -1,5 +1,5 @@
 .admin-guest-list {
-   h3 {
+   h2 {
      text-align: center;
      margin: 40px 0;
    }
@@ -9,7 +9,7 @@
     flex-wrap: wrap;
     justify-content: space-evenly;
 
-    h4 {
+    h3 {
       margin-bottom: 20px;
     }
 
@@ -41,7 +41,7 @@
       }
 
       .send-button {
-        margin-top: 15px;
+        margin-bottom: 15px;
       }
     }
   }

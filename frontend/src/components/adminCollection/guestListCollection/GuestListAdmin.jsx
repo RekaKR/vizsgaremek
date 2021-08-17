@@ -21,11 +21,11 @@ const GuestListAdmin = () => {
 
   return (
     <div className="admin-guest-list">
-      <h3>Vendéglista</h3>
+      <h2>Vendéglista</h2>
 
       <div className="guest-list-container">
         <div className="guest-list">
-          <h4>Vendéglista (részletezve)</h4>
+          <h3>Vendéglista (részletezve)</h3>
           {
             guests && guests.map(guest =>
               <div className="guest-list-names" key={uuidv4()}>

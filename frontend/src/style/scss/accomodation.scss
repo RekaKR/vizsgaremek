@@ -1,10 +1,10 @@
-.admin-timeline {
+.admin-accommodation {
   h2 {
     text-align: center;
     margin: 40px 0;
   }
 
-  .timeline-container {
+  .accommodation-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
@@ -13,8 +13,8 @@
       margin-bottom: 20px;
     }
 
-    .timeline,
-    .timeline-input {
+    .accommodation,
+    .accommodation-input {
       width: 340px;
       padding: 0 5px;
       margin: 20px;
@@ -23,8 +23,8 @@
 
     }
 
-    .timeline {
-      .timeline-names {
+    .accommodation {
+      .accommodation-names {
         margin-bottom: 10px;
         display: flex;
         justify-content: space-between;
@@ -34,8 +34,8 @@
         }
       }
     }
-
-    .timeline-input {
+    
+    .accommodation-input {
       p {
         margin-bottom: 10px;
       }

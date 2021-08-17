@@ -2,6 +2,8 @@ import React, { useState, useEffect, useContext } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 import { ProfileContext } from '../../../ProfileContext'
 import useFetchDelete from '../../../customHooks/useFetchDelete'
+import '../../../style/css/accomodation.css'
+
 import AccommodationInput from './AccommodationInput'
 import DeleteButton from '../../elementsCollection/DeleteButton/DeleteButton'
 
@@ -24,18 +26,23 @@ const AccommodationAdmin = () => {
 
   return (
     <div className="admin-accommodation">
-      <h3>Szállás</h3>
+      <h2>Szállás</h2>
 
-      <h4>Szállás lista</h4>
-      {accommodations && accommodations.map(accommodation =>
-        <div key={uuidv4()}>
-          <p>{accommodation.name}</p>
+      <div className="accommodation-container">
+        <div className="accommodation">
+          <h4>Szállás lista</h4>
 
-          <DeleteButton deleteRecord={deleteRecord} element={accommodation} />
-        </div>)
-      }
+          {accommodations && accommodations.map(accommodation =>
+            <div className="accommodation-names" key={uuidv4()}>
+              <p>{accommodation.name}</p>
 
-      <AccommodationInput />
+              <DeleteButton deleteRecord={deleteRecord} element={accommodation} />
+            </div>)
+          }
+        </div>
+
+        <AccommodationInput />
+      </div>
     </div>
   )
 }

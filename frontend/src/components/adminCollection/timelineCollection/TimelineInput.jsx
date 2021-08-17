@@ -26,7 +26,7 @@ function TimelineInput() {
 
   return (
     <div className="timeline-input">
-      <h4>Új programpont hozzáadása</h4>
+      <h3>Új programpont hozzáadása</h3>
       <p>Add meg az új programpont adatait!</p>
 
       <div>
@@ -35,7 +35,7 @@ function TimelineInput() {
         <Inp classN="timeline-i" label="Helyszín" value={place} setValue={setPlace} />
       </div>
 
-      <button disabled={!(time && happening && place)} onClick={() => setSubmit(!submit)}>Submit</button>
+      <button className="send-button" disabled={!(time && happening && place)} onClick={() => setSubmit(!submit)}>Submit</button>
     </div>
   )
 }

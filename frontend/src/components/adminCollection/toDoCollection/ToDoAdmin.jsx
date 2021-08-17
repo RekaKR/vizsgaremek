@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import useFetchGet from '../../../customHooks/useFetchGet'
 import ToDos from './ToDos'
 import ToDoInput from './ToDoInput'
+import '../../../style/css/todo.css'
 
 const ToDoAdmin = () => {
   const [resUpdate, setResUpdate] = useState(0)
@@ -12,9 +13,13 @@ const ToDoAdmin = () => {
 
   return (
     <div className="admin-to-dos">
-      <ToDos toDos={toDos} resUpdate={resUpdate} setResUpdate={setResUpdate} resDelete={resDelete} setResDelete={setResDelete} />
+      <h2>Teendők</h2>
 
-      <ToDoInput setResPost={setResPost} />
+      <div className="to-do-container">
+        <ToDos toDos={toDos} resUpdate={resUpdate} setResUpdate={setResUpdate} resDelete={resDelete} setResDelete={setResDelete} />
+
+        <ToDoInput setResPost={setResPost} />
+      </div>
     </div>
   )
 }

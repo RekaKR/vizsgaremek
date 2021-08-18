@@ -2,7 +2,6 @@ const EmailList = require('../models/EmailListModel')
 
 
 //GET BACK ALL THE EMAILLISTS
-//done
 const emailList_create_get = (req, res) => {
   EmailList.find()
     .then(emaillists => res.json(emaillists))
@@ -10,7 +9,6 @@ const emailList_create_get = (req, res) => {
 }
 
 //POST TO SERVER AN EMAILLIST
-//done
 const emailList_create_post = (req, res) => {
   const emailList = new EmailList({
     email: req.body.email,
@@ -23,7 +21,6 @@ const emailList_create_post = (req, res) => {
 }
 
 //DELETE AN EMAILLIST BY ID
-//done
 const emailList_delete_one = (req, res) => {
   EmailList.deleteOne({ _id: req.params.id })
     .then(deletedEmailList => res.json(deletedEmailList))

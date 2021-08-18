@@ -6,7 +6,6 @@ const toDo_create_get = (req, res) => {
   ToDo.find()
     .then(toDos => res.json(toDos))
     .catch(err => res.status(403).json({ message: `Can\'t find to-dos` }))
-  //403-as, a visszajövő kód nem megfelelő annak, amit vizsgálok;
 }
 
 //POST TO SERVER A TODO

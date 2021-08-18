@@ -9,7 +9,6 @@ const accommodation_create_get = (req, res) => {
 }
 
 //POST TO SERVER AN ACCOMMODATION
-//done
 const accommodation_create_post = (req, res) => {
   const accommodation = new Accommodation({
     name: req.body.name,
@@ -29,7 +28,6 @@ const accommodation_create_post = (req, res) => {
 }
 
 //DELETE AN ACCOMMODATION BY ID
-//done
 const accommodation_delete_one = (req, res) => {
   Accommodation.deleteOne({ _id: req.params.id })
     .then(deletedAccommodation => res.json(deletedAccommodation))

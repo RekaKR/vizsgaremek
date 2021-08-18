@@ -9,7 +9,6 @@ const timeline_create_get = (req, res) => {
 }
 
 //POST TO SERVER A TIMELINE
-//done
 const timeline_create_post = (req, res) => {
   const timeline = new Timeline({
     time: req.body.time,
@@ -22,9 +21,7 @@ const timeline_create_post = (req, res) => {
     .catch(err => res.status(401).json({ message: 'Can\'t save this event' }))
 }
 
-
 //DELETE A TIMELINE BY ID
-//done
 const timeline_delete_one = (req, res) => {
   Timeline.deleteOne({ _id: req.params.id })
     .then(deletedTimeline => res.json(deletedTimeline))

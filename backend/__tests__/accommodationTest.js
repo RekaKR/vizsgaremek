@@ -38,7 +38,7 @@ describe("Test /api/accommodation endpoint", () => {
     expect(response.body).toEqual([])
   })
 
-  describe("Test /api/accommodation/post endpoint", () => {
+  describe("Test for post to /api/accommodation endpoint", () => {
     it("Should not create /api/accommodation /wo jwt", async () => {
       //given
       //accommodationByUser
@@ -212,7 +212,7 @@ describe("Test /api/accommodation endpoint", () => {
     })
   })
 
-  describe("Test /api/accommodation/delete endpoint", () => {
+  describe("Test for delete from /api/accommodation endpoint", () => {
     it("Should not delete /api/accommodation/:id /wo jwt", async () => {
       //given
       await Accommodation.insertMany([{

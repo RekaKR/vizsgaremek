@@ -28,7 +28,7 @@ describe("Test /api/timeline endpoint", () => {
     expect(response.body).toEqual([])
   })
 
-  describe("Test /api/timeline/post endpoint", () => {
+  describe("Test for post to /api/timeline endpoint", () => {
     const timelineByUser = {
       time: "Time test",
       happening: "Happening test",
@@ -188,7 +188,7 @@ describe("Test /api/timeline endpoint", () => {
     })
   })
 
-  describe("Test /api/timeline/delete endpoint", () => {
+  describe("Test for delete from /api/timeline endpoint", () => {
     it("Should not delete /api/timeline/:id /wo jwt", async () => {
       //given
       await Timeline.insertMany([{

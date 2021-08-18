@@ -16,7 +16,7 @@ serverSetup("emaillist-testing")
 mockSetup()
 
 describe("Test /api/emaillist endpoint", () => {
-  describe("Test /api/emaillist/get endpoint", () => {
+  describe("Test for get from /api/emaillist endpoint", () => {
     it("Should not get from /api/emaillist /wo jwt", async () => {
       //given
       //app has started
@@ -86,7 +86,7 @@ describe("Test /api/emaillist endpoint", () => {
     })
   })
 
-  describe("Test /api/emaillist/post endpoint", () => {
+  describe("Test for post to /api/emaillist endpoint", () => {
     const emailListByUser = {
       email: "email@cim.hu",
       role: "guest",
@@ -283,7 +283,7 @@ describe("Test /api/emaillist endpoint", () => {
     })
   })
 
-  describe("Test /api/emaillist/delete endpoint", () => {
+  describe("Test for delete from /api/emaillist endpoint", () => {
     it("Should not delete /api/emaillist/:id /wo jwt", async () => {
       //given
       await EmailList.insertMany([{

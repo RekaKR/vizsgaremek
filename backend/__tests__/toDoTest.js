@@ -28,7 +28,7 @@ describe("Test /api/to-do-list endpoint", () => {
     expect(response.body).toEqual([])
   })
 
-  describe("Test /api/to-do-list/post endpoint", () => {
+  describe("Test for post to /api/to-do-list endpoint", () => {
     const toDoByUser = {
       type: "dress",
       task: "Ruha teszt",
@@ -188,7 +188,150 @@ describe("Test /api/to-do-list endpoint", () => {
     })
   })
 
-  describe("Test /api/to-do-list/delete endpoint", () => {
+  describe("Test for update from /api/to-do-list endpoint", () => {
+    it("Should not update /api/to-do-list/:id /wo jwt", async () => {
+      //given
+      await ToDo.create([{
+        type: "dress",
+        task: "Ruha teszt",
+        done: true
+      }])
+
+      const toDo = await ToDo.findOne()
+      const id = toDo._id
+
+      //when
+      const res = await request.patch(`/api/to-do-list/${id}`).send({ done: false })
+
+      //then
+      const result = await ToDo.findOne()
+
+      expect(result).toEqual(toDo)
+      expect(res.status).toBe(401)
+      expect(res.body.message).toBe('Token missing')
+    })
+
+    it("Should not update /api/to-do-list/:id /w wrong jwt", async () => {
+      verify.mockImplementation(() => { throw new Error })
+
+      //given
+      await ToDo.create([{
+        type: "dress",
+        task: "Ruha teszt",
+        done: true
+      }])
+
+      const toDo = await ToDo.findOne()
+      const id = toDo._id
+
+      //when
+      const res = await request.patch(`/api/to-do-list/${id}`).set('authorization', 'hasToken').send({ done: false })
+
+      //then
+      const result = await ToDo.findOne()
+
+      expect(result).toEqual(toDo)
+      expect(res.status).toBe(401)
+      expect(res.body.message).toBe('Token invalid')
+    })
+
+    it("Should not delete /api/to-do-list/:id when not admin", async () => {
+      verify.mockImplementation(() => { return { role: 'guest' } })
+
+      //given
+      await ToDo.create([{
+        type: "dress",
+        task: "Ruha teszt",
+        done: true
+      }])
+
+      const toDo = await ToDo.findOne()
+      const id = toDo._id
+
+      //when
+      const res = await request.patch(`/api/to-do-list/${id}`).set('authorization', 'hasToken').send({ done: false })
+
+      //then
+      const result = await ToDo.findOne()
+
+      expect(result).toEqual(toDo)
+      expect(res.status).toBe(401)
+      expect(res.body.message).toBe('User is not correct')
+    })
+
+    it("Should update /api/to-do-list/:id when couple", async () => {
+      verify.mockImplementation(() => { return { role: 'couple' } })
+
+      //given
+      await ToDo.create([{
+        type: "dress",
+        task: "Ruha teszt",
+        done: true
+      }])
+
+      const toDo = await ToDo.findOne()
+      const id = toDo._id
+
+      //when
+      const res = await request.patch(`/api/to-do-list/${id}`).set('authorization', 'hasToken').send({ done: false })
+
+      //then
+      const result = await ToDo.findOne()
+
+      expect(result.done).toBe(false)
+      expect(result.done).not.toBe(toDo.done)
+      expect(res.status).toBe(200)
+    })
+
+    it("Should update /api/to-do-list/:id when weddingP", async () => {
+      verify.mockImplementation(() => { return { role: 'weddingP' } })
+
+      //given
+      await ToDo.create([{
+        type: "dress",
+        task: "Ruha teszt",
+        done: true
+      }])
+
+      const toDo = await ToDo.findOne()
+      const id = toDo._id
+
+      //when
+      const res = await request.patch(`/api/to-do-list/${id}`).set('authorization', 'hasToken').send({ done: false })
+
+      //then
+      const result = await ToDo.findOne()
+
+      expect(result.done).toBe(false)
+      expect(result.done).not.toBe(toDo.done)
+      expect(res.status).toBe(200)
+    })
+
+    it("Should not delete /api/to-do-list/:id when id is invalid", async () => {
+      verify.mockImplementation(() => { return { role: 'weddingP' } })
+
+      //given
+      await ToDo.create([{
+        type: "dress",
+        task: "Ruha teszt",
+        done: true
+      }])
+
+      const id = "not valid"
+
+      //when
+      const res = await request.patch(`/api/to-do-list/${id}`).set('authorization', 'hasToken').send({ done: false })
+
+      //then
+      const result = await ToDo.findOne()
+
+      expect(result.done).toBe(true)
+      expect(res.status).toBe(400)
+      expect(res.body.message).toBe('Can\'t update this to-do')
+    })
+  })
+
+  describe("Test for delete from /api/to-do-list endpoint", () => {
     it("Should not delete /api/to-do-list/:id /wo jwt", async () => {
       //given
       await ToDo.insertMany([{

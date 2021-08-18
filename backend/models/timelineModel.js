@@ -5,10 +5,12 @@ const timelineSchema = mongoose.Schema({
     type: String,
     required: true
   },
+
   happening: {
     type: String,
     required: true
   },
+
   place: {
     type: String,
     required: true

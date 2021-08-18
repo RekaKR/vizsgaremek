@@ -20,6 +20,7 @@ const user_create_get_one = (req, res) => {
     .catch(err => res.status(403).json({ message: `Can\'t find user` }))
 }
 
+//GET BACK THE ALL THE USERS' PROFILE
 const user_create_get_all = (req, res) => {
   User.find()
     .then(users => {
@@ -41,6 +42,7 @@ const user_create_get_all = (req, res) => {
     .catch(err => res.status(403).json({ message: `Can\'t find users' data` }))
 }
 
+//UPDATE LOGGED IN USER'S PROFILE - PLUS ONE IS COMING
 const user_update_isComing = (req, res) => {
   const googleId = jwt.decode(req.headers.authorization).google
 
@@ -58,6 +60,7 @@ const user_update_isComing = (req, res) => {
     .catch(err => res.status(400).json({ message: 'Can\'t update this user' }))
 }
 
+//UPDATE LOGGED IN USER'S PROFILE - PLUS ONE DETAILS
 const user_update_isComingDetails = (req, res) => {
   const googleId = jwt.decode(req.headers.authorization).google
 
@@ -77,6 +80,7 @@ const user_update_isComingDetails = (req, res) => {
     .catch(err => res.status(400).json({ message: 'Can\'t update this user' }))
 }
 
+//UPDATE LOGGED IN USER'S PROFILE - FOOD SENSITIVITY
 const user_update_foodSensitivity = (req, res) => {
   const googleId = jwt.decode(req.headers.authorization).google
 

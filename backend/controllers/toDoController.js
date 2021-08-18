@@ -9,7 +9,6 @@ const toDo_create_get = (req, res) => {
 }
 
 //POST TO SERVER A TODO
-//done
 const toDo_create_post = (req, res) => {
   const toDo = new ToDo({
     type: req.body.type,
@@ -23,8 +22,6 @@ const toDo_create_post = (req, res) => {
 }
 
 //UPDATE A TODO BY ID
-//done
-//teszt kell <--- !!!!!
 const toDo_update_one = (req, res) => {
   ToDo.updateOne(
     { _id: req.params.id },
@@ -39,8 +36,6 @@ const toDo_update_one = (req, res) => {
 }
 
 //DELETE A TODO BY ID
-//done
-//teszt kell <--- !!!!!
 const toDo_delete_one = (req, res) => {
   ToDo.deleteOne({ _id: req.params.id })
     .then(deletedToDo => res.json(deletedToDo))

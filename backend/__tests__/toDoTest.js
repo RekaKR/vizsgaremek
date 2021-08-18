@@ -28,153 +28,345 @@ describe("Test /api/to-do-list endpoint", () => {
     expect(response.body).toEqual([])
   })
 
-  it("Should not create /api/to-do-list /wo jwt", async () => {
-    //given
+  describe("Test /api/to-do-list/post endpoint", () => {
     const toDoByUser = {
       type: "dress",
       task: "Ruha teszt",
       done: true
     }
 
-    //when
-    const res = await request.post('/api/to-do-list').send(toDoByUser)
+    it("Should not create /api/to-do-list /wo jwt", async () => {
+      //given
+      //toDoByUser
 
-    //then
-    const result = await ToDo.findOne()
+      //when
+      const res = await request.post('/api/to-do-list').send(toDoByUser)
 
-    expect(result).toBeNull()
+      //then
+      const result = await ToDo.findOne()
 
-    expect(res.status).toBe(401)
-    expect(res.body.message).toBe('Token missing')
+      expect(result).toBeNull()
+
+      expect(res.status).toBe(401)
+      expect(res.body.message).toBe('Token missing')
+    })
+
+    it("Should not create /api/to-do-list /w wrong jwt", async () => {
+      verify.mockImplementation(() => { throw new Error })
+
+      //given
+      //toDoByUser
+
+      //when
+      const res = await request.post('/api/to-do-list').set('authorization', 'hasToken').send(toDoByUser)
+
+      //then
+      const result = await ToDo.findOne()
+
+      expect(result).toBeNull()
+
+      expect(res.status).toBe(401)
+      expect(res.body.message).toBe('Token invalid')
+    })
+
+    it("Should not create /api/to-do-list when not admin", async () => {
+      verify.mockImplementation(() => { return { role: 'guest' } })
+
+      //given
+      //toDoByUser
+
+      //when
+      const res = await request.post('/api/to-do-list').set('authorization', 'hasToken').send(toDoByUser)
+
+      //then
+      const result = await ToDo.findOne()
+
+      expect(result).toBeNull()
+
+      expect(res.status).toBe(401)
+      expect(res.body.message).toBe('User is not correct')
+    })
+
+    it("Should create /api/to-do-list when couple", async () => {
+      verify.mockImplementation(() => { return { role: 'couple' } })
+
+      //given
+      //toDoByUser
+
+      //when
+      const res = await request.post('/api/to-do-list').set('authorization', 'hasToken').send(toDoByUser)
+
+      //then
+      const result = await ToDo.findOne()
+      const toDoInDB = result.toJSON()
+
+      expect(toDoInDB).not.toBeNull()
+
+      expect(toDoInDB.__v).toBeDefined()
+      expect(toDoInDB._id).toBeDefined()
+
+      const __v = toDoInDB.__v
+      const _id = toDoInDB._id
+
+      expect(toDoInDB).toEqual({ ...toDoByUser, __v, _id })
+
+      expect(res.status).toBe(200)
+      expect(res.body).toEqual({ ...toDoByUser, __v, _id: _id.toString() })
+      expect(res.body).toEqual({ ...toDoInDB, _id: _id.toString() })
+    })
+
+    it("Should create /api/to-do-list when weddingP", async () => {
+      verify.mockImplementation(() => { return { role: 'weddingP' } })
+
+      //given
+      //toDoByUser
+
+      //when
+      const res = await request.post('/api/to-do-list').set('authorization', 'hasToken').send(toDoByUser)
+
+      //then
+      const result = await ToDo.findOne()
+      const toDoInDB = result.toJSON()
+
+      expect(toDoInDB).not.toBeNull()
+
+      expect(toDoInDB.__v).toBeDefined()
+      expect(toDoInDB._id).toBeDefined()
+
+      const __v = toDoInDB.__v
+      const _id = toDoInDB._id
+
+      expect(toDoInDB).toEqual({ ...toDoByUser, __v, _id })
+
+      expect(res.status).toBe(200)
+      expect(res.body).toEqual({ ...toDoByUser, __v, _id: _id.toString() })
+      expect(res.body).toEqual({ ...toDoInDB, _id: _id.toString() })
+    })
+
+    it("Should not create /api/to-do-list when not all required fields are filled", async () => {
+      verify.mockImplementation(() => { return { role: 'couple' } })
+
+      //given
+      const toDoByUser = {
+        type: null, //it is a required field at toDoSchema
+        task: "Ruha teszt",
+        done: true
+      }
+
+      //when
+      const res = await request.post('/api/to-do-list').set('authorization', 'hasToken').send(toDoByUser)
+
+      //then
+      const result = await ToDo.findOne()
+
+      expect(result).toBeNull()
+
+      expect(res.status).toBe(401)
+      expect(res.body.message).toBe('Can\'t save to-do')
+    })
+
+    it("Should not create /api/to-do-list when incorrect input value being given", async () => {
+      verify.mockImplementation(() => { return { role: 'couple' } })
+
+      //given
+      const toDoByUser = {
+        type: "dress",
+        task: Number("itIsANumber"), //it should be a string
+        done: true
+      }
+
+      //when
+      const res = await request.post('/api/to-do-list').set('authorization', 'hasToken').send(toDoByUser)
+
+      //then
+      const result = await ToDo.findOne()
+
+      expect(result).toBeNull()
+
+      expect(res.status).toBe(401)
+      expect(res.body.message).toBe('Can\'t save to-do')
+    })
   })
 
-  it("Should not create /api/to-do-list /w wrong jwt", async () => {
-    verify.mockImplementation(() => { throw new Error })
+  describe("Test /api/to-do-list/delete endpoint", () => {
+    it("Should not delete /api/to-do-list/:id /wo jwt", async () => {
+      //given
+      await ToDo.insertMany([{
+        type: "dress",
+        task: "Ruha teszt",
+        done: true
+      },
+      {
+        type: "food",
+        task: "Kaja teszt",
+        done: true
+      }])
 
-    //given
-    const toDoByUser = {
-      type: "dress",
-      task: "Ruha teszt",
-      done: true
-    }
+      const toDoList = await ToDo.find()
+      const id = toDoList[0]._id
 
-    //when
-    const res = await request.post('/api/to-do-list').set('authorization', 'hasToken').send(toDoByUser)
+      //when
+      const res = await request.delete(`/api/to-do-list/${id}`)
 
-    //then
-    const result = await ToDo.findOne()
+      //then
+      const result = await ToDo.find()
 
-    expect(result).toBeNull()
+      expect(result).toHaveLength(2)
+      expect(toDoList[0]).toEqual(result[0])
 
-    expect(res.status).toBe(401)
-    expect(res.body.message).toBe('Token invalid')
-  })
+      expect(res.status).toBe(401)
+      expect(res.body.message).toBe('Token missing')
+    })
 
-  it("Should not create /api/to-do-list when not admin", async () => {
-    verify.mockImplementation(() => { return { role: 'guest' } })
+    it("Should not delete /api/to-do-list/:id /w wrong jwt", async () => {
+      verify.mockImplementation(() => { throw new Error })
 
-    //given
-    const toDoByUser = {
-      type: "dress",
-      task: "Ruha teszt",
-      done: true
-    }
+      //given
+      await ToDo.insertMany([{
+        type: "dress",
+        task: "Ruha teszt",
+        done: true
+      },
+      {
+        type: "food",
+        task: "Kaja teszt",
+        done: true
+      }])
 
-    //when
-    const res = await request.post('/api/to-do-list').set('authorization', 'hasToken').send(toDoByUser)
+      const toDoList = await ToDo.find()
+      const id = toDoList[0]._id
 
-    //then
-    const result = await ToDo.findOne()
+      //when
+      const res = await request.delete(`/api/to-do-list/${id}`).set('authorization', 'hasToken')
 
-    expect(result).toBeNull()
+      //then
+      const result = await ToDo.find()
 
-    expect(res.status).toBe(401)
-    expect(res.body.message).toBe('User is not correct')
-  })
+      expect(result).toHaveLength(2)
+      expect(toDoList[0]).toEqual(result[0])
 
-  it("Should create /api/to-do-list when couple", async () => {
-    verify.mockImplementation(() => { return { role: 'couple' } })
+      expect(res.status).toBe(401)
+      expect(res.body.message).toBe('Token invalid')
+    })
 
-    //given
-    const toDoByUser = {
-      type: "dress",
-      task: "Ruha teszt",
-      done: true
-    }
+    it("Should not delete /api/to-do-list/:id when not admin", async () => {
+      verify.mockImplementation(() => { return { role: 'guest' } })
 
-    //when
-    const res = await request.post('/api/to-do-list').set('authorization', 'hasToken').send(toDoByUser)
+      //given
+      await ToDo.insertMany([{
+        type: "dress",
+        task: "Ruha teszt",
+        done: true
+      },
+      {
+        type: "food",
+        task: "Kaja teszt",
+        done: true
+      }])
 
-    //then
-    const result = await ToDo.findOne()
-    const toDoInDB = result.toJSON()
+      const toDoList = await ToDo.find()
+      const id = toDoList[0]._id
 
-    expect(toDoInDB).not.toBeNull()
+      //when
+      const res = await request.delete(`/api/to-do-list/${id}`).set('authorization', 'hasToken')
 
-    expect(toDoInDB.__v).toBeDefined()
-    expect(toDoInDB._id).toBeDefined()
+      //then
+      const result = await ToDo.find()
 
-    const __v = toDoInDB.__v
-    const _id = toDoInDB._id
+      expect(result).toHaveLength(2)
+      expect(toDoList[0]).toEqual(result[0])
 
-    expect(toDoInDB).toEqual({ ...toDoByUser, __v, _id })
+      expect(res.status).toBe(401)
+      expect(res.body.message).toBe('User is not correct')
+    })
 
-    expect(res.status).toBe(200)
-    expect(res.body).toEqual({ ...toDoByUser, __v, _id: _id.toString() })
-    expect(res.body).toEqual({ ...toDoInDB, _id: _id.toString() })
-  })
+    it("Should delete /api/to-do-list/:id when couple", async () => {
+      verify.mockImplementation(() => { return { role: 'couple' } })
 
-  it("Should create /api/to-do-list when weddingP", async () => {
-    verify.mockImplementation(() => { return { role: 'weddingP' } })
+      //given
+      await ToDo.insertMany([{
+        type: "dress",
+        task: "Ruha teszt",
+        done: true
+      },
+      {
+        type: "food",
+        task: "Kaja teszt",
+        done: true
+      }])
 
-    //given
-    const toDoByUser = {
-      type: "dress",
-      task: "Ruha teszt",
-      done: true
-    }
+      const toDoList = await ToDo.find()
+      const id = toDoList[0]._id
 
-    //when
-    const res = await request.post('/api/to-do-list').set('authorization', 'hasToken').send(toDoByUser)
+      //when
+      const res = await request.delete(`/api/to-do-list/${id}`).set('authorization', 'hasToken')
 
-    //then
-    const result = await ToDo.findOne()
-    const toDoInDB = result.toJSON()
+      //then
+      const result = await ToDo.find()
 
-    expect(toDoInDB).not.toBeNull()
+      expect(result).toHaveLength(1)
+      expect(toDoList[0]).not.toEqual(result[0])
 
-    expect(toDoInDB.__v).toBeDefined()
-    expect(toDoInDB._id).toBeDefined()
+      expect(res.status).toBe(200)
+    })
 
-    const __v = toDoInDB.__v
-    const _id = toDoInDB._id
+    it("Should delete /api/to-do-list/:id when weddingP", async () => {
+      verify.mockImplementation(() => { return { role: 'weddingP' } })
 
-    expect(toDoInDB).toEqual({ ...toDoByUser, __v, _id })
+      //given
+      await ToDo.insertMany([{
+        type: "dress",
+        task: "Ruha teszt",
+        done: true
+      },
+      {
+        type: "food",
+        task: "Kaja teszt",
+        done: true
+      }])
 
-    expect(res.status).toBe(200)
-    expect(res.body).toEqual({ ...toDoByUser, __v, _id: _id.toString() })
-    expect(res.body).toEqual({ ...toDoInDB, _id: _id.toString() })
-  })
+      const toDoList = await ToDo.find()
+      const id = toDoList[0]._id
 
-  it("Should not create /api/to-do-list when not all required fields are filled", async () => {
-    verify.mockImplementation(() => { return { role: 'couple' } })
+      //when
+      const res = await request.delete(`/api/to-do-list/${id}`).set('authorization', 'hasToken')
 
-    //given
-    const toDoByUser = {
-      type: null, //it is a required field at accommodationSchema
-      task: "Ruha teszt",
-      done: true
-    }
+      //then
+      const result = await ToDo.find()
 
-    //when
-    const res = await request.post('/api/to-do-list').set('authorization', 'hasToken').send(toDoByUser)
+      expect(result).toHaveLength(1)
+      expect(toDoList[0]).not.toEqual(result[0])
 
-    //then
-    const result = await ToDo.findOne()
+      expect(res.status).toBe(200)
+    })
 
-    expect(result).toBeNull()
+    it("Should not delete /api/to-do-list/:id when id is invalid", async () => {
+      verify.mockImplementation(() => { return { role: 'weddingP' } })
 
-    expect(res.status).toBe(401)
-    expect(res.body.message).toBe('Can\'t save to-do')
+      //given
+      await ToDo.insertMany([{
+        type: "dress",
+        task: "Ruha teszt",
+        done: true
+      },
+      {
+        type: "food",
+        task: "Kaja teszt",
+        done: true
+      }])
+
+      const id = "not valid"
+
+      //when
+      const res = await request.delete(`/api/to-do-list/${id}`).set('authorization', 'hasToken')
+
+      //then
+      const result = await ToDo.find()
+
+      expect(result).toHaveLength(2)
+
+      expect(res.status).toBe(400)
+      expect(res.body.message).toBe('Can\'t delete this to-do')
+    })
   })
 })

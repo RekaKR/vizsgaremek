@@ -25,7 +25,6 @@ async function dropAllCollections() {
     return collection.drop()
   })
 
-  //promise.all-t megnézni!!!!
   try {
     await Promise.all(promisList)
   } catch (error) {

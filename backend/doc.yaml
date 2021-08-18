@@ -1,0 +1,634 @@
+swagger: '2.0'
+info:
+  description: This is a simple gallery API
+  version: 1.0.0
+  title: Simple Gallery API
+  # put the contact info for your development or API team
+  contact:
+    email: you@your-company.com
+
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+
+# tags are used for organizing operations
+tags:
+- name: users
+  description: Endpoints for the reading, creation, modification and deletion of users
+- name: albums
+  description: Endpoints for the reading, creation, modification and deletion of albums
+- name: images
+  description: Endpoints for the reading, creation, modification and deletion of images within albums
+- name: auth
+  description: Endpoints registration, login and logout
+
+
+paths:
+  /users:
+    get:
+      tags:
+      - users
+      summary: Search for users
+      operationId: getUsers
+      description: |
+        Returns all the users
+      produces:
+      - application/json
+      parameters:
+      - in: query
+        name: searchString
+        description: pass an optional search string for looking up users
+        required: false
+        type: string
+      - in: query
+        name: skip
+        description: number of records to skip for pagination
+        type: integer
+        format: int32
+        minimum: 0
+      - in: query
+        name: limit
+        description: maximum number of records to return
+        type: integer
+        format: int32
+        minimum: 0
+        maximum: 50
+      responses:
+        200:
+          description: search results matching criteria
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/User'
+        400:
+          description: bad input parameter
+      security:
+      - api_key: []
+    post:
+      tags:
+      - users
+      summary: Creates a new user
+      operationId: createUser
+      description: Creates a new user
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: newUserObject
+        description: new user to add
+        schema:
+          $ref: '#/definitions/UserRegistration'
+      responses:
+        201:
+          description: user created
+        400:
+          description: invalid input, object invalid
+        409:
+          description: an existing user already exists
+      security:
+      - api_key: []
+  /users/:username:
+    put:
+      tags:
+      - users
+      summary: Update a user by their username
+      operationId: updateUser
+      description: |
+        Returns the updated user
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: userObject
+        description: update user
+        schema:
+          $ref: '#/definitions/User'
+      responses:
+        200:
+          description: user with the given username
+          schema:
+            $ref: '#/definitions/User'
+        400:
+          description: bad input parameter
+      security:
+      - api_key: []
+    get:
+      tags:
+      - users
+      summary: Get user
+      operationId: getUser
+      description: |
+        Returns the user
+      produces:
+      - application/json
+      responses:
+        200:
+          description: user with the given username
+          schema:
+            $ref: '#/definitions/User'
+        400:
+          description: bad input parameter
+      security:
+      - api_key: []
+    delete:
+      tags:
+      - users
+      summary: Delete user
+      operationId: deleteUser
+      description: |
+        Returns ok if the user is successfully deleted
+      responses:
+        200:
+          description: successful operation
+        400:
+          description: bad input parameter
+      security:
+      - api_key: []
+  /users/:username/albums:
+    get:
+      tags:
+      - albums
+      summary: Search for albums
+      operationId: getUserAlbums
+      description: |
+        Returns the albums of the user
+      produces:
+      - application/json
+      parameters:
+      - in: query
+        name: searchString
+        description: pass an optional search string for looking up albums
+        required: false
+        type: string
+      - in: query
+        name: skip
+        description: number of records to skip for pagination
+        type: integer
+        format: int32
+        minimum: 0
+      - in: query
+        name: limit
+        description: maximum number of records to return
+        type: integer
+        format: int32
+        minimum: 0
+        maximum: 50
+      responses:
+        200:
+          description: search results matching criteria
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Album'
+        400:
+          description: bad input parameter
+      security:
+      - api_key: []
+    post:
+      tags:
+      - albums
+      summary: Creates a new album
+      operationId: addAlbum
+      description: Creates a new album
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: newAlbumObject
+        description: new album to add
+        schema:
+          $ref: '#/definitions/Album'
+      responses:
+        201:
+          description: album created
+        400:
+          description: invalid input, object invalid
+        409:
+          description: an existing album already exists
+      security:
+      - api_key: []
+  /users/:username/albums/:albumId:
+    put:
+      tags:
+      - albums
+      summary: Update an album of a user
+      operationId: updateUseralbum
+      description: |
+        Returns the updated album
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: albumObject
+        description: update album
+        schema:
+          $ref: '#/definitions/User'
+      responses:
+        200:
+          description: updated album
+          schema:
+            $ref: '#/definitions/Album'
+        400:
+          description: bad input parameter
+      security:
+      - api_key: []
+    get:
+      tags:
+      - albums
+      summary: Get album
+      operationId: getAlbum
+      description: |
+        Returns the album with the given id
+      produces:
+      - application/json
+      responses:
+        200:
+          description: album with the given id
+          schema:
+            $ref: '#/definitions/Album'
+        400:
+          description: bad input parameter
+      security:
+      - api_key: []
+    delete:
+      tags:
+      - albums
+      summary: Delete album
+      operationId: deleteAlbum
+      description: |
+        Returns ok if the album is successfully deleted
+      responses:
+        200:
+          description: successful operation
+        400:
+          description: bad input parameter
+      security:
+      - api_key: []
+  /users/:username/images:
+    get:
+      tags:
+      - images
+      summary: Search for images
+      operationId: getUserImages
+      description: |
+        Returns the images of the user
+      produces:
+      - application/json
+      parameters:
+      - in: query
+        name: searchString
+        description: pass an optional search string for looking up images
+        required: false
+        type: string
+      - in: query
+        name: skip
+        description: number of records to skip for pagination
+        type: integer
+        format: int32
+        minimum: 0
+      - in: query
+        name: limit
+        description: maximum number of records to return
+        type: integer
+        format: int32
+        minimum: 0
+        maximum: 50
+      responses:
+        200:
+          description: search results matching criteria
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Image'
+        400:
+          description: bad input parameter
+      security:
+      - api_key: []
+    post:
+      tags:
+      - images
+      summary: Creates a new image
+      operationId: addImage
+      description: Creates a new image
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: newImageObject
+        description: new image to add
+        schema:
+          $ref: '#/definitions/Image'
+      responses:
+        201:
+          description: image created
+        400:
+          description: invalid input, object invalid
+        409:
+          description: an existing image already exists
+      security:
+      - api_key: []
+  /users/:username/images/:imageId:
+    put:
+      tags:
+      - images
+      summary: Update an image
+      operationId: updateImage
+      description: |
+        Returns the updated image object
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: albumObject
+        description: update image
+        schema:
+          $ref: '#/definitions/Image'
+      responses:
+        200:
+          description: updated image
+          schema:
+            $ref: '#/definitions/Image'
+        400:
+          description: bad input parameter
+      security:
+      - api_key: []
+    get:
+      tags:
+      - images
+      summary: Get image
+      operationId: getImage
+      description: |
+        Returns the image with the given id
+      produces:
+      - application/json
+      responses:
+        200:
+          description: image with the given id
+          schema:
+            $ref: '#/definitions/Image'
+        400:
+          description: bad input parameter
+      security:
+      - api_key: []
+    delete:
+      tags:
+      - images
+      summary: Delete image
+      operationId: deleteImage
+      description: |
+        Returns ok if the image is successfully deleted
+      responses:
+        200:
+          description: successful operation
+        400:
+          description: bad input parameter
+      security:
+      - api_key: []
+
+  /registration:
+    post:
+      tags:
+      - auth
+      summary: Registers a new user
+      operationId: registerUser
+      description: Registers a new user
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: newUserObject
+        description: new user to register
+        schema:
+          $ref: '#/definitions/UserRegistration'
+      responses:
+        201:
+          description: user registered
+        400:
+          description: invalid input, object invalid
+        409:
+          description: an existing user already exists
+  /login:
+    post:
+      tags:
+      - auth
+      summary: Login as a user
+      operationId: login
+      description: Login as a user
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: userObject
+        description: username and password
+        schema:
+          $ref: '#/definitions/UserRegistration'
+      responses:
+        200:
+          description: user signed in
+          schema:
+            type: object
+            properties:
+              api_key:
+                type: string
+        400:
+          description: invalid input, object invalid
+        401:
+          description: wrong username or password
+  /logout:
+    get:
+      tags:
+      - auth
+      summary: logout with a user
+      operationId: logout
+      description: logout with a user
+      produces:
+      - application/json
+      responses:
+        200:
+          description: succesful logout
+        400:
+          description: user id not provided
+      security:
+      - api_key: []
+          
+securityDefinitions:
+  api_key:
+    type: "apiKey"
+    name: "X-API-Key"
+    in: "header"
+    
+
+definitions:
+  Accommodation:
+    type: object
+    required:
+    - name
+    - phoneNumber
+    - website
+    properties:
+      name:
+        type: string
+        #format: uuid
+        example: "Réka"
+      address:
+        type: object
+        required:
+        - zip
+        - city
+        - street
+        - houseNumber
+        properties:
+          zip:
+            type: number
+            example: 1234
+          city:
+            type: string
+            example: "Budapest"
+          street:
+            type: string
+            example: "Szép utca"
+          houseNumber:
+            type: number
+            example: 15
+      phoneNumber:
+        type: string
+        example: "+36111111111"
+      website:
+        type: string
+        format: uri
+        example: "http://weboldal.com"
+  EmailList:
+    type: object
+    required:
+    - email
+    - role
+    properties:
+      email:
+        type: string
+        #uniqueItems: true ?!
+        format: email
+        example: "documentation@email.hu"
+      role:
+        type: string
+        example: "guest"
+  GoodWish:
+    type: object
+    required:
+    - goodWish
+    - from
+    - email
+    properties:
+      goodWish:
+        type: string
+        example: "Nagyon sok bologságot kívánok!"
+      from:
+        type: string
+        example: "Réka K. PhD"
+      email:
+        type: string
+        example: "documentation@email.hu"
+  Timeline:
+    type: object
+    required:
+    - time
+    - happening
+    - place
+    properties:
+      time:
+        type: string
+        example: "Reggel 8"
+      happening:
+        type: string
+        example: "Villásreggeli"
+      place:
+        type: string,
+        example: "Étkező"
+  ToDo:
+    type: object
+    required:
+    - type
+    - task
+    properties:
+      type:
+        type: string
+        example: "clothes"
+      task:
+        type: string
+        example: "Esküvői ruha vásárlás"
+      done:
+        type: boolean,
+        example: false
+  User:
+    type: object
+    required:
+    - username
+    - name
+    - email
+    - googleId
+    - role
+    - picture
+    properties:
+      username:
+        type: string
+        example: "RékaK"
+      name:
+        type: string
+        example: "Réka K. PhD"
+      email:
+        type: string
+        #uniqueItems: true ?!
+        format: email
+        example: "documentation@email.hu"
+      googleId:
+        type: string
+        #uniqueItems: true ?!
+        example: "112211221122112211223"
+      role:
+        type: string
+        example: "guest"
+      picture:
+        type: string
+        format: uri
+        example: "https://lh3.googleusercontent.com/picture"
+      plusOne:
+        type: object
+        required:
+        - isComing
+        properties:
+          isComing:
+            type: boolean
+            example: true
+          name:
+            type: string
+            example: "Réka K. PhD 2"
+          foodSensitivity:
+            type: array
+            items:
+              type: string
+              example: ["laktóz mentes", "glutén mentes", "vega"]
+      foodSensitivity:
+        type: array
+        items:
+          type: string
+          example: ["cukor mentes", "vegán"]
+# Added by API Auto Mocking Plugin
+host: virtserver.swaggerhub.com
+#basePath: /rekaK/codecool-vizsgaremek/1.0.0
+schemes:
+ - https

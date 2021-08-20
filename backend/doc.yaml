@@ -1,11 +1,11 @@
 swagger: '2.0'
 info:
-  description: This is a simple gallery API
+  description: Ez egy online térbe helyezett esküvői meghívó oldal, ahol a menyasszony és a vőlegény könnyedén tudják szervezni és rendezni a tevékenységeiket, ügyeiket, és ahol a vendégek is megtalálnak minden szükséges információt.
+  title: Esküvő app - vizsgaremek
   version: 1.0.0
-  title: Simple Gallery API
-  # put the contact info for your development or API team
+  
   contact:
-    email: you@your-company.com
+    email: dummy@email.hu #contact info for your development or API team
 
   license:
     name: Apache 2.0
@@ -13,466 +13,473 @@ info:
 
 # tags are used for organizing operations
 tags:
+- name: accommodations
+  description: Endpoints for the reading, creation and deletion of accommodations
+- name: emaillists
+  description: Endpoints for the reading, creation and deletion of emaillists
+- name: goodwishes
+  description: Endpoints for the reading and creation of goodwishes
+- name: logins
+  description: Endpoints for the creation of logins
+- name: timelines
+  description: Endpoints for the reading, creation and deletion of timelines
+- name: todos
+  description: Endpoints for the reading, creation, modification and deletion of todos
 - name: users
-  description: Endpoints for the reading, creation, modification and deletion of users
-- name: albums
-  description: Endpoints for the reading, creation, modification and deletion of albums
-- name: images
-  description: Endpoints for the reading, creation, modification and deletion of images within albums
-- name: auth
-  description: Endpoints registration, login and logout
+  description: Endpoints for the reading and modification of users
 
 
 paths:
-  /users:
+  /api/accommodation:
     get:
       tags:
-      - users
-      summary: Search for users
-      operationId: getUsers
+      - accommodations
+      summary: Gets all accommodations
+      operationId: getAccommodations
       description: |
-        Returns all the users
+        Get all accommodations
       produces:
       - application/json
       parameters:
       - in: query
-        name: searchString
-        description: pass an optional search string for looking up users
+        name: accommodationsString
+        description: get all the accommodations
         required: false
         type: string
-      - in: query
-        name: skip
-        description: number of records to skip for pagination
-        type: integer
-        format: int32
-        minimum: 0
-      - in: query
-        name: limit
-        description: maximum number of records to return
-        type: integer
-        format: int32
-        minimum: 0
-        maximum: 50
       responses:
         200:
-          description: search results matching criteria
+          description: got all the accommodations
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Accommodation'
+        403:
+          description: Couldn't get accommodation
+      security:
+      - api_key: []
+    post:
+      tags:
+      - accommodations
+      summary: Creates a new accommodation
+      operationId: createAccommodation
+      description: Creates a new accommodation
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: newAccommodationObject
+        description: new accommodation to add
+        schema:
+          $ref: '#/definitions/Accommodation'
+      responses:
+        200:
+          description: accommodation created
+        401:
+          description: accommodation was not created
+      security:
+      - api_key: []
+  /api/accommodation/:id:
+    delete:
+      tags:
+      - accommodations
+      summary: Update accommodation
+      operationId: deleteAccommodation
+      description: |
+        Delete accommodation
+      responses:
+        200:
+          description: accommodation deleted
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Accommodation'
+        400:
+          description: accommodation was not deleted
+      security:
+      - api_key: []
+  /api/emaillist:
+    get:
+      tags:
+      - emaillists
+      summary: Gets all emaillists
+      operationId: getEmaillists
+      description: |
+        Get all emaillists
+      produces:
+      - application/json
+      parameters:
+      - in: query
+        name: emaillistsString
+        description: get all the emaillists
+        required: false
+        type: string
+      responses:
+        200:
+          description: got all the emaillists
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/EmailList'
+        403:
+          description: Couldn't get emaillist
+      security:
+      - api_key: []
+    post:
+      tags:
+      - emaillists
+      summary: Creates a new emaillist
+      operationId: createEmaillist
+      description: Creates a new emaillist
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: newEmailListObject
+        description: new emaillist to add
+        schema:
+          $ref: '#/definitions/EmailList'
+      responses:
+        200:
+          description: emaillist created
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/EmailList'
+        401:
+          description: emaillist was not created
+      security:
+      - api_key: []
+  /api/emaillist/:id:
+    delete:
+      tags:
+      - emaillists
+      summary: Delete emaillist
+      operationId: deleteEmaillist
+      description: |
+        Delete emaillist
+      responses:
+        200:
+          description: emaillist deleted
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/EmailList'
+        401:
+          description: emaillist was not deleted
+      security:
+      - api_key: []
+  /api/good-wish:
+    get:
+      tags:
+      - goodwishes
+      summary: Gets all goodwishes
+      operationId: getGoodwishes
+      description: |
+        Get all goodwishes
+      produces:
+      - application/json
+      parameters:
+      - in: query
+        name: goodwishesString
+        description: get all the goodwishes
+        required: false
+        type: array
+      responses:
+        200:
+          description: got all the goodwishes
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/GoodWishes'
+        403:
+          description: Couldn't get goodwishes
+      security:
+      - api_key: []
+    post:
+      tags:
+      - goodwishes 
+  /api/timeline:
+    get:
+      tags:
+      - timelines
+      summary: Gets all timelines
+      operationId: getTimelines
+      description: |
+        Get all timelines
+      produces:
+      - application/json
+      parameters:
+      - in: query
+        name: timelinesString
+        description: get all the timelines
+        required: false
+        type: string
+      responses:
+        200:
+          description: got all the timelines
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Timeline'
+        403:
+          description: Couldn't get timeline
+      security:
+      - api_key: []
+    post:
+      tags:
+      - timelines
+      summary: Creates a new timeline
+      operationId: createTimeline
+      description: Creates a new timeline
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: newTimelineObject
+        description: new timeline to add
+        schema:
+          $ref: '#/definitions/Timeline'
+      responses:
+        200:
+          description: timeline created
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Timeline'
+        401:
+          description: timeline was not created
+      security:
+      - api_key: []
+      /api/accommodation/:id:
+  /api/timeline/:id:
+    delete:
+      tags:
+      - timelines
+      summary: Delete timelines
+      operationId: deleteTimeline
+      description: |
+        Delete timelines
+      responses:
+        200:
+          description: timelines deleted
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Timeline'
+        400:
+          description: timelines was not deleted
+      security:
+      - api_key: []
+  /api/to-do-list:
+    get:
+      tags:
+      - todos
+      summary: Gets all todos
+      operationId: getTodos
+      description: |
+        Get all todos
+      produces:
+      - application/json
+      parameters:
+      - in: query
+        name: todosString
+        description: get all the todos
+        required: false
+        type: string
+      responses:
+        200:
+          description: got all the todos
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ToDo'
+        403:
+          description: Couldn't get todos
+      security:
+      - api_key: []
+    post:
+      tags:
+      - todos
+      summary: Creates a new todo
+      operationId: createTodo
+      description: Creates a new todo
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: newTodoObject
+        description: new todo to add
+        schema:
+          $ref: '#/definitions/ToDo'
+      responses:
+        200:
+          description: todo created
+        401:
+          description: todo was not created
+      security:
+      - api_key: []
+  /api/to-do-list/:id:
+    patch:
+      tags:
+      - todos
+      summary: Update todo
+      operationId: updateTodo
+      description: |
+        Update todo
+      responses:
+        200:
+          description: todo updated
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ToDo'
+        400:
+          description: todo was not updated
+      security:
+      - api_key: []
+    delete:
+      tags:
+      - todos
+      summary: Delete todo
+      operationId: deleteTodo
+      description: |
+        Delete todo
+      responses:
+        200:
+          description: todo deleted
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ToDo'
+        400:
+          description: todo was not deleted
+      security:
+      - api_key: []
+  /api/user:
+    get:
+      tags:
+      - users
+      summary: Gets all user
+      operationId: getUser
+      description: |
+        Get all user
+      produces:
+      - application/json
+      parameters:
+      - in: query
+        name: userString
+        description: get all the user
+        required: false
+        type: string
+      responses:
+        200:
+          description: got all the user
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Users'
+        403:
+          description: Couldn't get user
+      security:
+      - api_key: []
+  /api/user/all:
+    get:
+      tags:
+      - users
+      summary: Gets all users
+      operationId: getUsers
+      description: |
+        Get all users
+      produces:
+      - application/json
+      parameters:
+      - in: query
+        name: usersString
+        description: get all the users
+        required: false
+        type: string
+      responses:
+        200:
+          description: got all the users
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Users'
+        403:
+          description: Couldn't get users
+      security:
+      - api_key: []
+  /api/user/plus-one:
+    patch:
+      tags:
+      - users
+      summary: Update user
+      operationId: updatePlusOne
+      description: |
+        Update user
+      responses:
+        200:
+          description: user updated
           schema:
             type: array
             items:
               $ref: '#/definitions/User'
         400:
-          description: bad input parameter
+          description: user was not updated
       security:
       - api_key: []
-    post:
+  /api/user/plus-one-details:
+    patch:
       tags:
       - users
-      summary: Creates a new user
-      operationId: createUser
-      description: Creates a new user
-      consumes:
-      - application/json
-      produces:
-      - application/json
-      parameters:
-      - in: body
-        name: newUserObject
-        description: new user to add
-        schema:
-          $ref: '#/definitions/UserRegistration'
-      responses:
-        201:
-          description: user created
-        400:
-          description: invalid input, object invalid
-        409:
-          description: an existing user already exists
-      security:
-      - api_key: []
-  /users/:username:
-    put:
-      tags:
-      - users
-      summary: Update a user by their username
-      operationId: updateUser
+      summary: Update user
+      operationId: updatePlusOneDetails
       description: |
-        Returns the updated user
-      consumes:
-      - application/json
-      produces:
-      - application/json
-      parameters:
-      - in: body
-        name: userObject
-        description: update user
-        schema:
-          $ref: '#/definitions/User'
+        Update user
       responses:
         200:
-          description: user with the given username
-          schema:
-            $ref: '#/definitions/User'
-        400:
-          description: bad input parameter
-      security:
-      - api_key: []
-    get:
-      tags:
-      - users
-      summary: Get user
-      operationId: getUser
-      description: |
-        Returns the user
-      produces:
-      - application/json
-      responses:
-        200:
-          description: user with the given username
-          schema:
-            $ref: '#/definitions/User'
-        400:
-          description: bad input parameter
-      security:
-      - api_key: []
-    delete:
-      tags:
-      - users
-      summary: Delete user
-      operationId: deleteUser
-      description: |
-        Returns ok if the user is successfully deleted
-      responses:
-        200:
-          description: successful operation
-        400:
-          description: bad input parameter
-      security:
-      - api_key: []
-  /users/:username/albums:
-    get:
-      tags:
-      - albums
-      summary: Search for albums
-      operationId: getUserAlbums
-      description: |
-        Returns the albums of the user
-      produces:
-      - application/json
-      parameters:
-      - in: query
-        name: searchString
-        description: pass an optional search string for looking up albums
-        required: false
-        type: string
-      - in: query
-        name: skip
-        description: number of records to skip for pagination
-        type: integer
-        format: int32
-        minimum: 0
-      - in: query
-        name: limit
-        description: maximum number of records to return
-        type: integer
-        format: int32
-        minimum: 0
-        maximum: 50
-      responses:
-        200:
-          description: search results matching criteria
+          description: user updated
           schema:
             type: array
             items:
-              $ref: '#/definitions/Album'
+              $ref: '#/definitions/User'
         400:
-          description: bad input parameter
+          description: user was not updated
       security:
       - api_key: []
-    post:
+  /api/user/food-sensitivity:
+    patch:
       tags:
-      - albums
-      summary: Creates a new album
-      operationId: addAlbum
-      description: Creates a new album
-      consumes:
-      - application/json
-      produces:
-      - application/json
-      parameters:
-      - in: body
-        name: newAlbumObject
-        description: new album to add
-        schema:
-          $ref: '#/definitions/Album'
-      responses:
-        201:
-          description: album created
-        400:
-          description: invalid input, object invalid
-        409:
-          description: an existing album already exists
-      security:
-      - api_key: []
-  /users/:username/albums/:albumId:
-    put:
-      tags:
-      - albums
-      summary: Update an album of a user
-      operationId: updateUseralbum
+      - users
+      summary: Update user
+      operationId: updateFoodSensitivity
       description: |
-        Returns the updated album
-      consumes:
-      - application/json
-      produces:
-      - application/json
-      parameters:
-      - in: body
-        name: albumObject
-        description: update album
-        schema:
-          $ref: '#/definitions/User'
+        Update user
       responses:
         200:
-          description: updated album
-          schema:
-            $ref: '#/definitions/Album'
-        400:
-          description: bad input parameter
-      security:
-      - api_key: []
-    get:
-      tags:
-      - albums
-      summary: Get album
-      operationId: getAlbum
-      description: |
-        Returns the album with the given id
-      produces:
-      - application/json
-      responses:
-        200:
-          description: album with the given id
-          schema:
-            $ref: '#/definitions/Album'
-        400:
-          description: bad input parameter
-      security:
-      - api_key: []
-    delete:
-      tags:
-      - albums
-      summary: Delete album
-      operationId: deleteAlbum
-      description: |
-        Returns ok if the album is successfully deleted
-      responses:
-        200:
-          description: successful operation
-        400:
-          description: bad input parameter
-      security:
-      - api_key: []
-  /users/:username/images:
-    get:
-      tags:
-      - images
-      summary: Search for images
-      operationId: getUserImages
-      description: |
-        Returns the images of the user
-      produces:
-      - application/json
-      parameters:
-      - in: query
-        name: searchString
-        description: pass an optional search string for looking up images
-        required: false
-        type: string
-      - in: query
-        name: skip
-        description: number of records to skip for pagination
-        type: integer
-        format: int32
-        minimum: 0
-      - in: query
-        name: limit
-        description: maximum number of records to return
-        type: integer
-        format: int32
-        minimum: 0
-        maximum: 50
-      responses:
-        200:
-          description: search results matching criteria
+          description: user updated
           schema:
             type: array
             items:
-              $ref: '#/definitions/Image'
+              $ref: '#/definitions/User'
         400:
-          description: bad input parameter
+          description: user was not updated
       security:
       - api_key: []
-    post:
-      tags:
-      - images
-      summary: Creates a new image
-      operationId: addImage
-      description: Creates a new image
-      consumes:
-      - application/json
-      produces:
-      - application/json
-      parameters:
-      - in: body
-        name: newImageObject
-        description: new image to add
-        schema:
-          $ref: '#/definitions/Image'
-      responses:
-        201:
-          description: image created
-        400:
-          description: invalid input, object invalid
-        409:
-          description: an existing image already exists
-      security:
-      - api_key: []
-  /users/:username/images/:imageId:
-    put:
-      tags:
-      - images
-      summary: Update an image
-      operationId: updateImage
-      description: |
-        Returns the updated image object
-      consumes:
-      - application/json
-      produces:
-      - application/json
-      parameters:
-      - in: body
-        name: albumObject
-        description: update image
-        schema:
-          $ref: '#/definitions/Image'
-      responses:
-        200:
-          description: updated image
-          schema:
-            $ref: '#/definitions/Image'
-        400:
-          description: bad input parameter
-      security:
-      - api_key: []
-    get:
-      tags:
-      - images
-      summary: Get image
-      operationId: getImage
-      description: |
-        Returns the image with the given id
-      produces:
-      - application/json
-      responses:
-        200:
-          description: image with the given id
-          schema:
-            $ref: '#/definitions/Image'
-        400:
-          description: bad input parameter
-      security:
-      - api_key: []
-    delete:
-      tags:
-      - images
-      summary: Delete image
-      operationId: deleteImage
-      description: |
-        Returns ok if the image is successfully deleted
-      responses:
-        200:
-          description: successful operation
-        400:
-          description: bad input parameter
-      security:
-      - api_key: []
-
-  /registration:
-    post:
-      tags:
-      - auth
-      summary: Registers a new user
-      operationId: registerUser
-      description: Registers a new user
-      consumes:
-      - application/json
-      produces:
-      - application/json
-      parameters:
-      - in: body
-        name: newUserObject
-        description: new user to register
-        schema:
-          $ref: '#/definitions/UserRegistration'
-      responses:
-        201:
-          description: user registered
-        400:
-          description: invalid input, object invalid
-        409:
-          description: an existing user already exists
-  /login:
-    post:
-      tags:
-      - auth
-      summary: Login as a user
-      operationId: login
-      description: Login as a user
-      consumes:
-      - application/json
-      produces:
-      - application/json
-      parameters:
-      - in: body
-        name: userObject
-        description: username and password
-        schema:
-          $ref: '#/definitions/UserRegistration'
-      responses:
-        200:
-          description: user signed in
-          schema:
-            type: object
-            properties:
-              api_key:
-                type: string
-        400:
-          description: invalid input, object invalid
-        401:
-          description: wrong username or password
-  /logout:
-    get:
-      tags:
-      - auth
-      summary: logout with a user
-      operationId: logout
-      description: logout with a user
-      produces:
-      - application/json
-      responses:
-        200:
-          description: succesful logout
-        400:
-          description: user id not provided
-      security:
-      - api_key: []
-          
+      
 securityDefinitions:
   api_key:
     type: "apiKey"
     name: "X-API-Key"
     in: "header"
-    
 
 definitions:
   Accommodation:
@@ -627,8 +634,3 @@ definitions:
         items:
           type: string
           example: ["cukor mentes", "vegán"]
-# Added by API Auto Mocking Plugin
-host: virtserver.swaggerhub.com
-#basePath: /rekaK/codecool-vizsgaremek/1.0.0
-schemes:
- - https

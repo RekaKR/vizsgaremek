@@ -1,0 +1,101 @@
+
+
+
+
+  patch:
+      tags:
+      - accommodations
+      summary: Update an accommodation by their username
+      operationId: updateUser
+      description: |
+        Returns the updated user
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: userObject
+        description: update user
+        schema:
+          $ref: '#/definitions/User'
+      responses:
+        200:
+          description: user with the given username
+          schema:
+            $ref: '#/definitions/User'
+        400:
+          description: bad input parameter
+      security:
+      - api_key: []
+    
+
+    /registration:
+    post:
+      tags:
+      - auth
+      summary: Registers a new user
+      operationId: registerUser
+      description: Registers a new user
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: newUserObject
+        description: new user to register
+        schema:
+          $ref: '#/definitions/UserRegistration'
+      responses:
+        201:
+          description: user registered
+        400:
+          description: invalid input, object invalid
+        409:
+          description: an existing user already exists
+  /login:
+    post:
+      tags:
+      - auth
+      summary: Login as a user
+      operationId: login
+      description: Login as a user
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: userObject
+        description: username and password
+        schema:
+          $ref: '#/definitions/UserRegistration'
+      responses:
+        200:
+          description: user signed in
+          schema:
+            type: object
+            properties:
+              api_key:
+                type: string
+        400:
+          description: invalid input, object invalid
+        401:
+          description: wrong username or password
+  /logout:
+    get:
+      tags:
+      - auth
+      summary: logout with a user
+      operationId: logout
+      description: logout with a user
+      produces:
+      - application/json
+      responses:
+        200:
+          description: succesful logout
+        400:
+          description: user id not provided
+      security:
+      - api_key: []

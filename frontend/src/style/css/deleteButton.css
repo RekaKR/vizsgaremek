@@ -10,14 +10,13 @@
 .delte-button-container .delete {
   width: 90px;
   height: 30px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  background: red;
+  background: #5a5a5a;
   border: none;
   border-radius: 5px;
   box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15);
-  background: #e62222;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
   transition: 200ms;
 }
 .delte-button-container .delete span {
@@ -33,7 +32,7 @@
   width: 0;
   height: 20px;
   position: absolute;
-  border-left: 1px solid #c41b1b;
+  border-left: 1px solid #505050;
   transform: translateX(90px);
   display: flex;
   align-items: center;
@@ -44,7 +43,7 @@
   fill: white;
 }
 .delte-button-container .delete:hover {
-  background: #ff3636;
+  background: #505050;
 }
 .delte-button-container .delete:hover .text {
   color: transparent;

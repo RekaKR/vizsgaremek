@@ -44,7 +44,13 @@ const App = () => {
       <Router>
         <div className="app">
           <Route path='/' >
+            <div className="left-side">
+            </div>
+
             <Header user={user} />
+
+            <div className="right-side">
+            </div>
           </Route>
 
           <Switch>

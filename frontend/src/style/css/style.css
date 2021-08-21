@@ -14,34 +14,85 @@ button {
 }
 
 button {
+  background-color: transparent;
   cursor: pointer;
 }
 
-body {
-  background-color: #138073;
-  /*
-  h1 {
-    color: $textColor;
-    font-family: 'Playfair Display', serif;
-    font-weight: 800;
-  }
-
-  p,
-  label {
-    color: $textColor;
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 400;
-  }*/
+a:link, a:visited, a:active {
+  text-decoration: none;
 }
 
-.app .header {
+body {
+  background-color: #e1e1d6;
+  /*
+    p,
+    a,
+    .link-button {
+      font-family: 'Josefin Sans', sans-serif;
+      //100
+      //200
+      //300
+      //400
+      //500
+      //600
+      font-weight: 400;
+      font-size: 16px;
+    }
+  */
+}
+body h1 {
+  color: #5a5a5a;
+  font-weight: 800;
+}
+body h1,
+body h2,
+body h3,
+body h4 {
+  font-family: "Crimson Text", serif;
+  font-weight: 600;
+}
+body a,
+body .link-button {
+  color: #5a5a5a;
+  font-family: "Josefin Sans", sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+}
+body a:link, body a:visited, body a:active,
+body .link-button:link,
+body .link-button:visited,
+body .link-button:active {
+  color: #5a5a5a;
+}
+body a:hover,
+body .link-button:hover {
+  color: #5a5a5a;
+}
+
+.left-side,
+.right-side {
+  width: 80px;
+  height: 100%;
+  background-color: white;
+  position: absolute;
+  z-index: -1;
+}
+
+.header {
   width: 100%;
-  height: 90px;
+  height: 80px;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
   background-color: white;
-  border-bottom: 1px solid black;
+}
+.header #login {
+  position: fixed;
+  right: 5%;
+}
+
+.right-side {
+  right: 0;
 }
 
 /*# sourceMappingURL=style.css.map */

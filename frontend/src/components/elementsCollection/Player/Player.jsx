@@ -25,7 +25,7 @@ const Player = () => {
   }, [])
 
   return (
-    <button onClick={() => setPlaying(!playing)}>{playing ? "Megállítás" : "Lejátszás"}</button>
+    <button className="link-button" onClick={() => setPlaying(!playing)}>{playing ? "Megállítás" : "Lejátszás"}</button>
   )
 }
 

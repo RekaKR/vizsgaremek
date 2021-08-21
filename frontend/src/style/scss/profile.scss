@@ -1,22 +1,33 @@
 .profile {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-
   h2 {
     text-align: center;
     margin: 40px 0;
   }
 
-  .menu-selection {
+  .profile-container {
+    width: 350px;
+    margin: auto;
 
-  }
+    .menu-selection {
 
-  .plus-one {
+    }
 
-  }
+    .plus-one {
 
-  .good-wish-container {
+    }
 
+    .good-wish-container {
+      h3 {
+        margin-bottom: 20px;
+      }
+
+      .good-wish {
+        margin-bottom: 20px;
+
+        .smaller-p {
+          font-size: 13px;
+        }
+      }
+    }
   }
 }

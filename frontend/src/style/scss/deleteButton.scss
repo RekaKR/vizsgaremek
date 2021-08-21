@@ -1,3 +1,5 @@
+@use 'variables' as *;
+
 .delete {
   -webkit-touch-callout: none;
             user-select: none;
@@ -10,14 +12,13 @@
   .delete {
     width: 90px;
     height: 30px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    background: red;
+    background: $textColor;
     border: none;
     border-radius: 5px;
     box-shadow: 1px 1px 3px rgba(0,0,0,0.15);
-    background: #e62222;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
     transition: 200ms;
 
     span {
@@ -25,7 +26,7 @@
     }
 
     .text {
-      color: white;
+      color: $header-c;
       font-weight: bold;
       font-size: 14px;
       margin: auto;
@@ -35,7 +36,7 @@
       width: 0;
       height: 20px;
       position: absolute;
-      border-left: 1px solid #c41b1b;
+      border-left: 1px solid $textColor2;
       transform: translateX(90px);
       display: flex;
       align-items: center;
@@ -49,7 +50,7 @@
 
       
     &:hover {
-      background: #ff3636;
+      background: $textColor2;
       
       .text {
         color: transparent;

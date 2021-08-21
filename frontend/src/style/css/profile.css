@@ -1,11 +1,19 @@
-.profile {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-}
 .profile h2 {
   text-align: center;
   margin: 40px 0;
+}
+.profile .profile-container {
+  width: 350px;
+  margin: auto;
+}
+.profile .profile-container .good-wish-container h3 {
+  margin-bottom: 20px;
+}
+.profile .profile-container .good-wish-container .good-wish {
+  margin-bottom: 20px;
+}
+.profile .profile-container .good-wish-container .good-wish .smaller-p {
+  font-size: 13px;
 }
 
 /*# sourceMappingURL=profile.css.map */

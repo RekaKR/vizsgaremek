@@ -5,7 +5,7 @@ const GoodWish = ({ gWish }) => {
     <div className="good-wish">
       <p>{gWish.goodWish}</p>
       <p>Sok szeretettel: {gWish.from}</p>
-      <p>{gWish.email}</p>
+      <p className="smaller-p">{gWish.email}</p>
     </div>
   )
 }

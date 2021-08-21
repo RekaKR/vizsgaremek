@@ -14,5 +14,14 @@ button {
 }
 
 button {
+  background-color: transparent;
   cursor: pointer;
+}
+
+a {
+  &:link,
+  &:visited,
+  &:active {
+    text-decoration: none;
+  }
 }

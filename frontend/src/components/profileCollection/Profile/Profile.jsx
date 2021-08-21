@@ -13,23 +13,22 @@ const Profile = () => {
     <div className="profile">
       <h2>Profil</h2>
 
-      {
-        profile
-          ? <>
-            <p>Szia {profile.username}!</p>
+      {profile
+        ? <div className="profile-container">
+          {profile.role !== 'couple' &&
+            <>
+              <p>Szia {profile.username}!</p>
+              <MenuSelection />
+              <PlusOne />
+            </>
+          }
 
-            {profile.role !== 'couple' &&
-              <>
-                <MenuSelection />
-                <PlusOne />
-              </>
-            }
+          <GoodWishes />
+        </div>
+        : "Loading.."
 
-            <GoodWishes />
-          </>
-          : "Loading.."
       }
-    </div>
+    </div >
   )
 }
 

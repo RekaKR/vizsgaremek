@@ -1,5 +1,6 @@
 import React, { useContext } from 'react'
 import { ProfileContext } from '../../../ProfileContext'
+import '../../../style/css/profile.css'
 
 import GoodWishes from '../goodWishesCollection/GoodWishes'
 import MenuSelection from '../MenuSelection/MenuSelection'
@@ -17,8 +18,13 @@ const Profile = () => {
           ? <>
             <p>Szia {profile.username}!</p>
 
-            <MenuSelection />
-            <PlusOne />
+            {profile.role !== 'couple' &&
+              <>
+                <MenuSelection />
+                <PlusOne />
+              </>
+            }
+
             <GoodWishes />
           </>
           : "Loading.."

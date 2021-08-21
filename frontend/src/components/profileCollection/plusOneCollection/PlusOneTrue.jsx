@@ -30,25 +30,24 @@ const PlusOneTrue = ({ profile, setResUpdatePlusOneData }) => {
 
   return (
     <div>
-      {
-        name || nextInp
-          ? <>
-            <p>A neve: {name || plusOneName}</p>
+      {name || nextInp
+        ? <>
+          <p>A neve: {name || plusOneName}</p>
 
-            <p>Speciális menü: {foodS}</p>
+          <p>Speciális menü: {foodS}</p>
 
-            {
-              foodS && foodS.length < 1 &&
-              <>
-                <CheckComboBox options={options} setValue={setPlusOneFoodS} />
-                <button disabled={!plusOneFoodS} onClick={() => updatePlusOneDetails()}>Submit</button>
-              </>
-            }
-          </>
-          : <>
-            <input type="text" onChange={e => setPlusOneName(e.target.value)} placeholder="Neve" />
-            <button onClick={() => setNextInp(!nextInp)}>Next</button>
-          </>
+          {
+            foodS && foodS.length < 1 &&
+            <>
+              <CheckComboBox options={options} setValue={setPlusOneFoodS} />
+              <button disabled={!plusOneFoodS} onClick={() => updatePlusOneDetails()}>Submit</button>
+            </>
+          }
+        </>
+        : <>
+          <input type="text" onChange={e => setPlusOneName(e.target.value)} placeholder="Neve" />
+          <button onClick={() => setNextInp(!nextInp)}>Next</button>
+        </>
       }
     </div>
   )

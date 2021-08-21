@@ -24,20 +24,15 @@ const PlusOne = () => {
   }
 
   return (
-    <div>
-      {
-        profile.role !== 'couple' &&
-        <>
-          <input type="checkbox" checked={isComing} onClick={() => updatePlusOne()} onChange={() => setPlusOneIsComing(!isComing)} />
+    <div className="plus-one">
+      <input type="checkbox" checked={isComing} onClick={() => updatePlusOne()} onChange={() => setPlusOneIsComing(!isComing)} />
 
-          {isComing
-            ? <>
-              <p>Jön velem kísérő.</p>
-              <PlusOneTrue profile={profile} setResUpdatePlusOneData={setResUpdatePlusOneData} />
-            </>
-            : <p>Nem jön velem kísérő.</p>
-          }
+      {isComing
+        ? <>
+          <p>Jön velem kísérő.</p>
+          <PlusOneTrue profile={profile} setResUpdatePlusOneData={setResUpdatePlusOneData} />
         </>
+        : <p>Nem jön velem kísérő.</p>
       }
     </div>
   )

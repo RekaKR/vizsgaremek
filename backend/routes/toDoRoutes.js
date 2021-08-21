@@ -4,7 +4,7 @@ const toDoController = require('../controllers/toDoController')
 const authenticationChecker = require('../middlewares/authenticationChecker')
 
 
-router.get('/', toDoController.toDo_create_get)
+router.get('/', authenticationChecker.aChecker, toDoController.toDo_create_get)
 
 router.post('/', authenticationChecker.aChecker, toDoController.toDo_create_post)
 

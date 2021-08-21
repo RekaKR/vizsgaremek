@@ -1,15 +1,40 @@
 
 
+    name:
+        type: string
+        #format: uuid
+        example: "Réka"
+      address:
+        type: object
+        required:
+        - zip
+        - city
+        - street
+        - houseNumber
+        properties:
+          zip:
+            type: number
+            example: 1234
+          city:
+            type: string
+            example: "Budapest"
+          street:
+            type: string
+            example: "Szép utca"
+          houseNumber:
+            type: number
+            example: 15
+      phoneNumber:
+        type: string
+        example: "+36111111111"
+      website:
+        type: string
+        format: uri
+        example: "http://weboldal.com"
 
 
-  patch:
-      tags:
-      - accommodations
-      summary: Update an accommodation by their username
-      operationId: updateUser
-      description: |
-        Returns the updated user
-      consumes:
+
+consumes:
       - application/json
       produces:
       - application/json
@@ -19,18 +44,8 @@
         description: update user
         schema:
           $ref: '#/definitions/User'
-      responses:
-        200:
-          description: user with the given username
-          schema:
-            $ref: '#/definitions/User'
-        400:
-          description: bad input parameter
-      security:
-      - api_key: []
-    
 
-    /registration:
+  /registration:
     post:
       tags:
       - auth

@@ -26,19 +26,13 @@ const MenuSelection = () => {
   }
 
   return (
-    <div>
-      {
-        profile && profile.role !== 'couple' &&
-        <>
-          <p>Speciális menü: {userFoodS ? userFoodS : "Nincs"}</p>
+    <div className="menu-selection">
+      <p>Speciális menü: {userFoodS ? userFoodS : "Nincs"}</p>
 
-          {
-            userFoodS && userFoodS.length < 1 &&
-            <>
-              <CheckComboBox options={options} setValue={setFoodS} />
-              <button disabled={!foodS} onClick={() => updateUser()}>Elküldés</button>
-            </>
-          }
+      {userFoodS && userFoodS.length < 1 &&
+        <>
+          <CheckComboBox options={options} setValue={setFoodS} />
+          <button disabled={!foodS} onClick={() => updateUser()}>Elküldés</button>
         </>
       }
     </div>

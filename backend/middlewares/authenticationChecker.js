@@ -36,6 +36,7 @@ const guestChecker = (req, res, next) => {
   next()
 }
 
+
 module.exports = {
   aChecker,
   guestChecker

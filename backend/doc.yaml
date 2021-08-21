@@ -40,12 +40,6 @@ paths:
         Get all accommodations
       produces:
       - application/json
-      parameters:
-      - in: query
-        name: accommodationsString
-        description: get all the accommodations
-        required: false
-        type: string
       responses:
         200:
           description: got all the accommodations
@@ -55,8 +49,6 @@ paths:
               $ref: '#/definitions/Accommodation'
         403:
           description: Couldn't get accommodation
-      security:
-      - api_key: []
     post:
       tags:
       - accommodations
@@ -84,7 +76,7 @@ paths:
     delete:
       tags:
       - accommodations
-      summary: Update accommodation
+      summary: Delete accommodation
       operationId: deleteAccommodation
       description: |
         Delete accommodation
@@ -126,7 +118,7 @@ paths:
           description: Couldn't get emaillist
       security:
       - api_key: []
-    post:
+    post: #kell-e a 200-ba?
       tags:
       - emaillists
       summary: Creates a new emaillist
@@ -201,7 +193,27 @@ paths:
       - api_key: []
     post:
       tags:
-      - goodwishes 
+      - goodwishes
+      summary: Creates a new good wish
+      operationId: createGoodwishes
+      description: Creates a new good wish
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: newGoodWishObject
+        description: new goodwish to add
+        schema:
+          $ref: '#/definitions/GoodWish'
+      responses:
+        200:
+          description: goodwishe created
+        401:
+          description: goodwishe was not created
+      security:
+      - api_key: []
   /api/timeline:
     get:
       tags:
@@ -229,7 +241,7 @@ paths:
           description: Couldn't get timeline
       security:
       - api_key: []
-    post:
+    post:  #kell-e a 200-ba?
       tags:
       - timelines
       summary: Creates a new timeline
@@ -425,6 +437,16 @@ paths:
       operationId: updatePlusOne
       description: |
         Update user
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: userObject
+        description: update user
+        schema:
+          $ref: '#/definitions/User'
       responses:
         200:
           description: user updated
@@ -444,6 +466,16 @@ paths:
       operationId: updatePlusOneDetails
       description: |
         Update user
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: userObject
+        description: update user
+        schema:
+          $ref: '#/definitions/User'
       responses:
         200:
           description: user updated
@@ -463,6 +495,16 @@ paths:
       operationId: updateFoodSensitivity
       description: |
         Update user
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: userObject
+        description: update user
+        schema:
+          $ref: '#/definitions/User'
       responses:
         200:
           description: user updated

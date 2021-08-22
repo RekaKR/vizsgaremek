@@ -1,21 +1,25 @@
 @use 'reset';
 @use 'variables' as *;
 
+.play-icon {
+  position: absolute;
+}
+
 body {
   background-color: $bacgroundColor;
-
-  h1 {
-    color: $textColor;
-    font-weight: 800;
-  }
 
   h1,
   h2,
   h3,
-  h4 {
-    font-family: 'Crimson Text', serif;
-    font-weight: 600;
-    //600
+  h4,
+  .send-button {
+    color: $header-c;
+    font-family: 'Merriweather', serif;
+    //font-family: 'Josefin Sans', sans-serif;
+    //300
+    //400
+    //700
+    font-weight: 800;
   }
 /*
   p,
@@ -34,21 +38,19 @@ body {
 */
 
   a,
-  .link-button {
+  .link-button,
+  p {
     color: $textColor;
-    font-family: 'Josefin Sans', sans-serif;
+    font-family: 'Raleway', sans-serif;
+    //100
+    //200
+    //300
+    //400
+    //500
+    //600
+    //700
     font-weight: 400;
     font-size: 18px;
-      
-    &:link,
-    &:visited,
-    &:active {
-      color: $textColor;
-    }
-
-    &:hover {
-      color: $textColor;
-    }
   }
 }
 
@@ -56,26 +58,149 @@ body {
 .right-side {
   width: $header-h;
   height: 100%;
-  background-color: $header-c;
-  position: absolute;
+  background-color: $header-bc;
+  position: fixed;
+  top: 0;
   z-index: -1;
-}
 
-.header {
-  width: 100%;
-  height: $header-h;
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-
-  background-color: $header-c;
-
-  #login {
-    position: fixed;
-    right: 5%;
+  @media (max-width: 500px) {
+    display: none;
   }
 }
 
 .right-side {
   right: 0;
+}
+
+.header {
+  width: 100%;
+  height: $header-h;
+  background-color: $header-bc;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+
+  a,
+  .link-button {
+    &:link,
+    &:visited,
+    &:active {
+      color: $textColor;
+    }
+
+    &:hover {
+      color: $header-c;
+    }
+
+    &:nth-child(7) {
+      color: $vibe-c;
+
+      &:hover {
+        color: $header-c;
+      }
+    }
+  }
+
+
+  #login {
+    position: fixed;
+    right: $header-h;
+  }
+}
+
+.invitation {
+  margin: 0 80px 20px;
+
+  .inv-main-container {
+    position: relative;
+    
+    #background-img {
+      width: 100%;
+      height: auto;
+      opacity: 0.8;
+    }
+
+    h2,
+    p {
+      font-family: 'Indie Flower', cursive;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+
+    h2 {
+      font-size: 90px;
+      letter-spacing: 5px;
+      text-decoration: underline;
+      position: absolute;
+      top: 51%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+
+      span {
+        color: $dark;
+        margin: 0 35px 0 55px;
+        text-decoration: none;
+        display: inline-block;
+      }
+    }
+
+    p {
+      width: 100%;
+      color: $dark;
+      font-size: 60px;
+      letter-spacing: 4px;
+      position: absolute;
+      top: 85%;
+      left: 50%;
+      transform: translate(-46%, -50%);
+
+      span {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .story {
+    padding: 20px 15px 10px;
+    text-align: justify;
+    
+    @media (max-width: 550px) {
+      padding: 10px;
+    }
+
+    p {
+      margin-bottom: 10px;
+
+      &:nth-child(2) {
+        margin-top: 10px;
+      }
+    }
+  }
+
+  .img-galery-second {
+    max-width: 1800px;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+
+    img {  
+      max-height: 420px;
+      margin: 20px 0 10px;
+      //border-radius: 10px;
+    }
+  }
+}
+
+.timeline,
+.accommodations {
+  margin: 0 80px;
+}
+
+.send-button {
+  margin: 0 30% 15px;
+
+  &:hover {
+    color: $textColor2;
+  }
 }

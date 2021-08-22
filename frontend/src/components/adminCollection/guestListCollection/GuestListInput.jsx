@@ -36,7 +36,7 @@ const GuestListInput = ({ setResPost }) => {
   return (
     <div className="guest-list-input">
       <h3>Vendég hozzáadása</h3>
-      <p>Add meg az új vendég, esküvőszervező címét!</p>
+      <p>Add meg az új esküvőszervező, vendég címét!</p>
 
       <div>
         <input id="guest-input" type="text" onChange={e => validateEmail(e)} placeholder="Email" />
@@ -44,7 +44,7 @@ const GuestListInput = ({ setResPost }) => {
         <ComboBox options={options} value={role} setValue={setRole} label="Megnevezés" />
       </div>
 
-      <button className="send-button" disabled={!(email && role)} onClick={() => setSubmit(!submit)}>Submit</button>
+      <button className="send-button" disabled={!(email && role)} onClick={() => setSubmit(!submit)}>Küldés</button>
     </div>
   )
 }

@@ -35,7 +35,7 @@ function TimelineInput() {
         <Inp classN="timeline-i" label="Helyszín" value={place} setValue={setPlace} />
       </div>
 
-      <button className="send-button" disabled={!(time && happening && place)} onClick={() => setSubmit(!submit)}>Submit</button>
+      <button className="send-button" disabled={!(time && happening && place)} onClick={() => setSubmit(!submit)}>Küldés</button>
     </div>
   )
 }

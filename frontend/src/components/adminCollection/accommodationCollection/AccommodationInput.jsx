@@ -47,7 +47,7 @@ function AccommodationInput() {
         <Inp classN="timeline-i" label="Weboldal" value={website} setValue={setWebsite} />
       </div>
 
-      <button className="send-button" disabled={!(name && zip && city && street && houseNumber && phoneNumber && website)} onClick={() => setSubmit(!submit)}>Submit</button>
+      <button className="send-button" disabled={!(name && zip && city && street && houseNumber && phoneNumber && website)} onClick={() => setSubmit(!submit)}>Küldés</button>
     </div >
   )
 }

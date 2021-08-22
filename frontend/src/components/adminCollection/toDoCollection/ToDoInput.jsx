@@ -4,13 +4,13 @@ import ComboBox from '../../elementsCollection/ComboBox/ComboBox'
 import Inp from '../../elementsCollection/Inp/Inp'
 
 const ToDoInput = ({ setResPost }) => {
-  const options = ['ruha', 'dizájn', 'étel', 'egyéb']
+  const options = ['ruha', 'díszlet', 'étel', 'egyéb']
   const [type, setType] = useState(options[3])
   const [task, setTask] = useState('')
   const [submit, setSubmit] = useState(true)
 
   const postBody = {
-    type: (type === 'ruha' ? "clothes" : type === 'dizájn' ? "design" : type === 'étel' ? "food" : "other"),
+    type: (type === 'ruha' ? "clothes" : type === 'díszlet' ? "design" : type === 'étel' ? "food" : "other"),
     task: task
   }
 
@@ -30,7 +30,7 @@ const ToDoInput = ({ setResPost }) => {
         <Inp classN="timeline-i" label="Teendő" value={task} setValue={setTask} />
       </div>
 
-      <button className="send-button" disabled={!(type && task)} onClick={() => setSubmit(!submit)}>Submit</button>
+      <button className="send-button" disabled={!(type && task)} onClick={() => setSubmit(!submit)}>Küldés</button>
     </div>
   )
 }

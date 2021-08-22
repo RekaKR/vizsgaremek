@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react"
+import PlayArrowRoundedIcon from '@material-ui/icons/PlayArrowRounded'
+import StopRoundedIcon from '@material-ui/icons/StopRounded';
 import music from "../../../Music.mp3"
 
 const Player = () => {
@@ -25,7 +27,19 @@ const Player = () => {
   }, [])
 
   return (
-    <button className="link-button" onClick={() => setPlaying(!playing)}>{playing ? "Megállítás" : "Lejátszás"}</button>
+    <>
+      {
+        playing
+          ? <>
+            <button className="link-button" onClick={() => setPlaying(!playing)}>Stop</button>
+            <StopRoundedIcon className="play-icon"></StopRoundedIcon>
+          </>
+          : <>
+            <button className="link-button" onClick={() => setPlaying(!playing)}>Vibe</button>
+            <PlayArrowRoundedIcon className="play-icon"></PlayArrowRoundedIcon>
+          </>
+      }
+    </>
   )
 }
 

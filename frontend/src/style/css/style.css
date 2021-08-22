@@ -22,6 +22,10 @@ a:link, a:visited, a:active {
   text-decoration: none;
 }
 
+.play-icon {
+  position: absolute;
+}
+
 body {
   background-color: #e1e1d6;
   /*
@@ -40,33 +44,22 @@ body {
     }
   */
 }
-body h1 {
-  color: #5a5a5a;
-  font-weight: 800;
-}
 body h1,
 body h2,
 body h3,
-body h4 {
-  font-family: "Crimson Text", serif;
-  font-weight: 600;
+body h4,
+body .send-button {
+  color: #067a6d;
+  font-family: "Merriweather", serif;
+  font-weight: 800;
 }
 body a,
-body .link-button {
+body .link-button,
+body p {
   color: #5a5a5a;
-  font-family: "Josefin Sans", sans-serif;
+  font-family: "Raleway", sans-serif;
   font-weight: 400;
   font-size: 18px;
-}
-body a:link, body a:visited, body a:active,
-body .link-button:link,
-body .link-button:visited,
-body .link-button:active {
-  color: #5a5a5a;
-}
-body a:hover,
-body .link-button:hover {
-  color: #5a5a5a;
 }
 
 .left-side,
@@ -74,25 +67,134 @@ body .link-button:hover {
   width: 80px;
   height: 100%;
   background-color: white;
-  position: absolute;
+  position: fixed;
+  top: 0;
   z-index: -1;
+}
+@media (max-width: 500px) {
+  .left-side,
+.right-side {
+    display: none;
+  }
+}
+
+.right-side {
+  right: 0;
 }
 
 .header {
   width: 100%;
   height: 80px;
+  background-color: white;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  background-color: white;
+}
+.header a:link, .header a:visited, .header a:active,
+.header .link-button:link,
+.header .link-button:visited,
+.header .link-button:active {
+  color: #5a5a5a;
+}
+.header a:hover,
+.header .link-button:hover {
+  color: #067a6d;
+}
+.header a:nth-child(7),
+.header .link-button:nth-child(7) {
+  color: #e5e918;
+}
+.header a:nth-child(7):hover,
+.header .link-button:nth-child(7):hover {
+  color: #067a6d;
 }
 .header #login {
   position: fixed;
-  right: 5%;
+  right: 80px;
 }
 
-.right-side {
-  right: 0;
+.invitation {
+  margin: 0 80px 20px;
+}
+.invitation .inv-main-container {
+  position: relative;
+}
+.invitation .inv-main-container #background-img {
+  width: 100%;
+  height: auto;
+  opacity: 0.8;
+}
+.invitation .inv-main-container h2,
+.invitation .inv-main-container p {
+  font-family: "Indie Flower", cursive;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.invitation .inv-main-container h2 {
+  font-size: 90px;
+  letter-spacing: 5px;
+  text-decoration: underline;
+  position: absolute;
+  top: 51%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.invitation .inv-main-container h2 span {
+  color: black;
+  margin: 0 35px 0 55px;
+  text-decoration: none;
+  display: inline-block;
+}
+.invitation .inv-main-container p {
+  width: 100%;
+  color: black;
+  font-size: 60px;
+  letter-spacing: 4px;
+  position: absolute;
+  top: 85%;
+  left: 50%;
+  transform: translate(-46%, -50%);
+}
+.invitation .inv-main-container p span {
+  text-decoration: underline;
+}
+.invitation .story {
+  padding: 20px 15px 10px;
+  text-align: justify;
+}
+@media (max-width: 550px) {
+  .invitation .story {
+    padding: 10px;
+  }
+}
+.invitation .story p {
+  margin-bottom: 10px;
+}
+.invitation .story p:nth-child(2) {
+  margin-top: 10px;
+}
+.invitation .img-galery-second {
+  max-width: 1800px;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+.invitation .img-galery-second img {
+  max-height: 420px;
+  margin: 20px 0 10px;
+}
+
+.timeline,
+.accommodations {
+  margin: 0 80px;
+}
+
+.send-button {
+  margin: 0 30% 15px;
+}
+.send-button:hover {
+  color: #505050;
 }
 
 /*# sourceMappingURL=style.css.map */

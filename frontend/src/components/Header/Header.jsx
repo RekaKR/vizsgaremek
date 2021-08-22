@@ -44,10 +44,10 @@ const Header = ({ user }) => {
       {
         role === 'couple' || role === 'weddingP' || role === 'guest'
           ? <>
-            <button className="link-button" onClick={() => logout(setUser)}>Logout</button>
+            <button className="link-button" onClick={() => logout(setUser)}>Kilépés</button>
             <Player />
           </>
-          : <button className="link-button" id="login" onClick={() => googleSignIn()}>Login</button>
+          : <button className="link-button" id="login" onClick={() => googleSignIn()}>Belépés</button>
       }
     </div>
   )

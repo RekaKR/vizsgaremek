@@ -240,9 +240,74 @@ body {
   }
 }
 
+.accommodations {
+  h2 {
+    margin: 40px 0;
+    text-align: center;
+  }
+
+  .accommodation-container {
+    margin: 0 50px;
+    display: flex;
+    flex-wrap: wrap;
+
+    @media (max-width: 640px) {
+      margin: 0 30px;
+    }
+
+    @media (max-width: 570px) {
+      margin: 0 10px;
+    }
+
+    .accommodation {
+      margin: 10px 30px;
+
+      @media (max-width: 780px) {
+        margin: 5px 15px;
+      }
+
+      @media (max-width: 600px) {
+        margin: 5px;
+      }
+
+      .address {
+        margin: 5px 0 10px;
+
+        p {
+          display: inline;
+        }
+      }
+
+      .inline-web {
+        margin: 10px 0 20px;
+
+        p {
+          display: inline;
+        }
+
+        a {
+          color: $header-c;
+
+          &:hover {
+            font-weight: bold;
+          }
+
+          @media (max-width: 540px) {
+            font-size: 16px;
+          }
+        }
+      }
+    }
+  }
+}
+
 .timeline,
 .accommodations {
   margin: 0 80px;
+
+  @media (max-width: 500px) {
+    margin: 0 0 20px;
+  }
 }
 
 .send-button {

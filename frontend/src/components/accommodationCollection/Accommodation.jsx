@@ -8,15 +8,19 @@ const Accommodation = ({ accommodation }) => {
       <h3>{accommodation.name}</h3>
 
       <div className="address">
-        <p>{address.zip}</p>
-        <p>{address.city}</p>
-        <p>{address.street}</p>
-        <p>{address.houseNumber}</p>
+        <p>Cím: </p>
+        <p>{address.zip}, </p>
+        <p>{address.city} </p>
+        <p>{address.street} </p>
+        <p>{address.houseNumber}.</p>
       </div>
 
-      <h4>Elérhetőség</h4>
       <p>Telefonszám: {accommodation.phoneNumber}</p>
-      <div>Weboldal: <a href={accommodation.website} target="_blank" rel="noreferrer">{accommodation.website}</a></div>
+
+      <div className="inline-web">
+        <p>Weboldal: </p>
+        <a href={accommodation.website} target="_blank" rel="noreferrer">{accommodation.website}</a>
+      </div>
     </div>
   )
 }

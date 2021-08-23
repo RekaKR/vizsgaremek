@@ -482,9 +482,71 @@ body p {
   }
 }
 
+.accommodations h2 {
+  margin: 40px 0;
+  text-align: center;
+}
+.accommodations .accommodation-container {
+  margin: 0 50px;
+  display: flex;
+  flex-wrap: wrap;
+}
+@media (max-width: 640px) {
+  .accommodations .accommodation-container {
+    margin: 0 30px;
+  }
+}
+@media (max-width: 570px) {
+  .accommodations .accommodation-container {
+    margin: 0 10px;
+  }
+}
+.accommodations .accommodation-container .accommodation {
+  margin: 10px 30px;
+}
+@media (max-width: 780px) {
+  .accommodations .accommodation-container .accommodation {
+    margin: 5px 15px;
+  }
+}
+@media (max-width: 600px) {
+  .accommodations .accommodation-container .accommodation {
+    margin: 5px;
+  }
+}
+.accommodations .accommodation-container .accommodation .address {
+  margin: 5px 0 10px;
+}
+.accommodations .accommodation-container .accommodation .address p {
+  display: inline;
+}
+.accommodations .accommodation-container .accommodation .inline-web {
+  margin: 10px 0 20px;
+}
+.accommodations .accommodation-container .accommodation .inline-web p {
+  display: inline;
+}
+.accommodations .accommodation-container .accommodation .inline-web a {
+  color: #067a6d;
+}
+.accommodations .accommodation-container .accommodation .inline-web a:hover {
+  font-weight: bold;
+}
+@media (max-width: 540px) {
+  .accommodations .accommodation-container .accommodation .inline-web a {
+    font-size: 16px;
+  }
+}
+
 .timeline,
 .accommodations {
   margin: 0 80px;
+}
+@media (max-width: 500px) {
+  .timeline,
+.accommodations {
+    margin: 0 0 20px;
+  }
 }
 
 .send-button {

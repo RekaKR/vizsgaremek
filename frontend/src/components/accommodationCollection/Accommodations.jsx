@@ -10,7 +10,9 @@ const Accommodations = () => {
     <div className="accommodations">
       <h2>Szállás</h2>
 
-      {accommodations && accommodations.map(accommodation => <Accommodation key={uuidv4()} accommodation={accommodation} />)}
+      <div className="accommodation-container">
+        {accommodations && accommodations.map(accommodation => <Accommodation key={uuidv4()} accommodation={accommodation} />)}
+      </div>
     </div>
   )
 }

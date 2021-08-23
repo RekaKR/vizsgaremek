@@ -1,5 +1,40 @@
 # vizsgaremek
 
+## Start the program
+To start the codes do the following steps:
+
+#### 1. step
+clone the repository
+#### 2. step
+cd backend
+npm install
+npm start
+cd ..
+cd frontend
+npm install
+npm start
+cd ..
+#### 3. step
+create az .env file with the following data
+```
+PORT = 3001
+GOOGLE_REDIRECT_URI = http://localhost:3000/login
+
+GOOGLE_CLIENT_ID = 
+GOOGLE_SECRET = 
+MONGO_CONNECTION = 
+JWT_SECRET = 
+```
+#### 4. step
+update the googleSignIn link at logInOutActions.js with your GOOGLE_CLIENT_ID
+#### 5. step
+cd frontend
+npm start
+cd ..
+cd backend
+npm start
+cd ..
+
 ## Codes I used
 
 ### frontend

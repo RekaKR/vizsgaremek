@@ -25,7 +25,7 @@ const GuestListAdmin = () => {
 
       <div className="guest-list-container">
         <div className="guest-list">
-          <h3>Vendéglista (részletezve)</h3>
+          <h3>Vendéglista</h3>
           {
             guests && guests.map(guest =>
               <div className="guest-list-names" key={uuidv4()}>

@@ -482,10 +482,20 @@ body p {
   }
 }
 
-.accommodations h2 {
-  margin: 40px 0;
-  text-align: center;
+.timeline .timeline-container {
+  margin: 10px 30px;
 }
+@media (max-width: 780px) {
+  .timeline .timeline-container {
+    margin: 5px 15px;
+  }
+}
+@media (max-width: 600px) {
+  .timeline .timeline-container {
+    margin: 5px;
+  }
+}
+
 .accommodations .accommodation-container {
   margin: 0 50px;
   display: flex;
@@ -547,6 +557,11 @@ body p {
 .accommodations {
     margin: 0 0 20px;
   }
+}
+.timeline h2,
+.accommodations h2 {
+  margin: 40px 0;
+  text-align: center;
 }
 
 .send-button {

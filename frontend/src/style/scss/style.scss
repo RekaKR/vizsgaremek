@@ -240,12 +240,21 @@ body {
   }
 }
 
-.accommodations {
-  h2 {
-    margin: 40px 0;
-    text-align: center;
-  }
+.timeline {
+  .timeline-container {
+    margin: 10px 30px;
 
+    @media (max-width: 780px) {
+      margin: 5px 15px;
+    }
+
+    @media (max-width: 600px) {
+      margin: 5px;
+    }
+  }
+}
+
+.accommodations {
   .accommodation-container {
     margin: 0 50px;
     display: flex;
@@ -307,6 +316,11 @@ body {
 
   @media (max-width: 500px) {
     margin: 0 0 20px;
+  }
+
+  h2 {
+    margin: 40px 0;
+    text-align: center;
   }
 }
 

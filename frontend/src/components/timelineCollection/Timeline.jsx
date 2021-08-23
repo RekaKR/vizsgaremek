@@ -11,7 +11,9 @@ const Timeline = () => {
     <div className="timeline">
       <h2>Menetrend</h2>
 
-      {events && events.map(event => <Event key={uuidv4()} event={event} />)}
+      <div className="timeline-container">
+        {events && events.map(event => <Event key={uuidv4()} event={event} />)}
+      </div>
     </div>
   )
 }

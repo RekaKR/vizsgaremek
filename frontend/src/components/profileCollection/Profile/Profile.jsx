@@ -1,6 +1,5 @@
 import React, { useContext } from 'react'
 import { ProfileContext } from '../../../ProfileContext'
-import '../../../style/css/profile.css'
 
 import GoodWishes from '../goodWishesCollection/GoodWishes'
 import MenuSelection from '../MenuSelection/MenuSelection'

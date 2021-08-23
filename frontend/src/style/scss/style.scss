@@ -1,5 +1,12 @@
 @use 'reset';
 @use 'variables' as *;
+@use 'accomodation';
+@use 'admin';
+@use 'deleteButton';
+@use 'guestList';
+@use 'profile';
+@use 'timeline';
+@use 'todo';
 
 body {
   background-color: $bacgroundColor;
@@ -12,6 +19,30 @@ body {
     color: $header-c;
     font-family: 'Merriweather', serif;
     font-weight: 800;
+  }
+
+  h2 {
+    font-size: 60px;
+
+    @media (max-width: 780px) {
+      font-size: 40px;
+    }
+  }
+
+  h3 {
+    font-size: 28px;
+
+    @media (max-width: 780px) {
+      font-size: 24px;
+    }  
+  }
+
+  h4 {
+    font-size: 24px;
+
+    @media (max-width: 1260px) {
+      font-size: 20px;
+    }  
   }
 
   a,
@@ -159,7 +190,7 @@ body {
     @media (max-width: 500px) {
       padding: 10px 20px;
     }
-
+        
     h3 {
       font-size: 36px;
 

@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import useFetchGet from '../../../customHooks/useFetchGet'
+
 import ToDos from './ToDos'
 import ToDoInput from './ToDoInput'
-import '../../../style/css/todo.css'
 
 const ToDoAdmin = () => {
   const [resUpdate, setResUpdate] = useState(0)

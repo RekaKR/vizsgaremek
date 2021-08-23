@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 import useFetchDelete from '../../../customHooks/useFetchDelete'
 import useFetchPatch from '../../../customHooks/useFetchPatch'
+
 import ToDo from './ToDo'
 
 const ToDos = ({ toDos, setResUpdate, setResDelete }) => {
@@ -38,28 +39,28 @@ const ToDos = ({ toDos, setResUpdate, setResDelete }) => {
     <div className="to-do">
       <h3>Teendők</h3>
 
-      <h3>Ruha</h3>
+      <h4>Ruha</h4>
       {
         toDos && toDos.map(toDo =>
           toDo.type === 'clothes'
           && <ToDo key={uuidv4()} toDo={toDo} updateRecord={updateRecord} setDone={setDone} deleteRecord={deleteRecord} />)
       }
 
-      <h3>Díszlet</h3>
+      <h4>Díszlet</h4>
       {
         toDos && toDos.map(toDo =>
           toDo.type === 'design'
           && <ToDo key={uuidv4()} toDo={toDo} updateRecord={updateRecord} setDone={setDone} deleteRecord={deleteRecord} />)
       }
 
-      <h3>Étel</h3>
+      <h4>Étel</h4>
       {
         toDos && toDos.map(toDo =>
           toDo.type === 'food'
           && <ToDo key={uuidv4()} toDo={toDo} updateRecord={updateRecord} setDone={setDone} deleteRecord={deleteRecord} />)
       }
 
-      <h3>Egyéb</h3>
+      <h4>Egyéb</h4>
       {
         toDos && toDos.map(toDo =>
           !(toDo.type === 'clothes' || toDo.type === 'design' || toDo.type === 'food')

@@ -2,7 +2,6 @@ import React, { useState, useEffect, useContext } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 import { ProfileContext } from '../../../ProfileContext'
 import useFetchDelete from '../../../customHooks/useFetchDelete'
-import '../../../style/css/timeline.css'
 
 import Event from '../../timelineCollection/Event'
 import TimelineInput from './TimelineInput'

@@ -1,5 +1,4 @@
 import React from 'react'
-import '../../../style/css/deleteButton.css'
 
 const DeleteButton = ({ deleteRecord, element }) => {
   return (

@@ -2,9 +2,9 @@ import React, { useState } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 import useFetchGet from '../../../customHooks/useFetchGet'
 import useFetchDelete from '../../../customHooks/useFetchDelete'
+
 import GuestListInput from './GuestListInput'
 import DeleteButton from '../../elementsCollection/DeleteButton/DeleteButton'
-import '../../../style/css/guestList.css'
 
 const GuestListAdmin = () => {
   const [deleteById, setDeleteById] = useState('')

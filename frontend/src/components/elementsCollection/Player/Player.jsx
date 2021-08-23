@@ -31,11 +31,11 @@ const Player = () => {
       {
         playing
           ? <>
-            <button className="link-button" onClick={() => setPlaying(!playing)}>Stop</button>
+            <button className="link-button colored" onClick={() => setPlaying(!playing)}>Stop</button>
             <StopRoundedIcon className="play-icon"></StopRoundedIcon>
           </>
           : <>
-            <button className="link-button" onClick={() => setPlaying(!playing)}>Vibe</button>
+            <button className="link-button colored" onClick={() => setPlaying(!playing)}>Vibe</button>
             <PlayArrowRoundedIcon className="play-icon"></PlayArrowRoundedIcon>
           </>
       }

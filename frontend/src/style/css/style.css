@@ -22,27 +22,8 @@ a:link, a:visited, a:active {
   text-decoration: none;
 }
 
-.play-icon {
-  position: absolute;
-}
-
 body {
   background-color: #e1e1d6;
-  /*
-    p,
-    a,
-    .link-button {
-      font-family: 'Josefin Sans', sans-serif;
-      //100
-      //200
-      //300
-      //400
-      //500
-      //600
-      font-weight: 400;
-      font-size: 16px;
-    }
-  */
 }
 body h1,
 body h2,
@@ -90,6 +71,15 @@ body p {
   justify-content: space-evenly;
   align-items: center;
 }
+@media (max-width: 600px) {
+  .header {
+    flex-wrap: wrap;
+  }
+}
+.header a,
+.header .link-button {
+  margin: 0 5px;
+}
 .header a:link, .header a:visited, .header a:active,
 .header .link-button:link,
 .header .link-button:visited,
@@ -100,13 +90,19 @@ body p {
 .header .link-button:hover {
   color: #067a6d;
 }
-.header a:nth-child(7),
-.header .link-button:nth-child(7) {
+.header .colored {
   color: #e5e918;
 }
-.header a:nth-child(7):hover,
-.header .link-button:nth-child(7):hover {
+@media (max-width: 600px) {
+  .header .colored {
+    display: none;
+  }
+}
+.header .colored:hover {
   color: #067a6d;
+}
+.header .play-icon {
+  position: absolute;
 }
 .header #login {
   position: fixed;
@@ -116,7 +112,13 @@ body p {
 .invitation {
   margin: 0 80px 20px;
 }
+@media (max-width: 500px) {
+  .invitation {
+    margin: 0 0 20px;
+  }
+}
 .invitation .inv-main-container {
+  width: 100%;
   position: relative;
 }
 .invitation .inv-main-container #background-img {
@@ -124,54 +126,90 @@ body p {
   height: auto;
   opacity: 0.8;
 }
-.invitation .inv-main-container h2,
-.invitation .inv-main-container p {
-  font-family: "Indie Flower", cursive;
-  font-weight: bold;
-  text-transform: uppercase;
-}
 .invitation .inv-main-container h2 {
+  width: 100%;
+  text-align: center;
+  font-family: "Raleway", sans-serif;
+  font-weight: 700;
   font-size: 90px;
+  text-transform: uppercase;
   letter-spacing: 5px;
   text-decoration: underline;
   position: absolute;
-  top: 51%;
+  top: 55%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
+@media (max-width: 780px) {
+  .invitation .inv-main-container h2 {
+    font-size: 60px;
+  }
+}
+@media (max-width: 580px) {
+  .invitation .inv-main-container h2 {
+    font-size: 30px;
+  }
+}
+@media (max-width: 400px) {
+  .invitation .inv-main-container h2 {
+    font-size: 20px;
+  }
+}
 .invitation .inv-main-container h2 span {
   color: black;
-  margin: 0 35px 0 55px;
-  text-decoration: none;
-  display: inline-block;
-}
-.invitation .inv-main-container p {
-  width: 100%;
-  color: black;
-  font-size: 60px;
-  letter-spacing: 4px;
-  position: absolute;
-  top: 85%;
-  left: 50%;
-  transform: translate(-46%, -50%);
-}
-.invitation .inv-main-container p span {
-  text-decoration: underline;
 }
 .invitation .story {
-  padding: 20px 15px 10px;
+  padding: 50px 200px 20px;
   text-align: justify;
 }
-@media (max-width: 550px) {
+@media (max-width: 1055px) {
   .invitation .story {
-    padding: 10px;
+    padding: 25px 100px 0px;
+  }
+}
+@media (max-width: 745px) {
+  .invitation .story {
+    padding: 20px 80px 0;
+  }
+}
+@media (max-width: 600px) {
+  .invitation .story {
+    padding: 10px 50px;
+  }
+}
+@media (max-width: 500px) {
+  .invitation .story {
+    padding: 10px 20px;
+  }
+}
+.invitation .story h3 {
+  font-size: 36px;
+}
+@media (max-width: 1260px) {
+  .invitation .story h3 {
+    font-size: 24px;
   }
 }
 .invitation .story p {
   margin-bottom: 10px;
+  font-size: 24px;
+}
+@media (max-width: 1260px) {
+  .invitation .story p {
+    font-size: 18px;
+  }
+}
+@media (max-width: 745px) {
+  .invitation .story p {
+    font-size: 16px;
+  }
 }
 .invitation .story p:nth-child(2) {
   margin-top: 10px;
+}
+.invitation .story p span {
+  color: #067a6d;
+  font-weight: bold;
 }
 .invitation .img-galery-second {
   max-width: 1800px;
@@ -183,6 +221,11 @@ body p {
 .invitation .img-galery-second img {
   max-height: 420px;
   margin: 20px 0 10px;
+}
+@media (max-width: 600px) {
+  .invitation .img-galery-second img {
+    margin: 0 0 20px;
+  }
 }
 
 .timeline,

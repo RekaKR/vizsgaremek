@@ -1,6 +1,6 @@
 #creates node:13.14-alpine
-FROM node:13-alpine
-#.14
+FROM node:13.14-alpine
+
 #works here
 WORKDIR /backend
 
@@ -11,7 +11,7 @@ COPY package*.json ./
 RUN npm ci --only=production
 
 #copying everything from the folder where Dockerfile is except .dockerignore
-COPY . ./
+COPY . .
 
 #makes PORT to 3001
 EXPOSE 3001

@@ -51,7 +51,7 @@ jobs:
           file: frontend/Dockerfile
           platforms: linux/amd64,linux/arm64
           push: true
-          tags: rekakr/proba:latest
+          tags: rekakr/app-frontend:latest
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
 
@@ -82,6 +82,6 @@ jobs:
           file: backend/Dockerfile
           platforms: linux/amd64,linux/arm64
           push: true
-          tags: rekakr/proba-backend:latest
+          tags: rekakr/app-backend:latest
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}

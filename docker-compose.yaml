@@ -1,14 +1,14 @@
 version: "3"
 services:
-  proba-frontend:
-    image: rekakr/proba
+  app-frontend:
+    image: rekakr/app-frontend
     ports:
       - 3000:3000
     networks:
-      - offer-network
+      - app-network
 
-  proba-backend:
-    image: rekakr/proba-backend
+  app-backend:
+    image: rekakr/app-backend
     environment:
       - MONGO_CONNECTION=${MONGO_CONNECTION}
       - GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID}
@@ -18,8 +18,8 @@ services:
     ports:
       - 3001:3001
     networks:
-      - proba-network
+      - app-network
 
 networks:
-  proba-network:
+  app-network:
     driver: bridge

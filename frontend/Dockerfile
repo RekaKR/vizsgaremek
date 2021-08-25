@@ -26,8 +26,14 @@
   #copying build to its place (from stage one)
   COPY --from=build /frontend/build /usr/share/nginx/html
 
-  #deletes nginx defaul config file
-  RUN rm /etc/nginx/conf.d/default.conf
+  #deletes nginx default config file
+  #RUN rm /etc/nginx/conf.d/default.conf
   
-  #copying config file
-  COPY config/nginx.conf /etc/nginx/conf.d/nginx.conf
+  #copying config file (and delete original default config file)
+  COPY config/nginx.conf /etc/nginx/conf.d/default.conf
+
+  #open a port on the container
+  EXPOSE 3000
+
+  #run nginx (at the foreground)
+  CMD ["nginx", "-g", "daemon off"]

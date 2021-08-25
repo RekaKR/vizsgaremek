@@ -1,0 +1,25 @@
+version: "3"
+services:
+  proba-frontend:
+    image: rekakr/proba
+    ports:
+      - 3000:3000
+    networks:
+      - offer-network
+
+  proba-backend:
+    image: rekakr/proba-backend
+    environment:
+      - MONGO_CONNECTION=${MONGO_CONNECTION}
+      - GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID}
+      - GOOGLE_SECRET=${GOOGLE_SECRET}
+      - GOOGLE_REDIRECT_URI=${GOOGLE_REDIRECT_URI}
+      - JWT_SECRET=${JWT_SECRET}
+    ports:
+      - 3001:3001
+    networks:
+      - proba-network
+
+networks:
+  proba-network:
+    driver: bridge

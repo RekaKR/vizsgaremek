@@ -1,6 +1,6 @@
 #creates node:13.14-alpine
-FROM node:13.14-alpine
-
+FROM node:13-alpine
+#.14
 #works here
 WORKDIR /backend
 
@@ -8,8 +8,7 @@ WORKDIR /backend
 COPY package*.json ./
 
 #install dev-dep
-RUN npm install
-#--only=production
+RUN npm install --only=production
 
 #copying everything from the folder where Dockerfile is except .dockerignore
 COPY . .

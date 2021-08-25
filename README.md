@@ -24,7 +24,7 @@ MONGO_CONNECTION =
 JWT_SECRET = 
 ```
 #### 4. step
-update the googleSignIn link at logInOutActions.js with your GOOGLE_CLIENT_ID
+update the googleSignIn's link at logInOutActions.js with your GOOGLE_CLIENT_ID
 #### 5. step
 cd frontend \
 npm start \
@@ -33,12 +33,14 @@ cd backend \
 npm start \
 cd ..
 
-#### extra step
-there must be added an admin (couple) manually to mongodb as emaillists such
-```{
+#### extra steps
+there must be added an admin (couple) manually to mongodb in the emaillists collections such as
+```
+{
   "email":"email@address.com",
   "role":"couple"
-}```
+}
+```
 
 ## Codes I used
 

@@ -1,4 +1,4 @@
-##stage one
+##stage one || build environment
   #creates node:slim
   #node:slim is a small linux environment it works w the things it needs so it runs faster and use less space than a plain node env.
   FROM node:slim AS build
@@ -18,7 +18,7 @@
   #runs build and create build folder
   RUN npm run build
 
-##stage two
+##stage two || production environment
   #creates nginx:alpine
   #alpine is a small linux nginx env., smaller than the default nginx
   FROM nginx:alpine

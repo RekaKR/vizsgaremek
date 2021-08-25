@@ -1,4 +1,4 @@
-const EmailList = require('../models/EmailListModel')
+const EmailList = require('../models/emailListModel')
 
 
 //GET BACK ALL THE EMAILLISTS

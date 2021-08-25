@@ -8,7 +8,7 @@ const GOOGLE_REDIRECT_URI = process.env.GOOGLE_REDIRECT_URI
 const JWT_SECRET = process.env.JWT_SECRET
 
 const User = require('../models/userModel')
-const EmailList = require('../models/EmailListModel')
+const EmailList = require('../models/emailListModel')
 
 
 //CREATE A USER

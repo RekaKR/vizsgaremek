@@ -6,7 +6,7 @@ const app = require("../server")
 const supertest = require("supertest")
 const request = supertest(app)
 
-const EmailList = require('../models/EmailListModel')
+const EmailList = require('../models/emailListModel')
 
 
 //Setup a test Database

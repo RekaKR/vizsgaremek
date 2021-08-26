@@ -10,7 +10,6 @@ info:
     url: "http://www.apache.org/licenses/LICENSE-2.0.html"
 host: "localhost:3001"
 basePath: "/"
-apis: ["SwaggerImplementation/start.js"]
 tags:
 - name: "accommodations"
   description: "Endpoints for the reading, creation and deletion of accommodations"
@@ -28,10 +27,9 @@ tags:
   description: "Endpoints for the reading and modification of users"
 schemes:
 - "http"
-- "https"
 paths:
-  /api/accommodation: #kész
-    get: #kész
+  /api/accommodation:
+    get:
       tags:
       - "accommodations"
       summary: "Returns all accommodations"
@@ -49,7 +47,7 @@ paths:
               $ref: "#/definitions/Accommodation"
         403:
           description: "Couldn't get accommodation"
-    post: #kész
+    post:
       tags:
       - "accommodations"
       summary: "Add a new accommodation"
@@ -73,8 +71,8 @@ paths:
           description: "Unauthorized"
       security:
       - api_key: []
-  /api/accommodation/:id: #kész
-    delete: #kész
+  /api/accommodation/{id}:
+    delete:
       tags:
       - "accommodations"
       summary: "Delete an accommodation"
@@ -83,7 +81,7 @@ paths:
       produces:
       - "application/json"
       parameters:
-      - name: "accommodationId"
+      - name: "id"
         in: "path"
         description: "Accommodation id to delete"
         required: true
@@ -97,8 +95,8 @@ paths:
           description: "Unauthorized"
       security:
       - api_key: []
-  /api/emaillist: #kész
-    get: #kész
+  /api/emaillist:
+    get:
       tags:
       - "emaillists"
       summary: "Returns all emaillists"
@@ -120,7 +118,7 @@ paths:
           description: "Couldn't get user"
       security:
       - api_key: []    
-    post: #kész
+    post:
       tags:
       - "emaillists"
       summary: "Add a new emaillist"
@@ -144,21 +142,26 @@ paths:
           description: "Unauthorized"
       security:
       - api_key: []
-  /api/emaillist/:id:
+  /api/emaillist/{id}:
     delete:
       tags:
-      - emaillists
-      summary: Delete emaillist
-      operationId: deleteEmaillist
-      description: |
-        Delete emaillist
+      - "emaillists"
+      summary: "Delete an emaillist"
+      description: "Delete an emaillist by id"
+      operationId: "deleteEmaillist"      
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "Emaillist id to delete"
+        required: true
+        type: "string"
       responses:
         200:
           description: "Successful operation"
-          schema:
-            type: array
-            items:
-              $ref: "#/definitions/EmailList"
+        400:
+          description: "Couldn't delete emaillist"
         401:
           description: "Unauthorized"
       security:
@@ -166,46 +169,41 @@ paths:
   /api/good-wish:
     get:
       tags:
-      - goodwishes
-      summary: Gets all goodwishes
-      operationId: getGoodwishes
-      description: |
-        Get all goodwishes
+      - "goodwishes"
+      summary: "Returns all goodwishes"
+      description: "Get all goodwishes"
+      operationId: "getGoodwishes"
       produces:
       - "application/json"
-      parameters:
-      - in: query
-        name: goodwishesString
-        description: get all the goodwishes
-        required: false
-        type: array
+      parameters: []
       responses:
         200:
           description: "Successful operation"
           schema:
             type: array
             items:
-              $ref: "#/definitions/GoodWishes"
+              $ref: "#/definitions/GoodWish"
         401:
           description: "Unauthorized"
         403:
-          description: Couldn't get goodwishes
+          description: "Couldn't get goodwishes"
       security:
       - api_key: []
     post:
       tags:
-      - goodwishes
-      summary: Creates a new good wish
-      operationId: createGoodwishes
-      description: Creates a new good wish
+      - "goodwishes"
+      summary: "Add a new good wish"
+      description: "Creates a new good wish"
+      operationId: "createGoodwishes"
       consumes:
       - "application/json"
       produces:
       - "application/json"
       parameters:
-      - in: body
-        name: newGoodWishObject
-        description: new goodwish to add
+      - in: "body"
+        name: "newGoodWishObject"
+        description: "GoodWish object that needs to be added to the app"
+        required: true
         schema:
           $ref: "#/definitions/GoodWish"
       responses:
@@ -215,8 +213,8 @@ paths:
           description: "Unauthorized"
       security:
       - api_key: []
-  /api/timeline: #kész
-    get: #kész
+  /api/timeline:
+    get:
       tags:
       - "timelines"
       summary: "Returns all timelines"
@@ -234,7 +232,7 @@ paths:
               $ref: "#/definitions/Timeline"
         403:
           description: "Couldn't get timeline"
-    post: #kész
+    post:
       tags:
       - "timelines"
       summary: "Add a new timeline"
@@ -258,8 +256,8 @@ paths:
           description: "Unauthorized"
       security:
       - api_key: []
-  /api/timeline/:id: #kész
-    delete: #kész
+  /api/timeline/{id}:
+    delete:
       tags:
       - "timelines"
       summary: "Delete a timeline"
@@ -268,7 +266,7 @@ paths:
       produces:
       - "application/json"
       parameters:
-      - name: "timelineId"
+      - name: "id"
         in: "path"
         description: "Timeline id to delete"
         required: true
@@ -285,19 +283,13 @@ paths:
   /api/to-do-list:
     get:
       tags:
-      - todos
-      summary: Gets all todos
-      operationId: getTodos
-      description: |
-        Get all todos
+      - "todos"
+      summary: "Returns all todos"
+      description: "Get all todos"
+      operationId: "getTodos"
       produces:
       - "application/json"
-      parameters:
-      - in: query
-        name: todosString
-        description: get all the todos
-        required: false
-        type: string
+      parameters: []
       responses:
         200:
           description: "Successful operation"
@@ -308,23 +300,24 @@ paths:
         401:
           description: "Unauthorized"
         403:
-          description: Couldn't get todos
+          description: "Couldn't get todos"
       security:
       - api_key: []
     post:
       tags:
-      - todos
-      summary: Creates a new todo
-      operationId: createTodo
-      description: Creates a new todo
+      - "todos"
+      summary: "Add a new todo"
+      description: "Creates a new todo"
+      operationId: "createTodo"
       consumes:
       - "application/json"
       produces:
       - "application/json"
       parameters:
-      - in: body
-        name: newTodoObject
-        description: new todo to add
+      - in: "body"
+        name: "newTodoObject"
+        description:  "Todo object that needs to be added to the app"
+        required: true
         schema:
           $ref: "#/definitions/ToDo"
       responses:
@@ -334,55 +327,61 @@ paths:
           description: "Unauthorized"
       security:
       - api_key: []
-  /api/to-do-list/:id:
+  /api/to-do-list/{id}:
     patch:
       tags:
       - "todos"
       summary: "Update an existing todo"
-      description: "Update todo"
+      description: "Update a todo"
       operationId: "updateTodo"
-      consumes:
-      - "application/json"
       produces:
       - "application/json"
       parameters:
+      - name: "id"
+        in: "path"
+        description: "Todo id to update"
+        required: true
+        type: "string"
       - in: "body"
-        name: "updatedTodoObject"
-        description: "Todo object that needs to be updated to the store"
-        #required: true
+        name: "body"
+        description: "Updated user object"
+        required: true
         schema:
           $ref: "#/definitions/ToDo"
       responses:
         200:
           description: "Successful operation"
-          schema:
-            type: "array"
-            items:
-              $ref: "#/definitions/ToDo"
         400:
           description: "todo was not updated"
+        401:
+          description: "Unauthorized"
       security:
       - api_key: []
-    delete:
+    delete: 
       tags:
-      - todos
-      summary: Delete todo
-      operationId: deleteTodo
-      description: |
-        Delete todo
+      - "todos"
+      summary: "Delete an todo"
+      description: "Delete a todo by id"
+      operationId: "deleteTodo"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "Todo id to delete"
+        required: true
+        type: "string"
       responses:
         200:
           description: "Successful operation"
-          schema:
-            type: array
-            items:
-              $ref: "#/definitions/ToDo"
         400:
           description: todo was not deleted
+        401:
+          description: "Unauthorized"
       security:
       - api_key: []
-  /api/user: #kész
-    get: #kész
+  /api/user:
+    get:
       tags:
       - "users"
       summary: "Returns a user"
@@ -409,8 +408,8 @@ paths:
           description: "Couldn't get user"
       security:
       - api_key: []
-  /api/user/all: #kész
-    get: #kész
+  /api/user/all:
+    get:
       tags:
        - "users"
       summary: "Returns all users"
@@ -435,95 +434,81 @@ paths:
   /api/user/plus-one:
     patch:
       tags:
-      - users
-      summary: Update user
-      operationId: updatePlusOne
-      description: |
-        Update user
-      consumes:
-      - "application/json"
+      - "users"
+      summary: "Update an existing user"
+      description: "Update an user"
+      operationId: "updatePlusOne"
       produces:
       - "application/json"
       parameters:
-      - in: body
-        name: userObject
-        description: update user
+      - in: "body"
+        name: "body"
+        description: "Updated user object"
+        required: true
         schema:
           $ref: "#/definitions/User"
       responses:
         200:
           description: "Successful operation"
-          schema:
-            type: array
-            items:
-              $ref: "#/definitions/User"
         400:
-          description: user was not updated
+          description: "User was not updated"
+        401:
+          description: "Unauthorized"
       security:
       - api_key: []
   /api/user/plus-one-details:
     patch:
       tags:
-      - users
-      summary: Update user
-      operationId: updatePlusOneDetails
-      description: |
-        Update user
-      consumes:
-      - "application/json"
+      - "users"
+      summary: "Update an existing user"
+      operationId: "updatePlusOneDetails"
       produces:
       - "application/json"
       parameters:
-      - in: body
-        name: userObject
-        description: update user
+      - in: "body"
+        name: "body"
+        description: "Updated user object"
+        required: true
         schema:
           $ref: "#/definitions/User"
       responses:
         200:
           description: "Successful operation"
-          schema:
-            type: array
-            items:
-              $ref: "#/definitions/User"
         400:
-          description: user was not updated
+          description: "User was not updated"
+        401:
+          description: "Unauthorized"
       security:
       - api_key: []
   /api/user/food-sensitivity:
     patch:
       tags:
-      - users
-      summary: Update user
-      operationId: updateFoodSensitivity
-      description: |
-        Update user
-      consumes:
-      - "application/json"
+      - "users"
+      summary: "Update an existing user"
+      operationId: "updateFoodSensitivity"
       produces:
       - "application/json"
       parameters:
-      - in: body
-        name: userObject
-        description: update user
+      - in: "body"
+        name: "body"
+        description: "Updated user object"
+        required: true
         schema:
           $ref: "#/definitions/User"
       responses:
         200:
           description: "Successful operation"
-          schema:
-            type: array
-            items:
-              $ref: "#/definitions/User"
         400:
-          description: user was not updated
+          description: "User was not updated"
+        401:
+          description: "Unauthorized"
       security:
       - api_key: []
       
 securityDefinitions:
   api_key:
     type: "apiKey"
-    name: "X-API-Key"
+    name: "Authorization"
     in: "header"
 
 definitions:
@@ -573,7 +558,6 @@ definitions:
     properties:
       email:
         type: string
-        #uniqueItems: true ?!
         format: email
         example: "documentation@email.hu"
       role:
@@ -609,7 +593,7 @@ definitions:
         type: string
         example: "Villásreggeli"
       place:
-        type: string,
+        type: string
         example: "Étkező"
   ToDo:
     type: object
@@ -624,7 +608,7 @@ definitions:
         type: string
         example: "Esküvői ruha vásárlás"
       done:
-        type: boolean,
+        type: boolean
         example: false
   User:
     type: object
@@ -644,12 +628,10 @@ definitions:
         example: "Réka K. PhD"
       email:
         type: string
-        #uniqueItems: true ?!
         format: email
         example: "documentation@email.hu"
       googleId:
         type: string
-        #uniqueItems: true ?!
         example: "112211221122112211223"
       role:
         type: string

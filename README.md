@@ -1,11 +1,12 @@
 # vizsgaremek
 
-## Start the program
+## Start the program with vsc
 To start the codes do the following steps:
 
 #### 1. step
-clone the repository
+clone the repository and open with vsc
 #### 2. step
+at the terminal: \
 cd backend \
 npm install \
 cd .. \

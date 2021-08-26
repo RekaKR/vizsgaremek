@@ -17,8 +17,6 @@ tags:
   description: "Endpoints for the reading, creation and deletion of emaillists"
 - name: "goodwishes"
   description: "Endpoints for the reading and creation of goodwishes"
-- name: "logins"
-  description: "Endpoints for the creation of logins"
 - name: "timelines"
   description: "Endpoints for the reading, creation and deletion of timelines"
 - name: "todos"
@@ -504,7 +502,7 @@ paths:
           description: "Unauthorized"
       security:
       - api_key: []
-      
+
 securityDefinitions:
   api_key:
     type: "apiKey"

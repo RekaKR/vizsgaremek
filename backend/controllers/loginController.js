@@ -54,7 +54,7 @@ const getDataFromGoogle = (data, res) => {
             })
 
             user.save()
-              .then(res => console.log("Done saving new user"))
+            //.then(res => console.log("Done saving new user"))
           }
 
           jwt.sign({

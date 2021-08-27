@@ -39,8 +39,6 @@ const App = () => {
 
   setTimeout(() => autoLogout(setUser), 3600000)
 
-  console.log(localStorage.getItem('token'))
-
   return (
     <ProfileContext.Provider value={{ setUser, profile, events, accommodations, setResUpdateUser, setResUpdatePlusOneData, setResUpdateIsComing, setResPostAcc, setResDeleteAcc, setResPostTime, setResDeleteTime }}>
       <Router>

@@ -21,6 +21,16 @@
     }
 
     .guest-list {
+      margin: 20px 20px 20px 100px;
+
+      @media (max-width: 920px) {
+        margin: 20px 80px;
+      }
+
+      @media (max-width: 500px) {
+        margin: 20px 0;
+      }
+      
       .guest-list-names {
         margin-bottom: 10px;
         display: flex;
@@ -29,10 +39,32 @@
     }
 
     .guest-list-input {
+      margin: 20px 100px 20px 20px;
+      
+      @media (max-width: 920px) {
+        margin: 20px 80px;
+      }
+      
+      @media (max-width: 500px) {
+        margin: 20px 0;
+      }
+
+      p {
+        margin-bottom: 15px;
+      }
+
       div {
+        .guest-list-i {
+          width: 250px;
+          margin: 0 40px 10px;
+          padding: 3px;
+        }
+
+        /*
         #guest-input {
          margin: 15px 0 20px;
         }
+        */
 
         span {
           margin-left: 5px;

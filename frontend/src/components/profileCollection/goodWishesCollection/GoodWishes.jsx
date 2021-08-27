@@ -34,7 +34,7 @@ const GoodWishes = () => {
         profile.role !== 'couple'
           ? <>
             <textarea name="ds" id="sds" cols="30" rows="10" onChange={e => setGoodWish(e.target.value)} />
-            <button disabled={!goodWish} onClick={() => setSubmit(!submit)}>Submit</button>
+            <button disabled={!goodWish} onClick={() => setSubmit(!submit)}>Küldés</button>
           </>
           : goodWishes
             ? goodWishes.map(gWish => <GoodWish key={uuidv4()} gWish={gWish} />)

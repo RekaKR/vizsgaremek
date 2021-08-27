@@ -17,10 +17,19 @@
     .accommodation-input {
       width: 340px;
       padding: 0 5px;
-      margin: 20px;
     }
 
     .accommodation {
+      margin: 20px 20px 20px 100px;
+
+      @media (max-width: 920px) {
+        margin: 20px 80px;
+      }
+
+      @media (max-width: 500px) {
+        margin: 20px 0;
+      }
+
       .accommodation-names {
         margin-bottom: 10px;
         display: flex;
@@ -33,14 +42,24 @@
     }
     
     .accommodation-input {
+      margin: 20px 100px 20px 20px;
+      
+      @media (max-width: 920px) {
+        margin: 20px 80px;
+      }
+      
+      @media (max-width: 500px) {
+        margin: 20px 0;
+      }
+
       p {
-        margin-bottom: 10px;
+        margin-bottom: 15px;
       }
 
       div {
-        .timeline-i {
+        .acc-i {
           width: 250px;
-          margin-bottom: 10px;
+          margin: 0 40px 10px;
           padding: 3px;
         }
       }

@@ -6,14 +6,12 @@ const ComboBox = ({ classN, options, value, setValue, label }) => {
   const [inputValue, setInputValue] = useState('')
 
   return (
-    <div>
-      <Autocomplete className={classN} id="controllable-states-demo"
-        value={value} onChange={(e, newValue) => setValue(newValue)}
-        inputValue={inputValue} onInputChange={(e, newInputValue) => setInputValue(newInputValue)}
-        options={options} renderInput={params => <TextField {...params} label={label} variant="outlined" />}
-        getOptionSelected={(option, value) => option.params === value.params}
-      />
-    </div>
+    <Autocomplete className={classN} id="controllable-states-demo"
+      value={value} onChange={(e, newValue) => setValue(newValue)}
+      inputValue={inputValue} onInputChange={(e, newInputValue) => setInputValue(newInputValue)}
+      options={options} renderInput={params => <TextField {...params} label={label} variant="outlined" />}
+      getOptionSelected={(option, value) => option.params === value.params}
+    />
   )
 }
 

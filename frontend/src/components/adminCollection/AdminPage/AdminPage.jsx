@@ -46,77 +46,77 @@ const AdminPage = () => {
     <div className="admin-page">
       <h2>Admin felület</h2>
 
-      {
-        people
-          ? <>
-            <div>
-              <h3>Vendég lista</h3>
-              {isComing && isComing.map(person => <p key={uuidv4()}>{person}</p>)}
-              {isComingPlus && isComingPlus.map(person => <p key={uuidv4()}>{person}</p>)}
-            </div>
+      <div className="adming-p-container">
+        {
+          people
+            ? <>
+              <div className="guest-list">
+                <h3>Vendég lista</h3>
+                {isComing && isComing.map(person => <p key={uuidv4()}>{person}</p>)}
+                {isComingPlus && isComingPlus.map(person => <p key={uuidv4()}>{person}</p>)}
+              </div>
 
-            <br /> {/*törölni később*/}
+              <br /> {/*törölni később*/}
 
-            <div>
-              <h3>Menü választékok</h3>
-              <p>Nincs: {no}</p>
-              <p>Vega: {vega}</p>
-              <p>Vegán: {vegan}</p>
-              <p>Laktóz mentes: {lakto}</p>
-              <p>Glutén mentes: {glu}</p>
-              <p>Cukor mentes: {sugar}</p>
-              <p>Paleo: {paleo}</p>
-            </div>
+              <div className="menu">
+                <h3>Menü választékok</h3>
+                <p>Nincs: {no}</p>
+                <p>Vega: {vega}</p>
+                <p>Vegán: {vegan}</p>
+                <p>Laktóz mentes: {lakto}</p>
+                <p>Glutén mentes: {glu}</p>
+                <p>Cukor mentes: {sugar}</p>
+                <p>Paleo: {paleo}</p>
+              </div>
 
-            <br /> {/*törölni később*/}
+              <br /> {/*törölni később*/}
 
-            <button onClick={() => setShow(!show)}>Mutasd részletesen</button>
+              <button onClick={() => setShow(!show)}>Mutasd részletesen</button>
+            </>
+            : "Loading..."
+        }
 
-          </>
-          : "Loading..."
-      }
+        {
+          show &&
+          people.map(person =>
+            <div key={uuidv4()}>
 
-      {
-        show &&
-        people.map(person =>
-          <div key={uuidv4()}>
+              <br /> {/*törölni később*/}
 
-            <br /> {/*törölni később*/}
+              <h3>Vendég</h3>
+              <p>{person.name} | {person.email}</p>
 
-            <h3>Vendég</h3>
-            <p>{person.name} | {person.email}</p>
-
-            <p>Speciális menü igénye:
-              {person.foodS.length > 0
-                ? person.foodS.map(foodS =>
-                  <span key={uuidv4()}> {foodS}</span>)
-                : <span> nincs</span>
-              }
-            </p>
-
-            <p>Kísérővel érkezik:
-              {person.plusOneComing
-                ? <span> igen</span>
-                : <span> nem</span>
-              }
-            </p>
-
-            {person.plusOneComing &&
-              <p>Kísérő speciális menü igénye:
-                {person.plusOneFoodS
-                  ? person.plusOneFoodS.map(foodS =>
+              <p>Speciális menü igénye:
+                {person.foodS.length > 0
+                  ? person.foodS.map(foodS =>
                     <span key={uuidv4()}> {foodS}</span>)
                   : <span> nincs</span>
                 }
               </p>
-            }
 
-            <br /> {/*törölni később*/}
+              <p>Kísérővel érkezik:
+                {person.plusOneComing
+                  ? <span> igen</span>
+                  : <span> nem</span>
+                }
+              </p>
 
-          </div>
-        )
-      }
+              {person.plusOneComing &&
+                <p>Kísérő speciális menü igénye:
+                  {person.plusOneFoodS
+                    ? person.plusOneFoodS.map(foodS =>
+                      <span key={uuidv4()}> {foodS}</span>)
+                    : <span> nincs</span>
+                  }
+                </p>
+              }
 
+              <br /> {/*törölni később*/}
+
+            </div>
+          )
+        }
+      </div>
     </div >
   )
 }

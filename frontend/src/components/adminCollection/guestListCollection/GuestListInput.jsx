@@ -39,9 +39,10 @@ const GuestListInput = ({ setResPost }) => {
       <p>Add meg az új esküvőszervező, vendég címét!</p>
 
       <div>
-        <input id="guest-input" type="text" onChange={e => validateEmail(e)} placeholder="Email" />
+        <input className="guest-list-i" id="guest-input" type="text" onChange={e => validateEmail(e)} placeholder="Email" />
+
         <span>{emailError}</span>
-        <ComboBox options={options} value={role} setValue={setRole} label="Megnevezés" />
+        <ComboBox classN="guest-list-i" label="Megnevezés" options={options} value={role} setValue={setRole} />
       </div>
 
       <button className="send-button" disabled={!(email && role)} onClick={() => setSubmit(!submit)}>Küldés</button>

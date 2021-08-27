@@ -27,8 +27,8 @@ const ToDoInput = ({ setResPost }) => {
       <p>Add meg az új teendő adatait!</p>
 
       <div>
-        <ComboBox classN="timeline-i" options={options} value={type} setValue={setType} label="Típus" />
-        <Inp classN="timeline-i" label="Teendő" value={task} setValue={setTask} />
+        <ComboBox classN="todo-i" options={options} value={type} setValue={setType} label="Típus" />
+        <Inp classN="todo-i" label="Teendő" value={task} setValue={setTask} />
       </div>
 
       <button className="send-button" disabled={!(type && task)} onClick={() => setSubmit(!submit)}>Küldés</button>

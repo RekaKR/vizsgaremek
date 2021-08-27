@@ -39,13 +39,13 @@ function AccommodationInput() {
       <p>Add meg az új szállás adatait!</p>
 
       <div>
-        <Inp classN="timeline-i" label="Név" value={name} setValue={setName} />
-        <NumInp classN="timeline-i" label="Irányítószám" value={zip} setValue={setZip} />
-        <Inp classN="timeline-i" label="Város" value={city} setValue={setCity} />
-        <Inp classN="timeline-i" label="Utca" value={street} setValue={setStreet} />
-        <NumInp classN="timeline-i" label="Házszám" value={houseNumber} setValue={setHouseNumber} />
-        <Inp classN="timeline-i" label="Telefonszám" value={phoneNumber} setValue={setPhoneNumber} />
-        <Inp classN="timeline-i" label="Weboldal" value={website} setValue={setWebsite} />
+        <Inp classN="acc-i" label="Név" value={name} setValue={setName} />
+        <NumInp classN="acc-i" label="Irányítószám" value={zip} setValue={setZip} />
+        <Inp classN="acc-i" label="Város" value={city} setValue={setCity} />
+        <Inp classN="acc-i" label="Utca" value={street} setValue={setStreet} />
+        <NumInp classN="acc-i" label="Házszám" value={houseNumber} setValue={setHouseNumber} />
+        <Inp classN="acc-i" label="Telefonszám" value={phoneNumber} setValue={setPhoneNumber} />
+        <Inp classN="acc-i" label="Weboldal" value={website} setValue={setWebsite} />
       </div>
 
       <button className="send-button" disabled={!(name && zip && city && street && houseNumber && phoneNumber && website)} onClick={() => setSubmit(!submit)}>Küldés</button>

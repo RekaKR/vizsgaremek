@@ -38,7 +38,19 @@ a:link, a:visited, a:active {
 .admin-accommodation .accommodation-container .accommodation-input {
   width: 340px;
   padding: 0 5px;
-  margin: 20px;
+}
+.admin-accommodation .accommodation-container .accommodation {
+  margin: 20px 20px 20px 100px;
+}
+@media (max-width: 920px) {
+  .admin-accommodation .accommodation-container .accommodation {
+    margin: 20px 80px;
+  }
+}
+@media (max-width: 500px) {
+  .admin-accommodation .accommodation-container .accommodation {
+    margin: 20px 0;
+  }
 }
 .admin-accommodation .accommodation-container .accommodation .accommodation-names {
   margin-bottom: 10px;
@@ -48,24 +60,72 @@ a:link, a:visited, a:active {
 .admin-accommodation .accommodation-container .accommodation .accommodation-names p {
   max-width: 200px;
 }
-.admin-accommodation .accommodation-container .accommodation-input p {
-  margin-bottom: 10px;
+.admin-accommodation .accommodation-container .accommodation-input {
+  margin: 20px 100px 20px 20px;
 }
-.admin-accommodation .accommodation-container .accommodation-input div .timeline-i {
+@media (max-width: 920px) {
+  .admin-accommodation .accommodation-container .accommodation-input {
+    margin: 20px 80px;
+  }
+}
+@media (max-width: 500px) {
+  .admin-accommodation .accommodation-container .accommodation-input {
+    margin: 20px 0;
+  }
+}
+.admin-accommodation .accommodation-container .accommodation-input p {
+  margin-bottom: 15px;
+}
+.admin-accommodation .accommodation-container .accommodation-input div .acc-i {
   width: 250px;
-  margin-bottom: 10px;
+  margin: 0 40px 10px;
   padding: 3px;
 }
 .admin-accommodation .accommodation-container .accommodation-input .send-button {
   margin-bottom: 15px;
 }
 
-.admin-page {
-  margin: auto;
-}
 .admin-page h2 {
   margin: 40px 0;
   text-align: center;
+}
+.admin-page .adming-p-container {
+  display: flex;
+  flex-direction: column;
+}
+.admin-page .adming-p-container .guest-list,
+.admin-page .adming-p-container .menu {
+  width: 340px;
+  padding: 0 5px;
+  margin: 20px;
+}
+.admin-page .adming-p-container .guest-list {
+  width: 500px;
+  margin: 20px 20px 20px 100px;
+}
+@media (max-width: 920px) {
+  .admin-page .adming-p-container .guest-list {
+    margin: 20px 80px;
+  }
+}
+@media (max-width: 500px) {
+  .admin-page .adming-p-container .guest-list {
+    margin: 20px 0;
+  }
+}
+.admin-page .adming-p-container .menu {
+  width: 500px;
+  margin: 20px 20px 20px 100px;
+}
+@media (max-width: 920px) {
+  .admin-page .adming-p-container .menu {
+    margin: 20px 80px;
+  }
+}
+@media (max-width: 500px) {
+  .admin-page .adming-p-container .menu {
+    margin: 20px 0;
+  }
 }
 
 .delete {
@@ -145,13 +205,51 @@ a:link, a:visited, a:active {
   padding: 0 5px;
   margin: 20px;
 }
+.admin-guest-list .guest-list-container .guest-list {
+  margin: 20px 20px 20px 100px;
+}
+@media (max-width: 920px) {
+  .admin-guest-list .guest-list-container .guest-list {
+    margin: 20px 80px;
+  }
+}
+@media (max-width: 500px) {
+  .admin-guest-list .guest-list-container .guest-list {
+    margin: 20px 0;
+  }
+}
 .admin-guest-list .guest-list-container .guest-list .guest-list-names {
   margin-bottom: 10px;
   display: flex;
   justify-content: space-between;
 }
-.admin-guest-list .guest-list-container .guest-list-input div #guest-input {
-  margin: 15px 0 20px;
+.admin-guest-list .guest-list-container .guest-list-input {
+  margin: 20px 100px 20px 20px;
+}
+@media (max-width: 920px) {
+  .admin-guest-list .guest-list-container .guest-list-input {
+    margin: 20px 80px;
+  }
+}
+@media (max-width: 500px) {
+  .admin-guest-list .guest-list-container .guest-list-input {
+    margin: 20px 0;
+  }
+}
+.admin-guest-list .guest-list-container .guest-list-input p {
+  margin-bottom: 15px;
+}
+.admin-guest-list .guest-list-container .guest-list-input div {
+  /*
+  #guest-input {
+   margin: 15px 0 20px;
+  }
+  */
+}
+.admin-guest-list .guest-list-container .guest-list-input div .guest-list-i {
+  width: 250px;
+  margin: 0 40px 10px;
+  padding: 3px;
 }
 .admin-guest-list .guest-list-container .guest-list-input div span {
   margin-left: 5px;
@@ -196,6 +294,19 @@ a:link, a:visited, a:active {
   padding: 0 5px;
   margin: 20px;
 }
+.admin-timeline .timeline-container .timeline {
+  margin: 20px 20px 20px 100px;
+}
+@media (max-width: 920px) {
+  .admin-timeline .timeline-container .timeline {
+    margin: 20px 80px;
+  }
+}
+@media (max-width: 500px) {
+  .admin-timeline .timeline-container .timeline {
+    margin: 20px 0;
+  }
+}
 .admin-timeline .timeline-container .timeline .timeline-names {
   margin-bottom: 10px;
   display: flex;
@@ -204,12 +315,25 @@ a:link, a:visited, a:active {
 .admin-timeline .timeline-container .timeline .timeline-names p {
   max-width: 200px;
 }
+.admin-timeline .timeline-container .timeline-input {
+  margin: 20px 100px 20px 20px;
+}
+@media (max-width: 920px) {
+  .admin-timeline .timeline-container .timeline-input {
+    margin: 20px 80px;
+  }
+}
+@media (max-width: 500px) {
+  .admin-timeline .timeline-container .timeline-input {
+    margin: 20px 0;
+  }
+}
 .admin-timeline .timeline-container .timeline-input p {
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 }
 .admin-timeline .timeline-container .timeline-input div .timeline-i {
   width: 250px;
-  margin-bottom: 10px;
+  margin: 0 40px 10px;
   padding: 3px;
 }
 .admin-timeline .timeline-container .timeline-input .send-button {
@@ -229,11 +353,23 @@ a:link, a:visited, a:active {
 .admin-to-dos .to-do-container .to-do-input {
   width: 340px;
   padding: 0 5px;
-  margin: 20px;
 }
 .admin-to-dos .to-do-container .to-do h3:first-child,
 .admin-to-dos .to-do-container .to-do-input h3:first-child {
   margin-bottom: 20px;
+}
+.admin-to-dos .to-do-container .to-do {
+  margin: 20px 20px 20px 100px;
+}
+@media (max-width: 920px) {
+  .admin-to-dos .to-do-container .to-do {
+    margin: 20px 80px;
+  }
+}
+@media (max-width: 500px) {
+  .admin-to-dos .to-do-container .to-do {
+    margin: 20px 0;
+  }
 }
 .admin-to-dos .to-do-container .to-do .to-do-names {
   margin-bottom: 10px;
@@ -243,12 +379,25 @@ a:link, a:visited, a:active {
 .admin-to-dos .to-do-container .to-do .to-do-names p {
   max-width: 200px;
 }
-.admin-to-dos .to-do-container .to-do-input p {
-  margin-bottom: 10px;
+.admin-to-dos .to-do-container .to-do-input {
+  margin: 20px 100px 20px 20px;
 }
-.admin-to-dos .to-do-container .to-do-input div .timeline-i {
+@media (max-width: 920px) {
+  .admin-to-dos .to-do-container .to-do-input {
+    margin: 20px 80px;
+  }
+}
+@media (max-width: 500px) {
+  .admin-to-dos .to-do-container .to-do-input {
+    margin: 20px 0;
+  }
+}
+.admin-to-dos .to-do-container .to-do-input p {
+  margin-bottom: 15px;
+}
+.admin-to-dos .to-do-container .to-do-input div .todo-i {
   width: 250px;
-  margin-bottom: 10px;
+  margin: 0 40px 10px;
   padding: 3px;
 }
 
@@ -565,7 +714,11 @@ body p {
 }
 
 .send-button {
-  margin: 0 30% 15px;
+  width: 330px;
+  margin: 0 auto 15px;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  transform: translateZ(-50%);
 }
 .send-button:hover {
   color: #505050;

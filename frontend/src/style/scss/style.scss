@@ -325,7 +325,11 @@ body {
 }
 
 .send-button {
-  margin: 0 30% 15px;
+  width: 330px;
+  margin: 0 auto 15px;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  transform: translateZ(-50%);
 
   &:hover {
     color: $textColor2;

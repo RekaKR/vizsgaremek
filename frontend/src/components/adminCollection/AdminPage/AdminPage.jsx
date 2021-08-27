@@ -50,28 +50,26 @@ const AdminPage = () => {
         {
           people
             ? <>
-              <div className="guest-list">
-                <h3>Vendég lista</h3>
-                {isComing && isComing.map(person => <p key={uuidv4()}>{person}</p>)}
-                {isComingPlus && isComingPlus.map(person => <p key={uuidv4()}>{person}</p>)}
+              <div className="div-con">
+                <div>
+                  <h3>Vendég lista</h3>
+                  {isComing && isComing.map(person => <p key={uuidv4()}>{person}</p>)}
+                  {isComingPlus && isComingPlus.map(person => <p key={uuidv4()}>{person}</p>)}
+                </div>
+
+                <div>
+                  <h3>Menü választékok</h3>
+                  <p>Nincs: {no}</p>
+                  <p>Vega: {vega}</p>
+                  <p>Vegán: {vegan}</p>
+                  <p>Laktóz mentes: {lakto}</p>
+                  <p>Glutén mentes: {glu}</p>
+                  <p>Cukor mentes: {sugar}</p>
+                  <p>Paleo: {paleo}</p>
+                </div>
               </div>
 
-              <br /> {/*törölni később*/}
-
-              <div className="menu">
-                <h3>Menü választékok</h3>
-                <p>Nincs: {no}</p>
-                <p>Vega: {vega}</p>
-                <p>Vegán: {vegan}</p>
-                <p>Laktóz mentes: {lakto}</p>
-                <p>Glutén mentes: {glu}</p>
-                <p>Cukor mentes: {sugar}</p>
-                <p>Paleo: {paleo}</p>
-              </div>
-
-              <br /> {/*törölni később*/}
-
-              <button onClick={() => setShow(!show)}>Mutasd részletesen</button>
+              <button className="send-button admin-button" onClick={() => setShow(!show)}>Mutasd részletesen</button>
             </>
             : "Loading..."
         }
@@ -79,12 +77,12 @@ const AdminPage = () => {
         {
           show &&
           people.map(person =>
-            <div key={uuidv4()}>
+            <div className="guests" key={uuidv4()}>
 
               <br /> {/*törölni később*/}
 
-              <h3>Vendég</h3>
-              <p>{person.name} | {person.email}</p>
+              <h3>{person.name}</h3>
+              <p>{person.email}</p>
 
               <p>Speciális menü igénye:
                 {person.foodS.length > 0

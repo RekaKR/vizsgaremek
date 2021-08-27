@@ -89,43 +89,37 @@ a:link, a:visited, a:active {
   margin: 40px 0;
   text-align: center;
 }
-.admin-page .adming-p-container {
-  display: flex;
-  flex-direction: column;
-}
 .admin-page .adming-p-container .guest-list,
 .admin-page .adming-p-container .menu {
   width: 340px;
   padding: 0 5px;
   margin: 20px;
 }
-.admin-page .adming-p-container .guest-list {
-  width: 500px;
+.admin-page .adming-p-container .div-con {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+.admin-page .adming-p-container .div-con div {
+  width: 100%;
+  max-width: 300px;
   margin: 20px 20px 20px 100px;
 }
 @media (max-width: 920px) {
-  .admin-page .adming-p-container .guest-list {
+  .admin-page .adming-p-container .div-con div {
     margin: 20px 80px;
   }
 }
 @media (max-width: 500px) {
-  .admin-page .adming-p-container .guest-list {
-    margin: 20px 0;
+  .admin-page .adming-p-container .div-con div {
+    margin: 20px;
   }
 }
-.admin-page .adming-p-container .menu {
-  width: 500px;
-  margin: 20px 20px 20px 100px;
-}
-@media (max-width: 920px) {
-  .admin-page .adming-p-container .menu {
-    margin: 20px 80px;
-  }
-}
-@media (max-width: 500px) {
-  .admin-page .adming-p-container .menu {
-    margin: 20px 0;
-  }
+.admin-page .adming-p-container .guests {
+  width: 100%;
+  max-width: 900px;
+  margin: 20px auto;
+  padding: 10px;
 }
 
 .delete {
@@ -713,15 +707,26 @@ body p {
   text-align: center;
 }
 
-.send-button {
-  width: 330px;
-  margin: 0 auto 15px;
+.send-button,
+.admin-button {
   text-transform: uppercase;
   letter-spacing: 0.8px;
   transform: translateZ(-50%);
 }
-.send-button:hover {
+.send-button:hover,
+.admin-button:hover {
   color: #505050;
+}
+
+.send-button {
+  width: 330px;
+  margin: 0 auto 15px;
+}
+
+.admin-button {
+  width: 100%;
+  margin: 15px auto 0;
+  font-size: 18px;
 }
 
 /*# sourceMappingURL=style.css.map */

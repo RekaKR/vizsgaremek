@@ -324,14 +324,24 @@ body {
   }
 }
 
-.send-button {
-  width: 330px;
-  margin: 0 auto 15px;
+.send-button,
+.admin-button {
   text-transform: uppercase;
   letter-spacing: 0.8px;
   transform: translateZ(-50%);
-
+  
   &:hover {
     color: $textColor2;
   }
+}
+
+.send-button {
+  width: 330px;
+  margin: 0 auto 15px;
+}
+
+.admin-button {
+  width: 100%;
+  margin: 15px auto 0;
+  font-size: 18px;
 }

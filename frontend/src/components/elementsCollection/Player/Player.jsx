@@ -30,14 +30,14 @@ const Player = () => {
     <>
       {
         playing
-          ? <>
+          ? <div>
             <button className="link-button colored" onClick={() => setPlaying(!playing)}>Stop</button>
             <StopRoundedIcon className="play-icon"></StopRoundedIcon>
-          </>
-          : <>
+          </div>
+          : <div>
             <button className="link-button colored" onClick={() => setPlaying(!playing)}>Vibe</button>
             <PlayArrowRoundedIcon className="play-icon"></PlayArrowRoundedIcon>
-          </>
+          </div>
       }
     </>
   )

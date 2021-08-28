@@ -587,8 +587,16 @@ body p {
     display: none;
   }
 }
-.header .play-icon {
+.header div {
+  position: relative;
+}
+.header div .play-icon {
   position: absolute;
+}
+@media (max-width: 600px) {
+  .header div .play-icon {
+    display: none;
+  }
 }
 .header #login {
   position: fixed;

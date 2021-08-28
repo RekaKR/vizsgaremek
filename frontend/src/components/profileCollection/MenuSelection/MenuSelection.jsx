@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react'
+import { v4 as uuidv4 } from 'uuid'
 import { ProfileContext } from '../../../ProfileContext'
 import useFetchPatch from '../../../customHooks/useFetchPatch'
 
@@ -27,7 +28,7 @@ const MenuSelection = () => {
 
   return (
     <div className="menu-selection">
-      <p>Speciális menü: {userFoodS ? userFoodS.map(food => <span>{food}, </span>) : "Nincs"}</p>
+      <p>Speciális menü: {userFoodS ? userFoodS.map(food => <span key={uuidv4()}>{food}, </span>) : "Nincs"}</p>
 
       {userFoodS && userFoodS.length < 1 &&
         <>

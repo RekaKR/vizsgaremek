@@ -114,9 +114,17 @@ body {
       display: none;
     }
   }
-    
-  .play-icon {
-    position: absolute;
+  
+  div {
+    position: relative;
+
+    .play-icon {
+      position: absolute;
+
+      @media (max-width: 600px) {
+        display: none;
+      }
+    }
   }
 
   #login {

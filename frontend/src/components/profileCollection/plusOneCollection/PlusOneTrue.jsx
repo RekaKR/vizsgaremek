@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { v4 as uuidv4 } from 'uuid'
 import useFetchPatch from '../../../customHooks/useFetchPatch'
 import CheckComboBox from '../../elementsCollection/CheckComboBox/CheckComboBox'
 import Inp from '../../elementsCollection/Inp/Inp'
@@ -35,7 +36,7 @@ const PlusOneTrue = ({ profile, setResUpdatePlusOneData }) => {
         ? <>
           <p>A neve {name || plusOneName}.</p>
 
-          <p>Speciális menü: {foodS && foodS.map(food => <span>{food}, </span>)}</p>
+          <p>Speciális menü: {foodS && foodS.map(food => <span key={uuidv4()}>{food}, </span>)}</p>
 
           {
             foodS && foodS.length < 1 &&

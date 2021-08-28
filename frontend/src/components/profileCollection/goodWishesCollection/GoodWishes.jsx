@@ -34,6 +34,7 @@ const GoodWishes = () => {
         profile.role !== 'couple'
           ? <>
             <textarea name="textarea" onChange={e => setGoodWish(e.target.value)} />
+            <p>Sok szeretettel: {profile.name}</p>
             <button className="admin-button" disabled={!goodWish} onClick={() => setSubmit(!submit)}>Küldés</button>
           </>
           : goodWishes

@@ -34,11 +34,12 @@
 
     .guests {
       max-width: 540px;
-      margin: 20px 80px;
+      margin: 20px calc(50% - 260px);
       padding: 0 20px;
 
-      @media (max-width: 650px) {
+      @media (max-width: 680px) {
         max-width: 450px;
+        margin: 20px 80px;
       }
 
       @media (max-width: 580px) {
@@ -48,10 +49,6 @@
       @media (max-width: 500px) {
         margin: 20px auto;
       }
-    }
-
-    .guests:first-child {
-      color: black;
     }
   }
 }

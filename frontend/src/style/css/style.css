@@ -8,7 +8,8 @@ body,
 }
 
 input,
-button {
+button,
+textarea {
   border: none;
   outline: none;
 }
@@ -117,12 +118,13 @@ a:link, a:visited, a:active {
 }
 .admin-page .adming-p-container .guests {
   max-width: 540px;
-  margin: 20px 80px;
+  margin: 20px calc(50% - 260px);
   padding: 0 20px;
 }
-@media (max-width: 650px) {
+@media (max-width: 680px) {
   .admin-page .adming-p-container .guests {
     max-width: 450px;
+    margin: 20px 80px;
   }
 }
 @media (max-width: 580px) {
@@ -134,9 +136,6 @@ a:link, a:visited, a:active {
   .admin-page .adming-p-container .guests {
     margin: 20px auto;
   }
-}
-.admin-page .adming-p-container .guests:first-child {
-  color: black;
 }
 
 .delete {
@@ -274,14 +273,70 @@ a:link, a:visited, a:active {
   margin: 40px 0;
 }
 .profile .profile-container {
-  width: 350px;
+  width: 100%;
+  max-width: 500px;
   margin: auto;
+}
+@media (max-width: 700px) {
+  .profile .profile-container {
+    max-width: 400px;
+  }
+}
+@media (max-width: 600px) {
+  .profile .profile-container {
+    max-width: 320px;
+  }
+}
+.profile .profile-container .plus-one-container p {
+  margin-bottom: 5px;
+}
+.profile .profile-container .plus-one-container .name {
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+.profile .profile-container .plus-one-container .plus-one p {
+  margin-bottom: 5px;
+}
+.profile .profile-container .plus-one-container .plus-one .is-coming-check {
+  margin: 10px 0 15px;
+}
+.profile .profile-container .plus-one-container .plus-one .is-coming {
+  margin-left: 5px;
+  display: inline;
+}
+.profile .profile-container .plus-one-container .plus-one:last-child {
+  margin-bottom: 40px;
+}
+@media (max-width: 600px) {
+  .profile .profile-container .plus-one-container .plus-one:last-child {
+    margin-bottom: 20px;
+  }
+}
+.profile .profile-container .good-wish-container {
+  text-align: center;
+}
+@media (max-width: 600px) {
+  .profile .profile-container .good-wish-container {
+    margin: 0;
+  }
+}
+@media (max-width: 350px) {
+  .profile .profile-container .good-wish-container {
+    margin: 0 20px;
+  }
 }
 .profile .profile-container .good-wish-container h3 {
   margin-bottom: 20px;
 }
+.profile .profile-container .good-wish-container textarea {
+  width: 100%;
+  min-height: 150px;
+  max-width: 370px;
+}
 .profile .profile-container .good-wish-container .good-wish {
-  margin-bottom: 20px;
+  max-width: 400px;
+  margin: 0 auto 20px;
+  text-align: left;
 }
 .profile .profile-container .good-wish-container .good-wish .smaller-p {
   font-size: 13px;
@@ -452,10 +507,10 @@ body h4 {
 body a,
 body .link-button,
 body p {
-  color: #5a5a5a;
   font-family: "Raleway", sans-serif;
   font-weight: 400;
   font-size: 18px;
+  color: #5a5a5a;
 }
 
 .left-side,
@@ -558,11 +613,11 @@ body p {
   opacity: 0.8;
 }
 .invitation .inv-main-container h2 {
-  width: 100%;
-  text-align: center;
   font-family: "Raleway", sans-serif;
   font-weight: 700;
   font-size: 90px;
+  width: 100%;
+  text-align: center;
   text-transform: uppercase;
   letter-spacing: 5px;
   text-decoration: underline;
@@ -660,7 +715,9 @@ body p {
 }
 
 .timeline .timeline-container {
-  margin: 10px 30px;
+  margin: 0 30px 10px;
+  display: flex;
+  flex-direction: column;
 }
 @media (max-width: 780px) {
   .timeline .timeline-container {
@@ -671,6 +728,27 @@ body p {
   .timeline .timeline-container {
     margin: 5px;
   }
+}
+.timeline .timeline-container .event {
+  width: 100%;
+  max-width: 350px;
+  margin: 20px auto 0;
+}
+@media (max-width: 600px) {
+  .timeline .timeline-container .event {
+    margin: 25px 15px 0;
+  }
+}
+.timeline .timeline-container .event:first-child {
+  margin: 15px auto 0;
+}
+@media (max-width: 600px) {
+  .timeline .timeline-container .event:first-child {
+    margin: 15px 15px 0;
+  }
+}
+.timeline .timeline-container .event p:first-child {
+  font-weight: 500;
 }
 
 .accommodations .accommodation-container {

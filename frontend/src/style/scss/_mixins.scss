@@ -20,3 +20,9 @@
       width: 100%;
   }
 }
+
+@mixin fontRaleway($weight, $fSize) {
+  font-family: 'Raleway', sans-serif;
+  font-weight: $weight;
+  font-size: $fSize;
+}

@@ -15,11 +15,14 @@ const Profile = () => {
       {profile
         ? <div className="profile-container">
           {profile.role !== 'couple' &&
-            <>
-              <p>Szia {profile.username}!</p>
+            <div className="plus-one-container">
+              <p className="name">Szia {profile.username}!</p>
+              <p>Szerettel meghívünk az esküvőnkre, melyet Május 10-én tartunk, Budapesten.</p>
+              <p>A következőkben meg tudod adni, hogy kísérővel érkezel-e az esküvőre, valamint speciális menü elképzelésedet is tudod nekünk jelezni.</p>
+
               <MenuSelection />
               <PlusOne />
-            </>
+            </div>
           }
 
           <GoodWishes />

@@ -27,12 +27,12 @@ const MenuSelection = () => {
 
   return (
     <div className="menu-selection">
-      <p>Speciális menü: {userFoodS ? userFoodS : "Nincs"}</p>
+      <p>Speciális menü: {userFoodS ? userFoodS.map(food => <span>{food}, </span>) : "Nincs"}</p>
 
       {userFoodS && userFoodS.length < 1 &&
         <>
           <CheckComboBox options={options} setValue={setFoodS} />
-          <button disabled={!foodS} onClick={() => updateUser()}>Elküldés</button>
+          <button disabled={!foodS} onClick={() => updateUser()}>Küldés</button>
         </>
       }
     </div>

@@ -50,10 +50,9 @@ body {
   a,
   .link-button,
   p {
+    @include fontRaleway(400, 18px);
+
     color: $textColor;
-    font-family: 'Raleway', sans-serif;
-    font-weight: 400;
-    font-size: 18px;
   }
 }
 
@@ -144,11 +143,10 @@ body {
     }
 
     h2 {
+      @include fontRaleway(700, 90px);
+
       width: 100%;
       text-align: center;
-      font-family: 'Raleway', sans-serif;
-      font-weight: 700;
-      font-size: 90px;
       text-transform: uppercase;
       letter-spacing: 5px;
       text-decoration: underline;
@@ -246,7 +244,9 @@ body {
 
 .timeline {
   .timeline-container {
-    margin: 10px 30px;
+    margin: 0 30px 10px;
+    display: flex;
+    flex-direction: column;
 
     @media (max-width: 780px) {
       margin: 5px 15px;
@@ -254,6 +254,28 @@ body {
 
     @media (max-width: 600px) {
       margin: 5px;
+    }
+
+    .event {
+      width: 100%;
+      max-width: 350px;
+      margin: 20px auto 0;
+
+      @media (max-width: 600px) {
+        margin: 25px 15px 0;
+      }
+
+      &:first-child {
+        margin: 15px auto 0;
+
+        @media (max-width: 600px) {
+          margin: 15px 15px 0;
+        }
+      }
+      
+      p:first-child {
+        font-weight: 500;
+      }
     }
   }
 }

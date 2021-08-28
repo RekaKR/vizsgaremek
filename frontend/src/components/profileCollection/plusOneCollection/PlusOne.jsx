@@ -25,14 +25,14 @@ const PlusOne = () => {
 
   return (
     <div className="plus-one">
-      <input type="checkbox" checked={isComing} onClick={() => updatePlusOne()} onChange={() => setPlusOneIsComing(!isComing)} />
+      <input className="is-coming-check" type="checkbox" checked={isComing} onClick={() => updatePlusOne()} onChange={() => setPlusOneIsComing(!isComing)} />
 
       {isComing
         ? <>
-          <p>Jön velem kísérő.</p>
+          <p className="is-coming">Jön velem kísérő.</p>
           <PlusOneTrue profile={profile} setResUpdatePlusOneData={setResUpdatePlusOneData} />
         </>
-        : <p>Nem jön velem kísérő.</p>
+        : <p className="is-coming">Nem jön velem kísérő.</p>
       }
     </div>
   )

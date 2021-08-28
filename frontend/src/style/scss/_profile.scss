@@ -5,24 +5,77 @@
   }
 
   .profile-container {
-    width: 350px;
+    width: 100%;
+    max-width: 500px;
     margin: auto;
 
-    .menu-selection {
-
+    @media (max-width: 700px) {
+      max-width: 400px;
     }
 
-    .plus-one {
+    @media (max-width: 600px) {
+      max-width: 320px;
+    }
 
+    .plus-one-container {
+      p {
+        margin-bottom: 5px;
+      }
+
+      .name {
+        font-weight: 500;
+        margin-bottom: 10px;
+      }
+
+      .plus-one {
+        p {
+          margin-bottom: 5px;
+        }
+
+        .is-coming-check {
+          margin: 10px 0 15px;
+        }
+        
+        .is-coming {
+          margin-left: 5px;
+          display: inline;
+        }
+
+        &:last-child {
+          margin-bottom: 40px;
+
+          @media (max-width: 600px) {
+            margin-bottom: 20px;
+          }
+        }
+      }
     }
 
     .good-wish-container {
+      text-align: center;
+      
+      @media (max-width: 600px) {
+        margin: 0;
+      }
+
+      @media (max-width: 350px) {
+        margin: 0 20px;
+      }
+
       h3 {
         margin-bottom: 20px;
       }
 
+      textarea {
+        width: 100%;
+        min-height: 150px;
+        max-width: 370px;
+      }
+
       .good-wish {
-        margin-bottom: 20px;
+        max-width: 400px;
+        margin: 0 auto 20px;
+        text-align: left;
 
         .smaller-p {
           font-size: 13px;

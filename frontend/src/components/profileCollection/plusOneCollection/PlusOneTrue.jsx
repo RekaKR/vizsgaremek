@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import useFetchPatch from '../../../customHooks/useFetchPatch'
 import CheckComboBox from '../../elementsCollection/CheckComboBox/CheckComboBox'
+import Inp from '../../elementsCollection/Inp/Inp'
 
 const PlusOneTrue = ({ profile, setResUpdatePlusOneData }) => {
   const options = ['nincs', 'vega', 'vegán', 'laktóz mentes', 'glutén mentes', 'cukor mentes', 'paleo']
@@ -29,27 +30,27 @@ const PlusOneTrue = ({ profile, setResUpdatePlusOneData }) => {
   }
 
   return (
-    <div>
+    <>
       {name || nextInp
         ? <>
-          <p>A neve: {name || plusOneName}</p>
+          <p>A neve {name || plusOneName}.</p>
 
-          <p>Speciális menü: {foodS}</p>
+          <p>Speciális menü: {foodS && foodS.map(food => <span>{food}, </span>)}</p>
 
           {
             foodS && foodS.length < 1 &&
             <>
               <CheckComboBox options={options} setValue={setPlusOneFoodS} />
-              <button disabled={!plusOneFoodS} onClick={() => updatePlusOneDetails()}>Submit</button>
+              <button disabled={!plusOneFoodS} onClick={() => updatePlusOneDetails()}>Küldés</button>
             </>
           }
         </>
         : <>
-          <input type="text" onChange={e => setPlusOneName(e.target.value)} placeholder="Neve" />
-          <button onClick={() => setNextInp(!nextInp)}>Next</button>
+          <Inp classN="profile-i" label="Név" value={plusOneName} setValue={setPlusOneName} />
+          <button onClick={() => setNextInp(!nextInp)}>Tovább</button>
         </>
       }
-    </div>
+    </>
   )
 }
 

@@ -116,10 +116,27 @@ a:link, a:visited, a:active {
   }
 }
 .admin-page .adming-p-container .guests {
-  width: 100%;
-  max-width: 900px;
-  margin: 20px auto;
-  padding: 10px;
+  max-width: 540px;
+  margin: 20px 80px;
+  padding: 0 20px;
+}
+@media (max-width: 650px) {
+  .admin-page .adming-p-container .guests {
+    max-width: 450px;
+  }
+}
+@media (max-width: 580px) {
+  .admin-page .adming-p-container .guests {
+    max-width: 350px;
+  }
+}
+@media (max-width: 500px) {
+  .admin-page .adming-p-container .guests {
+    margin: 20px auto;
+  }
+}
+.admin-page .adming-p-container .guests:first-child {
+  color: black;
 }
 
 .delete {
@@ -402,7 +419,8 @@ body h1,
 body h2,
 body h3,
 body h4,
-body .send-button {
+body .send-button,
+body .admin-button {
   color: #067a6d;
   font-family: "Merriweather", serif;
   font-weight: 800;
@@ -488,15 +506,31 @@ body p {
   color: #067a6d;
 }
 .header .colored {
+  display: inline-block;
+  position: relative;
   color: #e5e918;
+}
+.header .colored::after {
+  content: "";
+  width: 0;
+  height: 5%;
+  background-color: #067a6d;
+  position: absolute;
+  top: 95%;
+  left: 0;
+  transform: translateY(-50%);
+  transition: width 0.25s ease;
+}
+.header .colored:hover::after {
+  width: 100%;
+}
+.header .colored:hover {
+  color: #067a6d;
 }
 @media (max-width: 600px) {
   .header .colored {
     display: none;
   }
-}
-.header .colored:hover {
-  color: #067a6d;
 }
 .header .play-icon {
   position: absolute;
@@ -680,10 +714,23 @@ body p {
   display: inline;
 }
 .accommodations .accommodation-container .accommodation .inline-web a {
+  display: inline-block;
+  position: relative;
   color: #067a6d;
 }
-.accommodations .accommodation-container .accommodation .inline-web a:hover {
-  font-weight: bold;
+.accommodations .accommodation-container .accommodation .inline-web a::after {
+  content: "";
+  width: 0;
+  height: 5%;
+  background-color: #067a6d;
+  position: absolute;
+  top: 95%;
+  left: 0;
+  transform: translateY(-50%);
+  transition: width 0.25s ease;
+}
+.accommodations .accommodation-container .accommodation .inline-web a:hover::after {
+  width: 100%;
 }
 @media (max-width: 540px) {
   .accommodations .accommodation-container .accommodation .inline-web a {
@@ -725,7 +772,7 @@ body p {
 
 .admin-button {
   width: 100%;
-  margin: 15px auto 0;
+  margin: 15px auto;
   font-size: 18px;
 }
 

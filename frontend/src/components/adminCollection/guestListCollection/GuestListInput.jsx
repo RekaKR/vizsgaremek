@@ -35,7 +35,7 @@ const GuestListInput = ({ setResPost }) => {
 
   return (
     <div className="guest-list-input">
-      <h3>Vendég hozzáadása</h3>
+      <h3>Új vendég hozzáadása</h3>
       <p>Add meg az új esküvőszervező, vendég címét!</p>
 
       <div>

@@ -1,0 +1,22 @@
+@use 'variables' as *;
+
+@mixin underline {
+  display: inline-block;
+  position: relative;
+  
+  &::after {
+    content: '';
+    width: 0;
+    height: 5%;
+    background-color: $header-c;
+    position: absolute;
+    top: 95%;
+    left: 0;
+    transform: translateY(-50%);
+    transition: width 0.25s ease;
+  }
+
+  &:hover::after {
+      width: 100%;
+  }
+}

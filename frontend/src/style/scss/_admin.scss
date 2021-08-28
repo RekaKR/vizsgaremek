@@ -1,6 +1,4 @@
 .admin-page {
-  //margin: auto;
-
   h2 {
     margin: 40px 0;
     text-align: center;
@@ -35,10 +33,25 @@
     }
 
     .guests {
-      width: 100%;
-      max-width: 900px;
-      margin: 20px auto;
-      padding: 10px;
+      max-width: 540px;
+      margin: 20px 80px;
+      padding: 0 20px;
+
+      @media (max-width: 650px) {
+        max-width: 450px;
+      }
+
+      @media (max-width: 580px) {
+        max-width: 350px;
+      }
+
+      @media (max-width: 500px) {
+        margin: 20px auto;
+      }
+    }
+
+    .guests:first-child {
+      color: black;
     }
   }
 }

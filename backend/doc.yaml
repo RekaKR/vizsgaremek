@@ -332,6 +332,8 @@ paths:
       summary: "Update an existing todo"
       description: "Update a todo"
       operationId: "updateTodo"
+      consumes:
+      - "application/json"
       produces:
       - "application/json"
       parameters:
@@ -436,6 +438,8 @@ paths:
       summary: "Update an existing user"
       description: "Update an user"
       operationId: "updatePlusOne"
+      consumes:
+      - "application/json"
       produces:
       - "application/json"
       parameters:
@@ -460,6 +464,8 @@ paths:
       - "users"
       summary: "Update an existing user"
       operationId: "updatePlusOneDetails"
+      consumes:
+      - "application/json"
       produces:
       - "application/json"
       parameters:
@@ -484,6 +490,8 @@ paths:
       - "users"
       summary: "Update an existing user"
       operationId: "updateFoodSensitivity"
+      consumes:
+      - "application/json"
       produces:
       - "application/json"
       parameters:

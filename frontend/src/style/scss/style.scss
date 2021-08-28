@@ -1,5 +1,6 @@
 @use 'reset';
 @use 'variables' as *;
+@use '_mixins' as *;
 @use 'accomodation';
 @use 'admin';
 @use 'deleteButton';
@@ -15,7 +16,8 @@ body {
   h2,
   h3,
   h4,
-  .send-button {
+  .send-button,
+  .admin-button {
     color: $header-c;
     font-family: 'Merriweather', serif;
     font-weight: 800;
@@ -101,14 +103,16 @@ body {
   }
 
   .colored {
-    color: $vibe-c;
+    @include underline;
 
-    @media (max-width: 600px) {
-      display: none;
-    }
+    color: $vibe-c;
 
     &:hover {
       color: $header-c;
+    }
+
+    @media (max-width: 600px) {
+      display: none;
     }
   }
     
@@ -295,11 +299,9 @@ body {
         }
 
         a {
+          @include underline;
+          
           color: $header-c;
-
-          &:hover {
-            font-weight: bold;
-          }
 
           @media (max-width: 540px) {
             font-size: 16px;
@@ -342,6 +344,6 @@ body {
 
 .admin-button {
   width: 100%;
-  margin: 15px auto 0;
+  margin: 15px auto;
   font-size: 18px;
 }

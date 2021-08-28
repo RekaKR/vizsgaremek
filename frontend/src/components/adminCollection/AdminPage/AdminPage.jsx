@@ -58,7 +58,7 @@ const AdminPage = () => {
                 </div>
 
                 <div>
-                  <h3>Menü választékok</h3>
+                  <h3>Menü lista</h3>
                   <p>Nincs: {no}</p>
                   <p>Vega: {vega}</p>
                   <p>Vegán: {vegan}</p>
@@ -69,7 +69,7 @@ const AdminPage = () => {
                 </div>
               </div>
 
-              <button className="send-button admin-button" onClick={() => setShow(!show)}>Mutasd részletesen</button>
+              <button className="admin-button" onClick={() => setShow(!show)}>Mutasd részletesen</button>
             </>
             : "Loading..."
         }
@@ -78,9 +78,6 @@ const AdminPage = () => {
           show &&
           people.map(person =>
             <div className="guests" key={uuidv4()}>
-
-              <br /> {/*törölni később*/}
-
               <h3>{person.name}</h3>
               <p>{person.email}</p>
 
@@ -108,9 +105,6 @@ const AdminPage = () => {
                   }
                 </p>
               }
-
-              <br /> {/*törölni később*/}
-
             </div>
           )
         }

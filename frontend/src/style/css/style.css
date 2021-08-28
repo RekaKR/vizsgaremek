@@ -249,20 +249,10 @@ a:link, a:visited, a:active {
 .admin-guest-list .guest-list-container .guest-list-input p {
   margin-bottom: 15px;
 }
-.admin-guest-list .guest-list-container .guest-list-input div {
-  /*
-  #guest-input {
-   margin: 15px 0 20px;
-  }
-  */
-}
 .admin-guest-list .guest-list-container .guest-list-input div .guest-list-i {
   width: 250px;
   margin: 0 40px 10px;
   padding: 3px;
-}
-.admin-guest-list .guest-list-container .guest-list-input div span {
-  margin-left: 5px;
 }
 .admin-guest-list .guest-list-container .guest-list-input .send-button {
   margin-bottom: 15px;
@@ -579,9 +569,6 @@ body p {
 .header .colored:hover::after {
   width: 100%;
 }
-.header .colored:hover {
-  color: #067a6d;
-}
 @media (max-width: 600px) {
   .header .colored {
     display: none;
@@ -590,7 +577,12 @@ body p {
 .header div {
   position: relative;
 }
+.header div:hover .play-icon,
+.header div:hover .colored {
+  color: #067a6d;
+}
 .header div .play-icon {
+  color: #e5e918;
   position: absolute;
 }
 @media (max-width: 600px) {

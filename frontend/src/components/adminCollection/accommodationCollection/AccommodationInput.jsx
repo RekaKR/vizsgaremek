@@ -31,6 +31,13 @@ function AccommodationInput() {
 
   useEffect(() => {
     setResPostAcc(data)
+    setName('')
+    setZip('')
+    setCity('')
+    setStreet('')
+    setHouseNumber('')
+    setPhoneNumber('')
+    setWebsite('')
   }, [data])
 
   return (

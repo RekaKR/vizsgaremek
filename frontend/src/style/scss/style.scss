@@ -106,10 +106,6 @@ body {
 
     color: $vibe-c;
 
-    &:hover {
-      color: $header-c;
-    }
-
     @media (max-width: 600px) {
       display: none;
     }
@@ -118,7 +114,15 @@ body {
   div {
     position: relative;
 
+    &:hover {
+      .play-icon,
+      .colored {
+        color: $header-c;
+      }      
+    }
+
     .play-icon {
+      color: $vibe-c;
       position: absolute;
 
       @media (max-width: 600px) {

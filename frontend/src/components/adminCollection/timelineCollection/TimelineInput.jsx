@@ -23,6 +23,9 @@ function TimelineInput() {
 
   useEffect(() => {
     setResPostTime(data)
+    setTime('')
+    setHappening('')
+    setPlace('')
   }, [data])
 
   return (

@@ -19,6 +19,7 @@ const ToDoInput = ({ setResPost }) => {
 
   useEffect(() => {
     setResPost(data)
+    setTask('')
   }, [data])
 
   return (

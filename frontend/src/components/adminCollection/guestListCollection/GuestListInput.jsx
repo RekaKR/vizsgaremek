@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import validator from 'validator'
 import useFetchPost from '../../../customHooks/useFetchPost'
+import TextField from '@material-ui/core/TextField'
 import ComboBox from '../../elementsCollection/ComboBox/ComboBox'
 
 const GuestListInput = ({ setResPost }) => {
@@ -19,6 +20,8 @@ const GuestListInput = ({ setResPost }) => {
 
   useEffect(() => {
     setResPost(data)
+    setEmail('')
+    setRole('')
   }, [data])
 
   const validateEmail = (e) => {
@@ -39,7 +42,10 @@ const GuestListInput = ({ setResPost }) => {
       <p>Add meg az új esküvőszervező, vendég címét!</p>
 
       <div>
-        <input className="guest-list-i" id="guest-input" type="text" onChange={e => validateEmail(e)} placeholder="Email" />
+        <form noValidate autoComplete="off">
+          <TextField className="guest-list-i" id="outlined-size-normal" label="Email" variant="outlined"
+            value={email} onChange={e => validateEmail(e)} />
+        </form>
 
         <span>{emailError}</span>
         <ComboBox classN="guest-list-i" label="Megnevezés" options={options} value={role} setValue={setRole} />

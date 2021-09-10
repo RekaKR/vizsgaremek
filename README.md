@@ -1,5 +1,5 @@
-# vizsgaremek
-It is my "final masterpiece" at the FS Api class; a MERN (full)-stack webapp made with React & Node.js.
+# "Masterpiece of exam" || Vizsgaremek
+It is my "final masterpiece" at the FS Api class; a MERN-stack (full-stack) webapplication made with React & Node.js.
 
 ## Start the program
 ### Start the program with vsc
@@ -8,8 +8,7 @@ To start the codes do the following steps:
 clone the repository and open with vsc
 #### 2. step
 at the terminal:
-```
-cd backend
+``` cd backend
 npm install
 cd ..
 cd frontend
@@ -32,12 +31,14 @@ copy the .env file at the root (next to the docker-compose.yaml)
 #### 5. step
 update the googleSignIn's link at logInOutActions.js with your GOOGLE_CLIENT_ID
 #### 6. step
-cd frontend \
-npm start \
-cd .. \
-cd backend \
-npm start \
+```
+cd frontend
+npm start
 cd ..
+cd backend
+npm start
+cd ..
+```
 #### extra steps
 there must be added an admin (couple) manually to mongodb in the emaillists collections such as
 ```

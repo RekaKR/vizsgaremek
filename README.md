@@ -4,17 +4,21 @@ It is my "final masterpiece" at the FS Api class; a MERN-stack (full-stack) weba
 ## Start the program
 ### Start the program with vsc
 To start the codes do the following steps:
+
 #### 1. step
 clone the repository and open with vsc
+
 #### 2. step
 at the terminal:
-``` cd backend
+```
+cd backend
 npm install
 cd ..
 cd frontend
 npm install
 cd ..
 ```
+
 #### 3. step
 create az .env file at the backend folder with the following data
 ```
@@ -26,10 +30,13 @@ GOOGLE_SECRET =
 MONGO_CONNECTION = 
 JWT_SECRET = 
 ```
+
 #### 4. step
 copy the .env file at the root (next to the docker-compose.yaml)
+
 #### 5. step
 update the googleSignIn's link at logInOutActions.js with your GOOGLE_CLIENT_ID
+
 #### 6. step
 ```
 cd frontend
@@ -39,6 +46,7 @@ cd backend
 npm start
 cd ..
 ```
+
 #### extra steps
 there must be added an admin (couple) manually to mongodb in the emaillists collections such as
 ```
@@ -50,12 +58,16 @@ there must be added an admin (couple) manually to mongodb in the emaillists coll
 
 ### Run in docker
 To start the codes do the following steps:
+
 #### 1. step
 download the docker-compose.yaml from https://github.com/RekaKR/vizsgaremek
+
 #### 2. step
 copy the .env file at the root being given by the developer
+
 #### 2. step
 run `docker-compose up -d`
+
 #### extra steps
 if you wish to use login and its features ask for permisson from the developer
 

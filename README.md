@@ -1,10 +1,8 @@
 # vizsgaremek
 
 ## Start the program
-
 ### Start the program with vsc
 To start the codes do the following steps:
-
 ##### 1. step
 clone the repository and open with vsc
 ##### 2. step
@@ -48,7 +46,6 @@ there must be added an admin (couple) manually to mongodb in the emaillists coll
 
 ### Run in docker
 To start the codes do the following steps:
-
 ##### 1. step
 download the docker-compose.yaml from https://github.com/CodecoolGlobal/fapi-exam-project-2-general-RekaKR/tree/main
 ##### 2. step
@@ -70,7 +67,6 @@ Swagger (w yaml)
 
 
 ## Codes I used
-
 ### At frontend
 React: npx create-react-app frontend \
 Material-ui: npm install @material-ui/core \

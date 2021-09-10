@@ -24,8 +24,8 @@ describe("Test /api/to-do-list endpoint", () => {
     const response = await request.get('/api/to-do-list')
 
     //then
-    expect(response.status).toBe(200)
-    expect(response.body).toEqual([])
+    expect(response.status).toBe(401)
+    expect(response.body.message).toBe('Token missing')
   })
 
   describe("Test for post to /api/to-do-list endpoint", () => {

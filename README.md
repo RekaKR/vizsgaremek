@@ -1,11 +1,13 @@
 # vizsgaremek
 
-## Start the program with vsc
+## Start the program
+
+### Start the program with vsc
 To start the codes do the following steps:
 
-#### 1. step
+##### 1. step
 clone the repository and open with vsc
-#### 2. step
+##### 2. step
 at the terminal: \
 cd backend \
 npm install \
@@ -13,7 +15,7 @@ cd .. \
 cd frontend \
 npm install \
 cd ..
-#### 3. step
+##### 3. step
 create az .env file at the backend folder with the following data
 ```
 PORT = 3001
@@ -24,18 +26,18 @@ GOOGLE_SECRET =
 MONGO_CONNECTION = 
 JWT_SECRET = 
 ```
-#### 4. step
+##### 4. step
 copy the .env file at the root (next to the docker-compose.yaml)
-#### 5. step
+##### 5. step
 update the googleSignIn's link at logInOutActions.js with your GOOGLE_CLIENT_ID
-#### 6. step
+##### 6. step
 cd frontend \
 npm start \
 cd .. \
 cd backend \
 npm start \
 cd ..
-#### extra steps
+##### extra steps
 there must be added an admin (couple) manually to mongodb in the emaillists collections such as
 ```
 {
@@ -44,23 +46,32 @@ there must be added an admin (couple) manually to mongodb in the emaillists coll
 }
 ```
 
-
-## Run in docker
+### Run in docker
 To start the codes do the following steps:
 
-#### 1. step
+##### 1. step
 download the docker-compose.yaml from https://github.com/CodecoolGlobal/fapi-exam-project-2-general-RekaKR/tree/main
-#### 2. step
+##### 2. step
 copy the .env file at the root being given by the developer
-#### 2. step
+##### 2. step
 run `docker-compose up -d`
-#### extra steps
+##### extra steps
 if you wish to use login and its features ask for permisson from the developer
+
+
+## Main technologies I used
+React (w JavaScript ES6, react-router, basic & custom Hooks, uuid) \
+Node.js (w express) \
+MongoDB (w mongoose) \
+Sass, material-UI \
+Jest (w mongodb-memory-server, supertest & mocked data ) \
+Docker (w pipeline & docker-compose) \
+Swagger (w yaml)
 
 
 ## Codes I used
 
-### frontend
+### At frontend
 React: npx create-react-app frontend \
 Material-ui: npm install @material-ui/core \
 Material-ui styled: npm install @material-ui/styles \
@@ -71,7 +82,7 @@ Router: npm install react-router-dom \
 npm i jwt-decode \
 Email validator: npm install validator
 
-### backend
+### At backend
 npm init -y \
 npm i express \
 npm install cors \
@@ -81,3 +92,8 @@ npm install node-fetch \
 npm i jsonwebtoken \
 npm i swagger-ui-express \
 npm install yamljs
+
+
+## License
+Commons Clause
+Read more about here: https://commonsclause.com

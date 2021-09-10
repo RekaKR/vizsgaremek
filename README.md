@@ -73,11 +73,11 @@ if you wish to use login and its features ask for permisson from the developer
 
 
 ## Main technologies I used
-React (w JavaScript ES6, react-router, basic & custom Hooks, uuid) \
+React (w JavaScript ES6, react-router, basic & custom Hooks) \
 Node.js (w express) \
 MongoDB (w mongoose) \
 Sass, material-UI \
-Jest (w mongodb-memory-server, supertest & mocked data ) \
+Jest (w mongodb-memory-server, supertest & mocked data) \
 Docker (w pipeline & docker-compose) \
 Swagger (w yaml)
 

@@ -20,7 +20,7 @@ cd ..
 ```
 
 #### 3. step
-create az .env file at the backend folder with the following data
+create the .env file at the backend folder with the following data
 ```
 PORT = 3001
 GOOGLE_REDIRECT_URI = http://localhost:3000/login
